@@ -1,0 +1,60 @@
+{
+  "auth": {
+    "signin": {
+      "title": "Welcome back",
+      "desc": "Login to your Lingo account",
+      "forgot": "Forgot Password?",
+      "submit": "Login",
+      "loading": "Logging in...",
+      "no_account": "Don't have an account?",
+      "agree": "By continuing, you agree to our <termsLink>{termsLabel}</termsLink> and <privacyLink>{privacyLabel}</privacyLink>.",
+      "ok": "Login successful!",
+      "err": "Login failed, please try again."
+    },
+    "signup": {
+      "title": "Welcome to Lingo",
+      "desc": "Register your Lingo account",
+      "agree": "I agree to the <termsLink>{termsLabel}</termsLink> and <privacyLink>{privacyLabel}</privacyLink>",
+      "submit": "Sign Up",
+      "loading": "Signing up...",
+      "has_account": "Already have an account?",
+      "ok": "Registration successful, please verify your email",
+      "err": "Registration failed, please try again."
+    },
+    "verify": {
+      "title": "Verify Email",
+      "desc": "Please enter the OTP code sent to your email",
+      "submit": "Verify Email",
+      "loading": "Verifying...",
+      "no_code": "Didn't receive code?",
+      "resend": "Resend Code",
+      "back": "Back to",
+      "ok": "Email verified successfully!",
+      "err": "Email verification failed, please try again."
+    }
+  },
+  "field": {
+    "email": "Email",
+    "email_placeholder": "johndoe@gmail.com",
+    "password": "Password",
+    "password_placeholder": "********",
+    "confirm": "Confirm Password",
+    "confirm_placeholder": "********",
+    "name": "Full Name",
+    "name_placeholder": "John Doe",
+    "otp": "OTP Code"
+  },
+  "social": {
+    "or": "Or continue with",
+    "apple": "Apple",
+    "google": "Google",
+    "meta": "Meta"
+  },
+  "link": {
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy",
+    "home": "Back to home",
+    "signin": "Sign In",
+    "signup": "Sign Up"
+  }
+}

@@ -4,7 +4,7 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
+import { Link, useRouter } from "@/lib/i18n/routing";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -18,7 +18,6 @@ import {
 import { Input } from "@/components/ui/input";
 import Logo from "@/assets/logo.png";
 import Banner from "@/assets/banner.png";
-import Link from "next/link";
 import Image from "next/image";
 import {
   signInSchema,
@@ -29,9 +28,13 @@ import type { AxiosError } from "axios";
 import type { ApiResponse } from "@/types/base";
 import { toast } from "sonner";
 import { useAuthStore } from "@/stores/auth.store";
+import { useTranslations } from "next-intl";
+import { LanguageSwitcher } from "@/components/language-switcher";
 
 export function SignIn({ className, ...props }: React.ComponentProps<"div">) {
   const router = useRouter();
+  const t = useTranslations();
+
   const form = useForm<SignInFormValues>({
     resolver: zodResolver(signInSchema),
     defaultValues: {
@@ -49,14 +52,13 @@ export function SignIn({ className, ...props }: React.ComponentProps<"div">) {
         if (data?.data?.user && data?.data?.session) {
           setAuth(data.data.user, data.data.session);
         }
-        toast.success(data?.message || "Đăng nhập thành công!");
+        toast.success(data?.message || t("auth.signin.ok"));
         router.push("/dashboard");
       },
       onError: (error) => {
         const axiosError = error as AxiosError<ApiResponse>;
         const message = axiosError.response?.data?.message;
-        const fallbackMessage =
-          axiosError.message || "Đăng nhập thất bại, vui lòng thử lại.";
+        const fallbackMessage = axiosError.message || t("auth.signin.err");
         toast.error(message || fallbackMessage);
       },
     });
@@ -68,16 +70,19 @@ export function SignIn({ className, ...props }: React.ComponentProps<"div">) {
         <CardContent className="grid p-0 md:grid-cols-2">
           <Form {...form}>
             <form
-              className="p-6 md:p-8"
+              className="relative p-6 md:p-8"
               onSubmit={form.handleSubmit(handleSubmit)}
               noValidate
             >
+              <div className="absolute right-0 top-0 z-10 p-4">
+                <LanguageSwitcher />
+              </div>
               <div className="flex flex-col gap-4">
                 <div className="flex justify-center">
                   <Link
                     href="/"
                     className="flex items-center gap-2 font-medium"
-                    aria-label="Quay lại trang chủ"
+                    aria-label={t("link.home")}
                   >
                     <div className="bg-primary text-primary-foreground flex size-12 items-center justify-center rounded-md">
                       <Image
@@ -91,9 +96,11 @@ export function SignIn({ className, ...props }: React.ComponentProps<"div">) {
                   </Link>
                 </div>
                 <div className="flex flex-col items-center text-center">
-                  <h1 className="text-xl font-bold">Chào mừng bạn trở lại</h1>
+                  <h1 className="text-xl font-bold">
+                    {t("auth.signin.title")}
+                  </h1>
                   <p className="text-muted-foreground text-sm text-balance">
-                    Đăng nhập vào tài khoản Lingo của bạn
+                    {t("auth.signin.desc")}
                   </p>
                 </div>
                 <FormField
@@ -101,12 +108,12 @@ export function SignIn({ className, ...props }: React.ComponentProps<"div">) {
                   name="email"
                   render={({ field }) => (
                     <FormItem className="grid gap-3">
-                      <FormLabel htmlFor="email">Email</FormLabel>
+                      <FormLabel htmlFor="email">{t("field.email")}</FormLabel>
                       <FormControl>
                         <Input
                           id="email"
                           type="email"
-                          placeholder="nguyenvana@gmail.com"
+                          placeholder={t("field.email_placeholder")}
                           autoComplete="email"
                           disabled={isPending}
                           {...field}
@@ -122,19 +129,21 @@ export function SignIn({ className, ...props }: React.ComponentProps<"div">) {
                   render={({ field }) => (
                     <FormItem className="grid gap-3">
                       <div className="flex items-center">
-                        <FormLabel htmlFor="password">Mật khẩu</FormLabel>
-                        <a
-                          href="/auth/forgot-password"
+                        <FormLabel htmlFor="password">
+                          {t("field.password")}
+                        </FormLabel>
+                        <Link
+                          href="/forgot-password"
                           className="ml-auto text-sm underline-offset-2 hover:underline"
                         >
-                          Quên mật khẩu?
-                        </a>
+                          {t("auth.signin.forgot")}
+                        </Link>
                       </div>
                       <FormControl>
                         <Input
                           id="password"
                           type="password"
-                          placeholder="********"
+                          placeholder={t("field.password_placeholder")}
                           autoComplete="current-password"
                           disabled={isPending}
                           {...field}
@@ -152,15 +161,15 @@ export function SignIn({ className, ...props }: React.ComponentProps<"div">) {
                   {isPending ? (
                     <>
                       <span className="size-4 animate-spin rounded-full border-2 border-transparent border-l-current border-t-current" />
-                      Đang đăng nhập...
+                      {t("auth.signin.loading")}
                     </>
                   ) : (
-                    "Đăng nhập"
+                    t("auth.signin.submit")
                   )}
                 </Button>
                 <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
                   <span className="bg-card text-muted-foreground relative z-10 px-2">
-                    Hoặc tiếp tục với
+                    {t("social.or")}
                   </span>
                 </div>
                 <div className="grid grid-cols-3 gap-4">
@@ -176,7 +185,7 @@ export function SignIn({ className, ...props }: React.ComponentProps<"div">) {
                         fill="currentColor"
                       />
                     </svg>
-                    <span className="sr-only">Đăng nhập với Apple</span>
+                    <span className="sr-only">{t("social.apple")}</span>
                   </Button>
                   <Button
                     variant="outline"
@@ -190,7 +199,7 @@ export function SignIn({ className, ...props }: React.ComponentProps<"div">) {
                         fill="currentColor"
                       />
                     </svg>
-                    <span className="sr-only">Đăng nhập với Google</span>
+                    <span className="sr-only">{t("social.google")}</span>
                   </Button>
                   <Button
                     variant="outline"
@@ -204,14 +213,17 @@ export function SignIn({ className, ...props }: React.ComponentProps<"div">) {
                         fill="currentColor"
                       />
                     </svg>
-                    <span className="sr-only">Đăng nhập với Meta</span>
+                    <span className="sr-only">{t("social.meta")}</span>
                   </Button>
                 </div>
                 <div className="text-center text-sm">
-                  Bạn chưa có tài khoản?{" "}
-                  <a href="sign-up" className="underline underline-offset-4">
-                    Đăng ký
-                  </a>
+                  {t("auth.signin.no_account")}{" "}
+                  <Link
+                    href="/sign-up"
+                    className="underline underline-offset-4"
+                  >
+                    {t("link.signup")}
+                  </Link>
                 </div>
               </div>
             </form>
@@ -227,8 +239,12 @@ export function SignIn({ className, ...props }: React.ComponentProps<"div">) {
         </CardContent>
       </Card>
       <div className="text-muted-foreground *:[a]:hover:text-primary text-center text-xs text-balance *:[a]:underline *:[a]:underline-offset-4">
-        Bằng cách tiếp tục, bạn đồng ý với <a href="#">Điều khoản dịch vụ</a> và{" "}
-        <a href="#">Chính sách bảo mật</a>.
+        {t.rich("auth.signin.agree", {
+          termsLink: (chunks) => <a href="#">{chunks}</a>,
+          privacyLink: (chunks) => <a href="#">{chunks}</a>,
+          termsLabel: t("link.terms"),
+          privacyLabel: t("link.privacy"),
+        })}
       </div>
     </div>
   );

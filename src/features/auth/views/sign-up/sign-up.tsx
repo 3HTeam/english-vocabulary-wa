@@ -4,9 +4,9 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
+import { Link, useRouter } from "@/lib/i18n/routing";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import {
   Form,
   FormControl,
@@ -17,24 +17,24 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import Logo from "@/assets/logo.png";
-import Banner from "@/assets/banner.png";
-import Link from "next/link";
 import Image from "next/image";
 import { useSignUpMutation } from "@/apis/tanstack/hooks/auth.tantack";
 import type { AxiosError } from "axios";
 import type { ApiResponse } from "@/types/base";
 import { useAuthStore } from "@/stores/auth.store";
-
-import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
   signUpSchema,
   type SignUpFormValues,
 } from "@/features/auth/schemas/sign-up.schema";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
+import { LanguageSwitcher } from "@/components/language-switcher";
 
 export function SignUp({ className, ...props }: React.ComponentProps<"div">) {
   const router = useRouter();
+  const t = useTranslations();
+
   const form = useForm<SignUpFormValues>({
     resolver: zodResolver(signUpSchema),
     defaultValues: {
@@ -49,23 +49,20 @@ export function SignUp({ className, ...props }: React.ComponentProps<"div">) {
   const { mutate, isPending } = useSignUpMutation();
   const setSignupEmail = useAuthStore((state) => state.setSignupEmail);
 
-  const handleSubmit = (values: SignUpFormValues) => {
-    const { email, password, fullName } = values;
+  const handleSubmit = (SignUpValues: SignUpFormValues) => {
+    const { email, password, fullName } = SignUpValues;
     mutate(
       { email, password, fullName: fullName.trim() },
       {
         onSuccess: (data) => {
           setSignupEmail(email);
-          toast.success(
-            data?.message || "Đăng ký thành công, vui lòng xác thực email"
-          );
+          toast.success(data?.message || t("auth.signup.ok"));
           router.push("/verify-email");
         },
         onError: (error: unknown) => {
           const axiosError = error as AxiosError<ApiResponse>;
           const message = axiosError.response?.data?.message;
-          const fallbackMessage =
-            axiosError.message || "Đăng ký thất bại, vui lòng thử lại.";
+          const fallbackMessage = axiosError.message || t("auth.signup.err");
           toast.error(message || fallbackMessage);
         },
       }
@@ -77,16 +74,19 @@ export function SignUp({ className, ...props }: React.ComponentProps<"div">) {
       <Card className="overflow-hidden p-0">
         <Form {...form}>
           <form
-            className="p-6 md:p-8"
+            className="relative p-6 md:p-8"
             onSubmit={form.handleSubmit(handleSubmit)}
             noValidate
           >
+            <div className="absolute right-0 top-0 z-10 p-4">
+              <LanguageSwitcher />
+            </div>
             <div className="flex flex-col gap-4">
               <div className="flex justify-center">
                 <Link
                   href="/"
                   className="flex items-center gap-2 font-medium"
-                  aria-label="Quay lại trang chủ"
+                  aria-label={t("link.home")}
                 >
                   <div className="bg-primary text-primary-foreground flex size-12 items-center justify-center rounded-md">
                     <Image
@@ -100,11 +100,9 @@ export function SignUp({ className, ...props }: React.ComponentProps<"div">) {
                 </Link>
               </div>
               <div className="flex flex-col items-center text-center">
-                <h1 className="text-xl font-bold">
-                  Chào mừng bạn đến với Lingo
-                </h1>
+                <h1 className="text-xl font-bold">{t("auth.signup.title")}</h1>
                 <p className="text-muted-foreground text-sm text-balance">
-                  Đăng ký tài khoản Lingo của bạn
+                  {t("auth.signup.desc")}
                 </p>
               </div>
               <FormField
@@ -112,12 +110,12 @@ export function SignUp({ className, ...props }: React.ComponentProps<"div">) {
                 name="fullName"
                 render={({ field }) => (
                   <FormItem className="grid gap-3">
-                    <FormLabel htmlFor="fullName">Họ và tên</FormLabel>
+                    <FormLabel htmlFor="fullName">{t("field.name")}</FormLabel>
                     <FormControl>
                       <Input
                         id="fullName"
                         type="text"
-                        placeholder="Nguyễn Văn A"
+                        placeholder={t("field.name_placeholder")}
                         autoComplete="fullName"
                         required
                         disabled={isPending}
@@ -133,12 +131,12 @@ export function SignUp({ className, ...props }: React.ComponentProps<"div">) {
                 name="email"
                 render={({ field }) => (
                   <FormItem className="grid gap-3">
-                    <FormLabel htmlFor="email">Email</FormLabel>
+                    <FormLabel htmlFor="email">{t("field.email")}</FormLabel>
                     <FormControl>
                       <Input
                         id="email"
                         type="email"
-                        placeholder="nguyenvana@gmail.com"
+                        placeholder={t("field.email_placeholder")}
                         autoComplete="email"
                         required
                         disabled={isPending}
@@ -149,20 +147,22 @@ export function SignUp({ className, ...props }: React.ComponentProps<"div">) {
                   </FormItem>
                 )}
               />
-              <div className="flex justify-between items-center">
+              <div className="flex justify-between items-center gap-4">
                 <FormField
                   control={form.control}
                   name="password"
                   render={({ field }) => (
-                    <FormItem className="grid gap-3">
+                    <FormItem className="grid gap-3 flex-1">
                       <div className="flex items-center">
-                        <FormLabel htmlFor="password">Mật khẩu</FormLabel>
+                        <FormLabel htmlFor="password">
+                          {t("field.password")}
+                        </FormLabel>
                       </div>
                       <FormControl>
                         <Input
                           id="password"
                           type="password"
-                          placeholder="********"
+                          placeholder={t("field.password_placeholder")}
                           autoComplete="current-password"
                           required
                           disabled={isPending}
@@ -177,17 +177,17 @@ export function SignUp({ className, ...props }: React.ComponentProps<"div">) {
                   control={form.control}
                   name="confirmPassword"
                   render={({ field }) => (
-                    <FormItem className="grid gap-3">
+                    <FormItem className="grid gap-3 flex-1">
                       <div className="flex items-center">
                         <FormLabel htmlFor="confirmPassword">
-                          Xác nhận mật khẩu
+                          {t("field.confirm")}
                         </FormLabel>
                       </div>
                       <FormControl>
                         <Input
                           id="confirmPassword"
                           type="password"
-                          placeholder="********"
+                          placeholder={t("field.confirm_placeholder")}
                           autoComplete="confirmPassword"
                           required
                           disabled={isPending}
@@ -211,8 +211,27 @@ export function SignUp({ className, ...props }: React.ComponentProps<"div">) {
                         className="mt-0.5"
                       />
                     </FormControl>
-                    <FormLabel className="text-sm">
-                      Tôi đồng ý với điều khoản dịch vụ và chính sách bảo mật
+                    <FormLabel className="text-sm font-normal">
+                      {t.rich("auth.signup.agree", {
+                        termsLink: (chunks) => (
+                          <Link
+                            href="/terms"
+                            className="underline underline-offset-4 hover:text-primary"
+                          >
+                            {chunks}
+                          </Link>
+                        ),
+                        privacyLink: (chunks) => (
+                          <Link
+                            href="/privacy"
+                            className="underline underline-offset-4 hover:text-primary"
+                          >
+                            {chunks}
+                          </Link>
+                        ),
+                        termsLabel: t("link.terms"),
+                        privacyLabel: t("link.privacy"),
+                      })}
                     </FormLabel>
                   </FormItem>
                 )}
@@ -226,15 +245,15 @@ export function SignUp({ className, ...props }: React.ComponentProps<"div">) {
                 {isPending ? (
                   <>
                     <span className="size-4 animate-spin rounded-full border-2 border-transparent border-l-current border-t-current" />
-                    Đang đăng ký...
+                    {t("auth.signup.loading")}
                   </>
                 ) : (
-                  "Đăng ký"
+                  t("auth.signup.submit")
                 )}
               </Button>
               <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
                 <span className="bg-card text-muted-foreground relative z-10 px-2">
-                  Hoặc tiếp tục với
+                  {t("social.or")}
                 </span>
               </div>
               <div className="grid grid-cols-3 gap-4">
@@ -250,7 +269,7 @@ export function SignUp({ className, ...props }: React.ComponentProps<"div">) {
                       fill="currentColor"
                     />
                   </svg>
-                  <span className="sr-only">Đăng nhập với Apple</span>
+                  <span className="sr-only">{t("social.apple")}</span>
                 </Button>
                 <Button
                   variant="outline"
@@ -264,7 +283,7 @@ export function SignUp({ className, ...props }: React.ComponentProps<"div">) {
                       fill="currentColor"
                     />
                   </svg>
-                  <span className="sr-only">Đăng nhập với Google</span>
+                  <span className="sr-only">{t("social.google")}</span>
                 </Button>
                 <Button
                   variant="outline"
@@ -278,14 +297,14 @@ export function SignUp({ className, ...props }: React.ComponentProps<"div">) {
                       fill="currentColor"
                     />
                   </svg>
-                  <span className="sr-only">Đăng nhập với Meta</span>
+                  <span className="sr-only">{t("social.meta")}</span>
                 </Button>
               </div>
               <div className="text-center text-sm">
-                Bạn đã có tài khoản?{" "}
-                <a href="sign-in" className="underline underline-offset-4">
-                  Đăng nhập
-                </a>
+                {t("auth.signup.has_account")}{" "}
+                <Link href="/sign-in" className="underline underline-offset-4">
+                  {t("link.signin")}
+                </Link>
               </div>
             </div>
           </form>
