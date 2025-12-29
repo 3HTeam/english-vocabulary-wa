@@ -1,0 +1,62 @@
+{
+  "Auth": {
+    "SignIn": {
+      "title": "Chào mừng bạn trở lại",
+      "description": "Đăng nhập vào tài khoản Lingo của bạn",
+      "forgotPassword": "Quên mật khẩu?",
+      "submit": "Đăng nhập",
+      "submitting": "Đang đăng nhập...",
+      "noAccount": "Bạn chưa có tài khoản?",
+      "agreement": "Bằng cách tiếp tục, bạn đồng ý với <termsLink>{termsLabel}</termsLink> và <privacyLink>{privacyLabel}</privacyLink>.",
+      "success": "Đăng nhập thành công!",
+      "error": "Đăng nhập thất bại, vui lòng thử lại."
+    },
+    "SignUp": {
+      "title": "Chào mừng bạn đến với Lingo",
+      "description": "Đăng ký tài khoản Lingo của bạn",
+      "agreement": "Tôi đồng ý với <termsLink>{termsLabel}</termsLink> và <privacyLink>{privacyLabel}</privacyLink>",
+      "submit": "Đăng ký",
+      "submitting": "Đang đăng ký...",
+      "alreadyHaveAccount": "Bạn đã có tài khoản?",
+      "success": "Đăng ký thành công, vui lòng xác thực email",
+      "error": "Đăng ký thất bại, vui lòng thử lại."
+    },
+    "VerifyEmail": {
+      "title": "Xác thực email",
+      "description": "Vui lòng nhập mã OTP đã được gửi đến email của bạn",
+      "submit": "Xác thực email",
+      "submitting": "Đang xác thực...",
+      "noCode": "Không nhận được mã?",
+      "resendCode": "Gửi lại mã",
+      "backTo": "Quay lại",
+      "success": "Xác thực email thành công!",
+      "error": "Xác thực email thất bại, vui lòng thử lại."
+    }
+  },
+  "Common": {
+    "fields": {
+      "email": "Email",
+      "emailPlaceholder": "nguyenvana@gmail.com",
+      "password": "Mật khẩu",
+      "passwordPlaceholder": "********",
+      "confirmPassword": "Xác nhận mật khẩu",
+      "confirmPasswordPlaceholder": "********",
+      "fullName": "Họ và tên",
+      "fullNamePlaceholder": "Nguyễn Văn A",
+      "otp": "Mã OTP"
+    },
+    "social": {
+      "orContinueWith": "Hoặc tiếp tục với",
+      "apple": "Apple",
+      "google": "Google",
+      "meta": "Meta"
+    },
+    "links": {
+      "terms": "Điều khoản dịch vụ",
+      "privacy": "Chính sách bảo mật",
+      "backToHome": "Quay lại trang chủ",
+      "signIn": "Đăng nhập",
+      "signUp": "Đăng ký"
+    }
+  }
+}

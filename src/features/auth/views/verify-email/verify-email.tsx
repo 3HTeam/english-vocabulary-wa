@@ -4,9 +4,9 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, Controller } from "react-hook-form";
-import { useRouter } from "next/navigation";
+import { Link, useRouter } from "@/lib/i18n/routing";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import {
   Form,
   FormControl,
@@ -17,8 +17,6 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import Logo from "@/assets/logo.png";
-import Banner from "@/assets/banner.png";
-import Link from "next/link";
 import Image from "next/image";
 import { useVerifyEmailMutation } from "@/apis/tanstack/hooks/auth.tantack";
 import type { AxiosError } from "axios";
@@ -35,12 +33,17 @@ import {
 import { REGEXP_ONLY_DIGITS } from "input-otp";
 import { toast } from "sonner";
 import { useAuthStore } from "@/stores/auth.store";
+import { useTranslations } from "next-intl";
+import { LanguageSwitcher } from "@/components/language-switcher";
 
 export function VerifyEmail({
   className,
   ...props
 }: React.ComponentProps<"div">) {
   const router = useRouter();
+  const t = useTranslations("Auth.VerifyEmail");
+  const commonT = useTranslations("Common");
+
   const signupEmail = useAuthStore((state) => state.signupEmail);
   const clearSignupEmail = useAuthStore((state) => state.clearSignupEmail);
   const setAuth = useAuthStore((state) => state.setAuth);
@@ -62,15 +65,14 @@ export function VerifyEmail({
         if (data?.data?.user && data?.data?.session) {
           setAuth(data.data.user, data.data.session);
         }
-        toast.success(data?.message || "Xác thực email thành công!");
+        toast.success(data?.message || t("success"));
         clearSignupEmail();
         router.push("/sign-in");
       },
       onError: (error: unknown) => {
         const axiosError = error as AxiosError<ApiResponse>;
         const message = axiosError.response?.data?.message;
-        const fallbackMessage =
-          axiosError.message || "Xác thực email thất bại, vui lòng thử lại.";
+        const fallbackMessage = axiosError.message || t("error");
         toast.error(message || fallbackMessage);
       },
     });
@@ -81,16 +83,19 @@ export function VerifyEmail({
       <Card className="overflow-hidden p-0">
         <Form {...form}>
           <form
-            className="p-6 md:p-8"
+            className="relative p-6 md:p-8"
             onSubmit={form.handleSubmit(handleSubmit)}
             noValidate
           >
+            <div className="absolute right-0 top-0 z-10 p-4">
+              <LanguageSwitcher />
+            </div>
             <div className="flex flex-col gap-4">
               <div className="flex justify-center">
                 <Link
                   href="/"
                   className="flex items-center gap-2 font-medium"
-                  aria-label="Quay lại trang chủ"
+                  aria-label={commonT("links.backToHome")}
                 >
                   <div className="bg-primary text-primary-foreground flex size-12 items-center justify-center rounded-md">
                     <Image
@@ -104,9 +109,9 @@ export function VerifyEmail({
                 </Link>
               </div>
               <div className="flex flex-col items-center text-center">
-                <h1 className="text-xl font-bold">Xác thực email</h1>
+                <h1 className="text-xl font-bold">{t("title")}</h1>
                 <p className="text-muted-foreground text-sm text-balance">
-                  Vui lòng nhập mã OTP đã được gửi đến email của bạn
+                  {t("description")}
                 </p>
               </div>
               <FormField
@@ -114,12 +119,14 @@ export function VerifyEmail({
                 name="email"
                 render={({ field }) => (
                   <FormItem className="grid gap-3">
-                    <FormLabel htmlFor="email">Email</FormLabel>
+                    <FormLabel htmlFor="email">
+                      {commonT("fields.email")}
+                    </FormLabel>
                     <FormControl>
                       <Input
                         id="email"
                         type="email"
-                        placeholder="nguyenvana@gmail.com"
+                        placeholder={commonT("fields.emailPlaceholder")}
                         autoComplete="email"
                         required
                         disabled={isPending || !!signupEmail}
@@ -135,7 +142,7 @@ export function VerifyEmail({
                 name="otp"
                 render={({ field }) => (
                   <FormItem className="grid gap-3">
-                    <FormLabel htmlFor="otp">Mã OTP</FormLabel>
+                    <FormLabel htmlFor="otp">{commonT("fields.otp")}</FormLabel>
                     <FormControl>
                       <Controller
                         control={form.control}
@@ -174,31 +181,29 @@ export function VerifyEmail({
                 {isPending ? (
                   <>
                     <span className="size-4 animate-spin rounded-full border-2 border-transparent border-l-current border-t-current" />
-                    Đang xác thực...
+                    {t("submitting")}
                   </>
                 ) : (
-                  "Xác thực email"
+                  t("submit")
                 )}
               </Button>
               <div className="text-center text-sm">
-                <span className="text-muted-foreground">
-                  Không nhận được mã?{" "}
-                </span>
+                <span className="text-muted-foreground">{t("noCode")} </span>
                 <button
                   type="button"
-                  className="underline underline-offset-4 hover:text-primary"
+                  className="underline underline-offset-4 hover:text-primary cursor-pointer"
                   disabled={isPending}
                 >
-                  Gửi lại mã
+                  {t("resendCode")}
                 </button>
               </div>
               <div className="text-center text-sm">
-                <span className="text-muted-foreground">Quay lại </span>
+                <span className="text-muted-foreground">{t("backTo")} </span>
                 <Link
                   href="/sign-in"
                   className="underline underline-offset-4 hover:text-primary"
                 >
-                  Đăng nhập
+                  {commonT("links.signIn")}
                 </Link>
               </div>
             </div>
