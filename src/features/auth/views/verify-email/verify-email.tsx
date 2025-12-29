@@ -41,8 +41,7 @@ export function VerifyEmail({
   ...props
 }: React.ComponentProps<"div">) {
   const router = useRouter();
-  const t = useTranslations("Auth.VerifyEmail");
-  const commonT = useTranslations("Common");
+  const t = useTranslations();
 
   const signupEmail = useAuthStore((state) => state.signupEmail);
   const clearSignupEmail = useAuthStore((state) => state.clearSignupEmail);
@@ -65,14 +64,14 @@ export function VerifyEmail({
         if (data?.data?.user && data?.data?.session) {
           setAuth(data.data.user, data.data.session);
         }
-        toast.success(data?.message || t("success"));
+        toast.success(data?.message || t("auth.verify.ok"));
         clearSignupEmail();
         router.push("/sign-in");
       },
       onError: (error: unknown) => {
         const axiosError = error as AxiosError<ApiResponse>;
         const message = axiosError.response?.data?.message;
-        const fallbackMessage = axiosError.message || t("error");
+        const fallbackMessage = axiosError.message || t("auth.verify.err");
         toast.error(message || fallbackMessage);
       },
     });
@@ -95,7 +94,7 @@ export function VerifyEmail({
                 <Link
                   href="/"
                   className="flex items-center gap-2 font-medium"
-                  aria-label={commonT("links.backToHome")}
+                  aria-label={t("link.home")}
                 >
                   <div className="bg-primary text-primary-foreground flex size-12 items-center justify-center rounded-md">
                     <Image
@@ -109,9 +108,9 @@ export function VerifyEmail({
                 </Link>
               </div>
               <div className="flex flex-col items-center text-center">
-                <h1 className="text-xl font-bold">{t("title")}</h1>
+                <h1 className="text-xl font-bold">{t("auth.verify.title")}</h1>
                 <p className="text-muted-foreground text-sm text-balance">
-                  {t("description")}
+                  {t("auth.verify.desc")}
                 </p>
               </div>
               <FormField
@@ -119,14 +118,12 @@ export function VerifyEmail({
                 name="email"
                 render={({ field }) => (
                   <FormItem className="grid gap-3">
-                    <FormLabel htmlFor="email">
-                      {commonT("fields.email")}
-                    </FormLabel>
+                    <FormLabel htmlFor="email">{t("field.email")}</FormLabel>
                     <FormControl>
                       <Input
                         id="email"
                         type="email"
-                        placeholder={commonT("fields.emailPlaceholder")}
+                        placeholder={t("field.email_placeholder")}
                         autoComplete="email"
                         required
                         disabled={isPending || !!signupEmail}
@@ -142,7 +139,7 @@ export function VerifyEmail({
                 name="otp"
                 render={({ field }) => (
                   <FormItem className="grid gap-3">
-                    <FormLabel htmlFor="otp">{commonT("fields.otp")}</FormLabel>
+                    <FormLabel htmlFor="otp">{t("field.otp")}</FormLabel>
                     <FormControl>
                       <Controller
                         control={form.control}
@@ -181,29 +178,33 @@ export function VerifyEmail({
                 {isPending ? (
                   <>
                     <span className="size-4 animate-spin rounded-full border-2 border-transparent border-l-current border-t-current" />
-                    {t("submitting")}
+                    {t("auth.verify.loading")}
                   </>
                 ) : (
-                  t("submit")
+                  t("auth.verify.submit")
                 )}
               </Button>
               <div className="text-center text-sm">
-                <span className="text-muted-foreground">{t("noCode")} </span>
+                <span className="text-muted-foreground">
+                  {t("auth.verify.no_code")}{" "}
+                </span>
                 <button
                   type="button"
                   className="underline underline-offset-4 hover:text-primary cursor-pointer"
                   disabled={isPending}
                 >
-                  {t("resendCode")}
+                  {t("auth.verify.resend")}
                 </button>
               </div>
               <div className="text-center text-sm">
-                <span className="text-muted-foreground">{t("backTo")} </span>
+                <span className="text-muted-foreground">
+                  {t("auth.verify.back")}{" "}
+                </span>
                 <Link
                   href="/sign-in"
                   className="underline underline-offset-4 hover:text-primary"
                 >
-                  {commonT("links.signIn")}
+                  {t("link.signin")}
                 </Link>
               </div>
             </div>

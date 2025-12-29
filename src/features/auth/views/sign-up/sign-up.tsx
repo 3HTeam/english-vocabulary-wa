@@ -33,8 +33,7 @@ import { LanguageSwitcher } from "@/components/language-switcher";
 
 export function SignUp({ className, ...props }: React.ComponentProps<"div">) {
   const router = useRouter();
-  const t = useTranslations("Auth.SignUp");
-  const commonT = useTranslations("Common");
+  const t = useTranslations();
 
   const form = useForm<SignUpFormValues>({
     resolver: zodResolver(signUpSchema),
@@ -57,13 +56,13 @@ export function SignUp({ className, ...props }: React.ComponentProps<"div">) {
       {
         onSuccess: (data) => {
           setSignupEmail(email);
-          toast.success(data?.message || t("success"));
+          toast.success(data?.message || t("auth.signup.ok"));
           router.push("/verify-email");
         },
         onError: (error: unknown) => {
           const axiosError = error as AxiosError<ApiResponse>;
           const message = axiosError.response?.data?.message;
-          const fallbackMessage = axiosError.message || t("error");
+          const fallbackMessage = axiosError.message || t("auth.signup.err");
           toast.error(message || fallbackMessage);
         },
       }
@@ -87,7 +86,7 @@ export function SignUp({ className, ...props }: React.ComponentProps<"div">) {
                 <Link
                   href="/"
                   className="flex items-center gap-2 font-medium"
-                  aria-label={commonT("links.backToHome")}
+                  aria-label={t("link.home")}
                 >
                   <div className="bg-primary text-primary-foreground flex size-12 items-center justify-center rounded-md">
                     <Image
@@ -101,9 +100,9 @@ export function SignUp({ className, ...props }: React.ComponentProps<"div">) {
                 </Link>
               </div>
               <div className="flex flex-col items-center text-center">
-                <h1 className="text-xl font-bold">{t("title")}</h1>
+                <h1 className="text-xl font-bold">{t("auth.signup.title")}</h1>
                 <p className="text-muted-foreground text-sm text-balance">
-                  {t("description")}
+                  {t("auth.signup.desc")}
                 </p>
               </div>
               <FormField
@@ -111,14 +110,12 @@ export function SignUp({ className, ...props }: React.ComponentProps<"div">) {
                 name="fullName"
                 render={({ field }) => (
                   <FormItem className="grid gap-3">
-                    <FormLabel htmlFor="fullName">
-                      {commonT("fields.fullName")}
-                    </FormLabel>
+                    <FormLabel htmlFor="fullName">{t("field.name")}</FormLabel>
                     <FormControl>
                       <Input
                         id="fullName"
                         type="text"
-                        placeholder={commonT("fields.fullNamePlaceholder")}
+                        placeholder={t("field.name_placeholder")}
                         autoComplete="fullName"
                         required
                         disabled={isPending}
@@ -134,14 +131,12 @@ export function SignUp({ className, ...props }: React.ComponentProps<"div">) {
                 name="email"
                 render={({ field }) => (
                   <FormItem className="grid gap-3">
-                    <FormLabel htmlFor="email">
-                      {commonT("fields.email")}
-                    </FormLabel>
+                    <FormLabel htmlFor="email">{t("field.email")}</FormLabel>
                     <FormControl>
                       <Input
                         id="email"
                         type="email"
-                        placeholder={commonT("fields.emailPlaceholder")}
+                        placeholder={t("field.email_placeholder")}
                         autoComplete="email"
                         required
                         disabled={isPending}
@@ -160,14 +155,14 @@ export function SignUp({ className, ...props }: React.ComponentProps<"div">) {
                     <FormItem className="grid gap-3 flex-1">
                       <div className="flex items-center">
                         <FormLabel htmlFor="password">
-                          {commonT("fields.password")}
+                          {t("field.password")}
                         </FormLabel>
                       </div>
                       <FormControl>
                         <Input
                           id="password"
                           type="password"
-                          placeholder={commonT("fields.passwordPlaceholder")}
+                          placeholder={t("field.password_placeholder")}
                           autoComplete="current-password"
                           required
                           disabled={isPending}
@@ -185,16 +180,14 @@ export function SignUp({ className, ...props }: React.ComponentProps<"div">) {
                     <FormItem className="grid gap-3 flex-1">
                       <div className="flex items-center">
                         <FormLabel htmlFor="confirmPassword">
-                          {commonT("fields.confirmPassword")}
+                          {t("field.confirm")}
                         </FormLabel>
                       </div>
                       <FormControl>
                         <Input
                           id="confirmPassword"
                           type="password"
-                          placeholder={commonT(
-                            "fields.confirmPasswordPlaceholder"
-                          )}
+                          placeholder={t("field.confirm_placeholder")}
                           autoComplete="confirmPassword"
                           required
                           disabled={isPending}
@@ -219,7 +212,7 @@ export function SignUp({ className, ...props }: React.ComponentProps<"div">) {
                       />
                     </FormControl>
                     <FormLabel className="text-sm font-normal">
-                      {t.rich("agreement", {
+                      {t.rich("auth.signup.agree", {
                         termsLink: (chunks) => (
                           <Link
                             href="/terms"
@@ -236,8 +229,8 @@ export function SignUp({ className, ...props }: React.ComponentProps<"div">) {
                             {chunks}
                           </Link>
                         ),
-                        termsLabel: commonT("links.terms"),
-                        privacyLabel: commonT("links.privacy"),
+                        termsLabel: t("link.terms"),
+                        privacyLabel: t("link.privacy"),
                       })}
                     </FormLabel>
                   </FormItem>
@@ -252,15 +245,15 @@ export function SignUp({ className, ...props }: React.ComponentProps<"div">) {
                 {isPending ? (
                   <>
                     <span className="size-4 animate-spin rounded-full border-2 border-transparent border-l-current border-t-current" />
-                    {t("submitting")}
+                    {t("auth.signup.loading")}
                   </>
                 ) : (
-                  t("submit")
+                  t("auth.signup.submit")
                 )}
               </Button>
               <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
                 <span className="bg-card text-muted-foreground relative z-10 px-2">
-                  {commonT("social.orContinueWith")}
+                  {t("social.or")}
                 </span>
               </div>
               <div className="grid grid-cols-3 gap-4">
@@ -276,7 +269,7 @@ export function SignUp({ className, ...props }: React.ComponentProps<"div">) {
                       fill="currentColor"
                     />
                   </svg>
-                  <span className="sr-only">{commonT("social.apple")}</span>
+                  <span className="sr-only">{t("social.apple")}</span>
                 </Button>
                 <Button
                   variant="outline"
@@ -290,7 +283,7 @@ export function SignUp({ className, ...props }: React.ComponentProps<"div">) {
                       fill="currentColor"
                     />
                   </svg>
-                  <span className="sr-only">{commonT("social.google")}</span>
+                  <span className="sr-only">{t("social.google")}</span>
                 </Button>
                 <Button
                   variant="outline"
@@ -304,13 +297,13 @@ export function SignUp({ className, ...props }: React.ComponentProps<"div">) {
                       fill="currentColor"
                     />
                   </svg>
-                  <span className="sr-only">{commonT("social.meta")}</span>
+                  <span className="sr-only">{t("social.meta")}</span>
                 </Button>
               </div>
               <div className="text-center text-sm">
-                {t("alreadyHaveAccount")}{" "}
+                {t("auth.signup.has_account")}{" "}
                 <Link href="/sign-in" className="underline underline-offset-4">
-                  {commonT("links.signIn")}
+                  {t("link.signin")}
                 </Link>
               </div>
             </div>

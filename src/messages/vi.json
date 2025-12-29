@@ -1,62 +1,60 @@
 {
-  "Auth": {
-    "SignIn": {
+  "auth": {
+    "signin": {
       "title": "Chào mừng bạn trở lại",
-      "description": "Đăng nhập vào tài khoản Lingo của bạn",
-      "forgotPassword": "Quên mật khẩu?",
+      "desc": "Đăng nhập vào tài khoản Lingo của bạn",
+      "forgot": "Quên mật khẩu?",
       "submit": "Đăng nhập",
-      "submitting": "Đang đăng nhập...",
-      "noAccount": "Bạn chưa có tài khoản?",
-      "agreement": "Bằng cách tiếp tục, bạn đồng ý với <termsLink>{termsLabel}</termsLink> và <privacyLink>{privacyLabel}</privacyLink>.",
-      "success": "Đăng nhập thành công!",
-      "error": "Đăng nhập thất bại, vui lòng thử lại."
+      "loading": "Đang đăng nhập...",
+      "no_account": "Bạn chưa có tài khoản?",
+      "agree": "Bằng cách tiếp tục, bạn đồng ý với <termsLink>{termsLabel}</termsLink> và <privacyLink>{privacyLabel}</privacyLink>.",
+      "ok": "Đăng nhập thành công!",
+      "err": "Đăng nhập thất bại, vui lòng thử lại."
     },
-    "SignUp": {
+    "signup": {
       "title": "Chào mừng bạn đến với Lingo",
-      "description": "Đăng ký tài khoản Lingo của bạn",
-      "agreement": "Tôi đồng ý với <termsLink>{termsLabel}</termsLink> và <privacyLink>{privacyLabel}</privacyLink>",
+      "desc": "Đăng ký tài khoản Lingo của bạn",
+      "agree": "Tôi đồng ý với <termsLink>{termsLabel}</termsLink> và <privacyLink>{privacyLabel}</privacyLink>",
       "submit": "Đăng ký",
-      "submitting": "Đang đăng ký...",
-      "alreadyHaveAccount": "Bạn đã có tài khoản?",
-      "success": "Đăng ký thành công, vui lòng xác thực email",
-      "error": "Đăng ký thất bại, vui lòng thử lại."
+      "loading": "Đang đăng ký...",
+      "has_account": "Bạn đã có tài khoản?",
+      "ok": "Đăng ký thành công, vui lòng xác thực email",
+      "err": "Đăng ký thất bại, vui lòng thử lại."
     },
-    "VerifyEmail": {
+    "verify": {
       "title": "Xác thực email",
-      "description": "Vui lòng nhập mã OTP đã được gửi đến email của bạn",
+      "desc": "Vui lòng nhập mã OTP đã được gửi đến email của bạn",
       "submit": "Xác thực email",
-      "submitting": "Đang xác thực...",
-      "noCode": "Không nhận được mã?",
-      "resendCode": "Gửi lại mã",
-      "backTo": "Quay lại",
-      "success": "Xác thực email thành công!",
-      "error": "Xác thực email thất bại, vui lòng thử lại."
+      "loading": "Đang xác thực...",
+      "no_code": "Không nhận được mã?",
+      "resend": "Gửi lại mã",
+      "back": "Quay lại",
+      "ok": "Xác thực email thành công!",
+      "err": "Xác thực email thất bại, vui lòng thử lại."
     }
   },
-  "Common": {
-    "fields": {
-      "email": "Email",
-      "emailPlaceholder": "nguyenvana@gmail.com",
-      "password": "Mật khẩu",
-      "passwordPlaceholder": "********",
-      "confirmPassword": "Xác nhận mật khẩu",
-      "confirmPasswordPlaceholder": "********",
-      "fullName": "Họ và tên",
-      "fullNamePlaceholder": "Nguyễn Văn A",
-      "otp": "Mã OTP"
-    },
-    "social": {
-      "orContinueWith": "Hoặc tiếp tục với",
-      "apple": "Apple",
-      "google": "Google",
-      "meta": "Meta"
-    },
-    "links": {
-      "terms": "Điều khoản dịch vụ",
-      "privacy": "Chính sách bảo mật",
-      "backToHome": "Quay lại trang chủ",
-      "signIn": "Đăng nhập",
-      "signUp": "Đăng ký"
-    }
+  "field": {
+    "email": "Email",
+    "email_placeholder": "nguyenvana@gmail.com",
+    "password": "Mật khẩu",
+    "password_placeholder": "********",
+    "confirm": "Xác nhận mật khẩu",
+    "confirm_placeholder": "********",
+    "name": "Họ và tên",
+    "name_placeholder": "Nguyễn Văn A",
+    "otp": "Mã OTP"
+  },
+  "social": {
+    "or": "Hoặc tiếp tục với",
+    "apple": "Apple",
+    "google": "Google",
+    "meta": "Meta"
+  },
+  "link": {
+    "terms": "Điều khoản dịch vụ",
+    "privacy": "Chính sách bảo mật",
+    "home": "Quay lại trang chủ",
+    "signin": "Đăng nhập",
+    "signup": "Đăng ký"
   }
 }
