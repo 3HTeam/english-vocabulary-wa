@@ -16,8 +16,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import Logo from "@/assets/logo.png";
-import Banner from "@/assets/banner.png";
+import { Banner, Logo } from "@/assets/images";
 import Image from "next/image";
 import {
   signInSchema,

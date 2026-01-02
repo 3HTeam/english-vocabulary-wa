@@ -16,7 +16,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import Logo from "@/assets/logo.png";
+import { Logo } from "@/assets/images";
 import Image from "next/image";
 import { useVerifyEmailMutation } from "@/apis/tanstack/hooks/auth.tantack";
 import type { AxiosError } from "axios";
