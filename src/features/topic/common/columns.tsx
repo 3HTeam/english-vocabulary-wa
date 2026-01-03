@@ -5,7 +5,10 @@ import type { ColumnDef } from "@tanstack/react-table";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
 
-import { DataTableColumnHeader, DataTableRowActions } from "@/components/data-table";
+import {
+  DataTableColumnHeader,
+  DataTableRowActions,
+} from "@/components/shared/data-table";
 import Image from "next/image";
 import { formatDate } from "@/lib/format";
 import { TopicFormValues } from "../schemas/topic.schema";

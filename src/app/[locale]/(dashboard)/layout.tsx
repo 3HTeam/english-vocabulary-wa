@@ -1,12 +1,9 @@
 "use client";
 
 import React from "react";
-import { AppSidebar } from "@/components/app-sidebar";
-import { SiteHeader } from "@/components/site-header";
-import { SiteFooter } from "@/components/site-footer";
+import { AppSidebar, SiteHeader } from "@/components/layout";
 import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
-import { ThemeCustomizer, ThemeCustomizerTrigger } from "@/components/theme-customizer";
-import { UpgradeToProButton } from "@/components/upgrade-to-pro-button";
+import { ThemeCustomizer } from "@/components/shared/theme-customizer";
 import { useSidebarConfig } from "@/hooks/use-sidebar-config";
 
 export default function DashboardLayout({
@@ -62,7 +59,6 @@ export default function DashboardLayout({
                 </div>
               </div>
             </div>
-            {/* <SiteFooter /> */}
           </SidebarInset>
           <AppSidebar
             variant={config.variant}
@@ -73,12 +69,10 @@ export default function DashboardLayout({
       )}
 
       {/* Theme Customizer */}
-      {/* <ThemeCustomizerTrigger onClick={() => setThemeCustomizerOpen(true)} /> */}
       <ThemeCustomizer
         open={themeCustomizerOpen}
         onOpenChange={setThemeCustomizerOpen}
       />
-      {/* <UpgradeToProButton /> */}
     </SidebarProvider>
   );
 }

@@ -1,4 +1,4 @@
-import Logo from "./files/logo.png";
-import Banner from "./files/banner.png";
+import Logo from "./logo.png";
+import Banner from "./banner.png";
 
 export { Logo, Banner };

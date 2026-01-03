@@ -16,7 +16,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
-import { FileUpload } from "@/components/file-upload";
+import { FileUpload } from "@/components/shared/file-upload";
 import {
   Form,
   FormControl,

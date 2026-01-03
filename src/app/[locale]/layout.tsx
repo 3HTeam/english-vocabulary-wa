@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
-import { getMessages } from "next-intl/server";
 import "@/app/globals.css";
 
-import { ThemeProvider } from "@/components/theme-provider";
-import { QueryClientProviderWrapper } from "@/components/providers/query-client-provider";
+import { ThemeProvider } from "@/components/shared/providers/theme-provider";
+import { QueryClientProviderWrapper } from "@/components/shared/providers/query-client-provider";
 import { SidebarConfigProvider } from "@/contexts/sidebar-context";
 import { Toaster } from "@/components/ui/sonner";
 import { publicSans } from "@/lib/fonts";
-import { routing } from "@/lib/i18n/routing";
-
+import { routing } from "@/i18n/routing";
+import { getMessages } from "next-intl/server";
 
 export const metadata: Metadata = {
   title: "Lingo",
@@ -35,7 +34,7 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className={`${publicSans.variable} antialiased mdl-js`}>
+    <html lang={locale} className={`${publicSans.variable} antialiased`}>
       <body className={publicSans.className}>
         <NextIntlClientProvider messages={messages}>
           <QueryClientProviderWrapper>

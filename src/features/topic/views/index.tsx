@@ -1,9 +1,8 @@
 "use client";
 
 import { useState } from "react";
-
 import { createColumns } from "../common/columns";
-import { DataTable } from "@/components/data-table";
+import { DataTable } from "@/components/shared/data-table";
 import { AddTopicModal } from "../components/add-topic-modal";
 import { ViewEditTopicModal } from "../components/view-edit-topic-modal";
 import { statuses } from "../common/filter";
@@ -11,7 +10,7 @@ import {
   useDeleteTopicMutation,
   useGetTopicQuery,
 } from "@/apis/tanstack/hooks/topic.tanstack";
-import DialogDelete from "@/components/dialog/dialog-delete";
+import { DialogDelete } from "@/components/shared/dialog";
 import { toast } from "sonner";
 import { AxiosError } from "axios";
 import { ApiResponse } from "@/types/base";
