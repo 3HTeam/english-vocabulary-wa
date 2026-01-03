@@ -67,5 +67,16 @@
     "home": "Quay lại trang chủ",
     "signin": "Đăng nhập",
     "signup": "Đăng ký"
+  },
+  "validation": {
+    "email_required": "Email không được để trống",
+    "email_invalid": "Email không hợp lệ",
+    "password_min": "Mật khẩu cần tối thiểu {min} ký tự",
+    "password_max": "Mật khẩu không được vượt quá {max} ký tự",
+    "name_required": "Họ và tên không được để trống",
+    "password_mismatch": "Mật khẩu xác nhận không khớp",
+    "agree_terms": "Bạn phải đồng ý với điều khoản dịch vụ và chính sách bảo mật",
+    "otp_length": "Mã OTP phải có {length} ký tự",
+    "otp_digits": "Mã OTP chỉ được chứa chữ số"
   }
 }

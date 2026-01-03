@@ -27,7 +27,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { useProfileQuery } from "@/apis/queries/hooks/auth.queries";
+import { useProfileQuery } from "@/apis/queries/auth";
 import { Logo } from "@/assets/images";
 import { NavMain, NavUser } from "./components";
 

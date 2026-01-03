@@ -36,7 +36,7 @@ import {
 import {
   useGetTopicByIdQuery,
   useUpdateTopicMutation,
-} from "@/apis/queries/hooks/topic.queries";
+} from "@/apis/queries/topic";
 import { toast } from "sonner";
 import { AxiosError } from "axios";
 import { ApiResponse } from "@/types/api/base";

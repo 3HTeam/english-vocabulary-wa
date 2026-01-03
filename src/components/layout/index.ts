@@ -1,4 +1,2 @@
-import AppSidebar from "./app-sidebar";
-import SiteHeader from "./site-header";
-
-export { AppSidebar, SiteHeader };
+export * from "./app-sidebar";
+export * from "./site-header";

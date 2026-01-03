@@ -12,7 +12,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { LANGUAGES } from "@/config/constants";
 
-const LanguageSwitcher = () => {
+export const LanguageSwitcher = () => {
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
@@ -54,4 +54,4 @@ const LanguageSwitcher = () => {
   );
 };
 
-export default LanguageSwitcher;
+;

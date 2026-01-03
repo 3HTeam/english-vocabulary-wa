@@ -6,10 +6,7 @@ import { DataTable } from "@/components/shared/data-table";
 import { AddTopicModal } from "../components/add-topic-modal";
 import { ViewEditTopicModal } from "../components/view-edit-topic-modal";
 import { statuses } from "../common/filter";
-import {
-  useDeleteTopicMutation,
-  useGetTopicQuery,
-} from "@/apis/queries/hooks/topic.queries";
+import { useDeleteTopicMutation, useGetTopicQuery } from "@/apis/queries/topic";
 import { DialogDelete } from "@/components/shared/dialog";
 import { toast } from "sonner";
 import { AxiosError } from "axios";

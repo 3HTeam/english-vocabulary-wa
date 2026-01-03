@@ -67,5 +67,16 @@
     "home": "Back to home",
     "signin": "Sign In",
     "signup": "Sign Up"
+  },
+  "validation": {
+    "email_required": "Email is required",
+    "email_invalid": "Invalid email address",
+    "password_min": "Password must be at least {min} characters",
+    "password_max": "Password cannot exceed {max} characters",
+    "name_required": "Full name is required",
+    "password_mismatch": "Passwords do not match",
+    "agree_terms": "You must agree to the terms and privacy policy",
+    "otp_length": "OTP must be {length} characters",
+    "otp_digits": "OTP must contain only digits"
   }
 }

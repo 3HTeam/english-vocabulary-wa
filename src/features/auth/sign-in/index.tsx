@@ -1,38 +1,44 @@
 "use client";
 
+import { useMemo, type ComponentProps } from "react";
+import Image from "next/image";
 import { zodResolver } from "@hookform/resolvers/zod";
+import type { AxiosError } from "axios";
 import { useForm } from "react-hook-form";
-import { useTranslations } from "next-intl";
-import { cn } from "@/lib/utils";
-import { Link, useRouter } from "@/i18n/routing";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { toast } from "sonner";
+
+import { useSignInMutation } from "@/apis";
+import { Banner, Logo } from "@/assets/images";
+import { LanguageSwitcher } from "@/components/shared";
 import {
+  Button,
+  Card,
+  CardContent,
   Form,
   FormControl,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Banner, Logo } from "@/assets/images";
-import Image from "next/image";
-import {
-  signInSchema,
-  type SignInFormValues,
-} from "@/features/auth/schemas/sign-in.schema";
-import { useSignInMutation } from "@/apis/queries/hooks/auth.queries";
-import type { AxiosError } from "axios";
-import type { ApiResponse } from "@/types/api/base";
-import { toast } from "sonner";
-import { useAuthStore } from "@/stores/auth.store";
-import { ROUTE_PATH } from "@/config/routes";
-import LanguageSwitcher from "@/components/shared/language-switcher";
+  Input,
+} from "@/components/ui";
+import { ROUTE_PATH } from "@/config";
+import { useTranslations } from "@/hooks";
+import { Link, useRouter } from "@/i18n/routing";
+import { cn } from "@/lib";
+import { useAuthStore } from "@/stores";
+import { type ApiResponse } from "@/types";
 
-export function SignIn({ className, ...props }: React.ComponentProps<"div">) {
+import {
+  getSignInSchema,
+  type SignInFormValues,
+} from "./schema.module";
+
+export function SignIn({ className, ...props }: ComponentProps<"div">) {
   const router = useRouter();
   const t = useTranslations();
+
+  const signInSchema = useMemo(() => getSignInSchema(t), [t]);
 
   const form = useForm<SignInFormValues>({
     resolver: zodResolver(signInSchema),

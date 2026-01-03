@@ -1,47 +1,46 @@
 "use client";
 
-import * as React from "react";
-import { cn } from "@/lib/utils";
+import { useMemo, type ComponentProps } from "react";
+import Image from "next/image";
 import { zodResolver } from "@hookform/resolvers/zod";
+import type { AxiosError } from "axios";
+import { REGEXP_ONLY_DIGITS } from "input-otp";
 import { useForm, Controller } from "react-hook-form";
-import { Link, useRouter } from "@/i18n/routing";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import { toast } from "sonner";
+
+import { useVerifyEmailMutation } from "@/apis";
+import { Logo } from "@/assets/images";
+import { LanguageSwitcher } from "@/components/shared";
 import {
+  Button,
+  Card,
   Form,
   FormControl,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Logo } from "@/assets/images";
-import Image from "next/image";
-import { useVerifyEmailMutation } from "@/apis/queries/hooks/auth.queries";
-import type { AxiosError } from "axios";
-import type { ApiResponse } from "@/types/api/base";
-import {
-  verifyEmailSchema,
-  type VerifyEmailFormValues,
-} from "@/features/auth/schemas/verify-email.schema";
-import {
+  Input,
   InputOTP,
   InputOTPGroup,
   InputOTPSlot,
-} from "@/components/ui/input-otp";
-import { REGEXP_ONLY_DIGITS } from "input-otp";
-import { toast } from "sonner";
-import { useAuthStore } from "@/stores/auth.store";
-import { useTranslations } from "next-intl";
-import LanguageSwitcher from "@/components/shared/language-switcher";
+} from "@/components/ui";
+import { useTranslations } from "@/hooks";
+import { Link, useRouter } from "@/i18n/routing";
+import { cn } from "@/lib";
+import { useAuthStore } from "@/stores";
+import type { ApiResponse } from "@/types";
 
-export function VerifyEmail({
-  className,
-  ...props
-}: React.ComponentProps<"div">) {
+import {
+  getVerifyEmailSchema,
+  type VerifyEmailFormValues,
+} from "./schema.module";
+
+export function VerifyEmail({ className, ...props }: ComponentProps<"div">) {
   const router = useRouter();
   const t = useTranslations();
+
+  const verifyEmailSchema = useMemo(() => getVerifyEmailSchema(t), [t]);
 
   const signupEmail = useAuthStore((state) => state.signupEmail);
   const clearSignupEmail = useAuthStore((state) => state.clearSignupEmail);

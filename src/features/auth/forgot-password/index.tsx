@@ -1,23 +1,24 @@
-import { Link } from "@/i18n/routing";
-import { useTranslations } from "next-intl";
-import { Button } from "@/components/ui/button";
+"use client";
+
+import type { ComponentProps } from "react";
+
+import { LanguageSwitcher } from "@/components/shared";
 import {
+  Button,
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { cn } from "@/lib/utils";
-import { ROUTE_PATH } from "@/config/routes";
-import LanguageSwitcher from "@/components/shared/language-switcher";
+  Input,
+  Label,
+} from "@/components/ui";
+import { ROUTE_PATH } from "@/config";
+import { useTranslations } from "@/hooks";
+import { Link } from "@/i18n/routing";
+import { cn } from "@/lib";
 
-export function ForgotPassword({
-  className,
-  ...props
-}: React.ComponentProps<"div">) {
+export function ForgotPassword({ className, ...props }: ComponentProps<"div">) {
   const t = useTranslations();
 
   return (

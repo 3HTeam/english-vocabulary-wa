@@ -32,7 +32,7 @@ import {
   type TopicFormValues,
   topicDefaultValues,
 } from "../schemas/topic.schema";
-import { useCreateTopicMutation } from "@/apis/queries/hooks/topic.queries";
+import { useCreateTopicMutation } from "@/apis/queries/topic";
 import { toast } from "sonner";
 import { ApiResponse } from "@/types/api/base";
 import { AxiosError } from "axios";

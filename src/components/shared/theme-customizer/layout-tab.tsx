@@ -2,7 +2,7 @@
 
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
-import { useSidebarConfig } from "@/contexts/sidebar-context";
+import { useSidebarConfig } from "@/components/shared/providers/sidebar-context";
 import { useSidebar } from "@/components/ui/sidebar";
 import {
   sidebarVariants,

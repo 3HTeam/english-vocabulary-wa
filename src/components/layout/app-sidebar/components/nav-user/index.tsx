@@ -12,7 +12,7 @@ import { toast } from "sonner";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useAuthStore } from "@/stores/auth.store";
-import { useSignOutMutation } from "@/apis/queries/hooks/auth.queries";
+import { useSignOutMutation } from "@/apis/queries/auth";
 import { Logo } from "@/assets/images";
 import {
   DropdownMenu,

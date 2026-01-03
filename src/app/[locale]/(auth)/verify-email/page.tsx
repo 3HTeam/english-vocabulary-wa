@@ -1,7 +1,5 @@
-import { VerifyEmail } from "@/features/auth/views/verify-email";
+import { VerifyEmail } from "@/features/auth";
 
 export default function VerifyEmailPage() {
-  return (
-    <VerifyEmail />
-  );
+  return <VerifyEmail />;
 }

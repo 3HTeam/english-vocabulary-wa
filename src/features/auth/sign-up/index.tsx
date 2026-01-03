@@ -1,38 +1,43 @@
 "use client";
 
-import { cn } from "@/lib/utils";
+import { useMemo, type ComponentProps } from "react";
+import Image from "next/image";
 import { zodResolver } from "@hookform/resolvers/zod";
+import type { AxiosError } from "axios";
 import { useForm } from "react-hook-form";
-import { Link, useRouter } from "@/i18n/routing";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import { toast } from "sonner";
+
+import { useSignUpMutation } from "@/apis";
+import { Logo } from "@/assets/images";
+import { LanguageSwitcher } from "@/components/shared";
 import {
+  Button,
+  Card,
+  Checkbox,
   Form,
   FormControl,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Logo } from "@/assets/images";
-import Image from "next/image";
-import { useSignUpMutation } from "@/apis/queries/hooks/auth.queries";
-import type { AxiosError } from "axios";
-import type { ApiResponse } from "@/types/api/base";
-import { useAuthStore } from "@/stores/auth.store";
-import { Checkbox } from "@/components/ui/checkbox";
-import {
-  signUpSchema,
-  type SignUpFormValues,
-} from "@/features/auth/schemas/sign-up.schema";
-import { toast } from "sonner";
-import { useTranslations } from "next-intl";
-import LanguageSwitcher from "@/components/shared/language-switcher";
+  Input,
+} from "@/components/ui";
+import { useTranslations } from "@/hooks";
+import { Link, useRouter } from "@/i18n/routing";
+import { cn } from "@/lib";
+import { useAuthStore } from "@/stores";
+import type { ApiResponse } from "@/types";
 
-export function SignUp({ className, ...props }: React.ComponentProps<"div">) {
+import {
+  getSignUpSchema,
+  type SignUpFormValues,
+} from "./schema.module";
+
+export function SignUp({ className, ...props }: ComponentProps<"div">) {
   const router = useRouter();
   const t = useTranslations();
+
+  const signUpSchema = useMemo(() => getSignUpSchema(t), [t]);
 
   const form = useForm<SignUpFormValues>({
     resolver: zodResolver(signUpSchema),

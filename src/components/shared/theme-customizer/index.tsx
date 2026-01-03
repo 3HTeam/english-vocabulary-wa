@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/sheet";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useThemeManager } from "@/hooks/theme/use-theme-manager";
-import { useSidebarConfig } from "@/contexts/sidebar-context";
+import { useSidebarConfig } from "@/components/shared/providers/sidebar-context";
 import { tweakcnThemes } from "@/config/themes/theme-data";
 import { ThemeTab } from "./theme-tab";
 import { LayoutTab } from "./layout-tab";

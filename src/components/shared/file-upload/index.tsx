@@ -2,7 +2,7 @@
 
 import { useRef, useState, useCallback } from "react";
 import { AxiosError } from "axios";
-import { useUploadMutation } from "@/apis/queries/hooks/upload.queries";
+import { useUploadMutation } from "@/apis/queries/upload";
 import { FileDropzone, FileList } from "./components";
 
 export type FileUploadStatus = "uploading" | "success" | "error";

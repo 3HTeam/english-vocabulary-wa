@@ -5,7 +5,7 @@ import "@/app/globals.css";
 
 import { ThemeProvider } from "@/components/shared/providers/theme-provider";
 import { QueryClientProviderWrapper } from "@/components/shared/providers/query-client-provider";
-import { SidebarConfigProvider } from "@/contexts/sidebar-context";
+import { SidebarConfigProvider } from "@/components/shared/providers/sidebar-context";
 import { Toaster } from "@/components/ui/sonner";
 import { publicSans } from "@/assets/styles/fonts";
 import { routing } from "@/i18n/routing";
