@@ -22,9 +22,9 @@ import {
   signInSchema,
   type SignInFormValues,
 } from "@/features/auth/schemas/sign-in.schema";
-import { useSignInMutation } from "@/apis/tanstack/hooks/auth.tantack";
+import { useSignInMutation } from "@/apis/queries/hooks/auth.queries";
 import type { AxiosError } from "axios";
-import type { ApiResponse } from "@/types/base";
+import type { ApiResponse } from "@/types/api/base";
 import { toast } from "sonner";
 import { useAuthStore } from "@/stores/auth.store";
 import { ROUTE_PATH } from "@/config/routes";

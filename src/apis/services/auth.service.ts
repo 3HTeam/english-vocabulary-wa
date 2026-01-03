@@ -10,8 +10,8 @@ import type {
   ISignUpResponse,
   TVerifyEmailPayload,
   TVerifyEmailResponse,
-} from "@/types/auth.type";
-import { IProfileResponse } from "@/types/profile.type";
+} from "@/types/features/auth";
+import { IProfileResponse } from "@/types/features/profile";
 
 export async function signUpServices(
   payload: TSignUpPayload

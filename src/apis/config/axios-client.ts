@@ -1,8 +1,8 @@
 import axios, { type AxiosError, type InternalAxiosRequestConfig } from "axios";
 import { AUTH_ENDPOINTS } from "./end-point";
 import { useAuthStore } from "@/stores/auth.store";
-import type { ApiResponse } from "@/types/base";
-import type { TAuthSession } from "@/types/auth.type";
+import type { ApiResponse } from "@/types/api/base";
+import type { TAuthSession } from "@/types/features/auth";
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? "";
 const apiSubfix = process.env.NEXT_PUBLIC_API_SUBFIX ?? "";

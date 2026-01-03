@@ -1,7 +1,7 @@
 import createMiddleware from "next-intl/middleware";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { COOKIE_NAMES } from "@/lib/cookies";
+import { COOKIE_NAMES } from "@/lib/auth/cookies";
 import { routing } from "@/i18n/routing";
 
 const protectedRoutes = [

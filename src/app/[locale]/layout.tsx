@@ -7,7 +7,7 @@ import { ThemeProvider } from "@/components/shared/providers/theme-provider";
 import { QueryClientProviderWrapper } from "@/components/shared/providers/query-client-provider";
 import { SidebarConfigProvider } from "@/contexts/sidebar-context";
 import { Toaster } from "@/components/ui/sonner";
-import { publicSans } from "@/lib/fonts";
+import { publicSans } from "@/assets/styles/fonts";
 import { routing } from "@/i18n/routing";
 import { getMessages } from "next-intl/server";
 

@@ -54,7 +54,7 @@ import { toast } from "sonner";
 import { z } from "zod";
 
 import { schema } from "../schemas/task-schema";
-import { useIsMobile } from "@/hooks/use-mobile";
+import { useIsMobile } from "@/hooks/ui/use-mobile";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {

@@ -1,10 +1,10 @@
 import { create } from "zustand";
-import type { TAuthUser, TAuthSession } from "@/types/auth.type";
+import type { TAuthUser, TAuthSession } from "@/types/features/auth";
 import {
   setAccessTokenCookie,
   setRefreshTokenCookie,
   clearAuthCookies,
-} from "@/lib/cookies";
+} from "@/lib/auth/cookies";
 
 const STORAGE_KEY = "lingo_auth";
 

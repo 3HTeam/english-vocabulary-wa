@@ -66,6 +66,6 @@ const FileDropzone = ({
       </div>
     </div>
   );
-}
+};
 
 export default FileDropzone;

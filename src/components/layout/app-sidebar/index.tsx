@@ -27,7 +27,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { useProfileQuery } from "@/apis/tanstack/hooks/auth.tantack";
+import { useProfileQuery } from "@/apis/queries/hooks/auth.queries";
 import { Logo } from "@/assets/images";
 import { NavMain, NavUser } from "./components";
 

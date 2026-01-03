@@ -1,8 +1,8 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { TOPIC_QUERY_KEYS } from "../_keys";
+import { TOPIC_QUERY_KEYS } from "../keys";
 import { apiServices } from "@/apis/services";
-import type { Params } from "@/types/params";
-import { TTopicPayload } from "@/types/topic.type";
+import type { Params } from "@/types/api/params";
+import { TTopicPayload } from "@/types/features/topic";
 
 export const useGetTopicQuery = (params?: Params) => {
   return useQuery({

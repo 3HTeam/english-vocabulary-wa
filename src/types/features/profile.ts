@@ -1,4 +1,4 @@
-import { ApiResponse } from "./base";
+import { ApiResponse } from "../api/base";
 
 export type TProfile = {
   user: {

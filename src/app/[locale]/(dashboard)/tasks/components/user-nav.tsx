@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useRouter } from "next/navigation";
 import { useAuthStore } from "@/stores/auth.store";
-import { useSignOutMutation } from "@/apis/tanstack/hooks/auth.tantack";
+import { useSignOutMutation } from "@/apis/queries/hooks/auth.queries";
 import { toast } from "sonner";
 
 export function UserNav() {

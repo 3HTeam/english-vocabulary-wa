@@ -9,12 +9,12 @@ import { statuses } from "../common/filter";
 import {
   useDeleteTopicMutation,
   useGetTopicQuery,
-} from "@/apis/tanstack/hooks/topic.tanstack";
+} from "@/apis/queries/hooks/topic.queries";
 import { DialogDelete } from "@/components/shared/dialog";
 import { toast } from "sonner";
 import { AxiosError } from "axios";
-import { ApiResponse } from "@/types/base";
-import { TDeleteTopicResponse } from "@/types/topic.type";
+import { ApiResponse } from "@/types/api/base";
+import { TDeleteTopicResponse } from "@/types/features/topic";
 
 export default function TopicView() {
   const { mutate: deleteTopic, isPending: isDeleting } =

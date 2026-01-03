@@ -32,11 +32,11 @@ import {
   type TopicFormValues,
   topicDefaultValues,
 } from "../schemas/topic.schema";
-import { useCreateTopicMutation } from "@/apis/tanstack/hooks/topic.tanstack";
+import { useCreateTopicMutation } from "@/apis/queries/hooks/topic.queries";
 import { toast } from "sonner";
-import { ApiResponse } from "@/types/base";
+import { ApiResponse } from "@/types/api/base";
 import { AxiosError } from "axios";
-import { TCreateTopicResponse } from "@/types/topic.type";
+import { TCreateTopicResponse } from "@/types/features/topic";
 
 interface AddTopicModalProps {
   titleAdd?: string;

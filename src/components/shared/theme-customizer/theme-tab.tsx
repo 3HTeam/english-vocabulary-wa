@@ -17,12 +17,15 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { useThemeManager } from "@/hooks/use-theme-manager";
-import { useCircularTransition } from "@/hooks/use-circular-transition";
-import { colorThemes, tweakcnThemes } from "@/config/theme-data";
-import { radiusOptions, baseColors } from "@/config/theme-customizer-constants";
+import { useThemeManager } from "@/hooks/theme/use-theme-manager";
+import { useCircularTransition } from "@/hooks/theme/use-circular-transition";
+import { colorThemes, tweakcnThemes } from "@/config/themes/theme-data";
+import {
+  radiusOptions,
+  baseColors,
+} from "@/config/themes/customizer-constants";
 import ColorPicker from "@/components/shared/color-picker";
-import type { ImportedTheme } from "@/types/theme-customizer";
+import type { ImportedTheme } from "@/types/theme/theme-customizer";
 import React from "react";
 import "./circular-transition.css";
 

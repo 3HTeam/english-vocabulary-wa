@@ -17,9 +17,9 @@ import {
 import { Input } from "@/components/ui/input";
 import { Logo } from "@/assets/images";
 import Image from "next/image";
-import { useSignUpMutation } from "@/apis/tanstack/hooks/auth.tantack";
+import { useSignUpMutation } from "@/apis/queries/hooks/auth.queries";
 import type { AxiosError } from "axios";
-import type { ApiResponse } from "@/types/base";
+import type { ApiResponse } from "@/types/api/base";
 import { useAuthStore } from "@/stores/auth.store";
 import { Checkbox } from "@/components/ui/checkbox";
 import {

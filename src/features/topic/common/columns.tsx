@@ -10,7 +10,7 @@ import {
   DataTableRowActions,
 } from "@/components/shared/data-table";
 import Image from "next/image";
-import { formatDate } from "@/lib/format";
+import { formatDate } from "@/lib/format/date";
 import { TopicFormValues } from "../schemas/topic.schema";
 
 interface CreateColumnsOptions {

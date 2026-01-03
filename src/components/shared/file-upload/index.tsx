@@ -2,9 +2,8 @@
 
 import { useRef, useState, useCallback } from "react";
 import { AxiosError } from "axios";
-import { useUploadMutation } from "@/apis/tanstack/hooks/upload.tanstack";
+import { useUploadMutation } from "@/apis/queries/hooks/upload.queries";
 import { FileDropzone, FileList } from "./components";
-
 
 export type FileUploadStatus = "uploading" | "success" | "error";
 

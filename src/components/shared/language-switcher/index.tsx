@@ -10,7 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { LANGUAGES } from "@/constants";
+import { LANGUAGES } from "@/config/constants";
 
 const LanguageSwitcher = () => {
   const locale = useLocale();

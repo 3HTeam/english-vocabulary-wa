@@ -1,4 +1,4 @@
-import { TUploadResponse } from "@/types/upload.type";
+import { TUploadResponse } from "@/types/features/upload";
 import axiosClient from "../config/axios-client";
 import { UPLOAD_ENDPOINTS } from "../config/end-point";
 import { AxiosProgressEvent } from "axios";

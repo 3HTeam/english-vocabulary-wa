@@ -26,6 +26,6 @@ const FileList = ({ files, removeFile }: FileListProps) => {
       ))}
     </div>
   );
-}
+};
 
 export default FileList;

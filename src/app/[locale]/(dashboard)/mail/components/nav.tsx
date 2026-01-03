@@ -1,11 +1,15 @@
-"use client"
+"use client";
 
-import { type LucideIcon } from "lucide-react"
+import { type LucideIcon } from "lucide-react";
 
-import { cn } from "@/lib/utils"
-import { Badge } from "@/components/ui/badge"
-import { buttonVariants } from "@/components/ui/button"
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
+import { cn } from "@/lib/utils";
+import { Badge } from "@/components/ui/badge";
+import { buttonVariants } from "@/components/ui/button";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 interface NavProps {
   isCollapsed: boolean;
@@ -43,9 +47,9 @@ export function Nav({ links, isCollapsed }: NavProps) {
               <TooltipContent side="right" className="flex items-center gap-4">
                 {link.title}
                 {link.label && (
-                              <Badge className="ml-auto flex size-5 shrink-0 items-center justify-center rounded-full cursor-pointer">
-              {link.label}
-            </Badge>
+                  <Badge className="ml-auto flex size-5 shrink-0 items-center justify-center rounded-full cursor-pointer">
+                    {link.label}
+                  </Badge>
                 )}
               </TooltipContent>
             </Tooltip>

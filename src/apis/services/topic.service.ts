@@ -6,9 +6,9 @@ import {
   TTopicResponse,
   TUpdateTopicResponse,
   TDeleteTopicResponse,
-} from "@/types/topic.type";
+} from "@/types/features/topic";
 import { TOPIC_ENDPOINTS } from "../config/end-point";
-import { Params } from "@/types/params";
+import { Params } from "@/types/api/params";
 
 export async function getTopicServices(
   params?: Params

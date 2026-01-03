@@ -5,8 +5,8 @@ import type {
   TSignInPayload,
   TSignUpPayload,
   TVerifyEmailPayload,
-} from "@/types/auth.type";
-import { AUTH_QUERY_KEYS } from "../_keys";
+} from "@/types/features/auth";
+import { AUTH_QUERY_KEYS } from "../keys";
 
 export const useSignUpMutation = () => {
   return useMutation({

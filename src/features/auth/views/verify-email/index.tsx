@@ -18,9 +18,9 @@ import {
 import { Input } from "@/components/ui/input";
 import { Logo } from "@/assets/images";
 import Image from "next/image";
-import { useVerifyEmailMutation } from "@/apis/tanstack/hooks/auth.tantack";
+import { useVerifyEmailMutation } from "@/apis/queries/hooks/auth.queries";
 import type { AxiosError } from "axios";
-import type { ApiResponse } from "@/types/base";
+import type { ApiResponse } from "@/types/api/base";
 import {
   verifyEmailSchema,
   type VerifyEmailFormValues,

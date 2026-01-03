@@ -36,10 +36,10 @@ import {
 import {
   useGetTopicByIdQuery,
   useUpdateTopicMutation,
-} from "@/apis/tanstack/hooks/topic.tanstack";
+} from "@/apis/queries/hooks/topic.queries";
 import { toast } from "sonner";
 import { AxiosError } from "axios";
-import { ApiResponse } from "@/types/base";
+import { ApiResponse } from "@/types/api/base";
 
 interface ViewEditTopicModalProps {
   topicId: string | null;

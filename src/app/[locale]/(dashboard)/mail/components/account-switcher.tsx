@@ -1,15 +1,15 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import * as React from "react";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
+} from "@/components/ui/select";
 
 interface AccountSwitcherProps {
   isCollapsed: boolean;
@@ -20,7 +20,10 @@ interface AccountSwitcherProps {
   }[];
 }
 
-export function AccountSwitcher({ isCollapsed, accounts }: AccountSwitcherProps) {
+export function AccountSwitcher({
+  isCollapsed,
+  accounts,
+}: AccountSwitcherProps) {
   const [selectedAccount, setSelectedAccount] = React.useState<string>(
     accounts[0].email
   );
@@ -38,7 +41,10 @@ export function AccountSwitcher({ isCollapsed, accounts }: AccountSwitcherProps)
         <SelectValue placeholder="Select an account">
           {accounts.find((account) => account.email === selectedAccount)?.icon}
           <span className={cn("ml-2", isCollapsed && "hidden")}>
-            {accounts.find((account) => account.email === selectedAccount)?.label}
+            {
+              accounts.find((account) => account.email === selectedAccount)
+                ?.label
+            }
           </span>
         </SelectValue>
       </SelectTrigger>
