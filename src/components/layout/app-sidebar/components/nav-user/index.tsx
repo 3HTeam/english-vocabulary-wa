@@ -74,13 +74,17 @@ const NavUser = ({
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground cursor-pointer"
             >
               <div className="flex h-8 w-8 items-center justify-center rounded-lg">
-                <Image
-                  src={Logo}
-                  alt="Logo"
-                  width={75}
-                  height={75}
-                  className="object-cover"
-                />
+                {isLoading ? (
+                  <Skeleton className="size-full rounded-lg" />
+                ) : (
+                  <Image
+                    src={Logo}
+                    alt="Logo"
+                    width={75}
+                    height={75}
+                    className="object-cover"
+                  />
+                )}
               </div>
               <div className="grid flex-1 text-left text-sm leading-tight">
                 {isLoading ? (
@@ -109,13 +113,17 @@ const NavUser = ({
             <DropdownMenuLabel className="p-0 font-normal">
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <div className="h-8 w-8 rounded-lg">
-                  <Image
-                    src={Logo}
-                    alt="Logo"
-                    width={75}
-                    height={75}
-                    className="object-cover"
-                  />
+                  {isLoading ? (
+                    <Skeleton className="size-full rounded-lg" />
+                  ) : (
+                    <Image
+                      src={Logo}
+                      alt="Logo"
+                      width={75}
+                      height={75}
+                      className="object-cover"
+                    />
+                  )}
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   {isLoading ? (

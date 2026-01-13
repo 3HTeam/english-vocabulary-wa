@@ -241,14 +241,18 @@ const AppSidebar = ({ ...props }: React.ComponentProps<typeof Sidebar>) => {
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
               <Link href="/dashboard">
-                <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                  <Image
-                    src={Logo}
-                    alt="Logo"
-                    width={75}
-                    height={75}
-                    className="object-cover"
-                  />
+                <div className="flex aspect-square size-8 items-center justify-center rounded-lg text-primary-foreground">
+                  {isLoading ? (
+                    <Skeleton className="size-full rounded-lg" />
+                  ) : (
+                    <Image
+                      src={Logo}
+                      alt="Logo"
+                      width={75}
+                      height={75}
+                      className="object-cover"
+                    />
+                  )}
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   {isLoading ? (
