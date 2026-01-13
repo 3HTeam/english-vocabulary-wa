@@ -9,7 +9,7 @@ import {
   CommandSearch,
   SearchTrigger,
 } from "@/components/shared/command-search";
-import ModeToggle from "@/components/shared/mode-toggle";
+import { LanguageSwitcher, ModeToggle } from "@/components/shared";
 
 type SiteHeaderProps = {
   onOpenThemeCustomizer?: () => void;
@@ -52,6 +52,7 @@ const SiteHeader = ({ onOpenThemeCustomizer }: SiteHeaderProps) => {
               <Settings className="h-4 w-4" />
             </Button>
             <ModeToggle />
+            <LanguageSwitcher />
           </div>
         </div>
       </header>

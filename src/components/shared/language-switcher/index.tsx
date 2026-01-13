@@ -12,7 +12,11 @@ import {
 import { Button } from "@/components/ui/button";
 import { LANGUAGES } from "@/config/constants";
 
-export const LanguageSwitcher = () => {
+interface LanguageSwitcherProps {
+  variant?: "outline" | "ghost" | "default";
+}
+
+export const LanguageSwitcher = ({ variant = "outline" }: LanguageSwitcherProps) => {
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
@@ -25,9 +29,9 @@ export const LanguageSwitcher = () => {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
-          variant="ghost"
+          variant={variant}
           size="icon"
-          className="h-9 w-9 rounded-full ring-offset-background transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 cursor-pointer border"
+          className="cursor-pointer mode-toggle-button relative overflow-hidden"
         >
           <Languages className="h-[1.2rem] w-[1.2rem]" />
         </Button>

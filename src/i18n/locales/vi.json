@@ -42,6 +42,26 @@
       "submit": "Gửi liên kết đặt lại",
       "remember": "Bạn đã nhớ mật khẩu?",
       "back": "Quay lại đăng nhập"
+    },
+    "link": {
+      "terms": "Điều khoản dịch vụ",
+      "privacy": "Chính sách bảo mật",
+      "home": "Quay lại trang chủ",
+      "signin": "Đăng nhập",
+      "signup": "Đăng ký"
+    },
+    "social": {
+      "or": "Hoặc tiếp tục với",
+      "apple": "Apple",
+      "google": "Google",
+      "meta": "Meta"
+    },
+    "logout": "Đăng xuất",
+    "logout_ok": "Đăng xuất thành công!",
+    "user_menu": {
+      "account": "Tài khoản",
+      "billing": "Thanh toán",
+      "notifications": "Thông báo"
     }
   },
   "field": {
@@ -53,30 +73,63 @@
     "confirm_placeholder": "********",
     "name": "Họ và tên",
     "name_placeholder": "Nguyễn Văn A",
-    "otp": "Mã OTP"
+    "otp": "Mã OTP",
+    "validation": {
+      "email_required": "Email không được để trống",
+      "email_invalid": "Email không hợp lệ",
+      "password_min": "Mật khẩu cần tối thiểu {min} ký tự",
+      "password_max": "Mật khẩu không được vượt quá {max} ký tự",
+      "name_required": "Họ và tên không được để trống",
+      "password_mismatch": "Mật khẩu xác nhận không khớp",
+      "agree_terms": "Bạn phải đồng ý với điều khoản dịch vụ và chính sách bảo mật",
+      "otp_length": "Mã OTP phải có {length} ký tự",
+      "otp_digits": "Mã OTP chỉ được chứa chữ số"
+    }
   },
-  "social": {
-    "or": "Hoặc tiếp tục với",
-    "apple": "Apple",
-    "google": "Google",
-    "meta": "Meta"
+  "sidebar": {
+    "groups": {
+      "dashboards": "Bảng điều khiển",
+      "management": "Quản lý",
+      "pages": "Trang"
+    },
+    "items": {
+      "dashboard": "Bảng điều khiển 1",
+      "dashboard2": "Bảng điều khiển 2",
+      "mail": "Hộp thư",
+      "tasks": "Công việc",
+      "topics": "Chủ đề",
+      "chat": "Trò chuyện",
+      "calendar": "Lịch",
+      "users": "Người dùng",
+      "landing": "Trang chủ",
+      "auth": "Xác thực",
+      "signin": "Đăng nhập",
+      "signup": "Đăng ký",
+      "forgot": "Quên mật khẩu",
+      "errors": "Lỗi",
+      "unauthorized": "Không có quyền truy cập",
+      "forbidden": "Bị cấm truy cập",
+      "not_found": "Không tìm thấy trang",
+      "internal_error": "Lỗi máy chủ nội bộ",
+      "maintenance": "Đang bảo trì",
+      "settings": "Cài đặt",
+      "faqs": "Hỏi đáp",
+      "pricing": "Bảng giá"
+    }
   },
-  "link": {
-    "terms": "Điều khoản dịch vụ",
-    "privacy": "Chính sách bảo mật",
-    "home": "Quay lại trang chủ",
-    "signin": "Đăng nhập",
-    "signup": "Đăng ký"
-  },
-  "validation": {
-    "email_required": "Email không được để trống",
-    "email_invalid": "Email không hợp lệ",
-    "password_min": "Mật khẩu cần tối thiểu {min} ký tự",
-    "password_max": "Mật khẩu không được vượt quá {max} ký tự",
-    "name_required": "Họ và tên không được để trống",
-    "password_mismatch": "Mật khẩu xác nhận không khớp",
-    "agree_terms": "Bạn phải đồng ý với điều khoản dịch vụ và chính sách bảo mật",
-    "otp_length": "Mã OTP phải có {length} ký tự",
-    "otp_digits": "Mã OTP chỉ được chứa chữ số"
+  "common": {
+    "search": {
+      "placeholder": "Tìm kiếm...",
+      "input_placeholder": "Bạn cần tìm gì?",
+      "empty": "Không tìm thấy kết quả.",
+      "groups": {
+        "dashboards": "Bảng điều khiển",
+        "apps": "Ứng dụng",
+        "auth": "Xác thực",
+        "errors": "Lỗi",
+        "settings": "Cài đặt",
+        "pages": "Trang"
+      }
+    }
   }
 }

@@ -30,6 +30,9 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 
+import { get } from "radash";
+import { useTranslations } from "@/hooks";
+
 const NavUser = ({
   user,
 }: {
@@ -41,19 +44,20 @@ const NavUser = ({
 }) => {
   const { isMobile } = useSidebar();
   const router = useRouter();
+  const t = useTranslations();
   const clearAuth = useAuthStore((state) => state.clearAuth);
-  const { mutate: signOut, data } = useSignOutMutation();
+  const { mutate: signOut } = useSignOutMutation();
 
   const handleLogout = () => {
     signOut(undefined, {
       onSuccess: (data) => {
         clearAuth();
-        toast.success(data?.message || "Đăng xuất thành công!");
+        toast.success(get(data, "message", t("auth.logout_ok")));
         router.push("/sign-in");
       },
-      onError: () => {
+      onError: (error: any) => {
         clearAuth();
-        toast.success(data?.message || "Đăng xuất thành công!");
+        toast.error(get(error, "response.data.message", t("auth.signin.err")));
         router.push("/sign-in");
       },
     });
@@ -116,26 +120,26 @@ const NavUser = ({
               <DropdownMenuItem asChild className="cursor-pointer">
                 <Link href="/settings/account">
                   <CircleUser />
-                  Account
+                  {t("auth.user_menu.account")}
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild className="cursor-pointer">
                 <Link href="/settings/billing">
                   <CreditCard />
-                  Billing
+                  {t("auth.user_menu.billing")}
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild className="cursor-pointer">
                 <Link href="/settings/notifications">
                   <BellDot />
-                  Notifications
+                  {t("auth.user_menu.notifications")}
                 </Link>
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem className="cursor-pointer" onClick={handleLogout}>
               <LogOut />
-              Log out
+              {t("auth.logout")}
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

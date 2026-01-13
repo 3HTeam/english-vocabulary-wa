@@ -12,7 +12,7 @@ interface ModeToggleProps {
   variant?: "outline" | "ghost" | "default";
 }
 
-const ModeToggle = ({ variant = "outline" }: ModeToggleProps) => {
+export const ModeToggle = ({ variant = "outline" }: ModeToggleProps) => {
   const { theme } = useTheme();
   const { toggleTheme } = useCircularTransition();
 
@@ -71,5 +71,3 @@ const ModeToggle = ({ variant = "outline" }: ModeToggleProps) => {
     </Button>
   );
 };
-
-export default ModeToggle;

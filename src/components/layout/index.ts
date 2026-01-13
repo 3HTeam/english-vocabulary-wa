@@ -1,2 +1,2 @@
-export * from "./app-sidebar";
-export * from "./site-header";
+export { default as AppSidebar } from "./app-sidebar";
+export { default as SiteHeader } from "./site-header";

@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { get } from "radash";
 import {
   Sidebar,
   SidebarContent,
@@ -29,191 +30,210 @@ import {
 } from "@/components/ui/sidebar";
 import { useProfileQuery } from "@/apis/queries/auth";
 import { Logo } from "@/assets/images";
+import { useTranslations } from "@/hooks";
+import { EMPTY } from "@/config";
 import { NavMain, NavUser } from "./components";
 
+
 const AppSidebar = ({ ...props }: React.ComponentProps<typeof Sidebar>) => {
-  const { data: profile, isLoading } = useProfileQuery();
-  const data = {
-    user: {
-      name: profile?.data?.user?.fullName || "",
-      email: profile?.data?.user?.email || "",
-      avatar: "",
-    },
-    navGroups: [
-      {
-        label: "Dashboards",
-        items: [
-          {
-            title: "Dashboard 1",
-            url: "/dashboard",
-            icon: LayoutDashboard,
-          },
-          {
-            title: "Dashboard 2",
-            url: "/dashboard-2",
-            icon: LayoutPanelLeft,
-          },
-        ],
-      },
-      {
-        label: "Quản lý",
-        items: [
-          {
-            title: "Mail",
-            url: "/mail",
-            icon: Mail,
-          },
-          {
-            title: "Tasks",
-            url: "/tasks",
-            icon: CheckSquare,
-          },
-          {
-            title: "Chủ đề",
-            url: "/topics",
-            icon: LayoutDashboardIcon,
-          },
-          {
-            title: "Chat",
-            url: "/chat",
-            icon: MessageCircle,
-          },
-          {
-            title: "Calendar",
-            url: "/calendar",
-            icon: Calendar,
-          },
-          {
-            title: "Users",
-            url: "/users",
-            icon: Users,
-          },
-        ],
-      },
-      {
-        label: "Pages",
-        items: [
-          {
-            title: "Landing",
-            url: "/landing",
-            target: "_blank",
-            icon: LayoutTemplate,
-          },
-          {
-            title: "Auth Pages",
-            url: "#",
-            icon: Shield,
-            items: [
-              {
-                title: "Sign In 1",
-                url: "/sign-in",
-              },
-              {
-                title: "Sign In 2",
-                url: "/sign-in-2",
-              },
-              {
-                title: "Sign In 3",
-                url: "/sign-in-3",
-              },
-              {
-                title: "Sign Up 1",
-                url: "/sign-up",
-              },
-              {
-                title: "Sign Up 2",
-                url: "/sign-up-2",
-              },
-              {
-                title: "Sign Up 3",
-                url: "/sign-up-3",
-              },
-              {
-                title: "Forgot Password 1",
-                url: "/forgot-password",
-              },
-              {
-                title: "Forgot Password 2",
-                url: "/forgot-password-2",
-              },
-              {
-                title: "Forgot Password 3",
-                url: "/forgot-password-3",
-              },
-            ],
-          },
-          {
-            title: "Errors",
-            url: "#",
-            icon: AlertTriangle,
-            items: [
-              {
-                title: "Unauthorized",
-                url: "/errors/unauthorized",
-              },
-              {
-                title: "Forbidden",
-                url: "/errors/forbidden",
-              },
-              {
-                title: "Not Found",
-                url: "/errors/not-found",
-              },
-              {
-                title: "Internal Server Error",
-                url: "/errors/internal-server-error",
-              },
-              {
-                title: "Under Maintenance",
-                url: "/errors/under-maintenance",
-              },
-            ],
-          },
-          {
-            title: "Settings",
-            url: "#",
-            icon: Settings,
-            items: [
-              {
-                title: "User Settings",
-                url: "/settings/user",
-              },
-              {
-                title: "Account Settings",
-                url: "/settings/account",
-              },
-              {
-                title: "Plans & Billing",
-                url: "/settings/billing",
-              },
-              {
-                title: "Appearance",
-                url: "/settings/appearance",
-              },
-              {
-                title: "Notifications",
-                url: "/settings/notifications",
-              },
-              {
-                title: "Connections",
-                url: "/settings/connections",
-              },
-            ],
-          },
-          {
-            title: "FAQs",
-            url: "/faqs",
-            icon: HelpCircle,
-          },
-          {
-            title: "Pricing",
-            url: "/pricing",
-            icon: CreditCard,
-          },
-        ],
-      },
-    ],
+  const { data: profile } = useProfileQuery();
+  const t = useTranslations();
+
+  const user = {
+    name: get(profile, "data.user.fullName", EMPTY.str),
+    email: get(profile, "data.user.email", EMPTY.str),
+    avatar: EMPTY.str,
   };
+
+  const navGroups = [
+    {
+      label: t("sidebar.groups.dashboards"),
+      items: [
+        {
+          title: t("sidebar.items.dashboard"),
+          url: "/dashboard",
+          icon: LayoutDashboard,
+        },
+        {
+          title: t("sidebar.items.dashboard2"),
+          url: "/dashboard-2",
+          icon: LayoutPanelLeft,
+        },
+      ],
+    },
+    {
+      label: t("sidebar.groups.management"),
+      items: [
+        {
+          title: t("sidebar.items.mail"),
+          url: "/mail",
+          icon: Mail,
+        },
+        {
+          title: t("sidebar.items.tasks"),
+          url: "/tasks",
+          icon: CheckSquare,
+        },
+        {
+          title: t("sidebar.items.topics"),
+          url: "/topics",
+          icon: LayoutDashboardIcon,
+        },
+        {
+          title: t("sidebar.items.chat"),
+          url: "/chat",
+          icon: MessageCircle,
+        },
+        {
+          title: t("sidebar.items.calendar"),
+          url: "/calendar",
+          icon: Calendar,
+        },
+        {
+          title: t("sidebar.items.users"),
+          url: "/users",
+          icon: Users,
+        },
+      ],
+    },
+    {
+      label: t("sidebar.groups.pages"),
+      items: [
+        {
+          title: t("sidebar.items.landing"),
+          url: "/landing",
+          target: "_blank",
+          icon: LayoutTemplate,
+        },
+        {
+          title: t("sidebar.items.auth"),
+          url: "#",
+          icon: Shield,
+          items: [
+            {
+              title: `${t("sidebar.items.signin")} 1`,
+              url: "/sign-in",
+              target: "_blank",
+            },
+            {
+              title: `${t("sidebar.items.signin")} 2`,
+              url: "/sign-in-2",
+              target: "_blank",
+            },
+            {
+              title: `${t("sidebar.items.signin")} 3`,
+              url: "/sign-in-3",
+              target: "_blank",
+            },
+            {
+              title: `${t("sidebar.items.signup")} 1`,
+              url: "/sign-up",
+              target: "_blank",
+            },
+            {
+              title: `${t("sidebar.items.signup")} 2`,
+              url: "/sign-up-2",
+              target: "_blank",
+            },
+            {
+              title: `${t("sidebar.items.signup")} 3`,
+              url: "/sign-up-3",
+              target: "_blank",
+            },
+            {
+              title: `${t("sidebar.items.forgot")} 1`,
+              url: "/forgot-password",
+              target: "_blank",
+            },
+            {
+              title: `${t("sidebar.items.forgot")} 2`,
+              url: "/forgot-password-2",
+              target: "_blank",
+            },
+            {
+              title: `${t("sidebar.items.forgot")} 3`,
+              url: "/forgot-password-3",
+              target: "_blank",
+            },
+          ],
+        },
+        {
+          title: t("sidebar.items.errors"),
+          url: "#",
+          icon: AlertTriangle,
+          items: [
+            {
+              title: t("sidebar.items.unauthorized"),
+              url: "/errors/unauthorized",
+              target: "_blank",
+            },
+            {
+              title: t("sidebar.items.forbidden"),
+              url: "/errors/forbidden",
+              target: "_blank",
+            },
+            {
+              title: t("sidebar.items.not_found"),
+              url: "/errors/not-found",
+              target: "_blank",
+            },
+            {
+              title: t("sidebar.items.internal_error"),
+              url: "/errors/internal-server-error",
+              target: "_blank",
+            },
+            {
+              title: t("sidebar.items.maintenance"),
+              url: "/errors/under-maintenance",
+              target: "_blank",
+            },
+          ],
+        },
+        {
+          title: t("sidebar.items.settings"),
+          url: "#",
+          icon: Settings,
+          items: [
+            {
+              title: "User Settings",
+              url: "/settings/user",
+            },
+            {
+              title: "Account Settings",
+              url: "/settings/account",
+            },
+            {
+              title: "Plans & Billing",
+              url: "/settings/billing",
+            },
+            {
+              title: "Appearance",
+              url: "/settings/appearance",
+            },
+            {
+              title: "Notifications",
+              url: "/settings/notifications",
+            },
+            {
+              title: "Connections",
+              url: "/settings/connections",
+            },
+          ],
+        },
+        {
+          title: t("sidebar.items.faqs"),
+          url: "/faqs",
+          icon: HelpCircle,
+        },
+        {
+          title: t("sidebar.items.pricing"),
+          url: "/pricing",
+          icon: CreditCard,
+        },
+      ],
+    },
+  ];
+
   return (
     <Sidebar {...props}>
       <SidebarHeader>
@@ -231,12 +251,8 @@ const AppSidebar = ({ ...props }: React.ComponentProps<typeof Sidebar>) => {
                   />
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">
-                    {profile?.data?.user?.fullName || "ShadcnStore"}
-                  </span>
-                  <span className="truncate text-xs">
-                    {profile?.data?.user?.email || "Admin Dashboard"}
-                  </span>
+                  <span className="truncate font-medium">{user.name}</span>
+                  <span className="truncate text-xs">{user.email}</span>
                 </div>
               </Link>
             </SidebarMenuButton>
@@ -244,12 +260,12 @@ const AppSidebar = ({ ...props }: React.ComponentProps<typeof Sidebar>) => {
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        {data.navGroups.map((group) => (
+        {navGroups.map((group) => (
           <NavMain key={group.label} label={group.label} items={group.items} />
         ))}
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser user={user} />
       </SidebarFooter>
     </Sidebar>
   );

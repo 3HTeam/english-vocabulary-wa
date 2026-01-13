@@ -77,18 +77,18 @@ export function VerifyEmail({ className, ...props }: ComponentProps<"div">) {
   };
 
   return (
-    <div className="bg-muted flex min-h-svh flex-col items-center justify-center p-6 md:p-10">
+    <div className="relative bg-muted flex min-h-svh flex-col items-center justify-center p-6 md:p-10">
+      <div className="absolute right-0 top-0 z-10 p-4">
+        <LanguageSwitcher />
+      </div>
       <div className={cn("flex flex-col gap-6", className)} {...props}>
         <Card className="overflow-hidden p-0">
           <Form {...form}>
             <form
-              className="relative p-6 md:p-8"
+              className="p-6 md:p-8"
               onSubmit={form.handleSubmit(handleSubmit)}
               noValidate
             >
-              <div className="absolute right-0 top-0 z-10 p-4">
-                <LanguageSwitcher />
-              </div>
               <div className="flex flex-col gap-4">
                 <div className="flex justify-center">
                   <Link

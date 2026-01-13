@@ -29,10 +29,7 @@ import { cn } from "@/lib";
 import { useAuthStore } from "@/stores";
 import { type ApiResponse } from "@/types";
 
-import {
-  getSignInSchema,
-  type SignInFormValues,
-} from "./schema.module";
+import { getSignInSchema, type SignInFormValues } from "./schema.module";
 
 export function SignIn({ className, ...props }: ComponentProps<"div">) {
   const router = useRouter();
@@ -72,30 +69,30 @@ export function SignIn({ className, ...props }: ComponentProps<"div">) {
   return (
     <div
       className={cn(
-        "bg-muted flex min-h-svh flex-col items-center justify-center p-6 md:p-10",
+        "relative bg-muted flex min-h-svh flex-col items-center justify-center p-6 md:p-10",
         className
       )}
       {...props}
     >
+      <div className="absolute right-0 top-0 z-10 p-4">
+        <LanguageSwitcher />
+      </div>
       <div className="w-full max-w-sm md:max-w-4xl">
         <div className="flex flex-col gap-6">
           <Card className="overflow-hidden p-0">
             <CardContent className="grid p-0 md:grid-cols-2">
               <Form {...form}>
                 <form
-                  className="relative p-6 md:p-8"
+                  className="p-6 md:p-8"
                   onSubmit={form.handleSubmit(handleSubmit)}
                   noValidate
                 >
-                  <div className="absolute right-0 top-0 z-10 p-4">
-                    <LanguageSwitcher />
-                  </div>
                   <div className="flex flex-col gap-4">
                     <div className="flex justify-center">
                       <Link
                         href={ROUTE_PATH.home}
                         className="flex items-center gap-2 font-medium"
-                        aria-label={t("link.home")}
+                        aria-label={t("auth.link.home")}
                       >
                         <div className="bg-primary text-primary-foreground flex size-12 items-center justify-center rounded-md">
                           <Image
@@ -184,7 +181,7 @@ export function SignIn({ className, ...props }: ComponentProps<"div">) {
                     </Button>
                     <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
                       <span className="bg-card text-muted-foreground relative z-10 px-2">
-                        {t("social.or")}
+                        {t("auth.social.or")}
                       </span>
                     </div>
                     <div className="grid grid-cols-3 gap-4">
@@ -203,7 +200,9 @@ export function SignIn({ className, ...props }: ComponentProps<"div">) {
                             fill="currentColor"
                           />
                         </svg>
-                        <span className="sr-only">{t("social.apple")}</span>
+                        <span className="sr-only">
+                          {t("auth.social.apple")}
+                        </span>
                       </Button>
                       <Button
                         variant="outline"
@@ -220,7 +219,9 @@ export function SignIn({ className, ...props }: ComponentProps<"div">) {
                             fill="currentColor"
                           />
                         </svg>
-                        <span className="sr-only">{t("social.google")}</span>
+                        <span className="sr-only">
+                          {t("auth.social.google")}
+                        </span>
                       </Button>
                       <Button
                         variant="outline"
@@ -237,7 +238,7 @@ export function SignIn({ className, ...props }: ComponentProps<"div">) {
                             fill="currentColor"
                           />
                         </svg>
-                        <span className="sr-only">{t("social.meta")}</span>
+                        <span className="sr-only">{t("auth.social.meta")}</span>
                       </Button>
                     </div>
                     <div className="text-center text-sm">
@@ -246,7 +247,7 @@ export function SignIn({ className, ...props }: ComponentProps<"div">) {
                         href={ROUTE_PATH.signUp}
                         className="underline underline-offset-4"
                       >
-                        {t("link.signup")}
+                        {t("auth.link.signup")}
                       </Link>
                     </div>
                   </div>
@@ -266,8 +267,8 @@ export function SignIn({ className, ...props }: ComponentProps<"div">) {
             {t.rich("auth.signin.agree", {
               termsLink: (chunks) => <a href="#">{chunks}</a>,
               privacyLink: (chunks) => <a href="#">{chunks}</a>,
-              termsLabel: t("link.terms"),
-              privacyLabel: t("link.privacy"),
+              termsLabel: t("auth.link.terms"),
+              privacyLabel: t("auth.link.privacy"),
             })}
           </div>
         </div>
