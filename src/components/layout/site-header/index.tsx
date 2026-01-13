@@ -2,14 +2,12 @@
 
 import * as React from "react";
 import { Settings } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-import { SidebarTrigger } from "@/components/ui/sidebar";
-import {
+import { Button, Separator, SidebarTrigger } from "@/components/ui";
+import { 
   CommandSearch,
   SearchTrigger,
-} from "@/components/shared/command-search";
-import { LanguageSwitcher, ModeToggle } from "@/components/shared";
+  LanguageSwitcher,
+  ModeToggle } from "@/components/shared";
 
 type SiteHeaderProps = {
   onOpenThemeCustomizer?: () => void;

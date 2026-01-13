@@ -11,8 +11,10 @@ import Link from "next/link";
 import { toast } from "sonner";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useAuthStore } from "@/stores/auth.store";
-import { useSignOutMutation } from "@/apis/queries/auth";
+import { get } from "radash";
+
+import { useAuthStore } from "@/stores";
+import { useSignOutMutation } from "@/apis";
 import { Logo } from "@/assets/images";
 import {
   DropdownMenu,
@@ -22,25 +24,24 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-} from "@/components/ui/sidebar";
-
-import { get } from "radash";
+  Skeleton,
+} from "@/components/ui";
 import { useTranslations } from "@/hooks";
 
 const NavUser = ({
   user,
+  isLoading = false,
 }: {
   user: {
     name: string;
     email: string;
     avatar: string;
   };
+  isLoading?: boolean;
 }) => {
   const { isMobile } = useSidebar();
   const router = useRouter();
@@ -82,10 +83,19 @@ const NavUser = ({
                 />
               </div>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-medium">{user.name}</span>
-                <span className="text-muted-foreground truncate text-xs">
-                  {user.email}
-                </span>
+                {isLoading ? (
+                  <>
+                    <Skeleton className="h-4 w-24" />
+                    <Skeleton className="mt-1 h-3 w-32" />
+                  </>
+                ) : (
+                  <>
+                    <span className="truncate font-medium">{user.name}</span>
+                    <span className="text-muted-foreground truncate text-xs">
+                      {user.email}
+                    </span>
+                  </>
+                )}
               </div>
               <EllipsisVertical className="ml-auto size-4" />
             </SidebarMenuButton>
@@ -108,10 +118,19 @@ const NavUser = ({
                   />
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">{user.name}</span>
-                  <span className="text-muted-foreground truncate text-xs">
-                    {user.email}
-                  </span>
+                  {isLoading ? (
+                    <>
+                      <Skeleton className="h-4 w-24" />
+                      <Skeleton className="mt-1 h-3 w-32" />
+                    </>
+                  ) : (
+                    <>
+                      <span className="truncate font-medium">{user.name}</span>
+                      <span className="text-muted-foreground truncate text-xs">
+                        {user.email}
+                      </span>
+                    </>
+                  )}
                 </div>
               </div>
             </DropdownMenuLabel>

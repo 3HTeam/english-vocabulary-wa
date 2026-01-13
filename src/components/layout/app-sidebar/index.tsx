@@ -27,16 +27,16 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar";
-import { useProfileQuery } from "@/apis/queries/auth";
+  Skeleton,
+} from "@/components/ui";
+import { useProfileQuery } from "@/apis";
 import { Logo } from "@/assets/images";
 import { useTranslations } from "@/hooks";
 import { EMPTY } from "@/config";
 import { NavMain, NavUser } from "./components";
 
-
 const AppSidebar = ({ ...props }: React.ComponentProps<typeof Sidebar>) => {
-  const { data: profile } = useProfileQuery();
+  const { data: profile, isLoading } = useProfileQuery();
   const t = useTranslations();
 
   const user = {
@@ -251,8 +251,17 @@ const AppSidebar = ({ ...props }: React.ComponentProps<typeof Sidebar>) => {
                   />
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">{user.name}</span>
-                  <span className="truncate text-xs">{user.email}</span>
+                  {isLoading ? (
+                    <>
+                      <Skeleton className="h-4 w-24" />
+                      <Skeleton className="mt-1 h-3 w-32" />
+                    </>
+                  ) : (
+                    <>
+                      <span className="truncate font-medium">{user.name}</span>
+                      <span className="truncate text-xs">{user.email}</span>
+                    </>
+                  )}
                 </div>
               </Link>
             </SidebarMenuButton>
@@ -265,7 +274,7 @@ const AppSidebar = ({ ...props }: React.ComponentProps<typeof Sidebar>) => {
         ))}
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={user} />
+        <NavUser user={user} isLoading={isLoading} />
       </SidebarFooter>
     </Sidebar>
   );
