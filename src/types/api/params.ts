@@ -4,3 +4,7 @@ export interface Params {
   status?: string;
   isDeleted?: boolean;
 }
+
+export interface VocabularyParams extends Params {
+  topicId?: string;
+}

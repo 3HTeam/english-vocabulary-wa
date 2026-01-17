@@ -12,6 +12,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
+import { useTranslations } from "@/hooks";
 
 interface DataTableViewOptionsProps<TData> {
   table: Table<TData>;
@@ -20,6 +21,8 @@ interface DataTableViewOptionsProps<TData> {
 export function DataTableViewOptions<TData>({
   table,
 }: DataTableViewOptionsProps<TData>) {
+  const t = useTranslations();
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -29,11 +32,11 @@ export function DataTableViewOptions<TData>({
           className="ml-auto hidden h-8 lg:flex cursor-pointer mr-2"
         >
           <Settings2 />
-          Hiển thị
+          {t("data_table.display")}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[150px]">
-        <DropdownMenuLabel>Hiển thị cột</DropdownMenuLabel>
+        <DropdownMenuLabel>{t("data_table.display_columns")}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         {table
           .getAllColumns()

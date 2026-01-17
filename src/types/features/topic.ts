@@ -22,16 +22,17 @@ export type TTopicByIdResponse = ApiResponse<{
   topic: TTopic;
 }>;
 
+export type TTopicPayload = Pick<
+  TTopic,
+  "name" | "imageUrl" | "slug" | "description" | "status"
+>;
+
 export type TUpdateTopicResponse = ApiResponse<TTopic>;
 
-export type TDeleteTopicResponse = ApiResponse<TTopic>;
+export type TDeleteTopicResponse = ApiResponse<void>;
 
-export type TTopicPayload = {
-  name: string;
-  imageUrl: string;
-  slug: string;
-  description: string;
-  status: boolean;
-};
+export type TRestoreTopicResponse = ApiResponse<void>;
+
+export type TForceDeleteTopicResponse = ApiResponse<void>;
 
 export type TCreateTopicResponse = ApiResponse<TTopic>;

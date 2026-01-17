@@ -38,6 +38,7 @@ interface DataTableProps<TData, TValue> {
     search?: string;
     onSearchChange?: (value: string) => void;
     onFilterChange?: (columnId: string, value: string | undefined) => void;
+    customFilters?: React.ReactNode;
   };
   paginationProps?: {
     page?: number;

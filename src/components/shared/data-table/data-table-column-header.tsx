@@ -12,6 +12,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useTranslations } from "@/hooks";
 
 interface DataTableColumnHeaderProps<TData, TValue>
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -24,6 +25,8 @@ export function DataTableColumnHeader<TData, TValue>({
   title,
   className,
 }: DataTableColumnHeaderProps<TData, TValue>) {
+  const t = useTranslations();
+
   if (!column.getCanSort()) {
     return <div className={cn(className)}>{title}</div>;
   }
@@ -53,14 +56,14 @@ export function DataTableColumnHeader<TData, TValue>({
             className="cursor-pointer"
           >
             <ArrowUp className="h-3.5 w-3.5 text-muted-foreground/70" />
-            Asc
+            {t("data_table.sort_asc")}
           </DropdownMenuItem>
           <DropdownMenuItem
             onClick={() => column.toggleSorting(true)}
             className="cursor-pointer"
           >
             <ArrowDown className="h-3.5 w-3.5 text-muted-foreground/70" />
-            Desc
+            {t("data_table.sort_desc")}
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem
@@ -68,7 +71,7 @@ export function DataTableColumnHeader<TData, TValue>({
             className="cursor-pointer"
           >
             <EyeOff className="h-3.5 w-3.5 text-muted-foreground/70" />
-            Hide
+            {t("data_table.hide_column")}
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

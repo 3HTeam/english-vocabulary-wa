@@ -21,7 +21,7 @@ export const axiosClient = axios.create({
 
 const axiosRefresh = axios.create({
   baseURL,
-  timeout: 15000,
+  timeout: 60000,
   headers: {
     Accept: "application/json",
   },

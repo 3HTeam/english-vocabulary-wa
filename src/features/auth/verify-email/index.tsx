@@ -31,16 +31,13 @@ import { cn } from "@/lib";
 import { useAuthStore } from "@/stores";
 import type { ApiResponse } from "@/types";
 
-import {
-  getVerifyEmailSchema,
-  type VerifyEmailFormValues,
-} from "./schema.module";
+import { verifyEmailSchema, type VerifyEmailFormValues } from "./schema.module";
 
 export function VerifyEmail({ className, ...props }: ComponentProps<"div">) {
   const router = useRouter();
   const t = useTranslations();
 
-  const verifyEmailSchema = useMemo(() => getVerifyEmailSchema(t), [t]);
+  const schema = useMemo(() => verifyEmailSchema(t), [t]);
 
   const signupEmail = useAuthStore((state) => state.signupEmail);
   const clearSignupEmail = useAuthStore((state) => state.clearSignupEmail);
@@ -48,7 +45,7 @@ export function VerifyEmail({ className, ...props }: ComponentProps<"div">) {
   const defaultEmail = signupEmail || "";
 
   const form = useForm<VerifyEmailFormValues>({
-    resolver: zodResolver(verifyEmailSchema),
+    resolver: zodResolver(schema),
     defaultValues: {
       email: defaultEmail,
       otp: "",

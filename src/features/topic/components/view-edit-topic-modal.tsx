@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { Pencil } from "lucide-react";
+import { Pencil, Loader2 } from "lucide-react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -13,20 +13,8 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Switch } from "@/components/ui/switch";
-import { FileUpload } from "@/components/shared/file-upload";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { Form } from "@/components/ui/form";
 import { LoadingSpinner } from "@/components/ui/loading-spinner";
-import Image from "next/image";
 
 import {
   topicSchema,
@@ -40,6 +28,8 @@ import {
 import { toast } from "sonner";
 import { AxiosError } from "axios";
 import { ApiResponse } from "@/types/api/base";
+import { TopicForm } from "./topic-form";
+import { useTranslations } from "@/hooks";
 
 interface ViewEditTopicModalProps {
   topicId: string | null;
@@ -54,26 +44,21 @@ export function ViewEditTopicModal({
   open: controlledOpen,
   onOpenChange,
 }: ViewEditTopicModalProps) {
+  const t = useTranslations();
   const {
     data: topicData,
     isLoading,
     isError,
   } = useGetTopicByIdQuery(topicId || "");
-  const { mutate: updateTopic } = useUpdateTopicMutation();
+  const { mutate: updateTopic, isPending } = useUpdateTopicMutation();
 
   const form = useForm<TopicFormValues>({
     resolver: zodResolver(topicSchema),
     defaultValues: topicDefaultValues,
   });
 
-  const {
-    handleSubmit,
-    reset,
-    setValue,
-    formState: { isSubmitting },
-  } = form;
+  const { handleSubmit, reset, setValue } = form;
 
-  // Load data vào form khi có dữ liệu
   useEffect(() => {
     if (topicData?.data?.topic && controlledOpen) {
       const topic = topicData.data.topic;
@@ -102,6 +87,12 @@ export function ViewEditTopicModal({
       .replace(/(^-|-$)/g, "");
   };
 
+  const handleNameChange = (name: string) => {
+    if (mode !== "view") {
+      setValue("slug", generateSlug(name), { shouldValidate: true });
+    }
+  };
+
   const onSubmit: SubmitHandler<TopicFormValues> = (values) => {
     if (mode === "view") {
       return;
@@ -118,15 +109,18 @@ export function ViewEditTopicModal({
         },
       },
       {
-        onSuccess: (data) => {
-          toast.success("Cập nhật chủ đề thành công!");
+        onSuccess: () => {
+          toast.success(
+            t("common.toast.update_success", { item: t("topic.name") })
+          );
           onOpenChange?.(false);
         },
         onError: (error) => {
           const axiosError = error as AxiosError<ApiResponse>;
           const message = axiosError.response?.data?.message;
           const fallbackMessage =
-            axiosError.message || "Cập nhật chủ đề thất bại, vui lòng thử lại.";
+            axiosError.message ||
+            t("common.toast.update_error", { item: t("topic.name") });
           toast.error(message || fallbackMessage);
         },
       }
@@ -146,15 +140,15 @@ export function ViewEditTopicModal({
         <DialogContent className="data-[state=open]:!zoom-in-0 data-[state=open]:duration-600 sm:max-w-[650px]">
           <DialogHeader>
             <DialogTitle>
-              {mode === "view" ? "Xem chủ đề" : "Chỉnh sửa chủ đề"}
+              {mode === "view" ? t("topic.view_title") : t("topic.edit_title")}
             </DialogTitle>
           </DialogHeader>
           <div className="py-8 text-center text-destructive">
-            Không thể tải thông tin chủ đề. Vui lòng thử lại.
+            {t("common.error.loading")}
           </div>
           <div className="flex justify-end">
             <Button variant="outline" onClick={handleCancel}>
-              Đóng
+              {t("common.actions.close")}
             </Button>
           </div>
         </DialogContent>
@@ -167,12 +161,10 @@ export function ViewEditTopicModal({
       <DialogContent className="data-[state=open]:!zoom-in-0 data-[state=open]:duration-600 sm:max-w-[650px] max-h-[80vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>
-            {mode === "view" ? "Xem chủ đề" : "Chỉnh sửa chủ đề"}
+            {mode === "view" ? t("topic.view_title") : t("topic.edit_title")}
           </DialogTitle>
           <DialogDescription>
-            {mode === "view"
-              ? "Xem thông tin chi tiết của chủ đề."
-              : "Chỉnh sửa thông tin chủ đề. Điền thông tin bên dưới."}
+            {mode === "view" ? t("topic.view_desc") : t("topic.edit_desc")}
           </DialogDescription>
         </DialogHeader>
 
@@ -183,128 +175,10 @@ export function ViewEditTopicModal({
         ) : (
           <Form {...form}>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-              <div className="grid grid-cols-2 gap-4">
-                <FormField
-                  control={form.control}
-                  name="name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Tên chủ đề *</FormLabel>
-                      <FormControl>
-                        <Input
-                          placeholder="Nhập tên chủ đề..."
-                          {...field}
-                          disabled={isReadonly}
-                          onChange={(e) => {
-                            if (!isReadonly) {
-                              const value = e.target.value;
-                              field.onChange(value);
-                              setValue("slug", generateSlug(value), {
-                                shouldValidate: true,
-                              });
-                            }
-                          }}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="slug"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Slug *</FormLabel>
-                      <FormControl>
-                        <Input
-                          placeholder="slug-tu-dong-tao"
-                          {...field}
-                          disabled={isReadonly}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-
-              <FormField
-                control={form.control}
-                name="imageUrl"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>URL ảnh *</FormLabel>
-                    <FormControl>
-                      <div className="space-y-4">
-                        {field.value && (
-                          <div className="flex items-center justify-center border rounded-md p-4">
-                            <Image
-                              src={field.value}
-                              alt="Ảnh chủ đề"
-                              width={200}
-                              height={200}
-                              className="max-w-[200px] max-h-[200px] object-contain"
-                            />
-                          </div>
-                        )}
-                        {!isReadonly && (
-                          <FileUpload
-                            onUploadSuccess={(url) => {
-                              field.onChange(url);
-                            }}
-                            onUploadError={() => {}}
-                            accept="image/*"
-                            maxSize={1024 * 1024}
-                            multiple={false}
-                            disabled={isReadonly}
-                          />
-                        )}
-                      </div>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="description"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Mô tả</FormLabel>
-                    <FormControl>
-                      <Textarea
-                        placeholder="Nhập mô tả về chủ đề..."
-                        rows={3}
-                        value={field.value ?? ""}
-                        onChange={field.onChange}
-                        disabled={isReadonly}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="status"
-                render={({ field }) => (
-                  <FormItem className="flex items-center justify-between space-x-2">
-                    <div className="space-y-0.5">
-                      <FormLabel>Trạng thái</FormLabel>
-                    </div>
-                    <FormControl>
-                      <Switch
-                        checked={field.value}
-                        onCheckedChange={field.onChange}
-                        disabled={isReadonly}
-                      />
-                    </FormControl>
-                  </FormItem>
-                )}
+              <TopicForm
+                form={form}
+                mode={mode}
+                onNameChange={handleNameChange}
               />
 
               <div className="flex justify-end space-x-2 pt-4">
@@ -314,16 +188,27 @@ export function ViewEditTopicModal({
                   onClick={handleCancel}
                   className="cursor-pointer"
                 >
-                  {isReadonly ? "Đóng" : "Hủy"}
+                  {isReadonly
+                    ? t("common.actions.close")
+                    : t("common.actions.cancel")}
                 </Button>
                 {!isReadonly && (
                   <Button
                     type="submit"
-                    className="cursor-pointer"
-                    disabled={isSubmitting}
+                    className="cursor-pointer min-w-[130px]"
+                    disabled={isPending}
                   >
-                    <Pencil className="w-4 h-4 mr-2" />
-                    Cập nhật
+                    {isPending ? (
+                      <>
+                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                        {t("common.actions.saving")}
+                      </>
+                    ) : (
+                      <>
+                        <Pencil className="w-4 h-4 mr-2" />
+                        {t("common.actions.update")}
+                      </>
+                    )}
                   </Button>
                 )}
               </div>

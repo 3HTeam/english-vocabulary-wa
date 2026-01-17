@@ -115,7 +115,14 @@
       "settings": "Cài đặt",
       "faqs": "Hỏi đáp",
       "pricing": "Bảng giá"
-    }
+    },
+    "vocabulary_management": "Quản lý từ vựng",
+    "grammar_management": "Quản lý ngữ pháp",
+    "lesson_management": "Quản lý bài học",
+    "user_management": "Quản lý người dùng",
+    "app_config": "Cấu hình app",
+    "vocabularies": "Từ vựng",
+    "admin_dashboard": "Admin Dashboard"
   },
   "common": {
     "search": {
@@ -130,6 +137,183 @@
         "settings": "Cài đặt",
         "pages": "Trang"
       }
+    },
+    "actions": {
+      "add": "Thêm mới",
+      "edit": "Chỉnh sửa",
+      "delete": "Xoá",
+      "view": "Xem chi tiết",
+      "save": "Lưu",
+      "saving": "Đang lưu...",
+      "update": "Cập nhật",
+      "updating": "Đang cập nhật...",
+      "creating": "Đang tạo...",
+      "cancel": "Huỷ",
+      "back": "Quay lại",
+      "restore": "Khôi phục",
+      "force_delete": "Xoá vĩnh viễn",
+      "confirm": "Xác nhận",
+      "close": "Đóng",
+      "search": "Tìm kiếm"
+    },
+    "status": {
+      "label": "Trạng thái",
+      "active": "Hiển thị",
+      "inactive": "Tạm ẩn"
+    },
+    "table": {
+      "image": "Ảnh",
+      "created_at": "Ngày tạo",
+      "updated_at": "Ngày cập nhật",
+      "actions": "Thao tác"
+    },
+    "dialog": {
+      "delete_title": "Bạn có chắc chắn muốn xoá {item} này?",
+      "delete_desc": "Hành động này có thể hoàn tác. Sau khi xoá mọi thứ sẽ được lưu trong thùng rác để bạn khôi phục khi cần.",
+      "force_delete_title": "Bạn có chắc chắn muốn xoá vĩnh viễn {item} này?",
+      "force_delete_desc": "Hành động này không thể hoàn tác. {item} sẽ bị xoá vĩnh viễn khỏi hệ thống."
+    },
+    "toast": {
+      "create_success": "Thêm {item} thành công!",
+      "create_error": "Thêm {item} thất bại, vui lòng thử lại.",
+      "update_success": "Cập nhật {item} thành công!",
+      "update_error": "Cập nhật {item} thất bại, vui lòng thử lại.",
+      "delete_success": "Xoá {item} thành công!",
+      "delete_error": "Xoá {item} thất bại, vui lòng thử lại.",
+      "restore_success": "Khôi phục {item} thành công!",
+      "restore_error": "Khôi phục {item} thất bại, vui lòng thử lại.",
+      "force_delete_success": "Xoá vĩnh viễn {item} thành công!",
+      "force_delete_error": "Xoá vĩnh viễn {item} thất bại, vui lòng thử lại."
+    },
+    "trash": {
+      "title": "Thùng rác",
+      "search_placeholder": "Tìm kiếm trong thùng rác..."
+    },
+    "form": {
+      "required": "*",
+      "description": "Mô tả",
+      "description_placeholder": "Nhập mô tả..."
+    },
+    "error": {
+      "loading": "Không thể tải dữ liệu. Vui lòng thử lại."
+    }
+  },
+  "data_table": {
+    "sort_asc": "Tăng dần",
+    "sort_desc": "Giảm dần",
+    "hide_column": "Ẩn cột",
+    "no_results": "Không tìm thấy kết quả.",
+    "clear_filter": "Xoá bộ lọc",
+    "rows_selected": "{selected} trong {total} hàng đã chọn.",
+    "rows_per_page": "Số hàng mỗi trang",
+    "page_of": "Trang {current} / {total}",
+    "go_first_page": "Về trang đầu",
+    "go_previous_page": "Về trang trước",
+    "go_next_page": "Đến trang sau",
+    "go_last_page": "Đến trang cuối",
+    "open_menu": "Mở menu",
+    "view": "Xem",
+    "edit": "Chỉnh sửa",
+    "delete": "Xóa",
+    "restore": "Khôi phục",
+    "force_delete": "Xóa vĩnh viễn",
+    "display": "Hiển thị",
+    "display_columns": "Hiển thị cột",
+    "search_placeholder": "Tìm kiếm...",
+    "all": "Tất cả"
+  },
+  "topic": {
+    "name": "chủ đề",
+    "title": "Quản lý chủ đề",
+    "add_title": "Thêm chủ đề mới",
+    "add_desc": "Tạo một chủ đề từ vựng mới. Điền thông tin bên dưới.",
+    "edit_title": "Chỉnh sửa chủ đề",
+    "edit_desc": "Chỉnh sửa thông tin chủ đề. Điền thông tin bên dưới.",
+    "view_title": "Chi tiết chủ đề",
+    "view_desc": "Xem thông tin chi tiết của chủ đề.",
+    "search_placeholder": "Tìm kiếm tên chủ đề",
+    "table": {
+      "name": "Tên chủ đề",
+      "slug": "Slug"
+    },
+    "form": {
+      "name": "Tên chủ đề",
+      "name_placeholder": "Nhập tên chủ đề...",
+      "slug": "Slug",
+      "slug_placeholder": "slug-tu-dong-tao",
+      "image": "Ảnh",
+      "description_placeholder": "Nhập mô tả về chủ đề..."
+    }
+  },
+  "vocabulary": {
+    "name": "từ vựng",
+    "title": "Quản lý từ vựng",
+    "add_title": "Thêm từ vựng mới",
+    "add_desc": "Nhập từ vựng để tự động lấy thông tin.",
+    "edit_title": "Chỉnh sửa từ vựng",
+    "view_title": "Chi tiết từ vựng",
+    "search_placeholder": "Tìm kiếm từ vựng",
+    "word_input_placeholder": "Nhập từ vựng (ví dụ: apple)...",
+    "manual_create": "Tạo thủ công",
+    "auto_fill": "Tìm & Điền tự động",
+    "found_redirect": "Đã tìm thấy dữ liệu! Đang chuyển hướng...",
+    "not_found": "Không tìm thấy từ vựng này",
+    "no_data": "Không có dữ liệu cho từ này",
+    "error": "Đã có lỗi xảy ra",
+    "table": {
+      "word": "Từ vựng",
+      "translation": "Nghĩa",
+      "phonetic": "Phiên âm",
+      "topic": "Chủ đề",
+      "audio": "Âm thanh",
+      "part_of_speech": "Từ loại",
+      "synonyms": "Từ đồng nghĩa",
+      "antonyms": "Từ trái nghĩa"
+    },
+    "form": {
+      "word": "Từ vựng",
+      "word_placeholder": "Nhập từ vựng...",
+      "phonetic": "Phiên âm",
+      "phonetic_placeholder": "/ˈeksəmpl/",
+      "translation": "Nghĩa chung",
+      "translation_placeholder": "Nhập nghĩa tiếng Việt...",
+      "topic": "Chủ đề",
+      "topic_placeholder": "Chọn chủ đề",
+      "status_active": "Đang hoạt động",
+      "status_inactive": "Tạm ẩn",
+      "audio_us": "Audio Mỹ",
+      "audio_uk": "Audio Anh",
+      "audio_au": "Audio Úc",
+      "audio_placeholder": "https://...",
+      "image": "Hình ảnh"
+    },
+    "sections": {
+      "basic_info": "Thông tin cơ bản",
+      "audio": "Âm thanh",
+      "image": "Hình ảnh",
+      "meanings": "Nghĩa & Định nghĩa"
+    },
+    "meaning": {
+      "add": "Thêm nghĩa",
+      "info": "Thông tin ngữ nghĩa",
+      "part_of_speech": "Từ loại",
+      "part_of_speech_placeholder": "Chọn từ loại",
+      "synonyms": "Từ đồng nghĩa",
+      "synonyms_placeholder": "word1, word2...",
+      "antonyms": "Từ trái nghĩa",
+      "antonyms_placeholder": "word1, word2..."
+    },
+    "definition": {
+      "add": "Thêm định nghĩa",
+      "list": "Danh sách định nghĩa",
+      "definition": "Định nghĩa",
+      "definition_placeholder": "English definition...",
+      "translation": "Bản dịch",
+      "translation_placeholder": "Bản dịch tiếng Việt...",
+      "example": "Ví dụ",
+      "example_placeholder": "Example sentence...",
+      "example_translation": "Bản dịch ví dụ",
+      "example_translation_placeholder": "Bản dịch ví dụ..."
     }
   }
 }

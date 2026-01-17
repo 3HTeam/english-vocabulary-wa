@@ -17,6 +17,8 @@ interface CreateColumnsOptions {
   onView?: (id: string) => void;
   onEdit?: (id: string) => void;
   onDelete?: (id: string) => void;
+  onRestore?: (id: string) => void;
+  onForceDelete?: (id: string) => void;
   getId?: (data: TopicFormValues) => string;
 }
 
@@ -173,6 +175,8 @@ export const createColumns = (
         onView={options?.onView}
         onEdit={options?.onEdit}
         onDelete={options?.onDelete}
+        onRestore={options?.onRestore}
+        onForceDelete={options?.onForceDelete}
         getId={options?.getId}
       />
     ),

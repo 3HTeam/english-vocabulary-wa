@@ -78,5 +78,196 @@
     "agree_terms": "You must agree to the terms and privacy policy",
     "otp_length": "OTP must be {length} characters",
     "otp_digits": "OTP must contain only digits"
+  },
+  "sidebar": {
+    "dashboard": "Dashboards",
+    "vocabulary_management": "Vocabulary Management",
+    "grammar_management": "Grammar Management",
+    "lesson_management": "Lesson Management",
+    "user_management": "User Management",
+    "app_config": "App Configuration",
+    "topics": "Topics",
+    "vocabularies": "Vocabularies",
+    "users": "Users",
+    "admin_dashboard": "Admin Dashboard"
+  },
+  "data_table": {
+    "sort_asc": "Ascending",
+    "sort_desc": "Descending",
+    "hide_column": "Hide column",
+    "no_results": "No results found.",
+    "clear_filter": "Clear filter",
+    "rows_selected": "{selected} of {total} row(s) selected.",
+    "rows_per_page": "Rows per page",
+    "page_of": "Page {current} of {total}",
+    "go_first_page": "Go to first page",
+    "go_previous_page": "Go to previous page",
+    "go_next_page": "Go to next page",
+    "go_last_page": "Go to last page",
+    "open_menu": "Open menu",
+    "view": "View",
+    "edit": "Edit",
+    "delete": "Delete",
+    "restore": "Restore",
+    "force_delete": "Delete permanently",
+    "display": "Display",
+    "display_columns": "Toggle columns",
+    "search_placeholder": "Search...",
+    "all": "All"
+  },
+  "common": {
+    "actions": {
+      "add": "Add New",
+      "edit": "Edit",
+      "delete": "Delete",
+      "view": "View Details",
+      "save": "Save",
+      "saving": "Saving...",
+      "update": "Update",
+      "updating": "Updating...",
+      "creating": "Creating...",
+      "cancel": "Cancel",
+      "back": "Back",
+      "restore": "Restore",
+      "force_delete": "Delete Permanently",
+      "confirm": "Confirm",
+      "close": "Close",
+      "search": "Search"
+    },
+    "status": {
+      "label": "Status",
+      "active": "Active",
+      "inactive": "Inactive"
+    },
+    "table": {
+      "image": "Image",
+      "created_at": "Created At",
+      "updated_at": "Updated At",
+      "actions": "Actions"
+    },
+    "dialog": {
+      "delete_title": "Are you sure you want to delete this {item}?",
+      "delete_desc": "This action can be undone. After deletion, everything will be saved in the trash for you to restore when needed.",
+      "force_delete_title": "Are you sure you want to permanently delete this {item}?",
+      "force_delete_desc": "This action cannot be undone. The {item} will be permanently deleted from the system."
+    },
+    "toast": {
+      "create_success": "Created {item} successfully!",
+      "create_error": "Failed to create {item}, please try again.",
+      "update_success": "Updated {item} successfully!",
+      "update_error": "Failed to update {item}, please try again.",
+      "delete_success": "Deleted {item} successfully!",
+      "delete_error": "Failed to delete {item}, please try again.",
+      "restore_success": "Restored {item} successfully!",
+      "restore_error": "Failed to restore {item}, please try again.",
+      "force_delete_success": "Permanently deleted {item} successfully!",
+      "force_delete_error": "Failed to permanently delete {item}, please try again."
+    },
+    "trash": {
+      "title": "Trash",
+      "search_placeholder": "Search in trash..."
+    },
+    "form": {
+      "required": "*",
+      "description": "Description",
+      "description_placeholder": "Enter description..."
+    },
+    "error": {
+      "loading": "Failed to load data. Please try again."
+    }
+  },
+  "topic": {
+    "name": "topic",
+    "title": "Topic Management",
+    "add_title": "Add New Topic",
+    "add_desc": "Create a new vocabulary topic. Fill in the information below.",
+    "edit_title": "Edit Topic",
+    "edit_desc": "Edit topic information. Fill in the information below.",
+    "view_title": "Topic Details",
+    "view_desc": "View detailed information of the topic.",
+    "search_placeholder": "Search topic name",
+    "table": {
+      "name": "Topic Name",
+      "slug": "Slug"
+    },
+    "form": {
+      "name": "Topic Name",
+      "name_placeholder": "Enter topic name...",
+      "slug": "Slug",
+      "slug_placeholder": "auto-generated-slug",
+      "image": "Image",
+      "description_placeholder": "Enter topic description..."
+    }
+  },
+  "vocabulary": {
+    "name": "vocabulary",
+    "title": "Vocabulary Management",
+    "add_title": "Add New Vocabulary",
+    "add_desc": "Enter a word to auto-fetch information.",
+    "edit_title": "Edit Vocabulary",
+    "view_title": "Vocabulary Details",
+    "search_placeholder": "Search vocabulary",
+    "word_input_placeholder": "Enter vocabulary (e.g: apple)...",
+    "manual_create": "Create Manually",
+    "auto_fill": "Search & Auto-fill",
+    "found_redirect": "Data found! Redirecting...",
+    "not_found": "Vocabulary not found",
+    "no_data": "No data for this word",
+    "error": "An error occurred",
+    "table": {
+      "word": "Word",
+      "translation": "Translation",
+      "phonetic": "Phonetic",
+      "topic": "Topic",
+      "audio": "Audio",
+      "part_of_speech": "Part of Speech",
+      "synonyms": "Synonyms",
+      "antonyms": "Antonyms"
+    },
+    "form": {
+      "word": "Word",
+      "word_placeholder": "Enter word...",
+      "phonetic": "Phonetic",
+      "phonetic_placeholder": "/ˈeksəmpl/",
+      "translation": "General Meaning",
+      "translation_placeholder": "Enter translation...",
+      "topic": "Topic",
+      "topic_placeholder": "Select topic",
+      "status_active": "Active",
+      "status_inactive": "Inactive",
+      "audio_us": "US Audio",
+      "audio_uk": "UK Audio",
+      "audio_au": "AU Audio",
+      "audio_placeholder": "https://...",
+      "image": "Image"
+    },
+    "sections": {
+      "basic_info": "Basic Information",
+      "audio": "Audio",
+      "image": "Image",
+      "meanings": "Meanings & Definitions"
+    },
+    "meaning": {
+      "add": "Add Meaning",
+      "info": "Semantic Information",
+      "part_of_speech": "Part of Speech",
+      "part_of_speech_placeholder": "Select part of speech",
+      "synonyms": "Synonyms",
+      "synonyms_placeholder": "word1, word2...",
+      "antonyms": "Antonyms",
+      "antonyms_placeholder": "word1, word2..."
+    },
+    "definition": {
+      "add": "Add Definition",
+      "list": "Definition List",
+      "definition": "Definition",
+      "definition_placeholder": "English definition...",
+      "translation": "Translation",
+      "translation_placeholder": "Vietnamese translation...",
+      "example": "Example",
+      "example_placeholder": "Example sentence...",
+      "example_translation": "Example Translation",
+      "example_translation_placeholder": "Translate example..."
+    }
   }
 }

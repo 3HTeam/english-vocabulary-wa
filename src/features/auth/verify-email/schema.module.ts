@@ -1,8 +1,6 @@
 import { z } from "zod";
 
-export const getVerifyEmailSchema = (
-  t: (key: string, options?: any) => string
-) =>
+export const verifyEmailSchema = (t: (key: string) => string) =>
   z.object({
     email: z
       .string()
@@ -12,10 +10,10 @@ export const getVerifyEmailSchema = (
     otp: z
       .string()
       .trim()
-      .length(8, t("validation.otp_length", { length: 8 }))
+      .length(6, t("validation.otp_length"))
       .regex(/^[0-9]+$/, t("validation.otp_digits")),
   });
 
 export type VerifyEmailFormValues = z.infer<
-  ReturnType<typeof getVerifyEmailSchema>
+  ReturnType<typeof verifyEmailSchema>
 >;
