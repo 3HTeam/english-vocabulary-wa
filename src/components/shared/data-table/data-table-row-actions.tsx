@@ -1,7 +1,7 @@
 "use client";
 
 import type { Row } from "@tanstack/react-table";
-import { Eye, MoreHorizontal, Pencil } from "lucide-react";
+import { Eye, MoreHorizontal, Pencil, RotateCcw, Trash2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -12,12 +12,15 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useTranslations } from "@/hooks";
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>;
   onView?: (id: string) => void;
   onEdit?: (id: string) => void;
   onDelete?: (id: string) => void;
+  onRestore?: (id: string) => void;
+  onForceDelete?: (id: string) => void;
   getId?: (data: TData) => string;
 }
 
@@ -26,11 +29,13 @@ export function DataTableRowActions<TData>({
   onView,
   onEdit,
   onDelete,
+  onRestore,
+  onForceDelete,
   getId,
 }: DataTableRowActionsProps<TData>) {
-  // Use getId function if provided, otherwise try to extract id from data
-  const id = getId 
-    ? getId(row.original) 
+  const t = useTranslations();
+  const id = getId
+    ? getId(row.original)
     : (row.original as { id?: string })?.id || "";
 
   return (
@@ -41,7 +46,7 @@ export function DataTableRowActions<TData>({
           className="flex h-8 w-8 p-0 data-[state=open]:bg-muted cursor-pointer"
         >
           <MoreHorizontal />
-          <span className="sr-only">Open menu</span>
+          <span className="sr-only">{t("data_table.open_menu")}</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[160px]">
@@ -51,7 +56,7 @@ export function DataTableRowActions<TData>({
               className="cursor-pointer"
               onClick={() => onView?.(id)}
             >
-              Xem
+              {t("data_table.view")}
               <DropdownMenuShortcut>
                 <Eye />
               </DropdownMenuShortcut>
@@ -63,11 +68,24 @@ export function DataTableRowActions<TData>({
             className="cursor-pointer"
             onClick={() => onEdit?.(id)}
           >
-            Chỉnh sửa
+            {t("data_table.edit")}
             <DropdownMenuShortcut>
               <Pencil />
             </DropdownMenuShortcut>
           </DropdownMenuItem>
+        )}
+        {onRestore && (
+          <>
+            <DropdownMenuItem
+              className="cursor-pointer"
+              onClick={() => onRestore?.(id)}
+            >
+              {t("data_table.restore")}
+              <DropdownMenuShortcut>
+                <RotateCcw />
+              </DropdownMenuShortcut>
+            </DropdownMenuItem>
+          </>
         )}
         {onDelete && (
           <>
@@ -76,8 +94,22 @@ export function DataTableRowActions<TData>({
               className="cursor-pointer"
               onClick={() => onDelete?.(id)}
             >
-              Xóa
+              {t("data_table.delete")}
               <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
+            </DropdownMenuItem>
+          </>
+        )}
+        {onForceDelete && (
+          <>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem
+              className="cursor-pointer"
+              onClick={() => onForceDelete?.(id)}
+            >
+              {t("data_table.force_delete")}
+              <DropdownMenuShortcut>
+                <Trash2 />
+              </DropdownMenuShortcut>
             </DropdownMenuItem>
           </>
         )}

@@ -23,6 +23,28 @@ const badgeVariants = cva(
         warning:
           "text-orange-600 bg-orange-50 dark:text-orange-400 dark:bg-orange-900/20",
         info: "text-sky-600 bg-sky-50 dark:text-sky-400 dark:bg-sky-900/20",
+        blue: "text-blue-600 bg-blue-50 dark:text-blue-400 dark:bg-blue-900/20",
+        emerald:
+          "text-emerald-600 bg-emerald-50 dark:text-emerald-400 dark:bg-emerald-900/20",
+        purple:
+          "text-purple-600 bg-purple-50 dark:text-purple-400 dark:bg-purple-900/20",
+        pink: "text-pink-600 bg-pink-50 dark:text-pink-400 dark:bg-pink-900/20",
+        cyan: "text-cyan-600 bg-cyan-50 dark:text-cyan-400 dark:bg-cyan-900/20",
+        indigo:
+          "text-indigo-600 bg-indigo-50 dark:text-indigo-400 dark:bg-indigo-900/20",
+        amber:
+          "text-amber-600 bg-amber-50 dark:text-amber-400 dark:bg-amber-900/20",
+        rose: "text-rose-600 bg-rose-50 dark:text-rose-400 dark:bg-rose-900/20",
+        teal: "text-teal-600 bg-teal-50 dark:text-teal-400 dark:bg-teal-900/20",
+        slate:
+          "text-slate-600 bg-slate-50 dark:text-slate-400 dark:bg-slate-900/20",
+        lime: "text-lime-600 bg-lime-50 dark:text-lime-400 dark:bg-lime-900/20",
+        fuchsia:
+          "text-fuchsia-600 bg-fuchsia-50 dark:text-fuchsia-400 dark:bg-fuchsia-900/20",
+        violet:
+          "text-violet-600 bg-violet-50 dark:text-violet-400 dark:bg-violet-900/20",
+        yellow:
+          "text-yellow-600 bg-yellow-50 dark:text-yellow-400 dark:bg-yellow-900/20",
       },
     },
     defaultVariants: {

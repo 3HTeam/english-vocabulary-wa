@@ -18,6 +18,7 @@ export const useGetTopicByIdQuery = (id: string) => {
     enabled: !!id,
   });
 };
+
 export const useCreateTopicMutation = () => {
   const queryClient = useQueryClient();
   return useMutation({
@@ -44,6 +45,26 @@ export const useDeleteTopicMutation = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: (id: string) => apiServices.topic.deleteTopic(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [TOPIC_QUERY_KEYS.getTopic] });
+    },
+  });
+};
+
+export const useRestoreTopicMutation = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (id: string) => apiServices.topic.restoreTopic(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [TOPIC_QUERY_KEYS.getTopic] });
+    },
+  });
+};
+
+export const useForceDeleteTopicMutation = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (id: string) => apiServices.topic.forceDeleteTopic(id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [TOPIC_QUERY_KEYS.getTopic] });
     },

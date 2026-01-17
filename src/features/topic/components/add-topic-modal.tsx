@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Plus } from "lucide-react";
+import { Plus, Loader2 } from "lucide-react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -14,18 +14,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Switch } from "@/components/ui/switch";
-import { FileUpload } from "@/components/shared/file-upload";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { Form } from "@/components/ui/form";
 
 import {
   topicSchema,
@@ -37,17 +26,16 @@ import { toast } from "sonner";
 import { ApiResponse } from "@/types/api/base";
 import { AxiosError } from "axios";
 import { TCreateTopicResponse } from "@/types/features/topic";
+import { TopicForm } from "./topic-form";
+import { useTranslations } from "@/hooks";
 
 interface AddTopicModalProps {
-  titleAdd?: string;
   trigger?: React.ReactNode;
 }
 
-export function AddTopicModal({
-  titleAdd = "Thêm chủ đề",
-  trigger,
-}: AddTopicModalProps) {
-  const { mutate: createTopic } = useCreateTopicMutation();
+export function AddTopicModal({ trigger }: AddTopicModalProps) {
+  const t = useTranslations();
+  const { mutate: createTopic, isPending } = useCreateTopicMutation();
   const [open, setOpen] = useState(false);
 
   const form = useForm<TopicFormValues>({
@@ -55,12 +43,7 @@ export function AddTopicModal({
     defaultValues: topicDefaultValues,
   });
 
-  const {
-    handleSubmit,
-    reset,
-    setValue,
-    formState: { isSubmitting },
-  } = form;
+  const { handleSubmit, reset, setValue } = form;
 
   const generateSlug = (name: string) => {
     return name
@@ -69,6 +52,10 @@ export function AddTopicModal({
       .replace(/[\u0300-\u036f]/g, "")
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/(^-|-$)/g, "");
+  };
+
+  const handleNameChange = (name: string) => {
+    setValue("slug", generateSlug(name), { shouldValidate: true });
   };
 
   const onSubmit: SubmitHandler<TopicFormValues> = (values) => {
@@ -82,7 +69,10 @@ export function AddTopicModal({
       },
       {
         onSuccess: (data) => {
-          toast.success(data?.message || "Tạo chủ đề thành công!");
+          toast.success(
+            data?.message ||
+              t("common.toast.create_success", { item: t("topic.name") })
+          );
           reset(topicDefaultValues);
           setOpen(false);
         },
@@ -92,7 +82,8 @@ export function AddTopicModal({
           >;
           const message = axiosError.response?.data?.message;
           const fallbackMessage =
-            axiosError.message || "Tạo chủ đề thất bại, vui lòng thử lại.";
+            axiosError.message ||
+            t("common.toast.create_error", { item: t("topic.name") });
           toast.error(message || fallbackMessage);
         },
       }
@@ -110,118 +101,19 @@ export function AddTopicModal({
         {trigger || (
           <Button variant="default" size="sm" className="cursor-pointer">
             <Plus className="w-4 h-4" />
-            <span className="hidden lg:inline">{titleAdd}</span>
+            <span className="hidden lg:inline">{t("topic.add_title")}</span>
           </Button>
         )}
       </DialogTrigger>
       <DialogContent className="data-[state=open]:!zoom-in-0 data-[state=open]:duration-600 sm:max-w-[650px] max-h-[80vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle>{titleAdd}</DialogTitle>
-          <DialogDescription>
-            Tạo một chủ đề từ vựng mới. Điền thông tin bên dưới.
-          </DialogDescription>
+          <DialogTitle>{t("topic.add_title")}</DialogTitle>
+          <DialogDescription>{t("topic.add_desc")}</DialogDescription>
         </DialogHeader>
 
         <Form {...form}>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-            <div className="grid grid-cols-2 gap-4">
-              <FormField
-                control={form.control}
-                name="name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Tên chủ đề *</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="Nhập tên chủ đề..."
-                        {...field}
-                        onChange={(e) => {
-                          const value = e.target.value;
-                          field.onChange(value);
-                          setValue("slug", generateSlug(value), {
-                            shouldValidate: true,
-                          });
-                        }}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="slug"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Slug *</FormLabel>
-                    <FormControl>
-                      <Input placeholder="slug-tu-dong-tao" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-
-            <FormField
-              control={form.control}
-              name="imageUrl"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>URL ảnh *</FormLabel>
-                  <FormControl>
-                    <FileUpload
-                      onUploadSuccess={(url) => {
-                        field.onChange(url);
-                      }}
-                      onUploadError={() => {}}
-                      accept="image/*"
-                      maxSize={1024 * 1024}
-                      multiple={false}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="description"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Mô tả</FormLabel>
-                  <FormControl>
-                    <Textarea
-                      placeholder="Nhập mô tả về chủ đề..."
-                      rows={3}
-                      value={field.value ?? ""}
-                      onChange={field.onChange}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="status"
-              render={({ field }) => (
-                <FormItem className="flex items-center justify-between space-x-2">
-                  <div className="space-y-0.5">
-                    <FormLabel>Trạng thái</FormLabel>
-                  </div>
-                  <FormControl>
-                    <Switch
-                      checked={field.value}
-                      onCheckedChange={field.onChange}
-                    />
-                  </FormControl>
-                </FormItem>
-              )}
-            />
+            <TopicForm form={form} mode="add" onNameChange={handleNameChange} />
 
             <div className="flex justify-end space-x-2 pt-4">
               <Button
@@ -230,15 +122,24 @@ export function AddTopicModal({
                 onClick={handleCancel}
                 className="cursor-pointer"
               >
-                Hủy
+                {t("common.actions.cancel")}
               </Button>
               <Button
                 type="submit"
-                className="cursor-pointer"
-                disabled={isSubmitting}
+                className="cursor-pointer min-w-[120px]"
+                disabled={isPending}
               >
-                <Plus className="w-4 h-4" />
-                Tạo chủ đề
+                {isPending ? (
+                  <>
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                    {t("common.actions.saving")}
+                  </>
+                ) : (
+                  <>
+                    <Plus className="w-4 h-4" />
+                    {t("common.actions.add")}
+                  </>
+                )}
               </Button>
             </div>
           </form>

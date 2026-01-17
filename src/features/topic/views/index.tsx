@@ -1,26 +1,42 @@
 "use client";
 
 import { useState } from "react";
+import { toast } from "sonner";
+import { Trash2, ArrowLeft } from "lucide-react";
+import { AxiosError } from "axios";
+
 import { createColumns } from "../common/columns";
 import { DataTable } from "@/components/shared/data-table";
 import { AddTopicModal } from "../components/add-topic-modal";
 import { ViewEditTopicModal } from "../components/view-edit-topic-modal";
 import { statuses } from "../common/filter";
-import { useDeleteTopicMutation, useGetTopicQuery } from "@/apis/queries/topic";
+import {
+  useDeleteTopicMutation,
+  useGetTopicQuery,
+  useRestoreTopicMutation,
+  useForceDeleteTopicMutation,
+} from "@/apis/queries/topic";
 import { DialogDelete } from "@/components/shared/dialog";
-import { toast } from "sonner";
-import { AxiosError } from "axios";
+import { Button } from "@/components/ui/button";
 import { ApiResponse } from "@/types/api/base";
 import { TDeleteTopicResponse } from "@/types/features/topic";
+import { useTranslations } from "@/hooks";
 
 export default function TopicView() {
+  const t = useTranslations();
   const { mutate: deleteTopic, isPending: isDeleting } =
     useDeleteTopicMutation();
+  const { mutate: restoreTopic, isPending: isRestoring } =
+    useRestoreTopicMutation();
+  const { mutate: forceDeleteTopic, isPending: isForceDeleting } =
+    useForceDeleteTopicMutation();
+
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState<string | undefined>(
     undefined
   );
+  const [isTrashMode, setIsTrashMode] = useState(false);
   const [viewEditModalState, setViewEditModalState] = useState<{
     open: boolean;
     topicId: string | null;
@@ -33,16 +49,18 @@ export default function TopicView() {
   const [deleteModalState, setDeleteModalState] = useState<{
     open: boolean;
     topicId: string | null;
+    isForceDelete: boolean;
   }>({
     open: false,
     topicId: null,
+    isForceDelete: false,
   });
 
   const { data: topics, isLoading } = useGetTopicQuery({
     page,
     search,
     status: statusFilter,
-    isDeleted: false,
+    isDeleted: isTrashMode,
   });
 
   const handleView = (id: string) => {
@@ -65,34 +83,107 @@ export default function TopicView() {
     setDeleteModalState({
       open: true,
       topicId: id,
+      isForceDelete: false,
+    });
+  };
+
+  const handleRestore = (id: string) => {
+    restoreTopic(id, {
+      onSuccess: (data) => {
+        toast.success(
+          data?.message ||
+            t("common.toast.restore_success", { item: t("topic.name") })
+        );
+      },
+      onError: (error) => {
+        const axiosError = error as AxiosError<ApiResponse<void>>;
+        const message = axiosError.response?.data?.message;
+        const fallbackMessage =
+          axiosError.message ||
+          t("common.toast.restore_error", { item: t("topic.name") });
+        toast.error(message || fallbackMessage);
+      },
+    });
+  };
+
+  const handleForceDeleteClick = (id: string) => {
+    setDeleteModalState({
+      open: true,
+      topicId: id,
+      isForceDelete: true,
     });
   };
 
   const handleDeleteConfirm = () => {
     if (!deleteModalState.topicId) return;
 
-    deleteTopic(deleteModalState.topicId, {
-      onSuccess: (data) => {
-        setDeleteModalState({ open: false, topicId: null });
-        toast.success(data?.message || "Xoá chủ đề thành công!");
-      },
-      onError: (error) => {
-        const axiosError = error as AxiosError<
-          ApiResponse<TDeleteTopicResponse>
-        >;
-        const message = axiosError.response?.data?.message;
-        const fallbackMessage =
-          axiosError.message || "Xoá chủ đề thất bại, vui lòng thử lại.";
-        toast.error(message || fallbackMessage);
-      },
-    });
+    if (deleteModalState.isForceDelete) {
+      forceDeleteTopic(deleteModalState.topicId, {
+        onSuccess: (data) => {
+          setDeleteModalState({
+            open: false,
+            topicId: null,
+            isForceDelete: false,
+          });
+          toast.success(
+            data?.message ||
+              t("common.toast.force_delete_success", { item: t("topic.name") })
+          );
+        },
+        onError: (error) => {
+          const axiosError = error as AxiosError<ApiResponse<void>>;
+          const message = axiosError.response?.data?.message;
+          const fallbackMessage =
+            axiosError.message ||
+            t("common.toast.force_delete_error", { item: t("topic.name") });
+          toast.error(message || fallbackMessage);
+        },
+      });
+    } else {
+      deleteTopic(deleteModalState.topicId, {
+        onSuccess: (data) => {
+          setDeleteModalState({
+            open: false,
+            topicId: null,
+            isForceDelete: false,
+          });
+          toast.success(
+            data?.message ||
+              t("common.toast.delete_success", { item: t("topic.name") })
+          );
+        },
+        onError: (error) => {
+          const axiosError = error as AxiosError<
+            ApiResponse<TDeleteTopicResponse>
+          >;
+          const message = axiosError.response?.data?.message;
+          const fallbackMessage =
+            axiosError.message ||
+            t("common.toast.delete_error", { item: t("topic.name") });
+          toast.error(message || fallbackMessage);
+        },
+      });
+    }
   };
 
-  const columns = createColumns({
-    onView: handleView,
-    onEdit: handleEdit,
-    onDelete: handleDeleteClick,
-  });
+  const handleToggleTrashMode = () => {
+    setIsTrashMode((prev) => !prev);
+    setPage(1);
+    setSearch("");
+    setStatusFilter(undefined);
+  };
+
+  const columns = isTrashMode
+    ? createColumns({
+        onView: handleView,
+        onRestore: handleRestore,
+        onForceDelete: handleForceDeleteClick,
+      })
+    : createColumns({
+        onView: handleView,
+        onEdit: handleEdit,
+        onDelete: handleDeleteClick,
+      });
 
   return (
     <>
@@ -109,22 +200,65 @@ export default function TopicView() {
         onOpenChange={(open) =>
           setDeleteModalState((prev) => ({ ...prev, open }))
         }
-        title="Bạn có chắc chắn muốn xoá chủ đề này?"
-        description="Hành động này có thể hoàn tác. Sau khi xoá mọi thứ sẽ được lưu trong thùng rác để bạn khôi phục khi cần."
+        title={
+          deleteModalState.isForceDelete
+            ? t("common.dialog.force_delete_title", { item: t("topic.name") })
+            : t("common.dialog.delete_title", { item: t("topic.name") })
+        }
+        description={
+          deleteModalState.isForceDelete
+            ? t("common.dialog.force_delete_desc", { item: t("topic.name") })
+            : t("common.dialog.delete_desc")
+        }
         onConfirm={handleDeleteConfirm}
-        isLoading={isDeleting}
+        isLoading={isDeleting || isForceDeleting}
       />
       <DataTable
         data={topics?.data?.topics || []}
-        addButton={<AddTopicModal />}
         columns={columns}
+        addButton={
+          isTrashMode ? (
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleToggleTrashMode}
+              className="cursor-pointer"
+            >
+              <ArrowLeft className="w-4 h-4 mr-1" />
+              {t("common.actions.back")}
+            </Button>
+          ) : (
+            <div className="flex items-center gap-2">
+              <Button
+                variant="destructive"
+                size="sm"
+                onClick={handleToggleTrashMode}
+                className="cursor-pointer"
+              >
+                <Trash2 className="w-4 h-4" />
+                <span className="hidden lg:inline ml-1">
+                  {t("common.trash.title")}
+                </span>
+              </Button>
+              <AddTopicModal />
+            </div>
+          )
+        }
         toolbarProps={{
-          placeholder: "Tìm kiếm tên chủ đề",
+          placeholder: isTrashMode
+            ? t("common.trash.search_placeholder")
+            : t("topic.search_placeholder"),
           searchColumn: "name",
-          filters: [
-            { columnId: "status", title: "Trạng thái", options: statuses },
-          ],
           search,
+          filters: isTrashMode
+            ? []
+            : [
+                {
+                  columnId: "status",
+                  title: t("common.status.label"),
+                  options: statuses,
+                },
+              ],
           onSearchChange: (value) => {
             setPage(1);
             setSearch(value);

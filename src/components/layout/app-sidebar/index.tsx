@@ -3,18 +3,10 @@
 import {
   LayoutPanelLeft,
   LayoutDashboard,
-  Mail,
-  CheckSquare,
-  MessageCircle,
-  Calendar,
-  Shield,
-  AlertTriangle,
-  Settings,
-  HelpCircle,
-  CreditCard,
-  LayoutTemplate,
   Users,
   LayoutDashboardIcon,
+  BookA,
+  Settings,
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -62,33 +54,31 @@ const AppSidebar = ({ ...props }: React.ComponentProps<typeof Sidebar>) => {
       ],
     },
     {
-      label: t("sidebar.groups.management"),
+      label: t("sidebar.vocabulary_management"),
       items: [
-        {
-          title: t("sidebar.items.mail"),
-          url: "/mail",
-          icon: Mail,
-        },
-        {
-          title: t("sidebar.items.tasks"),
-          url: "/tasks",
-          icon: CheckSquare,
-        },
         {
           title: t("sidebar.items.topics"),
           url: "/topics",
           icon: LayoutDashboardIcon,
         },
         {
-          title: t("sidebar.items.chat"),
-          url: "/chat",
-          icon: MessageCircle,
+          title: t("sidebar.vocabularies"),
+          url: "/vocabularies",
+          icon: BookA,
         },
-        {
-          title: t("sidebar.items.calendar"),
-          url: "/calendar",
-          icon: Calendar,
-        },
+      ],
+    },
+    {
+      label: t("sidebar.grammar_management"),
+      items: [],
+    },
+    {
+      label: t("sidebar.lesson_management"),
+      items: [],
+    },
+    {
+      label: t("sidebar.user_management"),
+      items: [
         {
           title: t("sidebar.items.users"),
           url: "/users",
@@ -97,138 +87,12 @@ const AppSidebar = ({ ...props }: React.ComponentProps<typeof Sidebar>) => {
       ],
     },
     {
-      label: t("sidebar.groups.pages"),
+      label: t("sidebar.app_config"),
       items: [
         {
-          title: t("sidebar.items.landing"),
-          url: "/landing",
-          target: "_blank",
-          icon: LayoutTemplate,
-        },
-        {
-          title: t("sidebar.items.auth"),
-          url: "#",
-          icon: Shield,
-          items: [
-            {
-              title: `${t("sidebar.items.signin")} 1`,
-              url: "/sign-in",
-              target: "_blank",
-            },
-            {
-              title: `${t("sidebar.items.signin")} 2`,
-              url: "/sign-in-2",
-              target: "_blank",
-            },
-            {
-              title: `${t("sidebar.items.signin")} 3`,
-              url: "/sign-in-3",
-              target: "_blank",
-            },
-            {
-              title: `${t("sidebar.items.signup")} 1`,
-              url: "/sign-up",
-              target: "_blank",
-            },
-            {
-              title: `${t("sidebar.items.signup")} 2`,
-              url: "/sign-up-2",
-              target: "_blank",
-            },
-            {
-              title: `${t("sidebar.items.signup")} 3`,
-              url: "/sign-up-3",
-              target: "_blank",
-            },
-            {
-              title: `${t("sidebar.items.forgot")} 1`,
-              url: "/forgot-password",
-              target: "_blank",
-            },
-            {
-              title: `${t("sidebar.items.forgot")} 2`,
-              url: "/forgot-password-2",
-              target: "_blank",
-            },
-            {
-              title: `${t("sidebar.items.forgot")} 3`,
-              url: "/forgot-password-3",
-              target: "_blank",
-            },
-          ],
-        },
-        {
-          title: t("sidebar.items.errors"),
-          url: "#",
-          icon: AlertTriangle,
-          items: [
-            {
-              title: t("sidebar.items.unauthorized"),
-              url: "/errors/unauthorized",
-              target: "_blank",
-            },
-            {
-              title: t("sidebar.items.forbidden"),
-              url: "/errors/forbidden",
-              target: "_blank",
-            },
-            {
-              title: t("sidebar.items.not_found"),
-              url: "/errors/not-found",
-              target: "_blank",
-            },
-            {
-              title: t("sidebar.items.internal_error"),
-              url: "/errors/internal-server-error",
-              target: "_blank",
-            },
-            {
-              title: t("sidebar.items.maintenance"),
-              url: "/errors/under-maintenance",
-              target: "_blank",
-            },
-          ],
-        },
-        {
           title: t("sidebar.items.settings"),
-          url: "#",
+          url: "/settings",
           icon: Settings,
-          items: [
-            {
-              title: "User Settings",
-              url: "/settings/user",
-            },
-            {
-              title: "Account Settings",
-              url: "/settings/account",
-            },
-            {
-              title: "Plans & Billing",
-              url: "/settings/billing",
-            },
-            {
-              title: "Appearance",
-              url: "/settings/appearance",
-            },
-            {
-              title: "Notifications",
-              url: "/settings/notifications",
-            },
-            {
-              title: "Connections",
-              url: "/settings/connections",
-            },
-          ],
-        },
-        {
-          title: t("sidebar.items.faqs"),
-          url: "/faqs",
-          icon: HelpCircle,
-        },
-        {
-          title: t("sidebar.items.pricing"),
-          url: "/pricing",
-          icon: CreditCard,
         },
       ],
     },

@@ -1,9 +1,23 @@
 "use client";
 
-import { useRef, useState, useCallback } from "react";
+import { useCallback, useState } from "react";
+import { Upload, X } from "lucide-react";
 import { AxiosError } from "axios";
+import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
+import {
+  FileUpload as DiceUIFileUpload,
+  FileUploadDropzone,
+  FileUploadItem,
+  FileUploadItemDelete,
+  FileUploadItemMetadata,
+  FileUploadItemPreview,
+  FileUploadItemProgress,
+  FileUploadList,
+  FileUploadTrigger,
+  type FileUploadProps as DiceUIFileUploadProps,
+} from "@/components/ui/file-upload";
 import { useUploadMutation } from "@/apis/queries/upload";
-import { FileDropzone, FileList } from "./components";
 
 export type FileUploadStatus = "uploading" | "success" | "error";
 
@@ -32,146 +46,148 @@ export function FileUpload({
   multiple = false,
   disabled = false,
 }: FileUploadProps) {
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  const [files, setFiles] = useState<FileUploadState[]>([]);
-
-  const uploadMutation = useUploadMutation({
-    onUploadProgress: (progressEvent) => {
-      if (progressEvent.total) {
-        const progress = Math.round(
-          (progressEvent.loaded * 100) / progressEvent.total
-        );
-
-        setFiles((prev) =>
-          prev.map((f) => (f.status === "uploading" ? { ...f, progress } : f))
-        );
-      }
-    },
-  });
-
-  const uploadFile = useCallback(
-    async (file: File) => {
-      if (file.size > maxSize) {
-        const errorMsg = `File quá lớn. Kích thước tối đa: ${Math.round(
-          maxSize / 1024
-        )}KB`;
-        setFiles((prev) =>
-          prev.map((f) =>
-            f.file.name === file.name
-              ? { ...f, status: "error" as const, error: errorMsg }
-              : f
-          )
-        );
-        onUploadError?.(errorMsg, file);
-        return;
-      }
-
-      const formData = new FormData();
-      formData.append("file", file);
-
-      try {
-        const response = await uploadMutation.mutateAsync(formData);
-        const url = response.data?.url;
-
-        if (url) {
-          setFiles((prev) =>
-            prev.map((f) =>
-              f.file.name === file.name
-                ? { ...f, status: "success" as const, progress: 100, url }
-                : f
-            )
-          );
-          onUploadSuccess?.(url, file);
-        } else {
-          throw new Error("Không nhận được URL từ server");
-        }
-      } catch (error) {
-        const errorMessage =
-          error instanceof AxiosError
-            ? error.response?.data?.message ||
-              error.message ||
-              "Upload thất bại"
-            : error instanceof Error
-            ? error.message
-            : "Upload thất bại";
-
-        setFiles((prev) =>
-          prev.map((f) =>
-            f.file.name === file.name
-              ? { ...f, status: "error" as const, error: errorMessage }
-              : f
-          )
-        );
-        onUploadError?.(errorMessage, file);
-      }
-    },
-    [uploadMutation, maxSize, onUploadSuccess, onUploadError]
+  const [files, setFiles] = useState<File[]>([]);
+  const [uploadProgress, setUploadProgress] = useState<Map<string, number>>(
+    new Map()
   );
 
-  const handleFileSelect = (files: FileList | null) => {
-    if (!files || disabled) return;
+  const uploadMutation = useUploadMutation({
+    onUploadProgress: () => {},
+  });
 
-    const newFiles = Array.from(files);
+  const onUpload: NonNullable<DiceUIFileUploadProps["onUpload"]> = useCallback(
+    async (files, { onProgress, onSuccess, onError }) => {
+      try {
+        const uploadPromises = files.map(async (file) => {
+          try {
+            // Check file size
+            if (file.size > maxSize) {
+              const errorMsg = `File quá lớn. Kích thước tối đa: ${Math.round(
+                maxSize / 1024
+              )}KB`;
+              onError(file, new Error(errorMsg));
+              onUploadError?.(errorMsg, file);
+              return;
+            }
 
-    // If multiple is false, only keep the first file
-    const filesToAdd = multiple ? newFiles : [newFiles[0]];
+            // Start upload
+            onProgress(file, 10);
+            setUploadProgress((prev) => new Map(prev).set(file.name, 10));
 
-    // Add new files to state with initial uploading status
-    const newFileStates: FileUploadState[] = filesToAdd.map((file) => ({
-      file,
-      progress: 0,
-      status: "uploading" as const,
-    }));
+            const formData = new FormData();
+            formData.append("file", file);
 
-    setFiles((prev) => {
-      // If not multiple, replace all files
-      return multiple ? [...prev, ...newFileStates] : newFileStates;
+            // Simulate progress during upload
+            const progressInterval = setInterval(() => {
+              setUploadProgress((prev) => {
+                const currentProgress = prev.get(file.name) || 10;
+                if (currentProgress < 90) {
+                  const newProgress = currentProgress + 10;
+                  onProgress(file, newProgress);
+                  return new Map(prev).set(file.name, newProgress);
+                }
+                return prev;
+              });
+            }, 200);
+
+            try {
+              const response = await uploadMutation.mutateAsync(formData);
+              const url = response.data?.url;
+
+              clearInterval(progressInterval);
+
+              if (url) {
+                onProgress(file, 100);
+                setUploadProgress((prev) => new Map(prev).set(file.name, 100));
+                onSuccess(file);
+                onUploadSuccess?.(url, file);
+              } else {
+                throw new Error("Không nhận được URL từ server");
+              }
+            } catch (error) {
+              clearInterval(progressInterval);
+              throw error;
+            }
+          } catch (error) {
+            const errorMessage =
+              error instanceof AxiosError
+                ? error.response?.data?.message ||
+                  error.message ||
+                  "Upload thất bại"
+                : error instanceof Error
+                ? error.message
+                : "Upload thất bại";
+
+            onError(file, new Error(errorMessage));
+            onUploadError?.(errorMessage, file);
+          }
+        });
+
+        await Promise.all(uploadPromises);
+      } catch (error) {
+        console.error("Unexpected error during upload:", error);
+      }
+    },
+    [maxSize, onUploadSuccess, onUploadError, uploadMutation]
+  );
+
+  const onFileReject = useCallback((file: File, message: string) => {
+    toast.error(message, {
+      description: `"${
+        file.name.length > 20 ? `${file.name.slice(0, 20)}...` : file.name
+      }" đã bị từ chối`,
     });
-
-    // Start uploading each file
-    filesToAdd.forEach((file) => {
-      uploadFile(file);
-    });
-  };
-
-  const handleBoxClick = () => {
-    if (!disabled) {
-      fileInputRef.current?.click();
-    }
-  };
-
-  const handleDragOver = (e: React.DragEvent) => {
-    if (!disabled) {
-      e.preventDefault();
-    }
-  };
-
-  const handleDrop = (e: React.DragEvent) => {
-    if (!disabled) {
-      e.preventDefault();
-      handleFileSelect(e.dataTransfer.files);
-    }
-  };
-
-  const removeFile = (filename: string) => {
-    setFiles((prev) => prev.filter((f) => f.file.name !== filename));
-  };
+  }, []);
 
   return (
-    <div className="flex items-center justify-center">
-      <div className="w-full">
-        <FileDropzone
-          fileInputRef={fileInputRef}
-          handleBoxClick={handleBoxClick}
-          handleDragOver={handleDragOver}
-          handleDrop={handleDrop}
-          handleFileSelect={handleFileSelect}
-          accept={accept}
-          maxSize={maxSize}
-          disabled={disabled}
-        />
-        <FileList files={files} removeFile={removeFile} />
-      </div>
-    </div>
+    <DiceUIFileUpload
+      value={files}
+      onValueChange={setFiles}
+      onUpload={onUpload}
+      onFileReject={onFileReject}
+      maxFiles={multiple ? 10 : 1}
+      maxSize={maxSize}
+      accept={accept}
+      className="w-full"
+      multiple={multiple}
+      disabled={disabled}
+    >
+      <FileUploadDropzone>
+        <div className="flex flex-col items-center gap-1 text-center">
+          <div className="flex items-center justify-center rounded-full border p-2.5">
+            <Upload className="size-6 text-muted-foreground" />
+          </div>
+          <p className="font-medium text-sm">Kéo & thả file tại đây</p>
+          <p className="text-muted-foreground text-xs">
+            Hoặc click để chọn file (
+            {maxSize >= 1024 * 1024
+              ? `tối đa ${Math.round(maxSize / (1024 * 1024))}MB`
+              : `tối đa ${Math.round(maxSize / 1024)}KB`}
+            )
+          </p>
+        </div>
+        <FileUploadTrigger asChild>
+          <Button variant="outline" size="sm" className="mt-2 w-fit">
+            Chọn file
+          </Button>
+        </FileUploadTrigger>
+      </FileUploadDropzone>
+      <FileUploadList>
+        {files.map((file, index) => (
+          <FileUploadItem key={index} value={file} className="flex-col">
+            <div className="flex w-full items-center gap-2">
+              <FileUploadItemPreview />
+              <FileUploadItemMetadata />
+              <FileUploadItemDelete asChild>
+                <Button variant="ghost" size="icon" className="size-7">
+                  <X />
+                </Button>
+              </FileUploadItemDelete>
+            </div>
+            <FileUploadItemProgress />
+          </FileUploadItem>
+        ))}
+      </FileUploadList>
+    </DiceUIFileUpload>
   );
 }

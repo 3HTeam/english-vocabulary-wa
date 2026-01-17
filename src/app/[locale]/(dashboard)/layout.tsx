@@ -1,10 +1,10 @@
 "use client";
 
 import React from "react";
-import { AppSidebar, SiteHeader } from "@/components/layout";
 import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 import { ThemeCustomizer } from "@/components/shared/theme-customizer";
 import { useSidebarConfig } from "@/hooks/ui";
+import { AppSidebar, SiteHeader } from "@/components/layout";
 
 export default function DashboardLayout({
   children,

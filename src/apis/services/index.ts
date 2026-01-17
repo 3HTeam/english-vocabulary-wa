@@ -9,11 +9,22 @@ import {
 import {
   createTopicServices,
   deleteTopicServices,
+  forceDeleteTopicServices,
   getTopicByIdServices,
   getTopicServices,
+  restoreTopicServices,
   updateTopicServices,
 } from "./topic.service";
 import { uploadServices } from "./upload.service";
+import {
+  createVocabularyServices,
+  getVocabularyServices,
+  getVocabularyByIdServices,
+  updateVocabularyServices,
+  deleteVocabularyServices,
+  restoreVocabularyServices,
+  forceDeleteVocabularyServices,
+} from "./vocabulary.service";
 
 export const apiServices = {
   auth: {
@@ -30,8 +41,19 @@ export const apiServices = {
     createTopic: createTopicServices,
     updateTopic: updateTopicServices,
     deleteTopic: deleteTopicServices,
+    restoreTopic: restoreTopicServices,
+    forceDeleteTopic: forceDeleteTopicServices,
   },
   upload: {
     postUpload: uploadServices,
+  },
+  vocabulary: {
+    getVocabulary: getVocabularyServices,
+    getVocabularyById: getVocabularyByIdServices,
+    createVocabulary: createVocabularyServices,
+    updateVocabulary: updateVocabularyServices,
+    deleteVocabulary: deleteVocabularyServices,
+    restoreVocabulary: restoreVocabularyServices,
+    forceDeleteVocabulary: forceDeleteVocabularyServices,
   },
 };

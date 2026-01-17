@@ -15,3 +15,7 @@ export const TOPIC_ENDPOINTS = {
 export const UPLOAD_ENDPOINTS = {
   upload: "/uploads",
 } as const;
+
+export const VOCABULARY_ENDPOINTS = {
+  base: "admin/vocabularies",
+} as const;

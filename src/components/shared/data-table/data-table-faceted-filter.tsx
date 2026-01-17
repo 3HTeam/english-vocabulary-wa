@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { PlusCircle } from "lucide-react";
+import { PlusCircle, Trash2 } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -21,6 +21,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Separator } from "@/components/ui/separator";
+import { useTranslations } from "@/hooks";
 
 interface DataTableFacetedFilterProps {
   title?: string;
@@ -37,6 +38,7 @@ export function DataTableFacetedFilter({
   options,
   onFilterChange,
 }: DataTableFacetedFilterProps) {
+  const t = useTranslations();
   const [selectedValue, setSelectedValue] = React.useState<string | undefined>(
     undefined
   );
@@ -80,7 +82,7 @@ export function DataTableFacetedFilter({
         <Command>
           <CommandInput placeholder={title} />
           <CommandList>
-            <CommandEmpty>No results found.</CommandEmpty>
+            <CommandEmpty>{t("data_table.no_results")}</CommandEmpty>
             <CommandGroup>
               <RadioGroup
                 value={selectedValue}
@@ -116,7 +118,8 @@ export function DataTableFacetedFilter({
                     onSelect={handleClearFilters}
                     className="justify-center text-center cursor-pointer"
                   >
-                    Clear filters
+                    <Trash2 className="h-4 w-4 mr-1" />
+                    {t("data_table.clear_filter")}
                   </CommandItem>
                 </CommandGroup>
               </>
