@@ -1,0 +1,24 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: https://api-english.3hteam.io.vn
+        NEXT_PUBLIC_API_SUBFIX: api
+        NEXT_PUBLIC_ACCESS_KEY_UNSPLASH: 8tGDG-ElyILkSyj5sNac5RkI8zIwETHlkDmJD1bNJ6k
+    
+    container_name: english-frontend
+    restart: always
+    ports:
+      - "3000:3000"
+    
+    environment:
+      - NODE_ENV=production
+    
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

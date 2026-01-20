@@ -35,19 +35,21 @@ import {
   verifyEmailSchema,
   type VerifyEmailFormValues,
 } from "../../verify-email/schema.module";
+import { useTranslations } from "next-intl";
 
 export function VerifyEmail({
   className,
   ...props
 }: React.ComponentProps<"div">) {
   const router = useRouter();
+  const t = useTranslations();
   const signupEmail = useAuthStore((state) => state.signupEmail);
   const clearSignupEmail = useAuthStore((state) => state.clearSignupEmail);
   const setAuth = useAuthStore((state) => state.setAuth);
   const defaultEmail = signupEmail || "";
 
   const form = useForm<VerifyEmailFormValues>({
-    resolver: zodResolver(verifyEmailSchema),
+    resolver: zodResolver(verifyEmailSchema(t)),
     defaultValues: {
       email: defaultEmail,
       otp: "",
