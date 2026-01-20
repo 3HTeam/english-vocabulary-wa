@@ -1,12 +1,16 @@
 # Stage 1: Build
-FROM node:20-alpine AS builder
+FROM node:22-alpine AS builder
 WORKDIR /app
 
 # Cài đặt thư viện cần thiết cho Alpine (để chạy sharp/swc)
 RUN apk add --no-cache libc6-compat
 
-COPY package*.json ./
-RUN npm ci
+# Bật pnpm qua corepack
+RUN corepack enable && corepack prepare pnpm@latest --activate
+
+# Copy lockfile
+COPY pnpm-lock.yaml package.json ./
+RUN pnpm install --frozen-lockfile
 
 COPY . .
 
@@ -19,17 +23,17 @@ ENV NEXT_PUBLIC_API_SUBFIX=${NEXT_PUBLIC_API_SUBFIX}
 ENV NEXT_PUBLIC_ACCESS_KEY_UNSPLASH=${NEXT_PUBLIC_ACCESS_KEY_UNSPLASH}
 
 # Build Next.js
-RUN npm run build
+RUN pnpm run build
 
 # Stage 2: Production Runner
-FROM node:20-alpine AS runner
+FROM node:22-alpine AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
 
 # Tạo user
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
+RUN addgroup --system --gid 1001 nodejs && \
+    adduser --system --uid 1001 nextjs
 
 # Copy public folder (ảnh, favicon...)
 COPY --from=builder /app/public ./public
