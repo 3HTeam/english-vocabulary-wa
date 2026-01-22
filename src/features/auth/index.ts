@@ -1,4 +1,5 @@
-export { ForgotPassword } from "./forgot-password";
-export { SignIn } from "./sign-in";
-export { SignUp } from "./sign-up";
-export { VerifyEmail } from "./verify-email";
+// Export Main Features
+export * from "./forgot-password";
+export * from "./sign-in";
+export * from "./sign-up";
+export * from "./verify-email";

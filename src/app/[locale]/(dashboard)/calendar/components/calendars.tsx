@@ -22,7 +22,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/shadcn";
 
 interface CalendarItem {
   id: string;
@@ -136,9 +136,9 @@ export function Calendars({
       prev.map((group) => ({
         ...group,
         items: group.items.map((item) =>
-          item.id === calendarId ? { ...item, visible: !item.visible } : item
+          item.id === calendarId ? { ...item, visible: !item.visible } : item,
         ),
-      }))
+      })),
     );
 
     const calendar = calendarData
@@ -185,7 +185,7 @@ export function Calendars({
                             "flex aspect-square size-4 shrink-0 items-center justify-center rounded-sm border transition-all cursor-pointer",
                             item.visible
                               ? cn("border-transparent text-white", item.color)
-                              : "border-border bg-transparent"
+                              : "border-border bg-transparent",
                           )}
                         >
                           {item.visible && <Check className="size-3" />}
@@ -195,7 +195,7 @@ export function Calendars({
                         <span
                           className={cn(
                             "flex-1 truncate text-sm cursor-pointer",
-                            !item.visible && "text-muted-foreground"
+                            !item.visible && "text-muted-foreground",
                           )}
                           onClick={() => handleToggleVisibility(item.id)}
                         >

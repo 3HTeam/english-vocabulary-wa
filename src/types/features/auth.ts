@@ -1,4 +1,4 @@
-import type { ApiResponse } from "../api/base";
+import { type ApiResponse } from "@/types/api";
 
 export type TAuthUser = {
   id: string;

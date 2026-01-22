@@ -1,6 +1,7 @@
 import { AxiosProgressEvent } from "axios";
 import { useMutation } from "@tanstack/react-query";
-import { apiServices } from "@/apis";
+
+import { apiServices } from "@/apis/services";
 
 interface UseUploadMutationOptions {
   onUploadProgress?: (progressEvent: AxiosProgressEvent) => void;

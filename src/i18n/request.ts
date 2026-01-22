@@ -2,28 +2,34 @@
 import { getRequestConfig } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { routing } from "./routing";
-import { defaultMessages } from "./languages/default";
+import { defaultMessages } from "./default-langs";
 
-// Simple deep merge function to handle nested translation objects
+// Merges messages based ONLY on keys defined in target (default-langs)
 function deepMerge(target: any, source: any) {
-  const output = { ...target };
-  if (source && typeof source === "object") {
-    Object.keys(source).forEach((key) => {
-      if (
-        source[key] &&
-        typeof source[key] === "object" &&
-        !Array.isArray(source[key])
-      ) {
-        if (!(key in target)) {
-          output[key] = source[key];
-        } else {
-          output[key] = deepMerge(target[key], source[key]);
-        }
-      } else {
-        output[key] = source[key];
-      }
-    });
+  const output: any = {};
+
+  if (!target || typeof target !== "object") {
+    return target;
   }
+
+  Object.keys(target).forEach((key) => {
+    const targetValue = target[key];
+    const sourceValue =
+      source && typeof source === "object" ? source[key] : undefined;
+
+    if (
+      targetValue &&
+      typeof targetValue === "object" &&
+      !Array.isArray(targetValue)
+    ) {
+      // If target is an object, recurse
+      output[key] = deepMerge(targetValue, sourceValue);
+    } else {
+      // If target is a primitive, use source if it exists, otherwise use target
+      output[key] = sourceValue !== undefined ? sourceValue : targetValue;
+    }
+  });
+
   return output;
 }
 
@@ -40,8 +46,9 @@ export default getRequestConfig(async ({ requestLocale }) => {
     console.error(`Failed to load messages for locale: ${locale}`, error);
   }
 
-  // Perform a deep merge: Start with the default JS-defined messages, overlay with current locale JSON
-  // This ensures that if a key is missing in the JSON file, the default TS version will be used.
+  // Perform a target-driven merge: The JS-defined messages (defaultMessages) serve as the template.
+  // Only keys present in defaultMessages will be included in the final output.
+  // Values from userMessages override defaults if they exist.
   const messages = deepMerge(defaultMessages, userMessages);
 
   return {

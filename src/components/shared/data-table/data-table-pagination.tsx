@@ -47,7 +47,7 @@ export function DataTablePagination<TData>({
   const totalPages = isServerPagination ? pageCount : table.getPageCount();
 
   const rowsPerPage = isServerPagination
-    ? limit ?? table.getState().pagination.pageSize
+    ? (limit ?? table.getState().pagination.pageSize)
     : table.getState().pagination.pageSize;
 
   const handleFirstPage = () => {
@@ -90,7 +90,7 @@ export function DataTablePagination<TData>({
 
   const selectedRows = table.getFilteredSelectedRowModel().rows.length;
   const totalRows = isServerPagination
-    ? total ?? table.getFilteredRowModel().rows.length
+    ? (total ?? table.getFilteredRowModel().rows.length)
     : table.getFilteredRowModel().rows.length;
 
   return (

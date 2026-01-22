@@ -1,4 +1,4 @@
-import { ApiResponse, TMeta } from "../api";
+import { ApiResponse, TMeta } from "@/types/api";
 
 export type TVocabularyDefinition = {
   id: string;

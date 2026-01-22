@@ -1,50 +1,57 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+import { useState, useEffect, useMemo } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 interface ColorPickerProps {
-  label: string
-  cssVar: string
-  value: string
-  onChange: (cssVar: string, value: string) => void
+  label: string;
+  cssVar: string;
+  value: string;
+  onChange: (cssVar: string, value: string) => void;
 }
 
-const ColorPicker = ({ label, cssVar, value, onChange }: ColorPickerProps) => {
-  const [localValue, setLocalValue] = React.useState(value)
+export const ColorPicker = ({
+  label,
+  cssVar,
+  value,
+  onChange,
+}: ColorPickerProps) => {
+  const [localValue, setLocalValue] = useState(value);
 
-  React.useEffect(() => {
-    setLocalValue(value)
-  }, [value])
+  useEffect(() => {
+    setLocalValue(value);
+  }, [value]);
 
   const handleColorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newColor = e.target.value
-    setLocalValue(newColor)
-    onChange(cssVar, newColor)
-  }
+    const newColor = e.target.value;
+    setLocalValue(newColor);
+    onChange(cssVar, newColor);
+  };
 
   const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = e.target.value
-    setLocalValue(newValue)
-    onChange(cssVar, newValue)
-  }
+    const newValue = e.target.value;
+    setLocalValue(newValue);
+    onChange(cssVar, newValue);
+  };
 
   // Get current computed color for display
-  const displayColor = React.useMemo(() => {
-    if (localValue && localValue.startsWith('#')) {
-      return localValue
+  const displayColor = useMemo(() => {
+    if (localValue && localValue.startsWith("#")) {
+      return localValue;
     }
 
     // Try to get computed value from CSS
-    const computed = getComputedStyle(document.documentElement).getPropertyValue(cssVar).trim()
-    if (computed && computed.startsWith('#')) {
-      return computed
+    const computed = getComputedStyle(document.documentElement)
+      .getPropertyValue(cssVar)
+      .trim();
+    if (computed && computed.startsWith("#")) {
+      return computed;
     }
 
-    return '#000000'
-  }, [localValue, cssVar])
+    return "#000000";
+  }, [localValue, cssVar]);
 
   return (
     <div className="space-y-2">
@@ -77,7 +84,5 @@ const ColorPicker = ({ label, cssVar, value, onChange }: ColorPickerProps) => {
         />
       </div>
     </div>
-  )
-}
-
-export default ColorPicker;
+  );
+};

@@ -1,19 +1,18 @@
-"use client";
-
 import type { ColumnDef } from "@tanstack/react-table";
-
+import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
-
 import {
   DataTableColumnHeader,
   DataTableRowActions,
 } from "@/components/shared/data-table";
-import Image from "next/image";
-import { formatDate } from "@/lib/format/date";
-import { TopicFormValues } from "../schemas/topic.schema";
+import { formatDate } from "@/utils/date";
+import { DATE_FORMATS } from "@/constants/common";
+import { COLUMN_KEYS } from ".";
+import { type TopicFormValues } from "../schemas";
 
 interface CreateColumnsOptions {
+  t: (key: string, options?: any) => string;
   onView?: (id: string) => void;
   onEdit?: (id: string) => void;
   onDelete?: (id: string) => void;
@@ -23,10 +22,10 @@ interface CreateColumnsOptions {
 }
 
 export const createColumns = (
-  options?: CreateColumnsOptions
+  options: CreateColumnsOptions,
 ): ColumnDef<TopicFormValues>[] => [
   {
-    id: "select",
+    id: COLUMN_KEYS.id,
     header: ({ table }) => (
       <Checkbox
         checked={
@@ -34,7 +33,6 @@ export const createColumns = (
           (table.getIsSomePageRowsSelected() && "indeterminate")
         }
         onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-        aria-label="Select all"
         className="translate-y-[2px] cursor-pointer"
       />
     ),
@@ -50,10 +48,16 @@ export const createColumns = (
     enableHiding: false,
   },
   {
-    accessorKey: "name",
+    accessorKey: COLUMN_KEYS.name,
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Tên chủ đề" />
+      <DataTableColumnHeader
+        column={column}
+        title={options.t("field.topic_name")}
+      />
     ),
+    meta: {
+      name: options.t("field.topic_name"),
+    },
     cell: ({ row }) => {
       return (
         <div className="flex space-x-2">
@@ -65,15 +69,24 @@ export const createColumns = (
     },
   },
   {
-    accessorKey: "status",
+    accessorKey: COLUMN_KEYS.status,
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Trạng thái" />
+      <DataTableColumnHeader
+        column={column}
+        title={options.t("field.status")}
+      />
     ),
+    meta: {
+      name: options.t("field.status"),
+    },
     cell: ({ row }) => {
+      const status = row.getValue("status");
       return (
         <div className="flex items-center">
-          <Badge variant={row.getValue("status") ? "success" : "error"}>
-            {row.getValue("status") ? "Hiển thị" : "Tạm ẩn"}
+          <Badge variant={status ? "success" : "error"}>
+            {status
+              ? options.t("common.status.active")
+              : options.t("common.status.inactive")}
           </Badge>
         </div>
       );
@@ -84,15 +97,19 @@ export const createColumns = (
   },
 
   {
-    accessorKey: "imageUrl",
+    accessorKey: COLUMN_KEYS.imageUrl,
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Ảnh" />
+      <DataTableColumnHeader column={column} title={options.t("field.image")} />
     ),
+    meta: {
+      name: options.t("field.image"),
+    },
     cell: ({ row }) => {
+      const imageUrl = row.getValue(COLUMN_KEYS.imageUrl) as string;
       return (
         <Image
-          src={row.getValue("imageUrl")}
-          alt="Ảnh"
+          src={imageUrl || "/placeholder.png"}
+          alt="Image"
           width={50}
           height={50}
           className="w-[50px] h-[50px] object-contain"
@@ -104,10 +121,13 @@ export const createColumns = (
     },
   },
   {
-    accessorKey: "slug",
+    accessorKey: COLUMN_KEYS.slug,
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Slug" />
+      <DataTableColumnHeader column={column} title={options.t("field.slug")} />
     ),
+    meta: {
+      name: options.t("field.slug"),
+    },
     cell: ({ row }) => {
       return (
         <div className="flex items-center">
@@ -120,10 +140,16 @@ export const createColumns = (
     },
   },
   {
-    accessorKey: "description",
+    accessorKey: COLUMN_KEYS.description,
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Mô tả" />
+      <DataTableColumnHeader
+        column={column}
+        title={options.t("field.description")}
+      />
     ),
+    meta: {
+      name: options.t("field.description"),
+    },
     cell: ({ row }) => {
       return (
         <div className="flex items-center">
@@ -138,37 +164,49 @@ export const createColumns = (
     },
   },
   {
-    accessorKey: "createdAt",
+    accessorKey: COLUMN_KEYS.createdAt,
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Ngày tạo" />
+      <DataTableColumnHeader
+        column={column}
+        title={options.t("field.created_at")}
+      />
     ),
+    meta: {
+      name: options.t("field.created_at"),
+    },
     cell: ({ row }) => {
       return (
         <div className="flex items-center">
           <span className="truncate font-medium">
-            {formatDate(row.getValue("createdAt"), "dd-mm-yyyy")}
+            {formatDate(row.getValue("createdAt"), DATE_FORMATS.DD_MM_YYYY)}
           </span>
         </div>
       );
     },
   },
   {
-    accessorKey: "updatedAt",
+    accessorKey: COLUMN_KEYS.updatedAt,
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Ngày cập nhật" />
+      <DataTableColumnHeader
+        column={column}
+        title={options.t("field.updated_at")}
+      />
     ),
+    meta: {
+      name: options.t("field.updated_at"),
+    },
     cell: ({ row }) => {
       return (
         <div className="flex items-center">
           <span className="truncate font-medium">
-            {formatDate(row.getValue("updatedAt"), "dd-mm-yyyy")}
+            {formatDate(row.getValue("updatedAt"), DATE_FORMATS.DD_MM_YYYY)}
           </span>
         </div>
       );
     },
   },
   {
-    id: "actions",
+    id: COLUMN_KEYS.actions,
     cell: ({ row }) => (
       <DataTableRowActions
         row={row}
@@ -182,5 +220,3 @@ export const createColumns = (
     ),
   },
 ];
-
-export const columns = createColumns();

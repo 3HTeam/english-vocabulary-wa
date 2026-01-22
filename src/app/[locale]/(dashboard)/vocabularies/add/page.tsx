@@ -1,21 +1,15 @@
 "use client";
 
-import AddVocabularyView from "@/features/vocabulary/view/add-vocabulary-view";
+import { AddVocabularyView } from "@/features/vocabulary/components";
+import { useTranslations } from "@/hooks";
+import { MobileViewPlaceholder } from "@/components/shared/mobile-view-placeholder";
 
 export default function AddVocabularyPage() {
+  const t = useTranslations();
   return (
     <>
       {/* Mobile view placeholder */}
-      <div className="md:hidden">
-        <div className="flex items-center justify-center h-96 border rounded-lg bg-muted/20">
-          <div className="text-center p-8">
-            <h3 className="text-lg font-semibold mb-2">Thêm từ vựng</h3>
-            <p className="text-muted-foreground">
-              Vui lòng sử dụng màn hình lớn hơn để xem giao diện đầy đủ.
-            </p>
-          </div>
-        </div>
-      </div>
+      <MobileViewPlaceholder title={t("vocabulary.add_new_vocabulary")} />
 
       {/* Desktop view */}
       <div className="hidden h-full flex-1 flex-col px-4 md:px-6 md:flex">

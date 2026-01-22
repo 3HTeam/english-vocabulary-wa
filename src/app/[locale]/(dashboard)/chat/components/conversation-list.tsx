@@ -13,7 +13,7 @@ import {
   Filter,
 } from "lucide-react";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/shadcn";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -59,7 +59,7 @@ export function ConversationList({
   const { searchQuery, setSearchQuery } = useChat();
 
   const filteredConversations = conversations.filter((conversation) =>
-    conversation.name.toLowerCase().includes(searchQuery.toLowerCase())
+    conversation.name.toLowerCase().includes(searchQuery.toLowerCase()),
   );
 
   const sortedConversations = filteredConversations.sort((a, b) => {
@@ -142,7 +142,7 @@ export function ConversationList({
                 "flex items-center gap-3 p-3 rounded-lg cursor-pointer relative overflow-hidden hover:bg-accent/50 transition-colors",
                 selectedConversation === conversation.id
                   ? "bg-accent text-accent-foreground"
-                  : ""
+                  : "",
               )}
               onClick={() => onSelectConversation(conversation.id)}
             >
@@ -152,7 +152,7 @@ export function ConversationList({
                   className={cn(
                     "h-12 w-12",
                     selectedConversation === conversation.id &&
-                      "ring-2 ring-background"
+                      "ring-2 ring-background",
                   )}
                 >
                   <AvatarImage

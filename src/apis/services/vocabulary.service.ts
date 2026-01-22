@@ -1,5 +1,4 @@
-import { VocabularyParams } from "@/types";
-import { axiosClient, VOCABULARY_ENDPOINTS } from "../config";
+import { axiosClient, VOCABULARY_ENDPOINTS } from "@/apis/config";
 import {
   TVocabularyResponse,
   TVocabularyPayload,
@@ -9,10 +8,11 @@ import {
   TDeleteVocabularyResponse,
   TRestoreVocabularyResponse,
   TForceDeleteVocabularyResponse,
-} from "@/types/features/vocabulary";
+} from "@/types/features";
+import { VocabularyParams } from "@/types/api";
 
-export async function getVocabularyServices(
-  params?: VocabularyParams
+export async function getVocabulary(
+  params?: VocabularyParams,
 ): Promise<TVocabularyResponse> {
   try {
     const queryParams = new URLSearchParams();
@@ -32,7 +32,7 @@ export async function getVocabularyServices(
       queryParams.append("topicId", params.topicId);
     }
     const res = await axiosClient.get<TVocabularyResponse>(
-      `${VOCABULARY_ENDPOINTS.base}?${queryParams.toString()}`
+      `${VOCABULARY_ENDPOINTS.base}?${queryParams.toString()}`,
     );
     return res.data;
   } catch (error) {
@@ -40,12 +40,12 @@ export async function getVocabularyServices(
   }
 }
 
-export async function getVocabularyByIdServices(
-  id: string
+export async function getVocabularyById(
+  id: string,
 ): Promise<TVocabularyByIdResponse> {
   try {
     const res = await axiosClient.get<TVocabularyByIdResponse>(
-      `${VOCABULARY_ENDPOINTS.base}/${id}`
+      `${VOCABULARY_ENDPOINTS.base}/${id}`,
     );
     return res.data;
   } catch (error) {
@@ -53,13 +53,13 @@ export async function getVocabularyByIdServices(
   }
 }
 
-export async function createVocabularyServices(
-  payload: TVocabularyPayload
+export async function createVocabulary(
+  payload: TVocabularyPayload,
 ): Promise<TCreateVocabularyResponse> {
   try {
     const res = await axiosClient.post<TCreateVocabularyResponse>(
       VOCABULARY_ENDPOINTS.base,
-      payload
+      payload,
     );
     return res.data;
   } catch (error) {
@@ -67,14 +67,14 @@ export async function createVocabularyServices(
   }
 }
 
-export async function updateVocabularyServices(
+export async function updateVocabulary(
   id: string,
-  payload: TVocabularyPayload
+  payload: TVocabularyPayload,
 ): Promise<TUpdateVocabularyResponse> {
   try {
     const res = await axiosClient.put<TUpdateVocabularyResponse>(
       `${VOCABULARY_ENDPOINTS.base}/${id}`,
-      payload
+      payload,
     );
     return res.data;
   } catch (error) {
@@ -82,12 +82,12 @@ export async function updateVocabularyServices(
   }
 }
 
-export async function deleteVocabularyServices(
-  id: string
+export async function deleteVocabulary(
+  id: string,
 ): Promise<TDeleteVocabularyResponse> {
   try {
     const res = await axiosClient.delete<TDeleteVocabularyResponse>(
-      `${VOCABULARY_ENDPOINTS.base}/${id}`
+      `${VOCABULARY_ENDPOINTS.base}/${id}`,
     );
     return res.data;
   } catch (error) {
@@ -95,12 +95,12 @@ export async function deleteVocabularyServices(
   }
 }
 
-export async function restoreVocabularyServices(
-  id: string
+export async function restoreVocabulary(
+  id: string,
 ): Promise<TRestoreVocabularyResponse> {
   try {
     const res = await axiosClient.patch<TRestoreVocabularyResponse>(
-      `${VOCABULARY_ENDPOINTS.base}/${id}/restore`
+      `${VOCABULARY_ENDPOINTS.base}/${id}/restore`,
     );
     return res.data;
   } catch (error) {
@@ -108,12 +108,12 @@ export async function restoreVocabularyServices(
   }
 }
 
-export async function forceDeleteVocabularyServices(
-  id: string
+export async function forceDeleteVocabulary(
+  id: string,
 ): Promise<TForceDeleteVocabularyResponse> {
   try {
     const res = await axiosClient.delete<TForceDeleteVocabularyResponse>(
-      `${VOCABULARY_ENDPOINTS.base}/${id}/force`
+      `${VOCABULARY_ENDPOINTS.base}/${id}/force`,
     );
     return res.data;
   } catch (error) {

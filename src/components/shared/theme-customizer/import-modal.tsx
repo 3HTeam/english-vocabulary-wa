@@ -10,7 +10,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Textarea } from "@/components/ui/textarea";
-import type { ImportedTheme } from "@/types/theme/theme-customizer";
+import type { ImportedTheme } from "@/types/theme";
 
 interface ImportModalProps {
   open: boolean;

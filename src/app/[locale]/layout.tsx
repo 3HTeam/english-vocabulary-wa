@@ -1,20 +1,16 @@
-import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import "@/app/globals.css";
-
-import { ThemeProvider } from "@/components/shared/providers/theme-provider";
-import { QueryClientProviderWrapper } from "@/components/shared/providers/query-client-provider";
-import { SidebarConfigProvider } from "@/components/shared/providers/sidebar-context";
-import { Toaster } from "@/components/ui/sonner";
-import { publicSans } from "@/assets/styles/fonts";
-import { routing } from "@/i18n/routing";
 import { getMessages } from "next-intl/server";
 
-export const metadata: Metadata = {
-  title: "Lingo",
-  description: "A dashboard to help you build your Lingo",
-};
+import {
+  ThemeProvider,
+  QueryClientProviderWrapper,
+  SidebarConfigProvider,
+} from "@/components/shared/providers";
+import { Toaster } from "@/components/ui/sonner";
+import { publicSans } from "@/assets/styles";
+import { routing } from "@/i18n/routing";
 
 export default async function RootLayout({
   children,

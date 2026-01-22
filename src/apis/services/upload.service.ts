@@ -1,11 +1,11 @@
-import { TUploadResponse } from "@/types/features/upload";
-import axiosClient from "../config/axios-client";
-import { UPLOAD_ENDPOINTS } from "../config/end-point";
 import { AxiosProgressEvent } from "axios";
 
-export async function uploadServices(
+import { axiosClient, UPLOAD_ENDPOINTS } from "@/apis/config";
+import { TUploadResponse } from "@/types/features";
+
+export async function postUpload(
   payload: FormData,
-  onUploadProgress?: (progressEvent: AxiosProgressEvent) => void
+  onUploadProgress?: (progressEvent: AxiosProgressEvent) => void,
 ): Promise<TUploadResponse> {
   try {
     const res = await axiosClient.post<TUploadResponse>(
@@ -16,7 +16,7 @@ export async function uploadServices(
           "Content-Type": "multipart/form-data",
         },
         onUploadProgress,
-      }
+      },
     );
     return res.data;
   } catch (error) {

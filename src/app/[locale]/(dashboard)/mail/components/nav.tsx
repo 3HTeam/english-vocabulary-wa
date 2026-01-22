@@ -2,7 +2,7 @@
 
 import { type LucideIcon } from "lucide-react";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/shadcn";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import {
@@ -37,7 +37,7 @@ export function Nav({ links, isCollapsed }: NavProps) {
                     buttonVariants({ variant: link.variant, size: "icon" }),
                     "size-9 cursor-pointer",
                     link.variant === "default" &&
-                      "dark:bg-muted dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-white"
+                      "dark:bg-muted dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-white",
                   )}
                 >
                   <link.icon className="size-4" />
@@ -60,7 +60,7 @@ export function Nav({ links, isCollapsed }: NavProps) {
                 buttonVariants({ variant: link.variant, size: "sm" }),
                 link.variant === "default" &&
                   "group dark:bg-muted dark:text-foreground dark:hover:bg-muted dark:hover:text-foreground",
-                "justify-start cursor-pointer"
+                "justify-start cursor-pointer",
               )}
             >
               <link.icon className="mr-2 size-4" />
@@ -70,14 +70,14 @@ export function Nav({ links, isCollapsed }: NavProps) {
                   className={cn(
                     "ml-auto",
                     link.variant === "default" &&
-                      "text-background dark:text-muted-foreground"
+                      "text-background dark:text-muted-foreground",
                   )}
                 >
                   {link.label}
                 </span>
               )}
             </button>
-          )
+          ),
         )}
       </nav>
     </div>

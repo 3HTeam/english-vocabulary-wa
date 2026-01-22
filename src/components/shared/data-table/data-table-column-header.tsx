@@ -3,7 +3,7 @@
 import type { Column } from "@tanstack/react-table";
 import { ArrowDown, ArrowUp, ChevronsUpDown, EyeOff } from "lucide-react";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/shadcn";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -14,8 +14,10 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useTranslations } from "@/hooks";
 
-interface DataTableColumnHeaderProps<TData, TValue>
-  extends React.HTMLAttributes<HTMLDivElement> {
+interface DataTableColumnHeaderProps<
+  TData,
+  TValue,
+> extends React.HTMLAttributes<HTMLDivElement> {
   column: Column<TData, TValue>;
   title: string;
 }
@@ -56,14 +58,14 @@ export function DataTableColumnHeader<TData, TValue>({
             className="cursor-pointer"
           >
             <ArrowUp className="h-3.5 w-3.5 text-muted-foreground/70" />
-            {t("data_table.sort_asc")}
+            {t("data_table.asc")}
           </DropdownMenuItem>
           <DropdownMenuItem
             onClick={() => column.toggleSorting(true)}
             className="cursor-pointer"
           >
             <ArrowDown className="h-3.5 w-3.5 text-muted-foreground/70" />
-            {t("data_table.sort_desc")}
+            {t("data_table.desc")}
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem
@@ -71,7 +73,7 @@ export function DataTableColumnHeader<TData, TValue>({
             className="cursor-pointer"
           >
             <EyeOff className="h-3.5 w-3.5 text-muted-foreground/70" />
-            {t("data_table.hide_column")}
+            {t("data_table.hide")}
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

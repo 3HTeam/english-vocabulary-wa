@@ -45,7 +45,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/shadcn";
 import { type CalendarEvent } from "../types";
 
 // Import data
@@ -82,11 +82,11 @@ export function CalendarMain({
 
   const [currentDate, setCurrentDate] = useState(selectedDate || new Date());
   const [viewMode, setViewMode] = useState<"month" | "week" | "day" | "list">(
-    "month"
+    "month",
   );
   const [showEventDialog, setShowEventDialog] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState<CalendarEvent | null>(
-    null
+    null,
   );
 
   const monthStart = startOfMonth(currentDate);
@@ -112,7 +112,7 @@ export function CalendarMain({
     setCurrentDate(
       direction === "prev"
         ? subMonths(currentDate, 1)
-        : addMonths(currentDate, 1)
+        : addMonths(currentDate, 1),
     );
   };
 
@@ -163,7 +163,7 @@ export function CalendarMain({
                     ? "bg-background hover:bg-accent/50"
                     : "bg-muted/30 text-muted-foreground",
                   isSelected && "ring-2 ring-primary ring-inset",
-                  isDayToday && "bg-accent/20"
+                  isDayToday && "bg-accent/20",
                 )}
                 onClick={() => onDateSelect?.(day)}
               >
@@ -172,7 +172,7 @@ export function CalendarMain({
                     className={cn(
                       "text-sm font-medium",
                       isDayToday &&
-                        "bg-primary text-primary-foreground rounded-md w-6 h-6 flex items-center justify-center text-xs"
+                        "bg-primary text-primary-foreground rounded-md w-6 h-6 flex items-center justify-center text-xs",
                     )}
                   >
                     {format(day, "d")}
@@ -190,7 +190,7 @@ export function CalendarMain({
                       key={event.id}
                       className={cn(
                         "text-xs p-1 rounded-sm text-white cursor-pointer truncate",
-                        event.color
+                        event.color,
                       )}
                       onClick={(e) => {
                         e.stopPropagation();
@@ -407,7 +407,7 @@ export function CalendarMain({
                             {attendee}
                           </AvatarFallback>
                         </Avatar>
-                      )
+                      ),
                     )}
                   </div>
                 </div>

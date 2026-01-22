@@ -1,5 +1,5 @@
 import { ThemePreset } from "./theme";
-export type { ThemePreset };
+export  { type ThemePreset };
 
 export interface ColorTheme {
   name: string;

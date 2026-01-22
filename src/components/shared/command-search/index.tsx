@@ -7,24 +7,24 @@ import {
   Search,
   LayoutPanelLeft,
   LayoutDashboard,
-  Mail,
-  CheckSquare,
-  MessageCircle,
-  Calendar,
-  Shield,
-  AlertTriangle,
-  Settings,
-  HelpCircle,
-  CreditCard,
-  User,
-  Bell,
-  Link2,
-  Palette,
+  // Mail,
+  // CheckSquare,
+  // MessageCircle,
+  // Calendar,
+  // Shield,
+  // AlertTriangle,
+  // Settings,
+  // HelpCircle,
+  // CreditCard,
+  // User,
+  // Bell,
+  // Link2,
+  // Palette,
   type LucideIcon,
 } from "lucide-react";
 
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/shadcn";
 
 const Command = React.forwardRef<
   React.ElementRef<typeof CommandPrimitive>,
@@ -34,7 +34,7 @@ const Command = React.forwardRef<
     ref={ref}
     className={cn(
       "flex h-full w-full flex-col overflow-hidden rounded-xl bg-white dark:bg-zinc-950 text-zinc-950 dark:text-zinc-50",
-      className
+      className,
     )}
     {...props}
   />
@@ -49,7 +49,7 @@ const CommandInput = React.forwardRef<
     ref={ref}
     className={cn(
       "flex h-12 w-full border-none bg-transparent px-4 py-3 text-[17px] outline-none placeholder:text-zinc-500 dark:placeholder:text-zinc-400 border-b border-zinc-200 dark:border-zinc-800 mb-4",
-      className
+      className,
     )}
     {...props}
   />
@@ -64,7 +64,7 @@ const CommandList = React.forwardRef<
     ref={ref}
     className={cn(
       "max-h-[400px] overflow-y-auto overflow-x-hidden pb-2",
-      className
+      className,
     )}
     {...props}
   />
@@ -91,7 +91,7 @@ const CommandGroup = React.forwardRef<
     ref={ref}
     className={cn(
       "overflow-hidden px-2 [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-2 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-zinc-500 dark:[&_[cmdk-group-heading]]:text-zinc-400 [&:not(:first-child)]:mt-2",
-      className
+      className,
     )}
     {...props}
   />
@@ -106,7 +106,7 @@ const CommandItem = React.forwardRef<
     ref={ref}
     className={cn(
       "relative flex h-12 cursor-pointer select-none items-center gap-2 rounded-lg px-4 text-sm text-zinc-700 dark:text-zinc-300 outline-none transition-colors data-[disabled=true]:pointer-events-none data-[selected=true]:bg-zinc-100 dark:data-[selected=true]:bg-zinc-800 data-[selected=true]:text-zinc-900 dark:data-[selected=true]:text-zinc-100 data-[disabled=true]:opacity-50 [&+[cmdk-item]]:mt-1",
-      className
+      className,
     )}
     {...props}
   />
@@ -126,6 +126,7 @@ interface CommandSearchProps {
 }
 
 import { useTranslations } from "@/hooks";
+import { ROUTE_PATH } from "@/constants/routes";
 
 export function CommandSearch({ open, onOpenChange }: CommandSearchProps) {
   const router = useRouter();
@@ -135,174 +136,177 @@ export function CommandSearch({ open, onOpenChange }: CommandSearchProps) {
   const searchItems: SearchItem[] = [
     // Dashboards
     {
-      title: t("sidebar.items.dashboard"),
-      url: "/dashboard",
-      group: t("common.search.groups.dashboards"),
+      title: t("dashboard.dashboard"),
+      url: ROUTE_PATH.admin.dashboard,
+      group: t("dashboard.dashboard"),
       icon: LayoutDashboard,
     },
     {
-      title: t("sidebar.items.dashboard2"),
-      url: "/dashboard-2",
-      group: t("common.search.groups.dashboards"),
+      title: t("dashboard.dashboard2"),
+      url: ROUTE_PATH.admin.dashboard2,
+      group: t("dashboard.dashboard"),
       icon: LayoutPanelLeft,
     },
 
     // Apps
-    {
-      title: t("sidebar.items.mail"),
-      url: "/mail",
-      group: t("common.search.groups.apps"),
-      icon: Mail,
-    },
-    {
-      title: t("sidebar.items.tasks"),
-      url: "/tasks",
-      group: t("common.search.groups.apps"),
-      icon: CheckSquare,
-    },
-    {
-      title: t("sidebar.items.chat"),
-      url: "/chat",
-      group: t("common.search.groups.apps"),
-      icon: MessageCircle,
-    },
-    {
-      title: t("sidebar.items.calendar"),
-      url: "/calendar",
-      group: t("common.search.groups.apps"),
-      icon: Calendar,
-    },
+    // {
+    //   title: t("sidebar.items.mail"),
+    //   url: "/mail",
+    //   group: t("common.search.groups.apps"),
+    //   icon: Mail,
+    // },
+    // {
+    //   title: t("sidebar.items.tasks"),
+    //   url: "/tasks",
+    //   group: t("common.search.groups.apps"),
+    //   icon: CheckSquare,
+    // },
+    // {
+    //   title: t("sidebar.items.chat"),
+    //   url: "/chat",
+    //   group: t("common.search.groups.apps"),
+    //   icon: MessageCircle,
+    // },
+    // {
+    //   title: t("sidebar.items.calendar"),
+    //   url: "/calendar",
+    //   group: t("common.search.groups.apps"),
+    //   icon: Calendar,
+    // },
 
-    // Auth Pages
-    {
-      title: `${t("sidebar.items.signin")} 1`,
-      url: "/auth/sign-in",
-      group: t("common.search.groups.auth"),
-      icon: Shield,
-    },
-    {
-      title: `${t("sidebar.items.signin")} 2`,
-      url: "/auth/sign-in-2",
-      group: t("common.search.groups.auth"),
-      icon: Shield,
-    },
-    {
-      title: `${t("sidebar.items.signup")} 1`,
-      url: "/auth/sign-up",
-      group: t("common.search.groups.auth"),
-      icon: Shield,
-    },
-    {
-      title: `${t("sidebar.items.signup")} 2`,
-      url: "/auth/sign-up-2",
-      group: t("common.search.groups.auth"),
-      icon: Shield,
-    },
-    {
-      title: `${t("sidebar.items.forgot")} 1`,
-      url: "/auth/forgot-password",
-      group: t("common.search.groups.auth"),
-      icon: Shield,
-    },
-    {
-      title: `${t("sidebar.items.forgot")} 2`,
-      url: "/auth/forgot-password-2",
-      group: t("common.search.groups.auth"),
-      icon: Shield,
-    },
+    // // Auth Pages
+    // {
+    //   title: `${t("sidebar.items.signin")} 1`,
+    //   url: "/auth/sign-in",
+    //   group: t("common.search.groups.auth"),
+    //   icon: Shield,
+    // },
+    // {
+    //   title: `${t("sidebar.items.signin")} 2`,
+    //   url: "/auth/sign-in-2",
+    //   group: t("common.search.groups.auth"),
+    //   icon: Shield,
+    // },
+    // {
+    //   title: `${t("sidebar.items.signup")} 1`,
+    //   url: "/auth/sign-up",
+    //   group: t("common.search.groups.auth"),
+    //   icon: Shield,
+    // },
+    // {
+    //   title: `${t("sidebar.items.signup")} 2`,
+    //   url: "/auth/sign-up-2",
+    //   group: t("common.search.groups.auth"),
+    //   icon: Shield,
+    // },
+    // {
+    //   title: `${t("sidebar.items.forgot")} 1`,
+    //   url: "/auth/forgot-password",
+    //   group: t("common.search.groups.auth"),
+    //   icon: Shield,
+    // },
+    // {
+    //   title: `${t("sidebar.items.forgot")} 2`,
+    //   url: "/auth/forgot-password-2",
+    //   group: t("common.search.groups.auth"),
+    //   icon: Shield,
+    // },
 
-    // Errors
-    {
-      title: t("sidebar.items.unauthorized"),
-      url: "/errors/unauthorized",
-      group: t("common.search.groups.errors"),
-      icon: AlertTriangle,
-    },
-    {
-      title: t("sidebar.items.forbidden"),
-      url: "/errors/forbidden",
-      group: t("common.search.groups.errors"),
-      icon: AlertTriangle,
-    },
-    {
-      title: t("sidebar.items.not_found"),
-      url: "/errors/not-found",
-      group: t("common.search.groups.errors"),
-      icon: AlertTriangle,
-    },
-    {
-      title: t("sidebar.items.internal_error"),
-      url: "/errors/internal-server-error",
-      group: t("common.search.groups.errors"),
-      icon: AlertTriangle,
-    },
-    {
-      title: t("sidebar.items.maintenance"),
-      url: "/errors/under-maintenance",
-      group: t("common.search.groups.errors"),
-      icon: AlertTriangle,
-    },
+    // // Errors
+    // {
+    //   title: t("sidebar.items.unauthorized"),
+    //   url: "/errors/unauthorized",
+    //   group: t("common.search.groups.errors"),
+    //   icon: AlertTriangle,
+    // },
+    // {
+    //   title: t("sidebar.items.forbidden"),
+    //   url: "/errors/forbidden",
+    //   group: t("common.search.groups.errors"),
+    //   icon: AlertTriangle,
+    // },
+    // {
+    //   title: t("sidebar.items.not_found"),
+    //   url: "/errors/not-found",
+    //   group: t("common.search.groups.errors"),
+    //   icon: AlertTriangle,
+    // },
+    // {
+    //   title: t("sidebar.items.internal_error"),
+    //   url: "/errors/internal-server-error",
+    //   group: t("common.search.groups.errors"),
+    //   icon: AlertTriangle,
+    // },
+    // {
+    //   title: t("sidebar.items.maintenance"),
+    //   url: "/errors/under-maintenance",
+    //   group: t("common.search.groups.errors"),
+    //   icon: AlertTriangle,
+    // },
 
-    // Settings
-    {
-      title: "User Settings",
-      url: "/settings/user",
-      group: t("common.search.groups.settings"),
-      icon: User,
-    },
-    {
-      title: t("sidebar.items.settings"),
-      url: "/settings/account",
-      group: t("common.search.groups.settings"),
-      icon: Settings,
-    },
-    {
-      title: "Plans & Billing",
-      url: "/settings/billing",
-      group: t("common.search.groups.settings"),
-      icon: CreditCard,
-    },
-    {
-      title: "Appearance",
-      url: "/settings/appearance",
-      group: t("common.search.groups.settings"),
-      icon: Palette,
-    },
-    {
-      title: "Notifications",
-      url: "/settings/notifications",
-      group: t("common.search.groups.settings"),
-      icon: Bell,
-    },
-    {
-      title: "Connections",
-      url: "/settings/connections",
-      group: t("common.search.groups.settings"),
-      icon: Link2,
-    },
+    // // Settings
+    // {
+    //   title: "User Settings",
+    //   url: "/settings/user",
+    //   group: t("common.search.groups.settings"),
+    //   icon: User,
+    // },
+    // {
+    //   title: t("sidebar.items.settings"),
+    //   url: "/settings/account",
+    //   group: t("common.search.groups.settings"),
+    //   icon: Settings,
+    // },
+    // {
+    //   title: "Plans & Billing",
+    //   url: "/settings/billing",
+    //   group: t("common.search.groups.settings"),
+    //   icon: CreditCard,
+    // },
+    // {
+    //   title: "Appearance",
+    //   url: "/settings/appearance",
+    //   group: t("common.search.groups.settings"),
+    //   icon: Palette,
+    // },
+    // {
+    //   title: "Notifications",
+    //   url: "/settings/notifications",
+    //   group: t("common.search.groups.settings"),
+    //   icon: Bell,
+    // },
+    // {
+    //   title: "Connections",
+    //   url: "/settings/connections",
+    //   group: t("common.search.groups.settings"),
+    //   icon: Link2,
+    // },
 
-    // Pages
-    {
-      title: t("sidebar.items.faqs"),
-      url: "/faqs",
-      group: t("common.search.groups.pages"),
-      icon: HelpCircle,
-    },
-    {
-      title: t("sidebar.items.pricing"),
-      url: "/pricing",
-      group: t("common.search.groups.pages"),
-      icon: CreditCard,
-    },
+    // // Pages
+    // {
+    //   title: t("sidebar.items.faqs"),
+    //   url: "/faqs",
+    //   group: t("common.search.groups.pages"),
+    //   icon: HelpCircle,
+    // },
+    // {
+    //   title: t("sidebar.items.pricing"),
+    //   url: "/pricing",
+    //   group: t("common.search.groups.pages"),
+    //   icon: CreditCard,
+    // },
   ];
 
-  const groupedItems = searchItems.reduce((acc, item) => {
-    if (!acc[item.group]) {
-      acc[item.group] = [];
-    }
-    acc[item.group].push(item);
-    return acc;
-  }, {} as Record<string, SearchItem[]>);
+  const groupedItems = searchItems.reduce(
+    (acc, item) => {
+      if (!acc[item.group]) {
+        acc[item.group] = [];
+      }
+      acc[item.group].push(item);
+      return acc;
+    },
+    {} as Record<string, SearchItem[]>,
+  );
 
   const handleSelect = (url: string) => {
     router.push(url);
@@ -321,7 +325,7 @@ export function CommandSearch({ open, onOpenChange }: CommandSearchProps) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="overflow-hidden p-0 shadow-2xl border border-zinc-200 dark:border-zinc-800 max-w-[640px]">
-        <DialogTitle className="sr-only">Command Search</DialogTitle>
+        <DialogTitle className="sr-only">{t("common.search.command_search")}</DialogTitle>
         <Command
           ref={commandRef}
           className="transition-transform duration-100 ease-out"

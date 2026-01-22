@@ -1,37 +1,39 @@
 "use client";
 
 import { useMemo, type ComponentProps } from "react";
-import Image from "next/image";
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { AxiosError } from "axios";
 import { REGEXP_ONLY_DIGITS } from "input-otp";
 import { useForm, Controller } from "react-hook-form";
 import { toast } from "sonner";
-
-import { useVerifyEmailMutation } from "@/apis";
-import { Logo } from "@/assets/images";
-import { LanguageSwitcher } from "@/components/shared";
+import { useVerifyEmailMutation } from "@/apis/queries";
+import { LanguageSwitcher } from "@/components/shared/language-switcher";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import {
-  Button,
-  Card,
   Form,
   FormControl,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
-  Input,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import {
   InputOTP,
   InputOTPGroup,
+  InputOTPSeparator,
   InputOTPSlot,
-} from "@/components/ui";
+} from "@/components/ui/input-otp";
+import { ROUTE_PATH } from "@/constants/routes";
 import { useTranslations } from "@/hooks";
 import { Link, useRouter } from "@/i18n/routing";
-import { cn } from "@/lib";
+import { cn } from "@/utils/shadcn";
 import { useAuthStore } from "@/stores";
-import type { ApiResponse } from "@/types";
-
-import { verifyEmailSchema, type VerifyEmailFormValues } from "./schema.module";
+import { type ApiResponse } from "@/types/api";
+import { AuthHeader } from "@/features/auth/components";
+import { EMPTY } from "@/constants/common";
+import { verifyEmailSchema, type VerifyEmailFormValues } from "./schemas";
 
 export function VerifyEmail({ className, ...props }: ComponentProps<"div">) {
   const router = useRouter();
@@ -42,13 +44,13 @@ export function VerifyEmail({ className, ...props }: ComponentProps<"div">) {
   const signupEmail = useAuthStore((state) => state.signupEmail);
   const clearSignupEmail = useAuthStore((state) => state.clearSignupEmail);
   const setAuth = useAuthStore((state) => state.setAuth);
-  const defaultEmail = signupEmail || "";
+  const defaultEmail = signupEmail || EMPTY.str;
 
   const form = useForm<VerifyEmailFormValues>({
     resolver: zodResolver(schema),
     defaultValues: {
       email: defaultEmail,
-      otp: "",
+      otp: EMPTY.str,
     },
   });
 
@@ -62,7 +64,7 @@ export function VerifyEmail({ className, ...props }: ComponentProps<"div">) {
         }
         toast.success(data?.message || t("auth.verify.ok"));
         clearSignupEmail();
-        router.push("/sign-in");
+        router.push(ROUTE_PATH.auth.signIn);
       },
       onError: (error: unknown) => {
         const axiosError = error as AxiosError<ApiResponse>;
@@ -78,7 +80,10 @@ export function VerifyEmail({ className, ...props }: ComponentProps<"div">) {
       <div className="absolute right-0 top-0 z-10 p-4">
         <LanguageSwitcher />
       </div>
-      <div className={cn("flex flex-col gap-6", className)} {...props}>
+      <div
+        className={cn("w-full max-w-sm flex flex-col gap-6", className)}
+        {...props}
+      >
         <Card className="overflow-hidden p-0">
           <Form {...form}>
             <form
@@ -87,31 +92,10 @@ export function VerifyEmail({ className, ...props }: ComponentProps<"div">) {
               noValidate
             >
               <div className="flex flex-col gap-4">
-                <div className="flex justify-center">
-                  <Link
-                    href="/"
-                    className="flex items-center gap-2 font-medium"
-                    aria-label={t("link.home")}
-                  >
-                    <div className="bg-primary text-primary-foreground flex size-12 items-center justify-center rounded-md">
-                      <Image
-                        src={Logo}
-                        alt="Logo"
-                        width={75}
-                        height={75}
-                        className="object-cover"
-                      />
-                    </div>
-                  </Link>
-                </div>
-                <div className="flex flex-col items-center text-center">
-                  <h1 className="text-xl font-bold">
-                    {t("auth.verify.title")}
-                  </h1>
-                  <p className="text-muted-foreground text-sm text-balance">
-                    {t("auth.verify.desc")}
-                  </p>
-                </div>
+                <AuthHeader
+                  title={t("auth.verify.title")}
+                  description={t("auth.verify.desc")}
+                />
                 <FormField
                   control={form.control}
                   name="email"
@@ -136,30 +120,35 @@ export function VerifyEmail({ className, ...props }: ComponentProps<"div">) {
                 <FormField
                   control={form.control}
                   name="otp"
-                  render={({ field }) => (
+                  render={() => (
                     <FormItem className="grid gap-3">
-                      <FormLabel htmlFor="otp">{t("field.otp")}</FormLabel>
+                      <FormLabel htmlFor="otp">{t("field.otp_code")}</FormLabel>
                       <FormControl>
                         <Controller
                           control={form.control}
                           name="otp"
                           render={({ field: { onChange, value } }) => (
                             <InputOTP
-                              maxLength={8}
+                              maxLength={6}
                               pattern={REGEXP_ONLY_DIGITS}
                               value={value}
                               onChange={onChange}
                               disabled={isPending}
+                              containerClassName="justify-center w-full"
                             >
                               <InputOTPGroup>
                                 <InputOTPSlot index={0} />
                                 <InputOTPSlot index={1} />
+                              </InputOTPGroup>
+                              <InputOTPSeparator />
+                              <InputOTPGroup>
                                 <InputOTPSlot index={2} />
                                 <InputOTPSlot index={3} />
+                              </InputOTPGroup>
+                              <InputOTPSeparator />
+                              <InputOTPGroup>
                                 <InputOTPSlot index={4} />
                                 <InputOTPSlot index={5} />
-                                <InputOTPSlot index={6} />
-                                <InputOTPSlot index={7} />
                               </InputOTPGroup>
                             </InputOTP>
                           )}
@@ -177,10 +166,10 @@ export function VerifyEmail({ className, ...props }: ComponentProps<"div">) {
                   {isPending ? (
                     <>
                       <span className="size-4 animate-spin rounded-full border-2 border-transparent border-l-current border-t-current" />
-                      {t("auth.verify.loading")}
+                      {t("common.loading")}
                     </>
                   ) : (
-                    t("auth.verify.submit")
+                    t("auth.verify.send_code")
                   )}
                 </Button>
                 <div className="text-center text-sm">
@@ -192,18 +181,15 @@ export function VerifyEmail({ className, ...props }: ComponentProps<"div">) {
                     className="underline underline-offset-4 hover:text-primary cursor-pointer"
                     disabled={isPending}
                   >
-                    {t("auth.verify.resend")}
+                    {t("auth.verify.resend_code")}
                   </button>
                 </div>
                 <div className="text-center text-sm">
-                  <span className="text-muted-foreground">
-                    {t("auth.verify.back")}{" "}
-                  </span>
                   <Link
-                    href="/sign-in"
+                    href={ROUTE_PATH.auth.signIn}
                     className="underline underline-offset-4 hover:text-primary"
                   >
-                    {t("link.signin")}
+                    {t("auth.back_to_sign_in")}
                   </Link>
                 </div>
               </div>

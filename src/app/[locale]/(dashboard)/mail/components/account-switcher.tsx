@@ -2,7 +2,7 @@
 
 import * as React from "react";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/shadcn";
 import {
   Select,
   SelectContent,
@@ -25,7 +25,7 @@ export function AccountSwitcher({
   accounts,
 }: AccountSwitcherProps) {
   const [selectedAccount, setSelectedAccount] = React.useState<string>(
-    accounts[0].email
+    accounts[0].email,
   );
 
   return (
@@ -34,7 +34,7 @@ export function AccountSwitcher({
         className={cn(
           "flex items-center gap-2 w-full",
           isCollapsed &&
-            "flex size-9 shrink-0 items-center justify-center p-0 [&>span]:w-auto [&>svg]:hidden"
+            "flex size-9 shrink-0 items-center justify-center p-0 [&>span]:w-auto [&>svg]:hidden",
         )}
         aria-label="Select account"
       >

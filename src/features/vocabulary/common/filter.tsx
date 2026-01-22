@@ -1,14 +1,14 @@
 import { CheckCircle, CircleOff } from "lucide-react";
 
-export const statuses = [
+export const getStatuses = (t: (key: string) => string) => [
   {
     value: "true",
-    label: "Hiển thị",
+    label: t("common.status.active"),
     icon: CheckCircle,
   },
   {
     value: "false",
-    label: "Tạm ẩn",
+    label: t("common.status.inactive"),
     icon: CircleOff,
   },
 ];

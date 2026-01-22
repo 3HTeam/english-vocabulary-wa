@@ -1,5 +1,4 @@
-import { ApiResponse } from "../api/base";
-import { TMeta } from "../api/meta";
+import { ApiResponse,TMeta } from "@/types/api";
 
 export type TTopic = {
   id: string;

@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { VocabularyFormValues } from "@/features/vocabulary/schemas/vocabulary.schema";
+import { VocabularyFormValues } from "@/features/vocabulary/schemas";
 
 interface VocabularyState {
   draft: Partial<VocabularyFormValues> | null;

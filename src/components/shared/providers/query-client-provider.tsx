@@ -24,7 +24,7 @@ export function QueryClientProviderWrapper({
             retry: 0,
           },
         },
-      })
+      }),
   );
 
   return (
