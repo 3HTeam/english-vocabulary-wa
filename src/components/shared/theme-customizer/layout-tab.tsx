@@ -2,13 +2,13 @@
 
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
-import { useSidebarConfig } from "@/components/shared/providers/sidebar-context";
+import { useSidebarConfig } from "@/components/shared/providers";
 import { useSidebar } from "@/components/ui/sidebar";
 import {
   sidebarVariants,
   sidebarCollapsibleOptions,
   sidebarSideOptions,
-} from "@/config/themes/customizer-constants";
+} from "@/constants/themes";
 
 export function LayoutTab() {
   const { config: sidebarConfig, updateConfig: updateSidebarConfig } =
@@ -17,13 +17,13 @@ export function LayoutTab() {
 
   // Sidebar handler functions
   const handleSidebarVariantSelect = (
-    variant: "sidebar" | "floating" | "inset"
+    variant: "sidebar" | "floating" | "inset",
   ) => {
     updateSidebarConfig({ variant });
   };
 
   const handleSidebarCollapsibleSelect = (
-    collapsible: "offcanvas" | "icon" | "none"
+    collapsible: "offcanvas" | "icon" | "none",
   ) => {
     updateSidebarConfig({ collapsible });
 
@@ -66,7 +66,7 @@ export function LayoutTab() {
               }`}
               onClick={() =>
                 handleSidebarVariantSelect(
-                  variant.value as "sidebar" | "floating" | "inset"
+                  variant.value as "sidebar" | "floating" | "inset",
                 )
               }
             >
@@ -86,8 +86,8 @@ export function LayoutTab() {
                       variant.value === "floating"
                         ? "border-r m-1 rounded"
                         : variant.value === "inset"
-                        ? "m-1 ms-0 rounded bg-muted/80"
-                        : "border-r"
+                          ? "m-1 ms-0 rounded bg-muted/80"
+                          : "border-r"
                     }`}
                   >
                     {/* Menu icon representations - clearer and more visible */}
@@ -140,7 +140,7 @@ export function LayoutTab() {
               }`}
               onClick={() =>
                 handleSidebarCollapsibleSelect(
-                  option.value as "offcanvas" | "icon" | "none"
+                  option.value as "offcanvas" | "icon" | "none",
                 )
               }
             >

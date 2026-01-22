@@ -1,5 +1,6 @@
 "use client";
 
+import { get } from "radash";
 import { DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
 import type { Table } from "@tanstack/react-table";
 import { Settings2 } from "lucide-react";
@@ -32,17 +33,17 @@ export function DataTableViewOptions<TData>({
           className="ml-auto hidden h-8 lg:flex cursor-pointer mr-2"
         >
           <Settings2 />
-          {t("data_table.display")}
+          {t("data_table.customize")}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[150px]">
-        <DropdownMenuLabel>{t("data_table.display_columns")}</DropdownMenuLabel>
+        <DropdownMenuLabel>{t("data_table.custom_columns")}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         {table
           .getAllColumns()
           .filter(
             (column) =>
-              typeof column.accessorFn !== "undefined" && column.getCanHide()
+              typeof column.accessorFn !== "undefined" && column.getCanHide(),
           )
           .map((column) => {
             return (
@@ -52,7 +53,7 @@ export function DataTableViewOptions<TData>({
                 checked={column.getIsVisible()}
                 onCheckedChange={(value) => column.toggleVisibility(!!value)}
               >
-                {column.id}
+                {get(column, "columnDef.meta.name", column.id)}
               </DropdownMenuCheckboxItem>
             );
           })}

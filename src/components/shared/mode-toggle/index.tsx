@@ -4,9 +4,8 @@ import * as React from "react";
 import { Moon, Sun } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { useTheme } from "@/hooks/theme/use-theme";
-import { useCircularTransition } from "@/hooks/theme/use-circular-transition";
-import "../theme-customizer/circular-transition.css";
+import { useTheme, useCircularTransition } from "@/hooks";
+import "@/components/shared/theme-customizer/circular-transition.css";
 
 interface ModeToggleProps {
   variant?: "outline" | "ghost" | "default";
@@ -28,7 +27,7 @@ export const ModeToggle = ({ variant = "outline" }: ModeToggleProps) => {
       } else {
         setIsDarkMode(
           typeof window !== "undefined" &&
-            window.matchMedia("(prefers-color-scheme: dark)").matches
+            window.matchMedia("(prefers-color-scheme: dark)").matches,
         );
       }
     };

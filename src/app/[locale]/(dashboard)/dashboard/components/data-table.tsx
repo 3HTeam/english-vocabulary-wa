@@ -54,7 +54,7 @@ import { toast } from "sonner";
 import { z } from "zod";
 
 import { schema } from "../schemas/task-schema";
-import { useIsMobile } from "@/hooks/ui/use-mobile";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -335,19 +335,19 @@ export function DataTable({
 }) {
   const [data, setData] = React.useState(() => initialData);
   const [pastPerformance, setPastPerformance] = React.useState(
-    () => pastPerformanceData
+    () => pastPerformanceData,
   );
   const [keyPersonnel, setKeyPersonnel] = React.useState(
-    () => keyPersonnelData
+    () => keyPersonnelData,
   );
   const [focusDocuments, setFocusDocuments] = React.useState(
-    () => focusDocumentsData
+    () => focusDocumentsData,
   );
   const [rowSelection, setRowSelection] = React.useState({});
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    []
+    [],
   );
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [pagination, setPagination] = React.useState({
@@ -358,28 +358,28 @@ export function DataTable({
   const sensors = useSensors(
     useSensor(MouseSensor, {}),
     useSensor(TouchSensor, {}),
-    useSensor(KeyboardSensor, {})
+    useSensor(KeyboardSensor, {}),
   );
 
   const dataIds = React.useMemo<UniqueIdentifier[]>(
     () => data?.map(({ id }) => id) || [],
-    [data]
+    [data],
   );
 
   // Create separate table instances for each tab
   const pastPerformanceIds = React.useMemo<UniqueIdentifier[]>(
     () => pastPerformance?.map(({ id }) => id) || [],
-    [pastPerformance]
+    [pastPerformance],
   );
 
   const keyPersonnelIds = React.useMemo<UniqueIdentifier[]>(
     () => keyPersonnel?.map(({ id }) => id) || [],
-    [keyPersonnel]
+    [keyPersonnel],
   );
 
   const focusDocumentsIds = React.useMemo<UniqueIdentifier[]>(
     () => focusDocuments?.map(({ id }) => id) || [],
-    [focusDocuments]
+    [focusDocuments],
   );
 
   const pastPerformanceTable = useReactTable({
@@ -556,7 +556,7 @@ export function DataTable({
                           ? null
                           : flexRender(
                               header.column.columnDef.header,
-                              header.getContext()
+                              header.getContext(),
                             )}
                       </TableHead>
                     );
@@ -728,7 +728,7 @@ export function DataTable({
                 .filter(
                   (column) =>
                     typeof column.accessorFn !== "undefined" &&
-                    column.getCanHide()
+                    column.getCanHide(),
                 )
                 .map((column) => {
                   return (
@@ -775,7 +775,7 @@ export function DataTable({
                             ? null
                             : flexRender(
                                 header.column.columnDef.header,
-                                header.getContext()
+                                header.getContext(),
                               )}
                         </TableHead>
                       );

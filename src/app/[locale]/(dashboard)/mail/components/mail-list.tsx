@@ -3,7 +3,7 @@
 import type { ComponentProps } from "react";
 import { formatDistanceToNow } from "date-fns";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/shadcn";
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import type { Mail } from "../data";
@@ -24,7 +24,7 @@ export function MailList({ items }: MailListProps) {
             key={item.id}
             className={cn(
               "hover:bg-accent hover:text-accent-foreground flex flex-col items-start gap-2 rounded-lg border p-3 text-left text-sm transition-all cursor-pointer",
-              mail.selected === item.id && "bg-muted"
+              mail.selected === item.id && "bg-muted",
             )}
             onClick={() =>
               setMail({
@@ -46,7 +46,7 @@ export function MailList({ items }: MailListProps) {
                     "ml-auto text-xs",
                     mail.selected === item.id
                       ? "text-foreground"
-                      : "text-muted-foreground"
+                      : "text-muted-foreground",
                   )}
                 >
                   {formatDistanceToNow(new Date(item.date), {
@@ -80,7 +80,7 @@ export function MailList({ items }: MailListProps) {
 }
 
 function getBadgeVariantFromLabel(
-  label: string
+  label: string,
 ): ComponentProps<typeof Badge>["variant"] {
   if (["work"].includes(label.toLowerCase())) {
     return "default";

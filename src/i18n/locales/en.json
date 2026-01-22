@@ -1,126 +1,211 @@
 {
-  "auth": {
-    "meta": {
-      "title": "Authentication - Lingo",
-      "desc": "Sign in to your account to start building your Lingo"
-    },
+  "meta": {
     "signin": {
-      "title": "Welcome back",
-      "desc": "Login to your Lingo account",
-      "forgot": "Forgot Password?",
-      "submit": "Login",
-      "loading": "Logging in...",
-      "no_account": "Don't have an account?",
-      "agree": "By continuing, you agree to our <termsLink>{termsLabel}</termsLink> and <privacyLink>{privacyLabel}</privacyLink>.",
-      "ok": "Login successful!",
-      "err": "Login failed, please try again."
+      "title": "Sign In - {name}",
+      "desc": "Sign in to your {name} account to continue building your vocabulary."
     },
     "signup": {
-      "title": "Welcome to Lingo",
-      "desc": "Register your Lingo account",
-      "agree": "I agree to the <termsLink>{termsLabel}</termsLink> and <privacyLink>{privacyLabel}</privacyLink>",
-      "submit": "Sign Up",
-      "loading": "Signing up...",
-      "has_account": "Already have an account?",
-      "ok": "Registration successful, please verify your email",
-      "err": "Registration failed, please try again."
+      "title": "Sign Up - {name}",
+      "desc": "Create a new {name} account and start learning English today."
     },
     "verify": {
-      "title": "Verify Email",
-      "desc": "Please enter the OTP code sent to your email",
-      "submit": "Verify Email",
-      "loading": "Verifying...",
-      "no_code": "Didn't receive code?",
-      "resend": "Resend Code",
-      "back": "Back to",
-      "ok": "Email verified successfully!",
-      "err": "Email verification failed, please try again."
+      "title": "Verify Email - {name}",
+      "desc": "Please verify your email address to secure your account."
+    },
+    "forgot_password": {
+      "title": "Forgot Password - {name}",
+      "desc": "Reset your password to regain access to your account."
+    },
+    "topic": {
+      "title": "Topic - {name}",
+      "desc": "Manage topics."
+    },
+    "vocabulary": {
+      "title": "Vocabulary - {name}",
+      "desc": "Manage vocabularies."
+    },
+    "user": {
+      "title": "User - {name}",
+      "desc": "Manage users."
+    }
+  },
+  "auth": {
+    "signin": {
+      "signin": "Sign in",
+      "title": "Welcome back",
+      "desc": "Sign in to your {name} account",
+      "forgot": "Forgot Password?",
+      "no_account": "Don't have an account?",
+      "agree": "By continuing, you agree to our <termsLink>{termsLabel}</termsLink> and <privacyLink>{privacyLabel}</privacyLink>.",
+      "ok": "Sign in successful!",
+      "err": "Sign in failed, please try again!"
+    },
+    "signup": {
+      "signup": "Sign up",
+      "title": "Welcome to {name}",
+      "desc": "Sign up your {name} account",
+      "agree": "I agree to the <termsLink>{termsLabel}</termsLink> and <privacyLink>{privacyLabel}</privacyLink>",
+      "has_account": "Already have an account?",
+      "ok": "Registration successful, please verify your email!",
+      "err": "Registration failed, please try again!"
     },
     "forgot_password": {
       "title": "Forgot your password?",
       "desc": "Enter your email address and we'll send you a link to reset your password",
       "submit": "Send Reset Link",
-      "remember": "Remember your password?",
-      "back": "Back to sign in"
-    }
+      "remember": "Remember your password?"
+    },
+    "verify": {
+      "title": "Verify Email",
+      "desc": "Please enter the OTP code sent to your email",
+      "submit": "Verify Email",
+      "no_code": "Didn't receive code?",
+      "send_code": "Send Code",
+      "resend_code": "Resend Code",
+      "ok": "Email verified successfully!",
+      "err": "Email verification failed, please try again!"
+    },
+    "signout": {
+      "signout": "Sign out",
+      "ok": "Sign out successful!",
+      "err": "Sign out failed, please try again!"
+    },
+
+    "link": {
+      "terms": "Terms of Service",
+      "privacy": "Privacy Policy"
+    },
+
+    "or_continue_with": "Or continue with",
+    "back_to_sign_in": "Back to sign in"
   },
   "field": {
     "email": "Email",
     "email_placeholder": "johndoe@gmail.com",
+    "email_required": "Email is required!",
+    "email_invalid": "Invalid email address!",
+
     "password": "Password",
     "password_placeholder": "********",
-    "confirm": "Confirm Password",
-    "confirm_placeholder": "********",
-    "name": "Full Name",
-    "name_placeholder": "John Doe",
-    "otp": "OTP Code"
+    "confirm_password": "Confirm Password",
+    "password_min": "Password must be at least {min} characters!",
+    "password_max": "Password cannot exceed {max} characters!",
+    "password_mismatch": "Passwords do not match!",
+
+    "full_name": "Full Name",
+    "full_name_placeholder": "John Doe",
+    "full_name_required": "Full name is required!",
+
+    "otp_code": "OTP Code",
+    "otp_length": "OTP must be {length} characters!",
+    "otp_digits": "OTP must contain only digits!",
+
+    "agree_terms": "You must agree to the terms and privacy policy!",
+
+    "topic_name": "Topic Name",
+    "topic_name_placeholder": "Enter topic name...",
+    "topic_name_required": "Topic name is required!",
+
+    "status": "Status",
+
+    "image": "Image",
+    "image_required": "Image is required!",
+    "image_invalid": "Invalid image URL",
+
+    "slug": "Slug",
+    "slug_required": "Slug is required!",
+    "slug_placeholder": "auto-generated-slug",
+
+    "description": "Description",
+    "description_placeholder": "Enter description...",
+
+    "created_at": "Created At",
+
+    "updated_at": "Updated At",
+
+    "word": "Word",
+    "word_placeholder": "Enter word...",
+    "word_required": "Word is required!",
+
+    "translation": "Translation",
+    "translation_placeholder": "Enter translation...",
+    "translation_required": "Translation is required!",
+
+    "phonetic": "Phonetic",
+    "phonetic_placeholder": "/ˈeksəmpl/",
+    "phonetic_required": "Phonetic is required!",
+
+    "topic": "Topic",
+    "topic_placeholder": "Select topic",
+    "topic_required": "Topic is required!",
+
+    "audio": "Audio",
+    "audio_placeholder": "https://...",
+    "audio_invalid": "Invalid audio URL",
+
+    "part_of_speech": "Part of Speech",
+    "part_of_speech_placeholder": "Select part of speech",
+    "part_of_speech_required": "Part of speech is required!",
+
+    "synonyms": "Synonyms",
+    "synonyms_placeholder": "word1, word2...",
+
+    "antonyms": "Antonyms",
+    "antonyms_placeholder": "word1, word2...",
+
+    "definition": "Definition",
+    "definition_placeholder": "Enter definition...",
+    "definition_required": "Definition is required!",
+    "definition_min": "At least {min} definition is required!",
+
+    "meaning": "Meaning",
+    "meaning_min": "At least {min} meaning is required!",
+
+    "example": "Example",
+    "example_placeholder": "Example sentence...",
+    "example_translation": "Example Translation",
+    "example_translation_placeholder": "Translate example..."
   },
-  "social": {
-    "or": "Or continue with",
-    "apple": "Apple",
-    "google": "Google",
-    "meta": "Meta"
-  },
-  "link": {
-    "terms": "Terms of Service",
-    "privacy": "Privacy Policy",
-    "home": "Back to home",
-    "signin": "Sign In",
-    "signup": "Sign Up"
-  },
-  "validation": {
-    "email_required": "Email is required",
-    "email_invalid": "Invalid email address",
-    "password_min": "Password must be at least {min} characters",
-    "password_max": "Password cannot exceed {max} characters",
-    "name_required": "Full name is required",
-    "password_mismatch": "Passwords do not match",
-    "agree_terms": "You must agree to the terms and privacy policy",
-    "otp_length": "OTP must be {length} characters",
-    "otp_digits": "OTP must contain only digits"
-  },
-  "sidebar": {
-    "dashboard": "Dashboards",
-    "vocabulary_management": "Vocabulary Management",
-    "grammar_management": "Grammar Management",
-    "lesson_management": "Lesson Management",
-    "user_management": "User Management",
-    "app_config": "App Configuration",
-    "topics": "Topics",
-    "vocabularies": "Vocabularies",
-    "users": "Users",
-    "admin_dashboard": "Admin Dashboard"
-  },
-  "data_table": {
-    "sort_asc": "Ascending",
-    "sort_desc": "Descending",
-    "hide_column": "Hide column",
-    "no_results": "No results found.",
-    "clear_filter": "Clear filter",
-    "rows_selected": "{selected} of {total} row(s) selected.",
-    "rows_per_page": "Rows per page",
-    "page_of": "Page {current} of {total}",
-    "go_first_page": "Go to first page",
-    "go_previous_page": "Go to previous page",
-    "go_next_page": "Go to next page",
-    "go_last_page": "Go to last page",
-    "open_menu": "Open menu",
-    "view": "View",
-    "edit": "Edit",
-    "delete": "Delete",
-    "restore": "Restore",
-    "force_delete": "Delete permanently",
-    "display": "Display",
-    "display_columns": "Toggle columns",
-    "search_placeholder": "Search...",
-    "all": "All"
+  "dashboard": {
+    "dashboard": "Dashboard",
+    "dashboard2": "Dashboard 2"
   },
   "common": {
+    "loading": "Loading...",
+
+    "please_use_desktop_view_to_access_this_feature": "Please use desktop view to access this feature.",
+
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive"
+    },
+
+    "toast": {
+      "create_success": "Created successfully!",
+      "create_error": "Failed to create, please try again.",
+      "update_success": "Updated successfully!",
+      "update_error": "Failed to update, please try again.",
+      "delete_success": "Deleted successfully!",
+      "delete_error": "Failed to delete, please try again.",
+      "restore_success": "Restored successfully!",
+      "restore_error": "Failed to restore, please try again.",
+      "force_delete_success": "Permanently deleted successfully!",
+      "force_delete_error": "Failed to permanently delete, please try again."
+    },
+
+    "dialog": {
+      "delete_title": "Are you sure you want to delete it?",
+      "delete_desc": "This action can be undone. After deletion, everything will be saved in the trash for you to restore when needed.",
+      "force_delete_title": "Are you sure you want to permanently delete it?",
+      "force_delete_desc": "This action cannot be undone. It will be permanently deleted from the system."
+    },
+
     "actions": {
-      "add": "Add New",
+      "add": "Add",
       "edit": "Edit",
       "delete": "Delete",
-      "view": "View Details",
+      "deleting": "Deleting...",
+      "view": "View",
       "save": "Save",
       "saving": "Saving...",
       "update": "Update",
@@ -134,140 +219,140 @@
       "close": "Close",
       "search": "Search"
     },
-    "status": {
-      "label": "Status",
-      "active": "Active",
-      "inactive": "Inactive"
-    },
-    "table": {
-      "image": "Image",
-      "created_at": "Created At",
-      "updated_at": "Updated At",
-      "actions": "Actions"
-    },
-    "dialog": {
-      "delete_title": "Are you sure you want to delete this {item}?",
-      "delete_desc": "This action can be undone. After deletion, everything will be saved in the trash for you to restore when needed.",
-      "force_delete_title": "Are you sure you want to permanently delete this {item}?",
-      "force_delete_desc": "This action cannot be undone. The {item} will be permanently deleted from the system."
-    },
-    "toast": {
-      "create_success": "Created {item} successfully!",
-      "create_error": "Failed to create {item}, please try again.",
-      "update_success": "Updated {item} successfully!",
-      "update_error": "Failed to update {item}, please try again.",
-      "delete_success": "Deleted {item} successfully!",
-      "delete_error": "Failed to delete {item}, please try again.",
-      "restore_success": "Restored {item} successfully!",
-      "restore_error": "Failed to restore {item}, please try again.",
-      "force_delete_success": "Permanently deleted {item} successfully!",
-      "force_delete_error": "Failed to permanently delete {item}, please try again."
-    },
+
     "trash": {
-      "title": "Trash",
+      "trash": "Trash",
       "search_placeholder": "Search in trash..."
     },
+
     "form": {
-      "required": "*",
-      "description": "Description",
-      "description_placeholder": "Enter description..."
+      "required": "*"
     },
-    "error": {
-      "loading": "Failed to load data. Please try again."
+
+    "search": {
+      "placeholder": "Search...",
+      "input_placeholder": "What do you need?",
+      "empty": "No results found.",
+      "command_search": "Command Search"
     }
+  },
+  "grammar": {
+    "grammar": "Grammar",
+    "grammar_management": "Grammar Management",
+    "grammars": "Grammars"
+  },
+  "lesson": {
+    "lesson": "Lesson",
+    "lesson_management": "Lesson Management",
+    "lessons": "Lessons"
+  },
+  "user": {
+    "user": "User",
+    "user_management": "User Management",
+    "users": "Users",
+    "accounts": "Accounts"
+  },
+  "config": {
+    "app_config": "App Configuration",
+    "settings": "Settings"
+  },
+  "billing": {
+    "billing": "Billing",
+    "billings": "Billings"
+  },
+  "notification": {
+    "notification": "Notification",
+    "notifications": "Notifications"
+  },
+  "data_table": {
+    "asc": "Asc",
+    "desc": "Desc",
+    "hide": "Hide",
+    "view": "View",
+    "edit": "Edit",
+    "delete": "Delete",
+    "customize": "Customize",
+    "custom_columns": "Custom columns",
+    "clear_filter": "Clear filter",
+    "no_results": "No results.",
+    "no_results_found": "No results found.",
+    "rows_selected": "{selected} of {total} row(s) selected.",
+    "rows_per_page": "Rows per page",
+    "page_of": "Page {current} of {total}",
+    "go_first_page": "Go to first page",
+    "go_previous_page": "Go to previous page",
+    "go_next_page": "Go to next page",
+    "go_last_page": "Go to last page",
+    "open_menu": "Open menu",
+    "all": "All",
+    "restore": "Restore",
+    "force_delete": "Delete permanently",
+    "search_placeholder": "Search..."
+  },
+  "file_upload": {
+    "drag_drop_here": "Drag & drop files here",
+    "or_click_to_select": "Or click to select files",
+    "max_size": "max {size}",
+    "select_file": "Select file",
+    "file_too_large": "File is too large. Maximum size: {size}KB",
+    "no_url_from_server": "No URL received from server",
+    "upload_failed": "Upload failed",
+    "file_rejected": "\"{fileName}\" was rejected"
   },
   "topic": {
-    "name": "topic",
-    "title": "Topic Management",
-    "add_title": "Add New Topic",
-    "add_desc": "Create a new vocabulary topic. Fill in the information below.",
-    "edit_title": "Edit Topic",
-    "edit_desc": "Edit topic information. Fill in the information below.",
-    "view_title": "Topic Details",
-    "view_desc": "View detailed information of the topic.",
-    "search_placeholder": "Search topic name",
-    "table": {
-      "name": "Topic Name",
-      "slug": "Slug"
-    },
-    "form": {
-      "name": "Topic Name",
-      "name_placeholder": "Enter topic name...",
-      "slug": "Slug",
-      "slug_placeholder": "auto-generated-slug",
-      "image": "Image",
-      "description_placeholder": "Enter topic description..."
-    }
+    "topic": "Topic",
+    "topic_management": "Topic Management",
+    "topics": "Topics",
+    "search_placeholder": "Search topics...",
+    "add_new_topic": "Add New Topic",
+    "add_new_topic_desc": "Create a new topic. Fill in the information below.",
+    "edit_topic": "Edit Topic",
+    "edit_topic_desc": "Edit topic information. Fill in the information below.",
+    "topic_details": "Topic Details",
+    "topic_details_desc": "View detailed information of the topic."
   },
   "vocabulary": {
-    "name": "vocabulary",
-    "title": "Vocabulary Management",
-    "add_title": "Add New Vocabulary",
-    "add_desc": "Enter a word to auto-fetch information.",
-    "edit_title": "Edit Vocabulary",
-    "view_title": "Vocabulary Details",
-    "search_placeholder": "Search vocabulary",
-    "word_input_placeholder": "Enter vocabulary (e.g: apple)...",
-    "manual_create": "Create Manually",
-    "auto_fill": "Search & Auto-fill",
-    "found_redirect": "Data found! Redirecting...",
-    "not_found": "Vocabulary not found",
-    "no_data": "No data for this word",
-    "error": "An error occurred",
-    "table": {
-      "word": "Word",
-      "translation": "Translation",
-      "phonetic": "Phonetic",
-      "topic": "Topic",
-      "audio": "Audio",
-      "part_of_speech": "Part of Speech",
-      "synonyms": "Synonyms",
-      "antonyms": "Antonyms"
-    },
-    "form": {
-      "word": "Word",
-      "word_placeholder": "Enter word...",
-      "phonetic": "Phonetic",
-      "phonetic_placeholder": "/ˈeksəmpl/",
-      "translation": "General Meaning",
-      "translation_placeholder": "Enter translation...",
-      "topic": "Topic",
-      "topic_placeholder": "Select topic",
-      "status_active": "Active",
-      "status_inactive": "Inactive",
-      "audio_us": "US Audio",
-      "audio_uk": "UK Audio",
-      "audio_au": "AU Audio",
-      "audio_placeholder": "https://...",
-      "image": "Image"
-    },
+    "vocabulary": "Vocabulary",
+    "vocabulary_management": "Vocabulary Management",
+    "vocabularies": "Vocabularies",
+    "search_placeholder": "Search vocabulary...",
+    "add_new_vocabulary": "Add New Vocabulary",
+    "add_new_vocabulary_desc": "Enter a word to auto-fetch information.",
+    "create_manually": "Create Manually",
+    "search_and_auto_fill": "Search & Auto-fill",
     "sections": {
       "basic_info": "Basic Information",
       "audio": "Audio",
       "image": "Image",
       "meanings": "Meanings & Definitions"
     },
+    "edit_vocabulary": "Edit Vocabulary",
+    "vocabulary_details": "Vocabulary Details",
+
+    "enter_vocabulary_eg": "Enter vocabulary (e.g: apple)...",
+    "vocabulary_found_redirect": "Vocabulary found! Redirecting...",
+    "vocabulary_not_found": "Vocabulary not found",
+    "no_data_for_this_vocabulary": "No data for this vocabulary",
+
+    "audio": {
+      "audio_us": "US Audio",
+      "audio_uk": "UK Audio",
+      "audio_au": "AU Audio"
+    },
+
     "meaning": {
       "add": "Add Meaning",
-      "info": "Semantic Information",
-      "part_of_speech": "Part of Speech",
-      "part_of_speech_placeholder": "Select part of speech",
-      "synonyms": "Synonyms",
-      "synonyms_placeholder": "word1, word2...",
-      "antonyms": "Antonyms",
-      "antonyms_placeholder": "word1, word2..."
+      "info": "Semantic Information"
     },
+
     "definition": {
       "add": "Add Definition",
-      "list": "Definition List",
-      "definition": "Definition",
-      "definition_placeholder": "English definition...",
-      "translation": "Translation",
-      "translation_placeholder": "Vietnamese translation...",
-      "example": "Example",
-      "example_placeholder": "Example sentence...",
-      "example_translation": "Example Translation",
-      "example_translation_placeholder": "Translate example..."
+      "list": "Definition List"
     }
+  },
+  "social": {
+    "apple": "Apple",
+    "google": "Google",
+    "meta": "Meta"
   }
 }

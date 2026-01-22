@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/shadcn";
 
 interface LoadingSpinnerProps {
   className?: string;
@@ -23,7 +23,7 @@ export function LoadingSpinner({
         className={cn(
           "animate-spin rounded-full border-b-2 border-primary",
           sizeClasses[size],
-          className
+          className,
         )}
       />
     </div>

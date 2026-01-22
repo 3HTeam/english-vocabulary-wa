@@ -1,29 +1,40 @@
 import axios, { type AxiosError, type InternalAxiosRequestConfig } from "axios";
+
+import { useAuthStore } from "@/stores";
+import { type ApiResponse } from "@/types/api";
+import { type TAuthSession } from "@/types/features";
+import {
+  AXIOS_CLIENT_TIMEOUT,
+  AXIOS_CONTENT_TYPE,
+  AXIOS_REFRESH_TIMEOUT,
+} from "@/constants/api";
+import { EMPTY } from "@/constants/common";
+
 import { AUTH_ENDPOINTS } from "./end-point";
-import { useAuthStore } from "@/stores/auth.store";
-import type { ApiResponse } from "@/types/api/base";
-import type { TAuthSession } from "@/types/features/auth";
 
-const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? "";
-const apiSubfix = process.env.NEXT_PUBLIC_API_SUBFIX ?? "";
+const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? EMPTY.str;
+const apiSubfix = process.env.NEXT_PUBLIC_API_SUBFIX ?? EMPTY.str;
 
-const baseURL = [apiUrl.replace(/\/+$/, ""), apiSubfix.replace(/^\/+/, "")]
+const baseURL = [
+  apiUrl.replace(/\/+$/, EMPTY.str),
+  apiSubfix.replace(/^\/+/, EMPTY.str),
+]
   .filter(Boolean)
   .join("/");
 
 export const axiosClient = axios.create({
   baseURL,
-  timeout: 15000,
+  timeout: AXIOS_CLIENT_TIMEOUT,
   headers: {
-    Accept: "application/json",
+    Accept: AXIOS_CONTENT_TYPE,
   },
 });
 
 const axiosRefresh = axios.create({
   baseURL,
-  timeout: 60000,
+  timeout: AXIOS_REFRESH_TIMEOUT,
   headers: {
-    Accept: "application/json",
+    Accept: AXIOS_CONTENT_TYPE,
   },
 });
 
@@ -35,7 +46,7 @@ let failedQueue: Array<{
 
 const processQueue = (
   error: AxiosError | null,
-  token: string | null = null
+  token: string | null = null,
 ) => {
   failedQueue.forEach((prom) => {
     if (error) {
@@ -59,7 +70,7 @@ axiosClient.interceptors.request.use(
 
     return config;
   },
-  (error) => Promise.reject(error)
+  (error) => Promise.reject(error),
 );
 
 // Response interceptor: Handle 401 and refresh token
@@ -123,7 +134,7 @@ axiosClient.interceptors.response.use(
       isRefreshing = false;
       return Promise.reject(refreshError);
     }
-  }
+  },
 );
 
 export default axiosClient;

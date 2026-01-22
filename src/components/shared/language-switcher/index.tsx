@@ -10,13 +10,16 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { LANGUAGES } from "@/config/constants";
+import { EMPTY } from "@/constants/common";
+import { LANGUAGES } from "@/constants/i18n";
 
 interface LanguageSwitcherProps {
   variant?: "outline" | "ghost" | "default";
 }
 
-export const LanguageSwitcher = ({ variant = "outline" }: LanguageSwitcherProps) => {
+export const LanguageSwitcher = ({
+  variant = "outline",
+}: LanguageSwitcherProps) => {
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
@@ -44,7 +47,7 @@ export const LanguageSwitcher = ({ variant = "outline" }: LanguageSwitcherProps)
             onClick={() => handleLanguageChange(lang.key)}
           >
             <p>
-              <span className={locale === lang.key ? "font-bold" : ""}>
+              <span className={locale === lang.key ? "font-bold" : EMPTY.str}>
                 {lang.name}
               </span>{" "}
               <span role="img" aria-label={lang.name}>
@@ -57,5 +60,3 @@ export const LanguageSwitcher = ({ variant = "outline" }: LanguageSwitcherProps)
     </DropdownMenu>
   );
 };
-
-;

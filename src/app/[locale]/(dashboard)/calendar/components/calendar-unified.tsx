@@ -51,7 +51,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/shadcn";
 import { type CalendarEvent } from "../types";
 
 // Import data
@@ -66,11 +66,11 @@ export function CalendarMain({ eventDates = [] }: CalendarMainProps) {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [currentDate, setCurrentDate] = useState(new Date());
   const [viewMode, setViewMode] = useState<"month" | "week" | "day" | "list">(
-    "month"
+    "month",
   );
   const [showEventDialog, setShowEventDialog] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState<CalendarEvent | null>(
-    null
+    null,
   );
   const [showCalendarSheet, setShowCalendarSheet] = useState(false);
 
@@ -104,7 +104,7 @@ export function CalendarMain({ eventDates = [] }: CalendarMainProps) {
     setCurrentDate(
       direction === "prev"
         ? subMonths(currentDate, 1)
-        : addMonths(currentDate, 1)
+        : addMonths(currentDate, 1),
     );
   };
 
@@ -163,7 +163,7 @@ export function CalendarMain({ eventDates = [] }: CalendarMainProps) {
                   "relative border-r border-b last:border-r-0 p-2 min-h-[120px] hover:bg-muted/50 cursor-pointer transition-colors",
                   !isCurrentMonth && "text-muted-foreground bg-muted/20",
                   isDayToday && "bg-blue-50 dark:bg-blue-900/20",
-                  isSelected && "bg-blue-100 dark:bg-blue-800/30"
+                  isSelected && "bg-blue-100 dark:bg-blue-800/30",
                 )}
                 onClick={() => handleDateSelect(day)}
               >
@@ -171,7 +171,7 @@ export function CalendarMain({ eventDates = [] }: CalendarMainProps) {
                 <div
                   className={cn(
                     "text-sm font-medium mb-1",
-                    isDayToday && "text-blue-600 dark:text-blue-400"
+                    isDayToday && "text-blue-600 dark:text-blue-400",
                   )}
                 >
                   {format(day, "d")}
@@ -184,7 +184,7 @@ export function CalendarMain({ eventDates = [] }: CalendarMainProps) {
                       key={event.id}
                       className={cn(
                         "text-xs px-2 py-1 rounded text-white cursor-pointer hover:opacity-80 transition-opacity truncate",
-                        event.color
+                        event.color,
                       )}
                       onClick={(e) => {
                         e.stopPropagation();
@@ -321,10 +321,10 @@ export function CalendarMain({ eventDates = [] }: CalendarMainProps) {
                       {viewMode === "month"
                         ? "Month"
                         : viewMode === "week"
-                        ? "Week"
-                        : viewMode === "day"
-                        ? "Day"
-                        : "List"}
+                          ? "Week"
+                          : viewMode === "day"
+                            ? "Day"
+                            : "List"}
                       <ChevronDown className="h-4 w-4 ml-1" />
                     </Button>
                   </DropdownMenuTrigger>

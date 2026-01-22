@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import { format, isToday, isYesterday } from "date-fns";
 import { CheckCheck, MoreHorizontal, Reply, Copy, Trash2 } from "lucide-react";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/shadcn";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -174,7 +174,7 @@ export function MessageList({
                 const showName = shouldShowName(message, messageIndex);
                 const isConsecutive = isConsecutiveMessage(
                   message,
-                  messageIndex
+                  messageIndex,
                 );
 
                 return (
@@ -183,7 +183,7 @@ export function MessageList({
                     className={cn(
                       "flex gap-3 group",
                       isOwnMessage && "flex-row-reverse",
-                      isConsecutive && !isOwnMessage && "ml-12"
+                      isConsecutive && !isOwnMessage && "ml-12",
                     )}
                   >
                     {/* Avatar */}
@@ -208,7 +208,7 @@ export function MessageList({
                     <div
                       className={cn(
                         "flex-1 max-w-[70%]",
-                        isOwnMessage && "flex flex-col items-end"
+                        isOwnMessage && "flex flex-col items-end",
                       )}
                     >
                       {/* Sender name for group messages */}
@@ -226,7 +226,7 @@ export function MessageList({
                             isOwnMessage
                               ? "bg-primary text-primary-foreground"
                               : "bg-muted",
-                            isConsecutive && "mt-1"
+                            isConsecutive && "mt-1",
                           )}
                         >
                           <p>{message.content}</p>
@@ -239,7 +239,7 @@ export function MessageList({
                                   key={idx}
                                   className={cn(
                                     "inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs border cursor-pointer",
-                                    "bg-background/90 backdrop-blur-sm shadow-sm"
+                                    "bg-background/90 backdrop-blur-sm shadow-sm",
                                   )}
                                 >
                                   <span>{reaction.emoji}</span>
@@ -257,7 +257,7 @@ export function MessageList({
                               "flex items-center gap-1 mt-1 text-xs",
                               isOwnMessage
                                 ? "text-primary-foreground/70 justify-end"
-                                : "text-muted-foreground"
+                                : "text-muted-foreground",
                             )}
                           >
                             <span>{formatMessageTime(message.timestamp)}</span>

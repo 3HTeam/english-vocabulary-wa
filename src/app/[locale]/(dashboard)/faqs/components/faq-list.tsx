@@ -11,7 +11,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/shadcn";
 import { Search } from "lucide-react";
 
 interface FAQ {
@@ -68,7 +68,7 @@ export function FAQList({ faqs, categories }: FAQListProps) {
               key={category.name}
               className={cn(
                 "flex items-center justify-between px-3 py-2 rounded-lg hover:bg-muted cursor-pointer transition-colors group",
-                selectedCategory === category.name && "bg-muted"
+                selectedCategory === category.name && "bg-muted",
               )}
               onClick={() => setSelectedCategory(category.name)}
             >
@@ -77,7 +77,7 @@ export function FAQList({ faqs, categories }: FAQListProps) {
                 variant="secondary"
                 className={cn(
                   "transition-colors",
-                  selectedCategory === category.name && "bg-background"
+                  selectedCategory === category.name && "bg-background",
                 )}
               >
                 {category.name === "All" ? faqs.length : category.count}

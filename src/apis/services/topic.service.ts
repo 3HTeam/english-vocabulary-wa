@@ -1,4 +1,4 @@
-import axiosClient from "../config/axios-client";
+import { axiosClient, TOPIC_ENDPOINTS } from "@/apis/config";
 import {
   TTopicPayload,
   TCreateTopicResponse,
@@ -8,13 +8,10 @@ import {
   TDeleteTopicResponse,
   TRestoreTopicResponse,
   TForceDeleteTopicResponse,
-} from "@/types/features/topic";
-import { TOPIC_ENDPOINTS } from "../config/end-point";
-import { Params } from "@/types/api/params";
+} from "@/types/features";
+import { Params } from "@/types/api";
 
-export async function getTopicServices(
-  params?: Params
-): Promise<TTopicResponse> {
+export async function getTopic(params?: Params): Promise<TTopicResponse> {
   try {
     const queryParams = new URLSearchParams();
     if (params?.page) {
@@ -30,7 +27,7 @@ export async function getTopicServices(
       queryParams.append("isDeleted", params.isDeleted.toString());
     }
     const res = await axiosClient.get<TTopicResponse>(
-      `${TOPIC_ENDPOINTS.base}?${queryParams.toString()}`
+      `${TOPIC_ENDPOINTS.base}?${queryParams.toString()}`,
     );
     return res.data;
   } catch (error) {
@@ -38,12 +35,10 @@ export async function getTopicServices(
   }
 }
 
-export async function getTopicByIdServices(
-  id: string
-): Promise<TTopicByIdResponse> {
+export async function getTopicById(id: string): Promise<TTopicByIdResponse> {
   try {
     const res = await axiosClient.get<TTopicByIdResponse>(
-      `${TOPIC_ENDPOINTS.base}/${id}`
+      `${TOPIC_ENDPOINTS.base}/${id}`,
     );
     return res.data;
   } catch (error) {
@@ -51,13 +46,13 @@ export async function getTopicByIdServices(
   }
 }
 
-export async function createTopicServices(
-  payload: TTopicPayload
+export async function createTopic(
+  payload: TTopicPayload,
 ): Promise<TCreateTopicResponse> {
   try {
     const res = await axiosClient.post<TCreateTopicResponse>(
       TOPIC_ENDPOINTS.base,
-      payload
+      payload,
     );
     return res.data;
   } catch (error) {
@@ -65,14 +60,14 @@ export async function createTopicServices(
   }
 }
 
-export async function updateTopicServices(
+export async function updateTopic(
   id: string,
-  payload: TTopicPayload
+  payload: TTopicPayload,
 ): Promise<TUpdateTopicResponse> {
   try {
     const res = await axiosClient.put<TUpdateTopicResponse>(
       `${TOPIC_ENDPOINTS.base}/${id}`,
-      payload
+      payload,
     );
     return res.data;
   } catch (error) {
@@ -80,12 +75,10 @@ export async function updateTopicServices(
   }
 }
 
-export async function deleteTopicServices(
-  id: string
-): Promise<TDeleteTopicResponse> {
+export async function deleteTopic(id: string): Promise<TDeleteTopicResponse> {
   try {
     const res = await axiosClient.delete<TDeleteTopicResponse>(
-      `${TOPIC_ENDPOINTS.base}/${id}`
+      `${TOPIC_ENDPOINTS.base}/${id}`,
     );
     return res.data;
   } catch (error) {
@@ -93,12 +86,10 @@ export async function deleteTopicServices(
   }
 }
 
-export async function restoreTopicServices(
-  id: string
-): Promise<TRestoreTopicResponse> {
+export async function restoreTopic(id: string): Promise<TRestoreTopicResponse> {
   try {
     const res = await axiosClient.patch<TRestoreTopicResponse>(
-      `${TOPIC_ENDPOINTS.base}/${id}/restore`
+      `${TOPIC_ENDPOINTS.base}/${id}/restore`,
     );
     return res.data;
   } catch (error) {
@@ -106,12 +97,12 @@ export async function restoreTopicServices(
   }
 }
 
-export async function forceDeleteTopicServices(
-  id: string
+export async function forceDeleteTopic(
+  id: string,
 ): Promise<TForceDeleteTopicResponse> {
   try {
     const res = await axiosClient.delete<TForceDeleteTopicResponse>(
-      `${TOPIC_ENDPOINTS.base}/${id}/force`
+      `${TOPIC_ENDPOINTS.base}/${id}/force`,
     );
     return res.data;
   } catch (error) {

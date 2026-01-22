@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { Palette, Dices, Upload, ExternalLink, Sun, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -17,16 +18,14 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { useThemeManager } from "@/hooks/theme/use-theme-manager";
-import { useCircularTransition } from "@/hooks/theme/use-circular-transition";
-import { colorThemes, tweakcnThemes } from "@/config/themes/theme-data";
+import { useThemeManager, useCircularTransition } from "@/hooks";
+import { colorThemes, tweakcnThemes } from "@/constants/themes";
 import {
   radiusOptions,
   baseColors,
-} from "@/config/themes/customizer-constants";
-import ColorPicker from "@/components/shared/color-picker";
-import type { ImportedTheme } from "@/types/theme/theme-customizer";
-import React from "react";
+} from "@/constants/themes/customizer-constants";
+import { ColorPicker } from "@/components/shared/color-picker";
+import { type ImportedTheme } from "@/types/theme/theme-customizer";
 import "./circular-transition.css";
 
 interface ThemeTabProps {
@@ -198,7 +197,7 @@ export function ThemeTab({
             setBrandColorsValues({}); // Clear brand colors state
             setImportedTheme(null); // Clear imported theme
             const selectedPreset = tweakcnThemes.find(
-              (t) => t.value === value
+              (t) => t.value === value,
             )?.preset;
             if (selectedPreset) {
               applyTweakcnTheme(selectedPreset, isDarkMode);

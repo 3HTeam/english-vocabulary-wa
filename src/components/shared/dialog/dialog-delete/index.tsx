@@ -8,6 +8,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
+import { useTranslations } from "@/hooks";
 
 interface DialogDeleteProps {
   open: boolean;
@@ -26,6 +27,7 @@ const DialogDelete = ({
   onConfirm,
   isLoading = false,
 }: DialogDeleteProps) => {
+  const t = useTranslations();
   return (
     <AlertDialog open={open} onOpenChange={onOpenChange}>
       <AlertDialogContent>
@@ -38,7 +40,7 @@ const DialogDelete = ({
         <AlertDialogFooter>
           <AlertDialogCancel disabled={isLoading}>Huỷ</AlertDialogCancel>
           <AlertDialogAction onClick={onConfirm} disabled={isLoading}>
-            {isLoading ? "Đang xoá..." : "Xoá"}
+            {isLoading ? t("common.actions.deleting") : t("common.actions.delete")}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

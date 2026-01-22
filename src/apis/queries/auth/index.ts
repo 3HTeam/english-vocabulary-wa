@@ -1,11 +1,13 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { apiServices } from "@/apis";
-import type {
+
+import { apiServices } from "@/apis/services";
+import {
   TRefreshTokenPayload,
   TSignInPayload,
   TSignUpPayload,
   TVerifyEmailPayload,
-} from "@/types";
+} from "@/types/features";
+
 import { AUTH_QUERY_KEYS } from "./constants";
 
 export const useSignUpMutation = () => {

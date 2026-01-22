@@ -11,7 +11,7 @@ import {
   MoreHorizontal,
 } from "lucide-react";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/shadcn";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import {
@@ -72,7 +72,7 @@ export function MessageInput({
       textareaRef.current.style.height = "auto";
       textareaRef.current.style.height = `${Math.min(
         textareaRef.current.scrollHeight,
-        120
+        120,
       )}px`;
     }
 
@@ -142,7 +142,7 @@ export function MessageInput({
             disabled={disabled}
             className={cn(
               "min-h-[40px] max-h-[120px] resize-none cursor-text disabled:cursor-not-allowed",
-              "pr-20" // Space for emoji and more buttons
+              "pr-20", // Space for emoji and more buttons
             )}
             rows={1}
           />

@@ -17,7 +17,8 @@ import {
   FileUploadTrigger,
   type FileUploadProps as DiceUIFileUploadProps,
 } from "@/components/ui/file-upload";
-import { useUploadMutation } from "@/apis/queries/upload";
+import { useUploadMutation } from "@/apis/queries";
+import { useTranslations } from "@/hooks";
 
 export type FileUploadStatus = "uploading" | "success" | "error";
 
@@ -46,9 +47,10 @@ export function FileUpload({
   multiple = false,
   disabled = false,
 }: FileUploadProps) {
+  const t = useTranslations();
   const [files, setFiles] = useState<File[]>([]);
   const [uploadProgress, setUploadProgress] = useState<Map<string, number>>(
-    new Map()
+    new Map(),
   );
 
   const uploadMutation = useUploadMutation({
@@ -62,9 +64,9 @@ export function FileUpload({
           try {
             // Check file size
             if (file.size > maxSize) {
-              const errorMsg = `File quá lớn. Kích thước tối đa: ${Math.round(
-                maxSize / 1024
-              )}KB`;
+              const errorMsg = t("file_upload.file_too_large", {
+                size: Math.round(maxSize / 1024),
+              });
               onError(file, new Error(errorMsg));
               onUploadError?.(errorMsg, file);
               return;
@@ -102,7 +104,7 @@ export function FileUpload({
                 onSuccess(file);
                 onUploadSuccess?.(url, file);
               } else {
-                throw new Error("Không nhận được URL từ server");
+                throw new Error(t("file_upload.no_url_from_server"));
               }
             } catch (error) {
               clearInterval(progressInterval);
@@ -113,10 +115,10 @@ export function FileUpload({
               error instanceof AxiosError
                 ? error.response?.data?.message ||
                   error.message ||
-                  "Upload thất bại"
+                  t("file_upload.upload_failed")
                 : error instanceof Error
-                ? error.message
-                : "Upload thất bại";
+                  ? error.message
+                  : t("file_upload.upload_failed");
 
             onError(file, new Error(errorMessage));
             onUploadError?.(errorMessage, file);
@@ -128,16 +130,19 @@ export function FileUpload({
         console.error("Unexpected error during upload:", error);
       }
     },
-    [maxSize, onUploadSuccess, onUploadError, uploadMutation]
+    [maxSize, onUploadSuccess, onUploadError, uploadMutation],
   );
 
-  const onFileReject = useCallback((file: File, message: string) => {
-    toast.error(message, {
-      description: `"${
-        file.name.length > 20 ? `${file.name.slice(0, 20)}...` : file.name
-      }" đã bị từ chối`,
-    });
-  }, []);
+  const onFileReject = useCallback(
+    (file: File, message: string) => {
+      const fileName =
+        file.name.length > 20 ? `${file.name.slice(0, 20)}...` : file.name;
+      toast.error(message, {
+        description: t("file_upload.file_rejected", { fileName }),
+      });
+    },
+    [t],
+  );
 
   return (
     <DiceUIFileUpload
@@ -157,18 +162,23 @@ export function FileUpload({
           <div className="flex items-center justify-center rounded-full border p-2.5">
             <Upload className="size-6 text-muted-foreground" />
           </div>
-          <p className="font-medium text-sm">Kéo & thả file tại đây</p>
+          <p className="font-medium text-sm">
+            {t("file_upload.drag_drop_here")}
+          </p>
           <p className="text-muted-foreground text-xs">
-            Hoặc click để chọn file (
-            {maxSize >= 1024 * 1024
-              ? `tối đa ${Math.round(maxSize / (1024 * 1024))}MB`
-              : `tối đa ${Math.round(maxSize / 1024)}KB`}
+            {t("file_upload.or_click_to_select")} (
+            {t("file_upload.max_size", {
+              size:
+                maxSize >= 1024 * 1024
+                  ? `${Math.round(maxSize / (1024 * 1024))}MB`
+                  : `${Math.round(maxSize / 1024)}KB`,
+            })}
             )
           </p>
         </div>
         <FileUploadTrigger asChild>
           <Button variant="outline" size="sm" className="mt-2 w-fit">
-            Chọn file
+            {t("file_upload.select_file")}
           </Button>
         </FileUploadTrigger>
       </FileUploadDropzone>

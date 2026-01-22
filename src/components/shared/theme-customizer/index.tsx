@@ -11,14 +11,14 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useThemeManager } from "@/hooks/theme/use-theme-manager";
-import { useSidebarConfig } from "@/components/shared/providers/sidebar-context";
-import { tweakcnThemes } from "@/config/themes/theme-data";
+import { useThemeManager } from "@/hooks";
+import { useSidebarConfig } from "@/components/shared/providers";
+import { tweakcnThemes } from "@/constants/themes";
 import { ThemeTab } from "./theme-tab";
 import { LayoutTab } from "./layout-tab";
 import { ImportModal } from "./import-modal";
-import { cn } from "@/lib/utils";
-import type { ImportedTheme } from "@/types/theme/theme-customizer";
+import { type ImportedTheme } from "@/types/theme";
+import { cn } from "@/utils/shadcn";
 
 interface ThemeCustomizerProps {
   open: boolean;
@@ -92,7 +92,7 @@ export function ThemeCustomizer({ open, onOpenChange }: ThemeCustomizerProps) {
       applyTheme(selectedTheme, isDarkMode);
     } else if (selectedTweakcnTheme) {
       const selectedPreset = tweakcnThemes.find(
-        (t) => t.value === selectedTweakcnTheme
+        (t) => t.value === selectedTweakcnTheme,
       )?.preset;
       if (selectedPreset) {
         applyTweakcnTheme(selectedPreset, isDarkMode);
@@ -220,7 +220,7 @@ export function ThemeCustomizerTrigger({ onClick }: { onClick: () => void }) {
       size="icon"
       className={cn(
         "fixed top-1/2 -translate-y-1/2 h-12 w-12 rounded-full shadow-lg z-50 bg-primary hover:bg-primary/90 text-primary-foreground cursor-pointer",
-        sidebarConfig.side === "left" ? "right-4" : "left-4"
+        sidebarConfig.side === "left" ? "right-4" : "left-4",
       )}
     >
       <Settings className="h-5 w-5" />

@@ -1,8 +1,10 @@
-import { VocabularyParams } from "@/types";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { VOCABULARY_QUERY_KEYS } from "./contants";
+
 import { apiServices } from "@/apis/services";
-import { TVocabularyPayload } from "@/types/features/vocabulary";
+import { VocabularyParams } from "@/types/api";
+import { TVocabularyPayload } from "@/types/features";
+
+import { VOCABULARY_QUERY_KEYS } from "./contants";
 
 export const useGetVocabularyQuery = (params?: VocabularyParams) => {
   return useQuery({

@@ -15,7 +15,7 @@ import {
   Users2,
 } from "lucide-react";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/shadcn";
 import { Input } from "@/components/ui/input";
 import {
   ResizableHandle,
@@ -61,7 +61,7 @@ export function Mail({
         direction="horizontal"
         onLayout={(sizes: number[]) => {
           document.cookie = `react-resizable-panels:layout:mail=${JSON.stringify(
-            sizes
+            sizes,
           )}`;
         }}
         className="h-full items-stretch rounded-lg border overflow-hidden"
@@ -75,23 +75,23 @@ export function Mail({
           onCollapse={() => {
             setIsCollapsed(true);
             document.cookie = `react-resizable-panels:collapsed=${JSON.stringify(
-              true
+              true,
             )}`;
           }}
           onResize={() => {
             setIsCollapsed(false);
             document.cookie = `react-resizable-panels:collapsed=${JSON.stringify(
-              false
+              false,
             )}`;
           }}
           className={cn(
-            isCollapsed && "w-full transition-all duration-300 ease-in-out"
+            isCollapsed && "w-full transition-all duration-300 ease-in-out",
           )}
         >
           <div
             className={cn(
               "flex h-[52px] items-center justify-center",
-              isCollapsed ? "h-[52px]" : "px-2"
+              isCollapsed ? "h-[52px]" : "px-2",
             )}
           >
             <AccountSwitcher isCollapsed={isCollapsed} accounts={accounts} />

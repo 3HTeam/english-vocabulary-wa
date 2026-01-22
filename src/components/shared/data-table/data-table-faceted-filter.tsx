@@ -40,7 +40,7 @@ export function DataTableFacetedFilter({
 }: DataTableFacetedFilterProps) {
   const t = useTranslations();
   const [selectedValue, setSelectedValue] = React.useState<string | undefined>(
-    undefined
+    undefined,
   );
 
   const handleFilterChange = (value: string) => {

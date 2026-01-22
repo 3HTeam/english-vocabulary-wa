@@ -1,50 +1,30 @@
-"use client";
-
-import { useRef } from "react";
 import type { ColumnDef } from "@tanstack/react-table";
-import type { VariantProps } from "class-variance-authority";
 import { Volume2 } from "lucide-react";
 import Image from "next/image";
+import { useRef } from "react";
 
 import {
   DataTableColumnHeader,
   DataTableRowActions,
 } from "@/components/shared/data-table";
-import { Badge, badgeVariants } from "@/components/ui/badge";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import { VocabularyFormValues } from "../schemas/vocabulary.schema";
-import { TVocabulary } from "@/types/features/vocabulary";
+import { type TVocabulary } from "@/types/features";
+import { type VocabularyFormValues } from "../schemas";
+import { COLUMN_KEYS, partOfSpeechVariant } from ".";
 
 interface CreateColumnsOptions {
+  t: (key: string, options?: any) => string;
   onView?: (id: string) => void;
   onEdit?: (id: string) => void;
   onDelete?: (id: string) => void;
   onRestore?: (id: string) => void;
   onForceDelete?: (id: string) => void;
   getId?: (data: VocabularyFormValues) => string;
-  topicMap?: Record<string, string>;
 }
 
-const partOfSpeechVariant: Record<
-  string,
-  VariantProps<typeof badgeVariants>["variant"]
-> = {
-  noun: "blue",
-  verb: "emerald",
-  adjective: "purple",
-  adverb: "pink",
-  pronoun: "cyan",
-  preposition: "indigo",
-  conjunction: "amber",
-  interjection: "rose",
-  determiner: "teal",
-  article: "slate",
-  numeral: "lime",
-  phrasal_verb: "fuchsia",
-  idiom: "violet",
-  phrase: "yellow",
-};
+
 
 function AudioCell({ audioUrl, label }: { audioUrl: string; label: string }) {
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -81,10 +61,10 @@ function AudioCell({ audioUrl, label }: { audioUrl: string; label: string }) {
 }
 
 export const createColumns = (
-  options?: CreateColumnsOptions
+  options: CreateColumnsOptions,
 ): ColumnDef<VocabularyFormValues>[] => [
   {
-    id: "select",
+    id: COLUMN_KEYS.id,
     header: ({ table }) => (
       <Checkbox
         checked={
@@ -108,53 +88,77 @@ export const createColumns = (
     enableHiding: false,
   },
   {
-    accessorKey: "word",
+    accessorKey: COLUMN_KEYS.word,
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Từ vựng" />
+      <DataTableColumnHeader
+        column={column}
+        title={options.t("field.word")}
+      />
     ),
+    meta: {
+      name: options.t("field.word"),
+    },
     cell: ({ row }) => {
       return (
         <div className="flex items-center">
           <span className="max-w-[200px] truncate font-medium">
-            {row.getValue("word")}
+            {row.getValue(COLUMN_KEYS.word)}
           </span>
         </div>
       );
     },
   },
   {
-    accessorKey: "translation",
+    accessorKey: COLUMN_KEYS.translation,
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Nghĩa" />
+      <DataTableColumnHeader
+        column={column}
+        title={options.t("field.translation")}
+      />
     ),
+    meta: {
+      name: options.t("field.translation"),
+    },
     cell: ({ row }) => {
       return (
         <div className="flex items-center">
           <span className="max-w-[200px] truncate font-medium">
-            {row.getValue("translation")}
+            {row.getValue(COLUMN_KEYS.translation)}
           </span>
         </div>
       );
     },
   },
   {
-    accessorKey: "phonetic",
+    accessorKey: COLUMN_KEYS.phonetic,
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Phiên âm" />
+      <DataTableColumnHeader
+        column={column}
+        title={options.t("field.phonetic")}
+      />
     ),
+    meta: {
+      name: options.t("field.phonetic"),
+    },
     cell: ({ row }) => {
       return (
         <div className="flex items-center">
-          <Badge variant="outline">{row.getValue("phonetic")}</Badge>
+          <Badge variant="outline">{row.getValue(COLUMN_KEYS.phonetic)}</Badge>
         </div>
       );
     },
   },
   {
-    id: "topic",
+    id: COLUMN_KEYS.topic,
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Chủ đề" />
+      <DataTableColumnHeader
+        column={column}
+        title={options.t("field.topic")}
+      />
     ),
+    meta: {
+      name: options.t("field.topic"),
+    },
     cell: ({ row }) => {
       const topicName = (row.original as TVocabulary).topic?.name;
 
@@ -171,29 +175,43 @@ export const createColumns = (
     enableSorting: false,
   },
   {
-    accessorKey: "status",
+    accessorKey: COLUMN_KEYS.status,
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Trạng thái" />
+      <DataTableColumnHeader
+        column={column}
+        title={options.t("field.status")}
+      />
     ),
+    meta: {
+      name: options.t("field.status"),
+    },
     cell: ({ row }) => {
-      const status = row.getValue("status") as boolean;
+      const status = row.getValue(COLUMN_KEYS.status) as boolean;
 
       return (
         <Badge variant={status ? "emerald" : "secondary"}>
-          {status ? "Hiển thị" : "Tạm ẩn"}
+          {status
+            ? options.t("common.status.active")
+            : options.t("common.status.inactive")}
         </Badge>
       );
     },
   },
   {
-    id: "audio",
+    id: COLUMN_KEYS.audio,
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Âm thanh" />
+      <DataTableColumnHeader
+        column={column}
+        title={options.t("field.audio")}
+      />
     ),
+    meta: {
+      name: options.t("field.audio"),
+    },
     cell: ({ row }) => {
-      const audioUrlUs = row.original.audioUrlUs;
-      const audioUrlUk = row.original.audioUrlUk;
-      const audioUrlAu = row.original.audioUrlAu;
+      const audioUrlUs = (row.original as TVocabulary).audioUrlUs;
+      const audioUrlUk = (row.original as TVocabulary).audioUrlUk;
+      const audioUrlAu = (row.original as TVocabulary).audioUrlAu;
 
       const hasAudio = audioUrlUs || audioUrlUk || audioUrlAu;
 
@@ -212,12 +230,18 @@ export const createColumns = (
     enableSorting: false,
   },
   {
-    id: "partOfSpeech",
+    id: COLUMN_KEYS.partOfSpeech,
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Từ loại" />
+      <DataTableColumnHeader
+        column={column}
+        title={options.t("field.part_of_speech")}
+      />
     ),
+    meta: {
+      name: options.t("field.part_of_speech"),
+    },
     cell: ({ row }) => {
-      const meanings = row.original.meanings || [];
+      const meanings = (row.original as TVocabulary).meanings || [];
       const partsOfSpeech = meanings.map((m) => m.partOfSpeech);
       const uniqueParts = [...new Set(partsOfSpeech)];
 
@@ -238,12 +262,18 @@ export const createColumns = (
     enableSorting: false,
   },
   {
-    id: "synonyms",
+    id: COLUMN_KEYS.synonyms,
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Từ đồng nghĩa" />
+      <DataTableColumnHeader
+        column={column}
+        title={options.t("field.synonyms")}
+      />
     ),
+    meta: {
+      name: options.t("field.synonyms"),
+    },
     cell: ({ row }) => {
-      const meanings = row.original.meanings || [];
+      const meanings = (row.original as TVocabulary).meanings || [];
       const allSynonyms = meanings.flatMap((m) => m.synonyms || []);
       const uniqueSynonyms = [...new Set(allSynonyms)];
 
@@ -260,12 +290,18 @@ export const createColumns = (
     enableSorting: false,
   },
   {
-    id: "antonyms",
+    id: COLUMN_KEYS.antonyms,
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Từ trái nghĩa" />
+      <DataTableColumnHeader
+        column={column}
+        title={options.t("field.antonyms")}
+      />
     ),
+    meta: {
+      name: options.t("field.antonyms"),
+    },
     cell: ({ row }) => {
-      const meanings = row.original.meanings || [];
+      const meanings = (row.original as TVocabulary).meanings || [];
       const allAntonyms = meanings.flatMap((m) => m.antonyms || []);
       const uniqueAntonyms = [...new Set(allAntonyms)];
 
@@ -282,12 +318,18 @@ export const createColumns = (
     enableSorting: false,
   },
   {
-    accessorKey: "imageUrl",
+    accessorKey: COLUMN_KEYS.imageUrl,
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Ảnh" />
+      <DataTableColumnHeader
+        column={column}
+        title={options.t("field.image")}
+      />
     ),
+    meta: {
+      name: options.t("field.image"),
+    },
     cell: ({ row }) => {
-      const imageUrl = row.getValue("imageUrl") as string;
+      const imageUrl = row.getValue(COLUMN_KEYS.imageUrl) as string;
       if (!imageUrl) {
         return <span className="text-muted-foreground">-</span>;
       }
@@ -295,7 +337,7 @@ export const createColumns = (
         <div className="flex items-center">
           <Image
             src={imageUrl}
-            alt="Ảnh từ vựng"
+            alt="Image"
             width={50}
             height={50}
             className="w-[50px] h-[50px] object-contain rounded"
@@ -305,7 +347,7 @@ export const createColumns = (
     },
   },
   {
-    id: "actions",
+    id: COLUMN_KEYS.actions,
     cell: ({ row }) => (
       <DataTableRowActions
         row={row}
@@ -319,5 +361,3 @@ export const createColumns = (
     ),
   },
 ];
-
-export const columns = createColumns();
