@@ -52,7 +52,7 @@ export const getVocabularySchema = (t: (key: string, params?: Record<string, any
     topicId: z.string().min(1, t("field.topic_required")),
     meanings: z
       .array(getMeaningSchema(t))
-      .min(1, t("field.meaning_min", { value: 1 })),
+      .min(1, t("field.meaning_min", { min: 1 })),
   });
 
 export type DefinitionFormValues = z.infer<

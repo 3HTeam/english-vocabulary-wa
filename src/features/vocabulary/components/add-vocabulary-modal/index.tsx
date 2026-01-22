@@ -31,6 +31,7 @@ import { useVocabularyStore } from "@/stores";
 import { useTranslations } from "@/hooks";
 import { ROUTE_PATH } from "@/constants/routes";
 import { EMPTY, MODES } from "@/constants/common";
+import { getDictionaryApiUrl, getUnsplashPhotoUrl } from "@/utils/api";
 import { type VocabularyFormValues } from "../../schemas";
 
 export const AddVocabularyModal = () => {
@@ -58,14 +59,8 @@ export const AddVocabularyModal = () => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       const [dictionaryResponse, imageResponse] = await Promise.all([
-        fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${values.word}`),
-        fetch(
-          `https://api.unsplash.com/search/photos?query=${encodeURIComponent(
-            values.word,
-          )}&per_page=1&client_id=${
-            process.env.NEXT_PUBLIC_ACCESS_KEY_UNSPLASH
-          }`,
-        ),
+        fetch(getDictionaryApiUrl(values.word)),
+        fetch(getUnsplashPhotoUrl(values.word)),
       ]);
 
       if (!dictionaryResponse.ok) {
