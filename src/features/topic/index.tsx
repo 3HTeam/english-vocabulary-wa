@@ -31,12 +31,12 @@ export function TopicView() {
 
   const statuses = useMemo(() => getStatuses(t), [t]);
 
-  const [page, setPage] = useState(1);
-  const [search, setSearch] = useState(EMPTY.str);
+  const [page, setPage] = useState<number>(1);
+  const [search, setSearch] = useState<string>(EMPTY.str);
   const [statusFilter, setStatusFilter] = useState<string | undefined>(
     undefined,
   );
-  const [isTrashMode, setIsTrashMode] = useState(false);
+  const [isTrashMode, setIsTrashMode] = useState<boolean>(false);
   const [viewEditModalState, setViewEditModalState] = useState<{
     open: boolean;
     topicId: string | null;

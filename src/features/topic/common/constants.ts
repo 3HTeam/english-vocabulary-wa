@@ -11,7 +11,7 @@ export const COLUMN_KEYS = {
   createdAt: "createdAt",
   updatedAt: "updatedAt",
   actions: "actions",
-} as const;
+};
 
 export const topicDefaultValues: TopicFormValues = {
   name: EMPTY.str,

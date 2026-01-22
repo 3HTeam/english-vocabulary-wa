@@ -14,7 +14,7 @@ export const COLUMN_KEYS = {
   antonyms: "antonyms",
   imageUrl: "imageUrl",
   actions: "actions",
-} as const;
+};
 
 export const partOfSpeechVariant: Record<
   string,
