@@ -1,10 +1,11 @@
 "use client";
 
-import { useFieldArray, type Control } from "react-hook-form";
 import { Plus, Trash2 } from "lucide-react";
+import { useFieldArray, type Control } from "react-hook-form";
+
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   FormControl,
   FormField,
@@ -12,6 +13,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
@@ -19,11 +21,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { Badge } from "@/components/ui/badge";
-import { useTranslations } from "@/hooks";
+import { Textarea } from "@/components/ui/textarea";
 import { EMPTY } from "@/constants/common";
+import { useTranslations } from "@/hooks";
+
 import {
   definitionDefaultValues,
   type VocabularyFormValues,
@@ -100,8 +102,7 @@ export function MeaningFieldGroup({
             render={({ field }) => (
               <FormItem>
                 <FormLabel>
-                  {t("field.part_of_speech")}{" "}
-                  {t("common.form.required")}
+                  {t("field.part_of_speech")} {t("common.form.required")}
                 </FormLabel>
                 <Select
                   onValueChange={field.onChange}
@@ -111,9 +112,7 @@ export function MeaningFieldGroup({
                   <FormControl>
                     <SelectTrigger className="cursor-pointer">
                       <SelectValue
-                        placeholder={t(
-                          "field.part_of_speech_placeholder",
-                        )}
+                        placeholder={t("field.part_of_speech_placeholder")}
                       />
                     </SelectTrigger>
                   </FormControl>
@@ -240,9 +239,7 @@ export function MeaningFieldGroup({
                         </FormLabel>
                         <FormControl>
                           <Textarea
-                            placeholder={t(
-                              "field.definition_placeholder",
-                            )}
+                            placeholder={t("field.definition_placeholder")}
                             className="resize-none min-h-[60px]"
                             disabled={isReadOnly}
                             {...field}
@@ -264,9 +261,7 @@ export function MeaningFieldGroup({
                         </FormLabel>
                         <FormControl>
                           <Textarea
-                            placeholder={t(
-                              "field.translation_placeholder",
-                            )}
+                            placeholder={t("field.translation_placeholder")}
                             className="resize-none min-h-[60px]"
                             disabled={isReadOnly}
                             {...field}
@@ -287,9 +282,7 @@ export function MeaningFieldGroup({
                         </FormLabel>
                         <FormControl>
                           <Textarea
-                            placeholder={t(
-                              "field.example_placeholder",
-                            )}
+                            placeholder={t("field.example_placeholder")}
                             className="resize-none min-h-[60px]"
                             value={field.value || EMPTY.str}
                             onChange={field.onChange}

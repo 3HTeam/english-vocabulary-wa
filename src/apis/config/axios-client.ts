@@ -1,14 +1,14 @@
 import axios, { type AxiosError, type InternalAxiosRequestConfig } from "axios";
 
-import { useAuthStore } from "@/stores";
-import { type ApiResponse } from "@/types/api";
-import { type TAuthSession } from "@/types/features";
 import {
   AXIOS_CLIENT_TIMEOUT,
   AXIOS_CONTENT_TYPE,
   AXIOS_REFRESH_TIMEOUT,
 } from "@/constants/api";
 import { EMPTY } from "@/constants/common";
+import { useAuthStore } from "@/stores";
+import { type ApiResponse } from "@/types/api";
+import { type TAuthSession } from "@/types/features";
 
 import { AUTH_ENDPOINTS } from "./end-point";
 

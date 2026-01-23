@@ -1,11 +1,14 @@
 "use client";
 
 import { useEffect, useMemo } from "react";
-import { Pencil, Loader2 } from "lucide-react";
-import { useForm, type SubmitHandler } from "react-hook-form";
+
 import { zodResolver } from "@hookform/resolvers/zod";
-import { toast } from "sonner";
 import { AxiosError } from "axios";
+import { Loader2, Pencil } from "lucide-react";
+import { useForm, type SubmitHandler } from "react-hook-form";
+import { toast } from "sonner";
+
+import { useGetTopicByIdQuery, useUpdateTopicMutation } from "@/apis/queries";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -16,13 +19,13 @@ import {
 } from "@/components/ui/dialog";
 import { Form } from "@/components/ui/form";
 import { LoadingSpinner } from "@/components/ui/loading-spinner";
-import { useTranslations } from "@/hooks";
-import { useGetTopicByIdQuery, useUpdateTopicMutation } from "@/apis/queries";
-import { ApiResponse } from "@/types/api";
 import { EMPTY, MODES } from "@/constants/common";
+import { useTranslations } from "@/hooks";
+import { ApiResponse } from "@/types/api";
+
+import { topicDefaultValues } from "../../common";
 import { getTopicSchema, type TopicFormValues } from "../../schemas";
 import { TopicForm } from "../topic-form";
-import { topicDefaultValues } from "../../common";
 
 interface ViewEditTopicModalProps {
   topicId: string | null;

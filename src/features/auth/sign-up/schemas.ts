@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { z } from "zod";
+
 import { getSignInSchema } from "../sign-in";
 
 export const getSignUpSchema = (t: (key: string, options?: any) => string) =>

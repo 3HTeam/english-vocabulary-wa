@@ -1,13 +1,16 @@
-import type { ColumnDef } from "@tanstack/react-table";
 import Image from "next/image";
-import { Badge } from "@/components/ui/badge";
-import { Checkbox } from "@/components/ui/checkbox";
+
+import type { ColumnDef } from "@tanstack/react-table";
+
 import {
   DataTableColumnHeader,
   DataTableRowActions,
 } from "@/components/shared/data-table";
-import { formatDate } from "@/utils/date";
+import { Badge } from "@/components/ui/badge";
+import { Checkbox } from "@/components/ui/checkbox";
 import { DATE_FORMATS } from "@/constants/common";
+import { formatDate } from "@/utils/date";
+
 import { COLUMN_KEYS } from ".";
 import { type TopicFormValues } from "../schemas";
 

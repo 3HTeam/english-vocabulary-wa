@@ -1,15 +1,15 @@
 import { axiosClient, VOCABULARY_ENDPOINTS } from "@/apis/config";
-import {
-  TVocabularyResponse,
-  TVocabularyPayload,
-  TVocabularyByIdResponse,
-  TCreateVocabularyResponse,
-  TUpdateVocabularyResponse,
-  TDeleteVocabularyResponse,
-  TRestoreVocabularyResponse,
-  TForceDeleteVocabularyResponse,
-} from "@/types/features";
 import { VocabularyParams } from "@/types/api";
+import {
+  TCreateVocabularyResponse,
+  TDeleteVocabularyResponse,
+  TForceDeleteVocabularyResponse,
+  TRestoreVocabularyResponse,
+  TUpdateVocabularyResponse,
+  TVocabularyByIdResponse,
+  TVocabularyPayload,
+  TVocabularyResponse,
+} from "@/types/features";
 
 export async function getVocabulary(
   params?: VocabularyParams,

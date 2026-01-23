@@ -1,13 +1,15 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { useState, useMemo } from "react";
+import { useMemo, useState } from "react";
+
 import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
+
 import { zodResolver } from "@hookform/resolvers/zod";
-import { toast } from "sonner";
 import { Loader2, Plus, Search } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { z } from "zod";
+
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -27,11 +29,12 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useVocabularyStore } from "@/stores";
-import { useTranslations } from "@/hooks";
-import { ROUTE_PATH } from "@/constants/routes";
 import { EMPTY, MODES } from "@/constants/common";
+import { ROUTE_PATH } from "@/constants/routes";
+import { useTranslations } from "@/hooks";
+import { useVocabularyStore } from "@/stores";
 import { getDictionaryApiUrl, getUnsplashPhotoUrl } from "@/utils/api";
+
 import { type VocabularyFormValues } from "../../schemas";
 
 export const AddVocabularyModal = () => {
@@ -118,7 +121,9 @@ export const AddVocabularyModal = () => {
       router.push(`${ROUTE_PATH.admin.vocabularies}/${MODES.add}`);
     } catch (error) {
       toast.error(
-        error instanceof Error ? error.message : t("vocabulary.vocabulary_not_found"),
+        error instanceof Error
+          ? error.message
+          : t("vocabulary.vocabulary_not_found"),
       );
     }
   };

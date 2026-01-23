@@ -1,9 +1,10 @@
 "use client";
 
 import { useParams } from "next/navigation";
+
+import { MobileViewPlaceholder } from "@/components/shared/mobile-view-placeholder";
 import { EditVocabularyView } from "@/features/vocabulary/components";
 import { useTranslations } from "@/hooks";
-import { MobileViewPlaceholder } from "@/components/shared/mobile-view-placeholder";
 
 export default function EditVocabularyPage() {
   const t = useTranslations();

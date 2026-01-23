@@ -68,11 +68,16 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@ianvs/prettier-plugin-sort-imports": "^4.7.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.4.7",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-prettier": "^5.5.5",
+    "prettier": "^3.8.1",
     "tailwindcss": "^4.1.11",
     "tw-animate-css": "^1.3.6",
     "typescript": "^5"

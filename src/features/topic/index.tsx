@@ -1,24 +1,27 @@
 "use client";
 
-import { useState, useMemo } from "react";
-import { toast } from "sonner";
-import { Trash2, ArrowLeft } from "lucide-react";
+import { useMemo, useState } from "react";
+
 import { AxiosError } from "axios";
-import { DataTable } from "@/components/shared/data-table";
+import { ArrowLeft, Trash2 } from "lucide-react";
+import { toast } from "sonner";
+
 import {
   useDeleteTopicMutation,
+  useForceDeleteTopicMutation,
   useGetTopicQuery,
   useRestoreTopicMutation,
-  useForceDeleteTopicMutation,
 } from "@/apis/queries";
+import { DataTable } from "@/components/shared/data-table";
 import { DialogDelete } from "@/components/shared/dialog";
 import { Button } from "@/components/ui/button";
+import { EMPTY, MODES } from "@/constants/common";
+import { useTranslations } from "@/hooks";
 import { ApiResponse } from "@/types/api";
 import { TDeleteTopicResponse } from "@/types/features/topic";
-import { useTranslations } from "@/hooks";
-import { EMPTY, MODES } from "@/constants/common";
+
+import { COLUMN_KEYS, createColumns, getStatuses } from "./common";
 import { AddTopicModal, ViewEditTopicModal } from "./components";
-import { getStatuses, createColumns, COLUMN_KEYS } from "./common";
 
 export function TopicView() {
   const t = useTranslations();
