@@ -1,16 +1,17 @@
 "use client";
 
 import { useMemo, type ComponentProps } from "react";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { AxiosError } from "axios";
-import { toast } from "sonner";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 import { useSignUpMutation } from "@/apis/queries";
 import { LanguageSwitcher } from "@/components/shared/language-switcher";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Form,
   FormControl,
@@ -19,15 +20,16 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Checkbox } from "@/components/ui/checkbox";
+import { Input } from "@/components/ui/input";
+import { APP_NAME, EMPTY } from "@/constants/common";
 import { ROUTE_PATH } from "@/constants/routes";
+import { AuthHeader, SocialAuth } from "@/features/auth/components";
 import { useTranslations } from "@/hooks";
 import { Link, useRouter } from "@/i18n/routing";
-import { cn } from "@/utils/shadcn";
 import { useAuthStore } from "@/stores";
 import { type ApiResponse } from "@/types/api";
-import { AuthHeader, SocialAuth } from "@/features/auth/components";
-import { APP_NAME, EMPTY } from "@/constants/common";
+import { cn } from "@/utils/shadcn";
+
 import { getSignUpSchema, type SignUpFormValues } from "./schemas";
 
 export function SignUp({ className, ...props }: ComponentProps<"div">) {

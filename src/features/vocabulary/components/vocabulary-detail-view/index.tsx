@@ -2,17 +2,16 @@
 
 import { useGetVocabularyByIdQuery } from "@/apis/queries";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useTranslations } from "@/hooks";
 import { MODES } from "@/constants/common";
+import { useTranslations } from "@/hooks";
+
 import { VocabularyForm } from "..";
 
 interface VocabularyDetailViewProps {
   id: string;
 }
 
-export function VocabularyDetailView({
-  id,
-}: VocabularyDetailViewProps) {
+export function VocabularyDetailView({ id }: VocabularyDetailViewProps) {
   const t = useTranslations();
   const { data, isLoading, error } = useGetVocabularyByIdQuery(id);
 

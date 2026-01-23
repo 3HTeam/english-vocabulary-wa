@@ -3,8 +3,8 @@
 import Image from "next/image";
 
 import { Logo } from "@/assets/images";
-import { Link } from "@/i18n/routing";
 import { ROUTE_PATH } from "@/constants/routes";
+import { Link } from "@/i18n/routing";
 
 interface AuthHeaderProps {
   title: string;
@@ -12,7 +12,6 @@ interface AuthHeaderProps {
 }
 
 export function AuthHeader({ title, description }: AuthHeaderProps) {
-
   return (
     <>
       <div className="flex justify-center">

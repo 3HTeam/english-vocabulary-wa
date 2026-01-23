@@ -1,8 +1,8 @@
 "use client";
 
+import { MobileViewPlaceholder } from "@/components/shared/mobile-view-placeholder";
 import { TopicView } from "@/features/topic";
 import { useTranslations } from "@/hooks";
-import { MobileViewPlaceholder } from "@/components/shared/mobile-view-placeholder";
 
 export default function TopicPage() {
   const t = useTranslations();

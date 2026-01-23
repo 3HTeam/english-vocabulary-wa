@@ -1,15 +1,15 @@
 import { axiosClient, TOPIC_ENDPOINTS } from "@/apis/config";
+import { Params } from "@/types/api";
 import {
-  TTopicPayload,
   TCreateTopicResponse,
+  TDeleteTopicResponse,
+  TForceDeleteTopicResponse,
+  TRestoreTopicResponse,
   TTopicByIdResponse,
+  TTopicPayload,
   TTopicResponse,
   TUpdateTopicResponse,
-  TDeleteTopicResponse,
-  TRestoreTopicResponse,
-  TForceDeleteTopicResponse,
 } from "@/types/features";
-import { Params } from "@/types/api";
 
 export async function getTopic(params?: Params): Promise<TTopicResponse> {
   try {

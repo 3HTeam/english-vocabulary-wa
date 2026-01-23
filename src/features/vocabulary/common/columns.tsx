@@ -1,7 +1,9 @@
+import { useRef } from "react";
+
+import Image from "next/image";
+
 import type { ColumnDef } from "@tanstack/react-table";
 import { Volume2 } from "lucide-react";
-import Image from "next/image";
-import { useRef } from "react";
 
 import {
   DataTableColumnHeader,
@@ -11,8 +13,9 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { type TVocabulary } from "@/types/features";
-import { type VocabularyFormValues } from "../schemas";
+
 import { COLUMN_KEYS, partOfSpeechVariant } from ".";
+import { type VocabularyFormValues } from "../schemas";
 
 interface CreateColumnsOptions {
   t: (key: string, options?: any) => string;
@@ -23,8 +26,6 @@ interface CreateColumnsOptions {
   onForceDelete?: (id: string) => void;
   getId?: (data: VocabularyFormValues) => string;
 }
-
-
 
 function AudioCell({ audioUrl, label }: { audioUrl: string; label: string }) {
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -90,10 +91,7 @@ export const createColumns = (
   {
     accessorKey: COLUMN_KEYS.word,
     header: ({ column }) => (
-      <DataTableColumnHeader
-        column={column}
-        title={options.t("field.word")}
-      />
+      <DataTableColumnHeader column={column} title={options.t("field.word")} />
     ),
     meta: {
       name: options.t("field.word"),
@@ -151,10 +149,7 @@ export const createColumns = (
   {
     id: COLUMN_KEYS.topic,
     header: ({ column }) => (
-      <DataTableColumnHeader
-        column={column}
-        title={options.t("field.topic")}
-      />
+      <DataTableColumnHeader column={column} title={options.t("field.topic")} />
     ),
     meta: {
       name: options.t("field.topic"),
@@ -200,10 +195,7 @@ export const createColumns = (
   {
     id: COLUMN_KEYS.audio,
     header: ({ column }) => (
-      <DataTableColumnHeader
-        column={column}
-        title={options.t("field.audio")}
-      />
+      <DataTableColumnHeader column={column} title={options.t("field.audio")} />
     ),
     meta: {
       name: options.t("field.audio"),
@@ -320,10 +312,7 @@ export const createColumns = (
   {
     accessorKey: COLUMN_KEYS.imageUrl,
     header: ({ column }) => (
-      <DataTableColumnHeader
-        column={column}
-        title={options.t("field.image")}
-      />
+      <DataTableColumnHeader column={column} title={options.t("field.image")} />
     ),
     meta: {
       name: options.t("field.image"),

@@ -1,11 +1,13 @@
 "use client";
 
 import { useMemo, type ComponentProps } from "react";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { AxiosError } from "axios";
 import { REGEXP_ONLY_DIGITS } from "input-otp";
-import { useForm, Controller } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
+
 import { useVerifyEmailMutation } from "@/apis/queries";
 import { LanguageSwitcher } from "@/components/shared/language-switcher";
 import { Button } from "@/components/ui/button";
@@ -25,14 +27,15 @@ import {
   InputOTPSeparator,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
+import { EMPTY } from "@/constants/common";
 import { ROUTE_PATH } from "@/constants/routes";
+import { AuthHeader } from "@/features/auth/components";
 import { useTranslations } from "@/hooks";
 import { Link, useRouter } from "@/i18n/routing";
-import { cn } from "@/utils/shadcn";
 import { useAuthStore } from "@/stores";
 import { type ApiResponse } from "@/types/api";
-import { AuthHeader } from "@/features/auth/components";
-import { EMPTY } from "@/constants/common";
+import { cn } from "@/utils/shadcn";
+
 import { verifyEmailSchema, type VerifyEmailFormValues } from "./schemas";
 
 export function VerifyEmail({ className, ...props }: ComponentProps<"div">) {

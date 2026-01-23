@@ -1,8 +1,8 @@
 "use client";
 
+import { MobileViewPlaceholder } from "@/components/shared/mobile-view-placeholder";
 import { VocabularyView } from "@/features/vocabulary";
 import { useTranslations } from "@/hooks";
-import { MobileViewPlaceholder } from "@/components/shared/mobile-view-placeholder";
 
 export default function VocabularyPage() {
   const t = useTranslations();

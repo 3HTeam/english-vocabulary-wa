@@ -1,12 +1,12 @@
 "use client";
 
-import { UseFormReturn } from "react-hook-form";
+import Image from "next/image";
+
 import { X } from "lucide-react";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Switch } from "@/components/ui/switch";
-import { Button } from "@/components/ui/button";
+import { UseFormReturn } from "react-hook-form";
+
 import { FileUpload } from "@/components/shared/file-upload";
+import { Button } from "@/components/ui/button";
 import {
   FormControl,
   FormField,
@@ -14,10 +14,13 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { useTranslations } from "@/hooks";
-import { type TopicFormValues } from "../../schemas";
-import Image from "next/image";
+import { Input } from "@/components/ui/input";
+import { Switch } from "@/components/ui/switch";
+import { Textarea } from "@/components/ui/textarea";
 import { EMPTY, MODES } from "@/constants/common";
+import { useTranslations } from "@/hooks";
+
+import { type TopicFormValues } from "../../schemas";
 
 export type TopicFormMode =
   | typeof MODES.add

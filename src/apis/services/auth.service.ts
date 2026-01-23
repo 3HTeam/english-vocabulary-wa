@@ -1,15 +1,15 @@
-import { axiosClient, AUTH_ENDPOINTS } from "@/apis/config";
+import { AUTH_ENDPOINTS, axiosClient } from "@/apis/config";
 import {
-  type TSignInPayload,
-  type TSignInResponse,
+  IProfileResponse,
+  type ISignUpResponse,
   type TRefreshTokenPayload,
   type TRefreshTokenResponse,
+  type TSignInPayload,
+  type TSignInResponse,
   type TSignOutResponse,
   type TSignUpPayload,
-  type ISignUpResponse,
   type TVerifyEmailPayload,
   type TVerifyEmailResponse,
-  IProfileResponse,
 } from "@/types/features";
 
 export async function signUp(

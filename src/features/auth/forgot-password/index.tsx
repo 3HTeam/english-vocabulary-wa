@@ -1,8 +1,10 @@
 "use client";
 
 import { useMemo, type ComponentProps } from "react";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+
 import { LanguageSwitcher } from "@/components/shared/language-switcher";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -15,11 +17,12 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { ROUTE_PATH } from "@/constants/routes";
 import { EMPTY } from "@/constants/common";
+import { ROUTE_PATH } from "@/constants/routes";
 import { useTranslations } from "@/hooks";
 import { Link } from "@/i18n/routing";
 import { cn } from "@/utils/shadcn";
+
 import { AuthHeader } from "../components";
 import { forgotPasswordSchema, type ForgotPasswordFormValues } from "./schemas";
 

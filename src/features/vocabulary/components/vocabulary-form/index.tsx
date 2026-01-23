@@ -1,24 +1,27 @@
 "use client";
 
+import { useEffect, useMemo } from "react";
+
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useForm, useFieldArray, type SubmitHandler } from "react-hook-form";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
-  Plus,
   ArrowLeft,
   Book,
-  Volume2,
+  Edit,
   Image as ImageIcon,
   Languages,
-  Save,
-  X,
-  Edit,
   Loader2,
+  Plus,
+  Save,
+  Volume2,
+  X,
 } from "lucide-react";
-import { useEffect, useMemo } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { useFieldArray, useForm, type SubmitHandler } from "react-hook-form";
+
+import { useGetTopicQuery } from "@/apis/queries";
+import { FileUpload } from "@/components/shared/file-upload";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -27,6 +30,8 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Form,
   FormControl,
@@ -35,6 +40,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
@@ -42,15 +48,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
-import { FileUpload } from "@/components/shared/file-upload";
-import { ROUTE_PATH } from "@/constants/routes";
 import { EMPTY, MODES } from "@/constants/common";
-import { useGetTopicQuery } from "@/apis/queries";
+import { ROUTE_PATH } from "@/constants/routes";
+import { useTranslations } from "@/hooks";
 import { useVocabularyStore } from "@/stores";
 import { TVocabulary } from "@/types/features/vocabulary";
-import { useTranslations } from "@/hooks";
+
 import { MeaningFieldGroup } from "..";
 import {
   getVocabularySchema,
@@ -84,7 +88,10 @@ export function VocabularyForm({
 
   const isReadOnly = mode === MODES.view;
 
-  const getModeConfig = () => ({
+  const modeConfig: Record<
+    VocabularyFormMode,
+    { title: string; breadcrumb: string; submitLabel: string }
+  > = {
     add: {
       title: t("vocabulary.add_new_vocabulary"),
       breadcrumb: t("vocabulary.add_new_vocabulary"),
@@ -100,9 +107,9 @@ export function VocabularyForm({
       breadcrumb: t("vocabulary.edit_vocabulary"),
       submitLabel: t("common.actions.update"),
     },
-  });
+  };
 
-  const config = getModeConfig()[mode];
+  const config = modeConfig[mode];
 
   const getDefaultValues = (): VocabularyFormValues => {
     if (initialData) {
@@ -336,14 +343,11 @@ export function VocabularyForm({
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>
-                        {t("field.phonetic")}{" "}
-                        {t("common.form.required")}
+                        {t("field.phonetic")} {t("common.form.required")}
                       </FormLabel>
                       <FormControl>
                         <Input
-                          placeholder={t(
-                            "field.phonetic_placeholder",
-                          )}
+                          placeholder={t("field.phonetic_placeholder")}
                           disabled={isReadOnly}
                           {...field}
                         />
@@ -361,14 +365,11 @@ export function VocabularyForm({
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>
-                        {t("field.translation")}{" "}
-                        {t("common.form.required")}
+                        {t("field.translation")} {t("common.form.required")}
                       </FormLabel>
                       <FormControl>
                         <Input
-                          placeholder={t(
-                            "field.translation_placeholder",
-                          )}
+                          placeholder={t("field.translation_placeholder")}
                           disabled={isReadOnly}
                           {...field}
                         />
@@ -394,9 +395,7 @@ export function VocabularyForm({
                         <FormControl>
                           <SelectTrigger className="w-[50%]">
                             <SelectValue
-                              placeholder={t(
-                                "field.topic_placeholder",
-                              )}
+                              placeholder={t("field.topic_placeholder")}
                             />
                           </SelectTrigger>
                         </FormControl>

@@ -1,4 +1,5 @@
 import { type VariantProps } from "class-variance-authority";
+
 import { badgeVariants } from "@/components/ui/badge";
 
 export const COLUMN_KEYS = {

@@ -1,16 +1,19 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useMemo, useState } from "react";
+
 import { useRouter } from "next/navigation";
-import { toast } from "sonner";
-import { Trash2, ArrowLeft } from "lucide-react";
+
 import { AxiosError } from "axios";
+import { ArrowLeft, Trash2 } from "lucide-react";
+import { toast } from "sonner";
+
 import {
-  useGetVocabularyQuery,
-  useGetTopicQuery,
   useDeleteVocabularyMutation,
-  useRestoreVocabularyMutation,
   useForceDeleteVocabularyMutation,
+  useGetTopicQuery,
+  useGetVocabularyQuery,
+  useRestoreVocabularyMutation,
 } from "@/apis/queries";
 import {
   DataTable,
@@ -18,10 +21,11 @@ import {
 } from "@/components/shared/data-table";
 import { DialogDelete } from "@/components/shared/dialog";
 import { Button } from "@/components/ui/button";
-import { ApiResponse } from "@/types/api";
-import { useTranslations } from "@/hooks";
-import { ROUTE_PATH } from "@/constants/routes";
 import { EMPTY, MODES } from "@/constants/common";
+import { ROUTE_PATH } from "@/constants/routes";
+import { useTranslations } from "@/hooks";
+import { ApiResponse } from "@/types/api";
+
 import { createColumns, getStatuses } from "./common";
 import { AddVocabularyModal } from "./components";
 
@@ -89,17 +93,13 @@ export function VocabularyView() {
   const handleRestore = (id: string) => {
     restoreVocabulary(id, {
       onSuccess: (data) => {
-        toast.success(
-          data?.message ||
-            t("common.toast.restore_success"),
-        );
+        toast.success(data?.message || t("common.toast.restore_success"));
       },
       onError: (error) => {
         const axiosError = error as AxiosError<ApiResponse<void>>;
         const message = axiosError.response?.data?.message;
         const fallbackMessage =
-          axiosError.message ||
-          t("common.toast.restore_error");
+          axiosError.message || t("common.toast.restore_error");
         toast.error(message || fallbackMessage);
       },
     });
@@ -125,16 +125,14 @@ export function VocabularyView() {
             isForceDelete: false,
           });
           toast.success(
-            data?.message ||
-              t("common.toast.force_delete_success"),
+            data?.message || t("common.toast.force_delete_success"),
           );
         },
         onError: (error) => {
           const axiosError = error as AxiosError<ApiResponse<void>>;
           const message = axiosError.response?.data?.message;
           const fallbackMessage =
-            axiosError.message ||
-            t("common.toast.force_delete_error");
+            axiosError.message || t("common.toast.force_delete_error");
           toast.error(message || fallbackMessage);
         },
       });
@@ -146,17 +144,13 @@ export function VocabularyView() {
             vocabularyId: null,
             isForceDelete: false,
           });
-          toast.success(
-            data?.message ||
-              t("common.toast.delete_success"),
-          );
+          toast.success(data?.message || t("common.toast.delete_success"));
         },
         onError: (error) => {
           const axiosError = error as AxiosError<ApiResponse<void>>;
           const message = axiosError.response?.data?.message;
           const fallbackMessage =
-            axiosError.message ||
-            t("common.toast.delete_error");
+            axiosError.message || t("common.toast.delete_error");
           toast.error(message || fallbackMessage);
         },
       });
