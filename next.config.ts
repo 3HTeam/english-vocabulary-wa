@@ -40,13 +40,8 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: ""
-      },
-      {
-        protocol: "https",
         hostname: "res.cloudinary.com",
       },
-      // Thêm pattern cho Google Avatar nếu cần (thường hay dùng cho login)
       {
         protocol: "https",
         hostname: "lh3.googleusercontent.com",
@@ -72,7 +67,6 @@ const nextConfig: NextConfig = {
             key: "Referrer-Policy",
             value: "origin-when-cross-origin",
           },
-          // Thêm bảo mật XSS
           {
             key: "X-XSS-Protection",
             value: "1; mode=block",
