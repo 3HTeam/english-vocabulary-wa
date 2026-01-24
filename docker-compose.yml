@@ -4,21 +4,22 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        APP_NAME: Lingo
-        NEXT_PUBLIC_API_URL: https://api-english.3hteam.io.vn
-        NEXT_PUBLIC_API_SUBFIX: api
-        NEXT_PUBLIC_ACCESS_KEY_UNSPLASH: 8tGDG-ElyILkSyj5sNac5RkI8zIwETHlkDmJD1bNJ6k
-        NEXT_PUBLIC_DICTIONARY_API_BASE_URL: https://api.dictionaryapi.dev/api/v2
-        NEXT_PUBLIC_UNSPLASH_API_BASE_URL: https://api.unsplash.com
-    
+        APP_NAME: ${APP_NAME}
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL}
+        NEXT_PUBLIC_API_SUBFIX: ${NEXT_PUBLIC_API_SUBFIX}
+        NEXT_PUBLIC_ACCESS_KEY_UNSPLASH: ${NEXT_PUBLIC_ACCESS_KEY_UNSPLASH}
+        NEXT_PUBLIC_DICTIONARY_API_BASE_URL: ${NEXT_PUBLIC_DICTIONARY_API_BASE_URL}
+        NEXT_PUBLIC_UNSPLASH_API_BASE_URL: ${NEXT_PUBLIC_UNSPLASH_API_BASE_URL}
+        NEXT_IGNORE_TS_ERRORS: ${NEXT_IGNORE_TS_ERRORS}
+
     container_name: english-frontend
     restart: always
     ports:
       - "3000:3000"
-    
+
     environment:
       - NODE_ENV=production
-    
+
     networks:
       - app-network
 

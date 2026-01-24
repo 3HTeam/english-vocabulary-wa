@@ -1,44 +1,60 @@
 import type { NextConfig } from "next";
+
 import createNextIntlPlugin from "next-intl/plugin";
 
 const nextConfig: NextConfig = {
+  // Bắt buộc cho Docker deploy
   output: "standalone",
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  typescript: {
-    ignoreBuildErrors: true,
-  },
+
+  // eslint: {
+  //   ignoreDuringBuilds: true,
+  // },
+  // typescript: {
+  //   ignoreBuildErrors: true,
+  // },
+
   experimental: {
-    optimizePackageImports: ["lucide-react", "@radix-ui/react-icons"],
-    turbo: {
-      rules: {
-        "*.svg": {
-          loaders: ["@svgr/webpack"],
-          as: "*.js",
-        },
+    // Tối ưu load thư viện nặng
+    optimizePackageImports: ["lucide-react", "@radix-ui/react-icons", "lodash"],
+  },
+
+  turbopack: {
+    rules: {
+      "*.svg": {
+        loaders: ["@svgr/webpack"],
+        as: "*.js",
       },
     },
   },
 
-  // Image optimization
   images: {
-    domains: [
-      "ui.shadcn.com",
-      "images.unsplash.com",
-      "frlswpqpdswbmzwtiirr.supabase.co",
-      "res.cloudinary.com",
-    ],
     formats: ["image/webp", "image/avif"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "ui.shadcn.com",
+      },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
+      {
+        protocol: "https",
+        hostname: ""
+      },
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+      },
+      // Thêm pattern cho Google Avatar nếu cần (thường hay dùng cho login)
+      {
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com",
+      },
+    ],
   },
 
-  // Webpack configuration
-  webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
-    // Add custom webpack rules if needed
-    return config;
-  },
-
-  // Headers for better security and performance
+  // Headers bảo mật
   async headers() {
     return [
       {
@@ -56,12 +72,17 @@ const nextConfig: NextConfig = {
             key: "Referrer-Policy",
             value: "origin-when-cross-origin",
           },
+          // Thêm bảo mật XSS
+          {
+            key: "X-XSS-Protection",
+            value: "1; mode=block",
+          },
         ],
       },
     ];
   },
 
-  // Redirects for better SEO
+  // Redirects
   async redirects() {
     return [
       {
