@@ -1,34 +1,34 @@
 "use client";
 
-import {
-  LayoutPanelLeft,
-  LayoutDashboard,
-  Users,
-  LayoutDashboardIcon,
-  BookA,
-  Settings,
-} from "lucide-react";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
+
+
+
+import { Icon } from "@iconify/react";
+import { BookA, LayoutDashboard, LayoutDashboardIcon, LayoutPanelLeft, Settings, Users } from "lucide-react";
 import { get } from "radash";
+
+
 
 import { useProfileQuery } from "@/apis/queries";
 import { Logo } from "@/assets/images";
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarHeader,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-} from "@/components/ui/sidebar";
+import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useTranslations } from "@/hooks";
 import { EMPTY } from "@/constants/common";
 import { ROUTE_PATH } from "@/constants/routes";
+import { useTranslations } from "@/hooks";
+
+
 
 import { NavMain, NavUser } from "./components";
+
+
+const TopicIcon = () => <Icon icon="iconamoon:category" />;
+const VocabularyIcon = () => <Icon icon="tabler:vocabulary" />;
+const UserIcon = () => <Icon icon="tdesign:usergroup" />;
+const LevelIcon = () => <Icon icon="icon-park-outline:level" />;
+const SettingsIcon = () => <Icon icon="tdesign:setting-1" />;
 
 export const AppSidebar = ({
   ...props
@@ -65,7 +65,7 @@ export const AppSidebar = ({
         {
           title: t("topic.topics"),
           url: ROUTE_PATH.admin.topics,
-          icon: BookA,
+          icon: TopicIcon,
         },
       ],
     },
@@ -76,7 +76,7 @@ export const AppSidebar = ({
         {
           title: t("vocabulary.vocabularies"),
           url: ROUTE_PATH.admin.vocabularies,
-          icon: BookA,
+          icon: VocabularyIcon,
         },
       ],
     },
@@ -95,7 +95,12 @@ export const AppSidebar = ({
         {
           title: t("user.users"),
           url: ROUTE_PATH.admin.users,
-          icon: Users,
+          icon: UserIcon,
+        },
+        {
+          title: t("level.levels"),
+          url: ROUTE_PATH.admin.levels,
+          icon: LevelIcon,
         },
       ],
     },
@@ -105,7 +110,7 @@ export const AppSidebar = ({
         {
           title: t("config.settings"),
           url: ROUTE_PATH.admin.settings,
-          icon: Settings,
+          icon: SettingsIcon,
         },
       ],
     },

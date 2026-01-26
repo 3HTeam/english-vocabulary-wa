@@ -7,10 +7,10 @@ import { ArrowLeft, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 
 import {
-  useDeleteTopicMutation,
-  useForceDeleteTopicMutation,
-  useGetTopicQuery,
-  useRestoreTopicMutation,
+  useDeleteLevelMutation,
+  useForceDeleteLevelMutation,
+  useGetLevelQuery,
+  useRestoreLevelMutation,
 } from "@/apis/queries";
 import { DataTable } from "@/components/shared/data-table";
 import { DialogDelete } from "@/components/shared/dialog";
@@ -19,22 +19,22 @@ import { EMPTY, MODES } from "@/constants/common";
 import { useTranslations } from "@/hooks";
 import { ApiResponse } from "@/types/api";
 import {
-  TDeleteTopicResponse,
-  TForceDeleteTopicResponse,
-  TRestoreTopicResponse,
-} from "@/types/features/topic";
+  TDeleteLevelResponse,
+  TForceDeleteLevelResponse,
+  TRestoreLevelResponse,
+} from "@/types/features/level";
 
 import { COLUMN_KEYS, createColumns, getStatuses } from "./common";
-import { AddTopicModal, EditTopicModal, ViewTopicModal } from "./components";
+import { AddLevelModal, EditLevelModal, ViewLevelModal } from "./components";
 
-export function TopicView() {
+export function LevelView() {
   const t = useTranslations();
-  const { mutate: deleteTopic, isPending: isDeleting } =
-    useDeleteTopicMutation();
-  const { mutate: restoreTopic, isPending: isRestoring } =
-    useRestoreTopicMutation();
-  const { mutate: forceDeleteTopic, isPending: isForceDeleting } =
-    useForceDeleteTopicMutation();
+  const { mutate: deleteLevel, isPending: isDeleting } =
+    useDeleteLevelMutation();
+  const { mutate: restoreLevel, isPending: isRestoring } =
+    useRestoreLevelMutation();
+  const { mutate: forceDeleteLevel, isPending: isForceDeleting } =
+    useForceDeleteLevelMutation();
 
   const statuses = useMemo(() => getStatuses(t), [t]);
 
@@ -46,29 +46,29 @@ export function TopicView() {
   const [isTrashMode, setIsTrashMode] = useState<boolean>(false);
   const [viewModalState, setViewModalState] = useState<{
     open: boolean;
-    topicId: string | null;
+    levelId: string | null;
   }>({
     open: false,
-    topicId: null,
+    levelId: null,
   });
   const [editModalState, setEditModalState] = useState<{
     open: boolean;
-    topicId: string | null;
+    levelId: string | null;
   }>({
     open: false,
-    topicId: null,
+    levelId: null,
   });
   const [deleteModalState, setDeleteModalState] = useState<{
     open: boolean;
-    topicId: string | null;
+    levelId: string | null;
     isForceDelete: boolean;
   }>({
     open: false,
-    topicId: null,
+    levelId: null,
     isForceDelete: false,
   });
 
-  const { data: topics, isLoading } = useGetTopicQuery({
+  const { data: levels, isLoading } = useGetLevelQuery({
     page,
     search,
     status: statusFilter,
@@ -78,28 +78,28 @@ export function TopicView() {
   const handleView = (id: string) => {
     setViewModalState({
       open: true,
-      topicId: id,
+      levelId: id,
     });
   };
 
   const handleEdit = (id: string) => {
     setEditModalState({
       open: true,
-      topicId: id,
+      levelId: id,
     });
   };
 
   const handleDeleteClick = (id: string) => {
     setDeleteModalState({
       open: true,
-      topicId: id,
+      levelId: id,
       isForceDelete: false,
     });
   };
 
   const handleRestore = (id: string) => {
-    restoreTopic(id, {
-      onSuccess: (data: TRestoreTopicResponse) => {
+    restoreLevel(id, {
+      onSuccess: (data: TRestoreLevelResponse) => {
         toast.success(data?.message || t("common.toast.restore_success"));
       },
       onError: (error: Error) => {
@@ -115,20 +115,20 @@ export function TopicView() {
   const handleForceDeleteClick = (id: string) => {
     setDeleteModalState({
       open: true,
-      topicId: id,
+      levelId: id,
       isForceDelete: true,
     });
   };
 
   const handleDeleteConfirm = () => {
-    if (!deleteModalState.topicId) return;
+    if (!deleteModalState.levelId) return;
 
     if (deleteModalState.isForceDelete) {
-      forceDeleteTopic(deleteModalState.topicId, {
-        onSuccess: (data: TForceDeleteTopicResponse) => {
+      forceDeleteLevel(deleteModalState.levelId, {
+        onSuccess: (data: TForceDeleteLevelResponse) => {
           setDeleteModalState({
             open: false,
-            topicId: null,
+            levelId: null,
             isForceDelete: false,
           });
           toast.success(
@@ -144,18 +144,18 @@ export function TopicView() {
         },
       });
     } else {
-      deleteTopic(deleteModalState.topicId, {
-        onSuccess: (data: TDeleteTopicResponse) => {
+      deleteLevel(deleteModalState.levelId, {
+        onSuccess: (data: TDeleteLevelResponse) => {
           setDeleteModalState({
             open: false,
-            topicId: null,
+            levelId: null,
             isForceDelete: false,
           });
           toast.success(data?.message || t("common.toast.delete_success"));
         },
         onError: (error: Error) => {
           const axiosError = error as AxiosError<
-            ApiResponse<TDeleteTopicResponse>
+            ApiResponse<TDeleteLevelResponse>
           >;
           const message = axiosError.response?.data?.message;
           const fallbackMessage =
@@ -189,15 +189,15 @@ export function TopicView() {
 
   return (
     <>
-      <ViewTopicModal
-        topicId={viewModalState.topicId}
+      <ViewLevelModal
+        levelId={viewModalState.levelId}
         open={viewModalState.open}
         onOpenChange={(open: boolean) =>
           setViewModalState((prev) => ({ ...prev, open }))
         }
       />
-      <EditTopicModal
-        topicId={editModalState.topicId}
+      <EditLevelModal
+        levelId={editModalState.levelId}
         open={editModalState.open}
         onOpenChange={(open: boolean) =>
           setEditModalState((prev) => ({ ...prev, open }))
@@ -222,7 +222,7 @@ export function TopicView() {
         isLoading={isDeleting || isForceDeleting}
       />
       <DataTable
-        data={topics?.data?.topics || []}
+        data={levels?.data?.levels || []}
         columns={columns}
         addButton={
           isTrashMode ? (
@@ -248,14 +248,14 @@ export function TopicView() {
                   {t("common.trash.trash")}
                 </span>
               </Button>
-              <AddTopicModal />
+              <AddLevelModal />
             </div>
           )
         }
         toolbarProps={{
           placeholder: isTrashMode
             ? t("common.trash.search_placeholder")
-            : t("topic.search_placeholder"),
+            : t("level.search_placeholder"),
           searchColumn: COLUMN_KEYS.name,
           search,
           filters: isTrashMode
@@ -279,10 +279,10 @@ export function TopicView() {
           },
         }}
         paginationProps={{
-          page: topics?.data?.meta.page,
-          pageCount: topics?.data?.meta.pageCount,
-          limit: topics?.data?.meta.limit,
-          total: topics?.data?.meta.total,
+          page: levels?.data?.meta.page,
+          pageCount: levels?.data?.meta.pageCount,
+          limit: levels?.data?.meta.limit,
+          total: levels?.data?.meta.total,
           onPageChange: (newPage) => setPage(newPage),
         }}
       />

@@ -6,14 +6,14 @@ import {
   TForceDeleteVocabularyResponse,
   TRestoreVocabularyResponse,
   TUpdateVocabularyResponse,
+  TVocabulariesResponse,
   TVocabularyByIdResponse,
   TVocabularyPayload,
-  TVocabularyResponse,
 } from "@/types/features";
 
 export async function getVocabulary(
   params?: VocabularyParams,
-): Promise<TVocabularyResponse> {
+): Promise<TVocabulariesResponse> {
   try {
     const queryParams = new URLSearchParams();
     if (params?.page) {
@@ -31,7 +31,7 @@ export async function getVocabulary(
     if (params?.topicId) {
       queryParams.append("topicId", params.topicId);
     }
-    const res = await axiosClient.get<TVocabularyResponse>(
+    const res = await axiosClient.get<TVocabulariesResponse>(
       `${VOCABULARY_ENDPOINTS.base}?${queryParams.toString()}`,
     );
     return res.data;

@@ -1,4 +1,4 @@
-import { ApiResponse,TMeta } from "@/types/api";
+import { ApiResponse, TMeta } from "@/types/api";
 
 export type TTopic = {
   id: string;
@@ -12,7 +12,7 @@ export type TTopic = {
   updatedAt: string;
 };
 
-export type TTopicResponse = ApiResponse<{
+export type TTopicsResponse = ApiResponse<{
   topics: TTopic[];
   meta: TMeta;
 }>;

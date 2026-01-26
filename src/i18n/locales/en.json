@@ -102,6 +102,18 @@
 
     "agree_terms": "You must agree to the terms and privacy policy!",
 
+    "code": "Code",
+    "code_placeholder": "Enter code...",
+    "code_required": "Code is required!",
+
+    "order": "Order",
+    "order_placeholder": "Enter order...",
+    "order_required": "Order is required!",
+
+    "level_name": "Level Name",
+    "level_name_placeholder": "Enter level name...",
+    "level_name_required": "Level name is required!",
+
     "topic_name": "Topic Name",
     "topic_name_placeholder": "Enter topic name...",
     "topic_name_required": "Topic name is required!",
@@ -298,6 +310,18 @@
     "no_url_from_server": "No URL received from server",
     "upload_failed": "Upload failed",
     "file_rejected": "\"{fileName}\" was rejected"
+  },
+  "level": {
+    "level": "Level",
+    "level_management": "Level Management",
+    "levels": "Levels",
+    "search_placeholder": "Search levels...",
+    "add_new_level": "Add New Level",
+    "add_new_level_desc": "Create a new level. Fill in the information below.",
+    "edit_level": "Edit Level",
+    "edit_level_desc": "Edit level information. Fill in the information below.",
+    "level_details": "Level Details",
+    "level_details_desc": "View detailed information of the level."
   },
   "topic": {
     "topic": "Topic",
