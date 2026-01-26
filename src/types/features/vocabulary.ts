@@ -48,7 +48,7 @@ export type TVocabulary = {
   meanings: TVocabularyMeaning[];
 };
 
-export type TVocabularyResponse = ApiResponse<{
+export type TVocabulariesResponse = ApiResponse<{
   vocabularies: TVocabulary[];
   meta: TMeta;
 }>;

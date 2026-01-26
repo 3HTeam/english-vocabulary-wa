@@ -7,11 +7,11 @@ import {
   TRestoreTopicResponse,
   TTopicByIdResponse,
   TTopicPayload,
-  TTopicResponse,
+  TTopicsResponse,
   TUpdateTopicResponse,
 } from "@/types/features";
 
-export async function getTopic(params?: Params): Promise<TTopicResponse> {
+export async function getTopic(params?: Params): Promise<TTopicsResponse> {
   try {
     const queryParams = new URLSearchParams();
     if (params?.page) {
@@ -26,7 +26,7 @@ export async function getTopic(params?: Params): Promise<TTopicResponse> {
     if (params?.isDeleted !== undefined) {
       queryParams.append("isDeleted", params.isDeleted.toString());
     }
-    const res = await axiosClient.get<TTopicResponse>(
+    const res = await axiosClient.get<TTopicsResponse>(
       `${TOPIC_ENDPOINTS.base}?${queryParams.toString()}`,
     );
     return res.data;

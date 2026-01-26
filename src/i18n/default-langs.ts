@@ -104,6 +104,18 @@ export const defaultMessages = {
 
     agree_terms: "Bạn phải đồng ý với điều khoản và chính sách bảo mật!",
 
+    code: "Mã",
+    code_placeholder: "Nhập mã...",
+    code_required: "Mã bắt buộc!",
+
+    order: "Thứ tự",
+    order_placeholder: "Nhập thứ tự...",
+    order_required: "Thứ tự bắt buộc!",
+
+    level_name: "Tên cấp độ",
+    level_name_placeholder: "Nhập tên cấp độ...",
+    level_name_required: "Tên cấp độ bắt buộc!",
+
     topic_name: "Tên chủ đề",
     topic_name_placeholder: "Nhập tên chủ đề...",
     topic_name_required: "Tên chủ đề bắt buộc!",
@@ -303,6 +315,18 @@ export const defaultMessages = {
     no_url_from_server: "Không nhận được URL từ server",
     upload_failed: "Upload thất bại",
     file_rejected: '"{fileName}" đã bị từ chối',
+  },
+  level: {
+    level: "Cấp độ",
+    level_management: "Quản lý cấp độ",
+    levels: "Cấp độ",
+    search_placeholder: "Tìm kiếm cấp độ...",
+    add_new_level: "Thêm cấp độ mới",
+    add_new_level_desc: "Tạo cấp độ mới. Điền thông tin bên dưới.",
+    edit_level: "Sửa cấp độ",
+    edit_level_desc: "Chỉnh sửa thông tin cấp độ. Điền thông tin bên dưới.",
+    level_details: "Chi tiết cấp độ",
+    level_details_desc: "Xem thông tin chi tiết của cấp độ.",
   },
   topic: {
     topic: "Chủ đề",

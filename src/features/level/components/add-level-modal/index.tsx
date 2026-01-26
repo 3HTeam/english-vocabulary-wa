@@ -8,7 +8,7 @@ import { Loader2, Plus } from "lucide-react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { toast } from "sonner";
 
-import { useCreateTopicMutation } from "@/apis/queries";
+import { useCreateLevelMutation } from "@/apis/queries";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -22,61 +22,48 @@ import { Form } from "@/components/ui/form";
 import { EMPTY, MODES } from "@/constants/common";
 import { useTranslations } from "@/hooks";
 import { ApiResponse } from "@/types/api";
-import { TCreateTopicResponse } from "@/types/features/topic";
+import { TCreateLevelResponse } from "@/types/features/level"; // You might need to check if this type exists or use generic
 
-import { topicDefaultValues } from "../../common";
-import { getTopicSchema, type TopicFormValues } from "../../schemas";
-import { TopicForm } from "../topic-form";
+import { levelDefaultValues } from "../../common";
+import { getLevelSchema, type LevelFormValues } from "../../schemas";
+import { LevelForm } from "../level-form";
 
-interface AddTopicModalProps {
+interface AddLevelModalProps {
   trigger?: React.ReactNode;
 }
 
-export function AddTopicModal({ trigger }: AddTopicModalProps) {
+export function AddLevelModal({ trigger }: AddLevelModalProps) {
   const t = useTranslations();
-  const { mutate: createTopic, isPending } = useCreateTopicMutation();
+  const { mutate: createLevel, isPending } = useCreateLevelMutation();
   const [open, setOpen] = useState(false);
 
-  const topicSchema = useMemo(() => getTopicSchema(t), [t]);
+  const levelSchema = useMemo(() => getLevelSchema(t), [t]);
 
-  const form = useForm<TopicFormValues>({
-    resolver: zodResolver(topicSchema),
-    defaultValues: topicDefaultValues,
+  const form = useForm<LevelFormValues>({
+    resolver: zodResolver(levelSchema),
+    defaultValues: levelDefaultValues,
   });
 
-  const { handleSubmit, reset, setValue } = form;
+  const { handleSubmit, reset } = form;
 
-  const generateSlug = (name: string) => {
-    return name
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, EMPTY.str)
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/(^-|-$)/g, EMPTY.str);
-  };
-
-  const handleNameChange = (name: string) => {
-    setValue("slug", generateSlug(name), { shouldValidate: true });
-  };
-
-  const onSubmit: SubmitHandler<TopicFormValues> = (values) => {
-    createTopic(
+  const onSubmit: SubmitHandler<LevelFormValues> = (values) => {
+    createLevel(
       {
+        code: values.code,
         name: values.name,
-        imageUrl: values.imageUrl,
-        slug: values.slug,
         description: values.description || EMPTY.str,
+        order: Number(values.order),
         status: values.status,
       },
       {
-        onSuccess: (data: TCreateTopicResponse) => {
+        onSuccess: (data: TCreateLevelResponse) => {
           toast.success(data?.message || t("common.toast.create_success"));
-          reset(topicDefaultValues);
+          reset(levelDefaultValues);
           setOpen(false);
         },
         onError: (error: Error) => {
           const axiosError = error as AxiosError<
-            ApiResponse<TCreateTopicResponse>
+            ApiResponse<TCreateLevelResponse>
           >;
           const message = axiosError.response?.data?.message;
           const fallbackMessage =
@@ -88,7 +75,7 @@ export function AddTopicModal({ trigger }: AddTopicModalProps) {
   };
 
   const handleCancel = () => {
-    reset(topicDefaultValues);
+    reset(levelDefaultValues);
     setOpen(false);
   };
 
@@ -98,23 +85,19 @@ export function AddTopicModal({ trigger }: AddTopicModalProps) {
         {trigger || (
           <Button variant="default" size="sm" className="cursor-pointer">
             <Plus className="w-4 h-4" />
-            <span className="hidden lg:inline">{t("topic.add_new_topic")}</span>
+            <span className="hidden lg:inline">{t("level.add_new_level")}</span>
           </Button>
         )}
       </DialogTrigger>
       <DialogContent className="data-[state=open]:!zoom-in-0 data-[state=open]:duration-600 sm:max-w-[650px] max-h-[80vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle>{t("topic.add_new_topic")}</DialogTitle>
-          <DialogDescription>{t("topic.add_new_topic_desc")}</DialogDescription>
+          <DialogTitle>{t("level.add_new_level")}</DialogTitle>
+          <DialogDescription>{t("level.add_new_level_desc")}</DialogDescription>
         </DialogHeader>
 
         <Form {...form}>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-            <TopicForm
-              form={form}
-              mode={MODES.add}
-              onNameChange={handleNameChange}
-            />
+            <LevelForm form={form} mode={MODES.add} />
 
             <div className="flex justify-end space-x-2 pt-4">
               <Button

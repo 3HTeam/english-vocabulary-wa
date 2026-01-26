@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { getRequestConfig } from "next-intl/server";
 import { hasLocale } from "next-intl";
-import { routing } from "./routing";
+import { getRequestConfig } from "next-intl/server";
+
 import { defaultMessages } from "./default-langs";
+import { routing } from "./routing";
 
 // Merges messages based ONLY on keys defined in target (default-langs)
 function deepMerge(target: any, source: any) {

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AxiosError } from "axios";
@@ -22,24 +22,23 @@ import { LoadingSpinner } from "@/components/ui/loading-spinner";
 import { EMPTY, MODES } from "@/constants/common";
 import { useTranslations } from "@/hooks";
 import { ApiResponse } from "@/types/api";
+import { TUpdateTopicResponse } from "@/types/features";
 
 import { topicDefaultValues } from "../../common";
 import { getTopicSchema, type TopicFormValues } from "../../schemas";
 import { TopicForm } from "../topic-form";
 
-interface ViewEditTopicModalProps {
+interface EditTopicModalProps {
   topicId: string | null;
-  mode: typeof MODES.view | typeof MODES.edit;
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
 }
 
-export function ViewEditTopicModal({
+export function EditTopicModal({
   topicId,
-  mode,
   open: controlledOpen,
   onOpenChange,
-}: ViewEditTopicModalProps) {
+}: EditTopicModalProps) {
   const t = useTranslations();
   const {
     data: topicData,
@@ -56,25 +55,7 @@ export function ViewEditTopicModal({
   });
 
   const { handleSubmit, reset, setValue } = form;
-
-  useEffect(() => {
-    if (topicData?.data?.topic && controlledOpen) {
-      const topic = topicData.data.topic;
-      reset({
-        name: topic.name,
-        imageUrl: topic.imageUrl,
-        slug: topic.slug,
-        description: topic.description || EMPTY.str,
-        status: topic.status,
-      });
-    }
-  }, [topicData, controlledOpen, reset]);
-
-  useEffect(() => {
-    if (!controlledOpen) {
-      reset(topicDefaultValues);
-    }
-  }, [controlledOpen, reset]);
+  const [isNameManuallyChanged, setIsNameManuallyChanged] = useState(false);
 
   const generateSlug = (name: string) => {
     return name
@@ -85,33 +66,52 @@ export function ViewEditTopicModal({
       .replace(/(^-|-$)/g, EMPTY.str);
   };
 
+  useEffect(() => {
+    if (topicData?.data?.topic && controlledOpen) {
+      const topic = topicData.data.topic;
+      reset({
+        name: topic.name,
+        slug: topic.slug,
+        description: topic.description || EMPTY.str,
+        imageUrl: topic.imageUrl,
+        status: topic.status,
+      });
+      setIsNameManuallyChanged(false);
+    }
+  }, [topicData, controlledOpen, reset]);
+
+  useEffect(() => {
+    if (!controlledOpen) {
+      reset(topicDefaultValues);
+      setIsNameManuallyChanged(false);
+    }
+  }, [controlledOpen, reset]);
+
   const handleNameChange = (name: string) => {
-    if (mode !== MODES.view) {
-      setValue("slug", generateSlug(name), { shouldValidate: true });
+    if (!isNameManuallyChanged && name) {
+      const generatedSlug = generateSlug(name);
+      setValue("slug", generatedSlug);
     }
   };
 
   const onSubmit: SubmitHandler<TopicFormValues> = (values) => {
-    if (mode === MODES.view) {
-      return;
-    }
     updateTopic(
       {
         id: topicId || EMPTY.str,
         payload: {
           name: values.name,
-          imageUrl: values.imageUrl,
           slug: values.slug,
           description: values.description || EMPTY.str,
+          imageUrl: values.imageUrl,
           status: values.status,
         },
       },
       {
-        onSuccess: () => {
-          toast.success(t("common.toast.update_success"));
+        onSuccess: (data: TUpdateTopicResponse) => {
+          toast.success(data?.message || t("common.toast.update_success"));
           onOpenChange?.(false);
         },
-        onError: (error) => {
+        onError: (error: Error) => {
           const axiosError = error as AxiosError<ApiResponse>;
           const message = axiosError.response?.data?.message;
           const fallbackMessage =
@@ -124,27 +124,26 @@ export function ViewEditTopicModal({
 
   const handleCancel = () => {
     reset(topicDefaultValues);
+    setIsNameManuallyChanged(false);
     onOpenChange?.(false);
   };
-
-  const isReadonly = mode === MODES.view;
 
   if (isError) {
     return (
       <Dialog open={controlledOpen} onOpenChange={onOpenChange}>
         <DialogContent className="data-[state=open]:!zoom-in-0 data-[state=open]:duration-600 sm:max-w-[650px]">
           <DialogHeader>
-            <DialogTitle>
-              {mode === MODES.view
-                ? t("topic.topic_details")
-                : t("topic.edit_topic")}
-            </DialogTitle>
+            <DialogTitle>{t("topic.edit_topic")}</DialogTitle>
           </DialogHeader>
           <div className="py-8 text-center text-destructive">
             {t("common.error.loading")}
           </div>
           <div className="flex justify-end">
-            <Button variant="outline" onClick={handleCancel}>
+            <Button
+              variant="outline"
+              onClick={handleCancel}
+              className="cursor-pointer"
+            >
               {t("common.actions.close")}
             </Button>
           </div>
@@ -157,16 +156,8 @@ export function ViewEditTopicModal({
     <Dialog open={controlledOpen} onOpenChange={onOpenChange}>
       <DialogContent className="data-[state=open]:!zoom-in-0 data-[state=open]:duration-600 sm:max-w-[650px] max-h-[80vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle>
-            {mode === MODES.view
-              ? t("topic.topic_details")
-              : t("topic.edit_topic")}
-          </DialogTitle>
-          <DialogDescription>
-            {mode === MODES.view
-              ? t("topic.topic_details_desc")
-              : t("topic.edit_topic_desc")}
-          </DialogDescription>
+          <DialogTitle>{t("topic.edit_topic")}</DialogTitle>
+          <DialogDescription>{t("topic.edit_topic_desc")}</DialogDescription>
         </DialogHeader>
 
         {isLoading ? (
@@ -178,7 +169,7 @@ export function ViewEditTopicModal({
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               <TopicForm
                 form={form}
-                mode={mode}
+                mode={MODES.edit}
                 onNameChange={handleNameChange}
               />
 
@@ -189,29 +180,25 @@ export function ViewEditTopicModal({
                   onClick={handleCancel}
                   className="cursor-pointer"
                 >
-                  {isReadonly
-                    ? t("common.actions.close")
-                    : t("common.actions.cancel")}
+                  {t("common.actions.cancel")}
                 </Button>
-                {!isReadonly && (
-                  <Button
-                    type="submit"
-                    className="cursor-pointer min-w-[130px]"
-                    disabled={isPending}
-                  >
-                    {isPending ? (
-                      <>
-                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                        {t("common.actions.saving")}
-                      </>
-                    ) : (
-                      <>
-                        <Pencil className="w-4 h-4 mr-2" />
-                        {t("common.actions.update")}
-                      </>
-                    )}
-                  </Button>
-                )}
+                <Button
+                  type="submit"
+                  className="cursor-pointer min-w-[130px]"
+                  disabled={isPending}
+                >
+                  {isPending ? (
+                    <>
+                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      {t("common.actions.saving")}
+                    </>
+                  ) : (
+                    <>
+                      <Pencil className="w-4 h-4 mr-2" />
+                      {t("common.actions.update")}
+                    </>
+                  )}
+                </Button>
               </div>
             </form>
           </Form>

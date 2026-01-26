@@ -19,3 +19,7 @@ export const UPLOAD_ENDPOINTS = {
 export const VOCABULARY_ENDPOINTS = {
   base: "admin/vocabularies",
 } as const;
+
+export const LEVEL_ENDPOINTS = {
+  base: "admin/levels",
+} as const;
