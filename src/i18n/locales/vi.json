@@ -182,6 +182,9 @@
     "dashboard": "Bảng điều khiển",
     "dashboard2": "Bảng điều khiển 2"
   },
+  "management": {
+    "management": "Quản lý"
+  },
   "common": {
     "loading": "Đang tải...",
 

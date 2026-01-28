@@ -23,3 +23,7 @@ export const VOCABULARY_ENDPOINTS = {
 export const LEVEL_ENDPOINTS = {
   base: "admin/levels",
 } as const;
+
+export const USER_ENDPOINTS = {
+  base: "admin/users",
+} as const;

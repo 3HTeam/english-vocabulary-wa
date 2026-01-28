@@ -5,10 +5,11 @@ import { useEffect, useMemo } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AxiosError } from "axios";
 import { Loader2, Pencil } from "lucide-react";
-import { useForm, type SubmitHandler } from "react-hook-form";
+import { useForm, type Resolver, type SubmitHandler } from "react-hook-form";
 import { toast } from "sonner";
 
 import { useGetLevelByIdQuery, useUpdateLevelMutation } from "@/apis/queries";
+import { DialogError } from "@/components/shared/dialog";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -50,7 +51,7 @@ export function EditLevelModal({
   const levelSchema = useMemo(() => getLevelSchema(t), [t]);
 
   const form = useForm<LevelFormValues>({
-    resolver: zodResolver(levelSchema),
+    resolver: zodResolver(levelSchema) as Resolver<LevelFormValues>,
     defaultValues: levelDefaultValues,
   });
 
@@ -110,25 +111,12 @@ export function EditLevelModal({
 
   if (isError) {
     return (
-      <Dialog open={controlledOpen} onOpenChange={onOpenChange}>
-        <DialogContent className="data-[state=open]:!zoom-in-0 data-[state=open]:duration-600 sm:max-w-[650px]">
-          <DialogHeader>
-            <DialogTitle>{t("level.edit_level")}</DialogTitle>
-          </DialogHeader>
-          <div className="py-8 text-center text-destructive">
-            {t("common.error.loading")}
-          </div>
-          <div className="flex justify-end">
-            <Button
-              variant="outline"
-              onClick={handleCancel}
-              className="cursor-pointer"
-            >
-              {t("common.actions.close")}
-            </Button>
-          </div>
-        </DialogContent>
-      </Dialog>
+      <DialogError
+        open={controlledOpen}
+        onOpenChange={onOpenChange}
+        title={t("level.edit_level")}
+        onClose={handleCancel}
+      />
     );
   }
 

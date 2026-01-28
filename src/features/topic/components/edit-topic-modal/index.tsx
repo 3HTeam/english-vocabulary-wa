@@ -9,6 +9,7 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 import { toast } from "sonner";
 
 import { useGetTopicByIdQuery, useUpdateTopicMutation } from "@/apis/queries";
+import { DialogError } from "@/components/shared/dialog";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -130,25 +131,12 @@ export function EditTopicModal({
 
   if (isError) {
     return (
-      <Dialog open={controlledOpen} onOpenChange={onOpenChange}>
-        <DialogContent className="data-[state=open]:!zoom-in-0 data-[state=open]:duration-600 sm:max-w-[650px]">
-          <DialogHeader>
-            <DialogTitle>{t("topic.edit_topic")}</DialogTitle>
-          </DialogHeader>
-          <div className="py-8 text-center text-destructive">
-            {t("common.error.loading")}
-          </div>
-          <div className="flex justify-end">
-            <Button
-              variant="outline"
-              onClick={handleCancel}
-              className="cursor-pointer"
-            >
-              {t("common.actions.close")}
-            </Button>
-          </div>
-        </DialogContent>
-      </Dialog>
+      <DialogError
+        open={controlledOpen}
+        onOpenChange={onOpenChange}
+        title={t("topic.edit_topic")}
+        onClose={handleCancel}
+      />
     );
   }
 

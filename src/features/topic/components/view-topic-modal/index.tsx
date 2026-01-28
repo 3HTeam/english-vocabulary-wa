@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
 import { useGetTopicByIdQuery } from "@/apis/queries";
+import { DialogError } from "@/components/shared/dialog";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -76,25 +77,12 @@ export function ViewTopicModal({
 
   if (isError) {
     return (
-      <Dialog open={controlledOpen} onOpenChange={onOpenChange}>
-        <DialogContent className="data-[state=open]:!zoom-in-0 data-[state=open]:duration-600 sm:max-w-[650px]">
-          <DialogHeader>
-            <DialogTitle>{t("topic.topic_details")}</DialogTitle>
-          </DialogHeader>
-          <div className="py-8 text-center text-destructive">
-            {t("common.error.loading")}
-          </div>
-          <div className="flex justify-end">
-            <Button
-              variant="outline"
-              onClick={handleClose}
-              className="cursor-pointer"
-            >
-              {t("common.actions.close")}
-            </Button>
-          </div>
-        </DialogContent>
-      </Dialog>
+      <DialogError
+        open={controlledOpen}
+        onOpenChange={onOpenChange}
+        title={t("topic.topic_details")}
+        onClose={handleClose}
+      />
     );
   }
 

@@ -5,7 +5,7 @@ import { useMemo, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AxiosError } from "axios";
 import { Loader2, Plus } from "lucide-react";
-import { useForm, type SubmitHandler } from "react-hook-form";
+import { useForm, type Resolver, type SubmitHandler } from "react-hook-form";
 import { toast } from "sonner";
 
 import { useCreateLevelMutation } from "@/apis/queries";
@@ -40,7 +40,7 @@ export function AddLevelModal({ trigger }: AddLevelModalProps) {
   const levelSchema = useMemo(() => getLevelSchema(t), [t]);
 
   const form = useForm<LevelFormValues>({
-    resolver: zodResolver(levelSchema),
+    resolver: zodResolver(levelSchema) as Resolver<LevelFormValues>,
     defaultValues: levelDefaultValues,
   });
 

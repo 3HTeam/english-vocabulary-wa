@@ -101,6 +101,8 @@ export function TopicForm({ form, mode, onNameChange }: TopicFormProps) {
                     <Image
                       src={field.value}
                       alt="Preview"
+                      height={200}
+                      width={200}
                       className="w-full h-full object-cover"
                     />
                   </div>
