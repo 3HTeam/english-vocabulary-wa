@@ -116,6 +116,12 @@ export const defaultMessages = {
     level_name_placeholder: "Nhập tên cấp độ...",
     level_name_required: "Tên cấp độ bắt buộc!",
 
+    level: "Cấp độ",
+    level_placeholder: "Chọn cấp độ",
+
+    target_level: "Cấp độ mục tiêu",
+    target_level_placeholder: "Chọn cấp độ mục tiêu",
+
     topic_name: "Tên chủ đề",
     topic_name_placeholder: "Nhập tên chủ đề...",
     topic_name_required: "Tên chủ đề bắt buộc!",
@@ -179,10 +185,27 @@ export const defaultMessages = {
     example_placeholder: "Câu ví dụ...",
     example_translation: "Dịch ví dụ",
     example_translation_placeholder: "Dịch ví dụ...",
+
+    phone: "Số điện thoại",
+    phone_placeholder: "0123456789",
+
+    role: "Vai trò",
+    role_placeholder: "Chọn vai trò",
+
+    daily_goal: "Mục tiêu hàng ngày",
+    daily_goal_placeholder: "10",
+
+    streak: "Streak",
+    streak_placeholder: "0",
+
+    email_verified: "Xác thực email",
   },
   dashboard: {
     dashboard: "Bảng điều khiển",
     dashboard2: "Bảng điều khiển 2",
+  },
+  management: {
+    management: "Quản lý",
   },
   common: {
     loading: "Đang tải...",
@@ -193,6 +216,8 @@ export const defaultMessages = {
     status: {
       active: "Hiển thị",
       inactive: "Tạm ẩn",
+      verified: "Đã xác thực",
+      unverified: "Chưa xác thực",
     },
 
     toast: {
@@ -268,6 +293,22 @@ export const defaultMessages = {
     user_management: "Quản lý người dùng",
     users: "Người dùng",
     accounts: "Tài khoản",
+    search_placeholder: "Tìm kiếm người dùng...",
+    user_details: "Chi tiết người dùng",
+    user_details_desc: "Xem thông tin chi tiết của người dùng.",
+    edit_user: "Sửa người dùng",
+    edit_user_desc: "Chỉnh sửa thông tin người dùng.",
+    personal_info: "Thông tin cá nhân",
+    account_settings: "Cài đặt tài khoản",
+    role: {
+      admin: "Quản trị viên",
+      user: "Người dùng",
+    },
+    general_info: "Thông tin chung",
+    learning_progress: "Tiến độ học tập",
+    account_status: "Trạng thái tài khoản",
+    avatar: "Ảnh đại diện",
+    email_verification_status: "Trạng thái xác thực email",
   },
   config: {
     app_config: "Cấu hình ứng dụng",

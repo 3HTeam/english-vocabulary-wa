@@ -3,32 +3,40 @@
 import Image from "next/image";
 import Link from "next/link";
 
-
-
 import { Icon } from "@iconify/react";
-import { BookA, LayoutDashboard, LayoutDashboardIcon, LayoutPanelLeft, Settings, Users } from "lucide-react";
+import {
+  BookA,
+  LayoutDashboard,
+  LayoutDashboardIcon,
+  LayoutPanelLeft,
+  Settings,
+  Users,
+} from "lucide-react";
 import { get } from "radash";
-
-
 
 import { useProfileQuery } from "@/apis/queries";
 import { Logo } from "@/assets/images";
-import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar";
-import { Skeleton } from "@/components/ui/skeleton";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+} from "@/components/ui/sidebar";
 import { EMPTY } from "@/constants/common";
 import { ROUTE_PATH } from "@/constants/routes";
 import { useTranslations } from "@/hooks";
 
-
-
 import { NavMain, NavUser } from "./components";
 
+const VocabularyIcon = () => (
+  <Icon icon="tabler:vocabulary" className="size-4" />
+);
+const UserIcon = () => <Icon icon="tdesign:usergroup" className="size-4" />;
 
-const TopicIcon = () => <Icon icon="iconamoon:category" />;
-const VocabularyIcon = () => <Icon icon="tabler:vocabulary" />;
-const UserIcon = () => <Icon icon="tdesign:usergroup" />;
-const LevelIcon = () => <Icon icon="icon-park-outline:level" />;
-const SettingsIcon = () => <Icon icon="tdesign:setting-1" />;
+const SettingsIcon = () => <Icon icon="tdesign:setting-1" className="size-4" />;
 
 export const AppSidebar = ({
   ...props
@@ -58,49 +66,40 @@ export const AppSidebar = ({
         },
       ],
     },
-
     {
-      label: t("topic.topic_management"),
+      label: t("management.management"),
       items: [
         {
-          title: t("topic.topics"),
-          url: ROUTE_PATH.admin.topics,
-          icon: TopicIcon,
-        },
-      ],
-    },
-
-    {
-      label: t("vocabulary.vocabulary_management"),
-      items: [
-        {
-          title: t("vocabulary.vocabularies"),
-          url: ROUTE_PATH.admin.vocabularies,
+          title: t("vocabulary.vocabulary_management"),
+          url: "#",
           icon: VocabularyIcon,
+          isActive: true,
+          items: [
+            {
+              title: t("topic.topics"),
+              url: ROUTE_PATH.admin.topics,
+            },
+            {
+              title: t("vocabulary.vocabularies"),
+              url: ROUTE_PATH.admin.vocabularies,
+            },
+          ],
         },
-      ],
-    },
-
-    {
-      label: t("grammar.grammar_management"),
-      items: [],
-    },
-    {
-      label: t("lesson.lesson_management"),
-      items: [],
-    },
-    {
-      label: t("user.user_management"),
-      items: [
         {
-          title: t("user.users"),
-          url: ROUTE_PATH.admin.users,
+          title: t("user.user_management"),
+          url: "#",
           icon: UserIcon,
-        },
-        {
-          title: t("level.levels"),
-          url: ROUTE_PATH.admin.levels,
-          icon: LevelIcon,
+          isActive: true,
+          items: [
+            {
+              title: t("user.users"),
+              url: ROUTE_PATH.admin.users,
+            },
+            {
+              title: t("level.levels"),
+              url: ROUTE_PATH.admin.levels,
+            },
+          ],
         },
       ],
     },
@@ -124,30 +123,19 @@ export const AppSidebar = ({
             <SidebarMenuButton size="lg" asChild>
               <Link href="/dashboard">
                 <div className="flex aspect-square size-8 items-center justify-center rounded-lg text-primary-foreground">
-                  {isLoading ? (
-                    <Skeleton className="size-full rounded-lg" />
-                  ) : (
-                    <Image
-                      src={Logo}
-                      alt="Logo"
-                      width={75}
-                      height={75}
-                      className="object-cover rounded-md"
-                    />
-                  )}
+                  <Image
+                    src={Logo}
+                    alt="English Vocab"
+                    width={40}
+                    height={40}
+                    className="object-cover rounded-md"
+                  />
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  {isLoading ? (
-                    <>
-                      <Skeleton className="h-4 w-24" />
-                      <Skeleton className="mt-1 h-3 w-32" />
-                    </>
-                  ) : (
-                    <>
-                      <span className="truncate font-medium">{user.name}</span>
-                      <span className="truncate text-xs">{user.email}</span>
-                    </>
-                  )}
+                  <span className="truncate font-semibold">
+                    English Vocabulary
+                  </span>
+                  <span className="truncate text-xs">Admin Dashboard</span>
                 </div>
               </Link>
             </SidebarMenuButton>
@@ -155,9 +143,15 @@ export const AppSidebar = ({
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        {navGroups.map((group) => (
-          <NavMain key={group.label} label={group.label} items={group.items} />
-        ))}
+        {navGroups
+          .filter((group) => group.items.length > 0)
+          .map((group) => (
+            <NavMain
+              key={group.label}
+              label={group.label}
+              items={group.items}
+            />
+          ))}
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={user} isLoading={isLoading} />

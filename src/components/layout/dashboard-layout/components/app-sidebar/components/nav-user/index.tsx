@@ -1,17 +1,18 @@
 "use client";
 
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+
 import {
+  BellDot,
+  CircleUser,
   CreditCard,
   EllipsisVertical,
   LogOut,
-  BellDot,
-  CircleUser,
 } from "lucide-react";
-import Link from "next/link";
-import { toast } from "sonner";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
 import { get } from "radash";
+import { toast } from "sonner";
 
 import { useSignOutMutation } from "@/apis/queries";
 import { Logo } from "@/assets/images";
@@ -31,8 +32,8 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useAuthStore } from "@/stores";
 import { useTranslations } from "@/hooks";
+import { useAuthStore } from "@/stores";
 
 export const NavUser = ({
   user,
