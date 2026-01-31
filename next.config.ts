@@ -6,6 +6,10 @@ const nextConfig: NextConfig = {
   // Bắt buộc cho Docker deploy
   output: "standalone",
 
+  generateBuildId: async () => {
+    return `build-${Date.now()}`;
+  },
+
   // eslint: {
   //   ignoreDuringBuilds: true,
   // },
