@@ -4,3 +4,4 @@ export * from "./upload";
 export * from "./vocabulary";
 export * from "./level";
 export * from "./user";
+export * from "./setting";

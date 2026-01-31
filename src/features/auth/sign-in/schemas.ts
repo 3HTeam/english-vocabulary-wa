@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { z } from "zod";
 
 export const getSignInSchema = (t: (key: string, options?: any) => string) =>
