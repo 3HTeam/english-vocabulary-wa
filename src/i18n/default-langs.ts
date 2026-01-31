@@ -28,6 +28,14 @@ export const defaultMessages = {
       title: "Người dùng - {name}",
       desc: "Quản lý người dùng.",
     },
+    setting: {
+      title: "Cài đặt - {name}",
+      desc: "Quản lý cài đặt hệ thống.",
+    },
+    level: {
+      title: "Cấp độ - {name}",
+      desc: "Quản lý cấp độ.",
+    },
   },
   auth: {
     signin: {
@@ -310,6 +318,22 @@ export const defaultMessages = {
     avatar: "Ảnh đại diện",
     email_verification_status: "Trạng thái xác thực email",
   },
+  setting: {
+    setting: "Cài đặt",
+    settings: "Cài đặt",
+    app_info: "Thông tin ứng dụng",
+    app_name: "Tên ứng dụng",
+    app_name_placeholder: "Nhập tên ứng dụng...",
+    app_description: "Mô tả ứng dụng",
+    app_description_placeholder: "Nhập mô tả ứng dụng...",
+    primary_color: "Màu chủ đạo",
+    logo: "Logo",
+    favicon: "Favicon",
+    contact_info: "Thông tin liên hệ",
+    address: "Địa chỉ",
+    address_placeholder: "Nhập địa chỉ...",
+    social_media: "Mạng xã hội",
+  },
   config: {
     app_config: "Cấu hình ứng dụng",
     settings: "Cài đặt",
@@ -420,6 +444,7 @@ export const defaultMessages = {
       list: "Danh sách định nghĩa",
     },
   },
+
   social: {
     apple: "Apple",
     google: "Google",

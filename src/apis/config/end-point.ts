@@ -27,3 +27,7 @@ export const LEVEL_ENDPOINTS = {
 export const USER_ENDPOINTS = {
   base: "admin/users",
 } as const;
+
+export const SETTING_ENDPOINTS = {
+  base: "admin/settings",
+} as const;

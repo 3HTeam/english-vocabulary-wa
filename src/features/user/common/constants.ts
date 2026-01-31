@@ -28,4 +28,5 @@ export const userDefaultValues: UserFormValues = {
   targetLevel: null,
   dailyGoal: 0,
   streak: 0,
+  emailVerified: false,
 };
