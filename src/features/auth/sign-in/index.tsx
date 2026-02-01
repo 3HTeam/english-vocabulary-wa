@@ -58,7 +58,7 @@ export function SignIn({ className, ...props }: ComponentProps<"div">) {
           setAuth(data.data.user, data.data.session);
         }
         toast.success(data?.message || t("auth.signin.ok"));
-        router.push(ROUTE_PATH.admin.topics);
+        router.push(ROUTE_PATH.admin.vocabularyTopics);
       },
       onError: (error) => {
         const axiosError = error as AxiosError<ApiResponse>;

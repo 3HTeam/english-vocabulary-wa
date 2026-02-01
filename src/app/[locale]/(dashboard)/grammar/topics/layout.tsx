@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({
     locale,
-    namespace: "meta.user",
+    namespace: "meta.grammar_topic",
   });
 
   return {
@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default function UsersLayout({
+export default function TopicsLayout({
   children,
 }: {
   children: React.ReactNode;

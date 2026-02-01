@@ -68,7 +68,7 @@ export const NavMain = ({
                       className="cursor-pointer"
                     >
                       {item.icon && <item.icon />}
-                      <span>{item.title}</span>
+                      <span className="truncate">{item.title}</span>
                       <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
                     </SidebarMenuButton>
                   </CollapsibleTrigger>
@@ -90,7 +90,7 @@ export const NavMain = ({
                                   : undefined
                               }
                             >
-                              <span>{subItem.title}</span>
+                              <span className="truncate">{subItem.title}</span>
                             </Link>
                           </SidebarMenuSubButton>
                         </SidebarMenuSubItem>
@@ -115,7 +115,7 @@ export const NavMain = ({
                     }
                   >
                     {item.icon && <item.icon />}
-                    <span>{item.title}</span>
+                    <span className="truncate">{item.title}</span>
                   </Link>
                 </SidebarMenuButton>
               )}

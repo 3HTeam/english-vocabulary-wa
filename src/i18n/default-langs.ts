@@ -36,7 +36,20 @@ export const defaultMessages = {
       title: "Cấp độ - {name}",
       desc: "Quản lý cấp độ.",
     },
+    grammar_category: {
+      title: "Danh mục ngữ pháp - {name}",
+      desc: "Quản lý danh mục ngữ pháp.",
+    },
+    grammar_topic: {
+      title: "Chủ đề ngữ pháp - {name}",
+      desc: "Quản lý chủ đề ngữ pháp.",
+    },
+    grammar_exercise: {
+      title: "Bài tập ngữ pháp - {name}",
+      desc: "Quản lý bài tập ngữ pháp.",
+    },
   },
+
   auth: {
     signin: {
       signin: "Đăng nhập",
@@ -89,6 +102,63 @@ export const defaultMessages = {
     or_continue_with: "Hoặc tiếp tục với",
     back_to_sign_in: "Quay lại đăng nhập",
   },
+
+  social: {
+    apple: "Apple",
+    google: "Google",
+    meta: "Meta",
+  },
+
+  file_upload: {
+    drag_drop_here: "Kéo & thả file tại đây",
+    or_click_to_select: "Hoặc click để chọn file",
+    max_size: "tối đa {size}",
+    select_file: "Chọn file",
+    file_too_large: "File quá lớn. Kích thước tối đa: {size}KB",
+    no_url_from_server: "Không nhận được URL từ server",
+    upload_failed: "Upload thất bại",
+    file_rejected: '"{fileName}" đã bị từ chối',
+  },
+
+  data_table: {
+    asc: "Tăng dần",
+    desc: "Giảm dần",
+    hide: "Ẩn",
+    view: "Xem",
+    edit: "Sửa",
+    delete: "Xóa",
+    customize: "Tùy chỉnh",
+    custom_columns: "Tùy chỉnh cột",
+    clear_filter: "Xóa bộ lọc",
+    no_results: "Không có kết quả.",
+    no_results_found: "Không tìm thấy kết quả.",
+    rows_selected: "Đã chọn {selected} trong {total} hàng.",
+    rows_per_page: "Số hàng mỗi trang",
+    page_of: "Trang {current} / {total}",
+    go_first_page: "Đến trang đầu",
+    go_previous_page: "Đến trang trước",
+    go_next_page: "Đến trang sau",
+    go_last_page: "Đến trang cuối",
+    open_menu: "Mở menu",
+    all: "Tất cả",
+    restore: "Khôi phục",
+    force_delete: "Xóa vĩnh viễn",
+    search_placeholder: "Tìm kiếm...",
+  },
+
+  dashboard: {
+    dashboard: "Bảng điều khiển",
+    dashboard2: "Bảng điều khiển 2",
+  },
+
+  management: {
+    management: "Quản lý",
+  },
+
+  config: {
+    app_config: "Cấu hình ứng dụng",
+  },
+
   field: {
     email: "Email",
     email_placeholder: "johndoe@gmail.com",
@@ -208,13 +278,7 @@ export const defaultMessages = {
 
     email_verified: "Xác thực email",
   },
-  dashboard: {
-    dashboard: "Bảng điều khiển",
-    dashboard2: "Bảng điều khiển 2",
-  },
-  management: {
-    management: "Quản lý",
-  },
+
   common: {
     loading: "Đang tải...",
 
@@ -286,113 +350,7 @@ export const defaultMessages = {
       command_search: "Tìm kiếm lệnh",
     },
   },
-  grammar: {
-    grammar: "Ngữ pháp",
-    grammar_management: "Quản lý ngữ pháp",
-    grammars: "Ngữ pháp",
-  },
-  lesson: {
-    lesson: "Bài học",
-    lesson_management: "Quản lý bài học",
-    lessons: "Bài học",
-  },
-  user: {
-    user: "Người dùng",
-    user_management: "Quản lý người dùng",
-    users: "Người dùng",
-    accounts: "Tài khoản",
-    search_placeholder: "Tìm kiếm người dùng...",
-    user_details: "Chi tiết người dùng",
-    user_details_desc: "Xem thông tin chi tiết của người dùng.",
-    edit_user: "Sửa người dùng",
-    edit_user_desc: "Chỉnh sửa thông tin người dùng.",
-    personal_info: "Thông tin cá nhân",
-    account_settings: "Cài đặt tài khoản",
-    role: {
-      admin: "Quản trị viên",
-      user: "Người dùng",
-    },
-    general_info: "Thông tin chung",
-    learning_progress: "Tiến độ học tập",
-    account_status: "Trạng thái tài khoản",
-    avatar: "Ảnh đại diện",
-    email_verification_status: "Trạng thái xác thực email",
-  },
-  setting: {
-    setting: "Cài đặt",
-    settings: "Cài đặt",
-    app_info: "Thông tin ứng dụng",
-    app_name: "Tên ứng dụng",
-    app_name_placeholder: "Nhập tên ứng dụng...",
-    app_description: "Mô tả ứng dụng",
-    app_description_placeholder: "Nhập mô tả ứng dụng...",
-    primary_color: "Màu chủ đạo",
-    logo: "Logo",
-    favicon: "Favicon",
-    contact_info: "Thông tin liên hệ",
-    address: "Địa chỉ",
-    address_placeholder: "Nhập địa chỉ...",
-    social_media: "Mạng xã hội",
-  },
-  config: {
-    app_config: "Cấu hình ứng dụng",
-    settings: "Cài đặt",
-  },
-  billing: {
-    billing: "Thanh toán",
-    billings: "Thanh toán",
-  },
-  notification: {
-    notification: "Thông báo",
-    notifications: "Thông báo",
-  },
-  data_table: {
-    asc: "Tăng dần",
-    desc: "Giảm dần",
-    hide: "Ẩn",
-    view: "Xem",
-    edit: "Sửa",
-    delete: "Xóa",
-    customize: "Tùy chỉnh",
-    custom_columns: "Tùy chỉnh cột",
-    clear_filter: "Xóa bộ lọc",
-    no_results: "Không có kết quả.",
-    no_results_found: "Không tìm thấy kết quả.",
-    rows_selected: "Đã chọn {selected} trong {total} hàng.",
-    rows_per_page: "Số hàng mỗi trang",
-    page_of: "Trang {current} / {total}",
-    go_first_page: "Đến trang đầu",
-    go_previous_page: "Đến trang trước",
-    go_next_page: "Đến trang sau",
-    go_last_page: "Đến trang cuối",
-    open_menu: "Mở menu",
-    all: "Tất cả",
-    restore: "Khôi phục",
-    force_delete: "Xóa vĩnh viễn",
-    search_placeholder: "Tìm kiếm...",
-  },
-  file_upload: {
-    drag_drop_here: "Kéo & thả file tại đây",
-    or_click_to_select: "Hoặc click để chọn file",
-    max_size: "tối đa {size}",
-    select_file: "Chọn file",
-    file_too_large: "File quá lớn. Kích thước tối đa: {size}KB",
-    no_url_from_server: "Không nhận được URL từ server",
-    upload_failed: "Upload thất bại",
-    file_rejected: '"{fileName}" đã bị từ chối',
-  },
-  level: {
-    level: "Cấp độ",
-    level_management: "Quản lý cấp độ",
-    levels: "Cấp độ",
-    search_placeholder: "Tìm kiếm cấp độ...",
-    add_new_level: "Thêm cấp độ mới",
-    add_new_level_desc: "Tạo cấp độ mới. Điền thông tin bên dưới.",
-    edit_level: "Sửa cấp độ",
-    edit_level_desc: "Chỉnh sửa thông tin cấp độ. Điền thông tin bên dưới.",
-    level_details: "Chi tiết cấp độ",
-    level_details_desc: "Xem thông tin chi tiết của cấp độ.",
-  },
+
   topic: {
     topic: "Chủ đề",
     topic_management: "Quản lý chủ đề",
@@ -405,6 +363,7 @@ export const defaultMessages = {
     topic_details: "Chi tiết chủ đề",
     topic_details_desc: "Xem thông tin chi tiết của chủ đề.",
   },
+
   vocabulary: {
     vocabulary: "Từ vựng",
     vocabulary_management: "Quản lý từ vựng",
@@ -445,11 +404,93 @@ export const defaultMessages = {
     },
   },
 
-  social: {
-    apple: "Apple",
-    google: "Google",
-    meta: "Meta",
+  grammar: {
+    grammar: "Ngữ pháp",
+    grammar_management: "Quản lý ngữ pháp",
+    grammars: "Ngữ pháp",
   },
+
+  grammar_category: {
+    grammar_categories: "Danh mục ngữ pháp",
+  },
+
+  grammar_topic: {
+    grammar_topics: "Chủ đề ngữ pháp",
+  },
+
+  grammar_exercise: {
+    grammar_exercises: "Bài tập ngữ pháp",
+  },
+
+  lesson: {
+    lesson: "Bài học",
+    lesson_management: "Quản lý bài học",
+    lessons: "Bài học",
+  },
+
+  user: {
+    user: "Người dùng",
+    user_management: "Quản lý người dùng",
+    users: "Người dùng",
+    accounts: "Tài khoản",
+    search_placeholder: "Tìm kiếm người dùng...",
+    user_details: "Chi tiết người dùng",
+    user_details_desc: "Xem thông tin chi tiết của người dùng.",
+    edit_user: "Sửa người dùng",
+    edit_user_desc: "Chỉnh sửa thông tin người dùng.",
+    personal_info: "Thông tin cá nhân",
+    account_settings: "Cài đặt tài khoản",
+    role: {
+      admin: "Quản trị viên",
+      user: "Người dùng",
+    },
+    general_info: "Thông tin chung",
+    learning_progress: "Tiến độ học tập",
+    account_status: "Trạng thái tài khoản",
+    avatar: "Ảnh đại diện",
+    email_verification_status: "Trạng thái xác thực email",
+  },
+
+  level: {
+    level: "Cấp độ",
+    level_management: "Quản lý cấp độ",
+    levels: "Cấp độ",
+    search_placeholder: "Tìm kiếm cấp độ...",
+    add_new_level: "Thêm cấp độ mới",
+    add_new_level_desc: "Tạo cấp độ mới. Điền thông tin bên dưới.",
+    edit_level: "Sửa cấp độ",
+    edit_level_desc: "Chỉnh sửa thông tin cấp độ. Điền thông tin bên dưới.",
+    level_details: "Chi tiết cấp độ",
+    level_details_desc: "Xem thông tin chi tiết của cấp độ.",
+  },
+
+  setting: {
+    setting: "Cài đặt",
+    settings: "Cài đặt",
+    app_info: "Thông tin ứng dụng",
+    app_name: "Tên ứng dụng",
+    app_name_placeholder: "Nhập tên ứng dụng...",
+    app_description: "Mô tả ứng dụng",
+    app_description_placeholder: "Nhập mô tả ứng dụng...",
+    primary_color: "Màu chủ đạo",
+    logo: "Logo",
+    favicon: "Favicon",
+    contact_info: "Thông tin liên hệ",
+    address: "Địa chỉ",
+    address_placeholder: "Nhập địa chỉ...",
+    social_media: "Mạng xã hội",
+  },
+
+  billing: {
+    billing: "Thanh toán",
+    billings: "Thanh toán",
+  },
+
+  notification: {
+    notification: "Thông báo",
+    notifications: "Thông báo",
+  },
+
 } as const;
 
 export type MessageKeys = typeof defaultMessages;

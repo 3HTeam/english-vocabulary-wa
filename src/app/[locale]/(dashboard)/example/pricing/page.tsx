@@ -1,10 +1,10 @@
-import { PricingPlans } from "@/app/[locale]/(dashboard)/pricing/components/pricing-plans";
-import { FeaturesGrid } from "./components/features-grid";
-import { FAQSection } from "./components/faq-section";
+import { PricingPlans } from "@/app/[locale]/(dashboard)/example/pricing/components/pricing-plans";
 
+import { FAQSection } from "./components/faq-section";
+import { FeaturesGrid } from "./components/features-grid";
+import faqsData from "./data/faqs.json";
 // Import data
 import featuresData from "./data/features.json";
-import faqsData from "./data/faqs.json";
 
 export default function PricingPage() {
   return (

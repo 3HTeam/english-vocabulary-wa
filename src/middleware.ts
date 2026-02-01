@@ -1,10 +1,11 @@
-import createMiddleware from "next-intl/middleware";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-import { routing } from "@/i18n/routing";
+import createMiddleware from "next-intl/middleware";
+
 import { LOCALES } from "@/constants/i18n";
 import { ROUTE_PATH } from "@/constants/routes";
+import { routing } from "@/i18n/routing";
 import { COOKIE_NAMES } from "@/utils/cookies";
 
 const protectedRoutes = Object.values(ROUTE_PATH.admin);
@@ -56,20 +57,38 @@ export function middleware(request: NextRequest) {
 
   if (isAuthRoute && hasValidToken) {
     return NextResponse.redirect(
-      new URL(`/${locale}${ROUTE_PATH.admin.topics}`, request.url),
+      new URL(`/${locale}${ROUTE_PATH.admin.vocabularyTopics}`, request.url),
     );
   }
 
   if (normalizedPathname === ROUTE_PATH.public.home) {
     if (hasValidToken) {
       return NextResponse.redirect(
-        new URL(`/${locale}${ROUTE_PATH.admin.topics}`, request.url),
+        new URL(`/${locale}${ROUTE_PATH.admin.vocabularyTopics}`, request.url),
       );
     } else {
       return NextResponse.redirect(
         new URL(`/${locale}${ROUTE_PATH.auth.signIn}`, request.url),
       );
     }
+  }
+
+  if (normalizedPathname === ROUTE_PATH.admin.vocabulary) {
+    return NextResponse.redirect(
+      new URL(`/${locale}${ROUTE_PATH.admin.vocabularies}`, request.url),
+    );
+  }
+
+  if (normalizedPathname === ROUTE_PATH.admin.grammar) {
+    return NextResponse.redirect(
+      new URL(`/${locale}${ROUTE_PATH.admin.grammarCategories}`, request.url),
+    );
+  }
+
+  if (normalizedPathname === ROUTE_PATH.admin.user) {
+    return NextResponse.redirect(
+      new URL(`/${locale}${ROUTE_PATH.admin.users}`, request.url),
+    );
   }
 
   // Then handle locale routing with next-intl
