@@ -1,5 +1,5 @@
 import { axiosClient, TOPIC_ENDPOINTS } from "@/apis/config";
-import { Params } from "@/types/api";
+import { TParams } from "@/types/api";
 import {
   TCreateTopicResponse,
   TDeleteTopicResponse,
@@ -11,7 +11,7 @@ import {
   TUpdateTopicResponse,
 } from "@/types/features";
 
-export async function getTopic(params?: Params): Promise<TTopicsResponse> {
+export async function getTopic(params?: TParams): Promise<TTopicsResponse> {
   try {
     const queryParams = new URLSearchParams();
     if (params?.page) {

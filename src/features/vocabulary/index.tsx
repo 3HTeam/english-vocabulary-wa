@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 
 import { useRouter } from "next/navigation";
 
@@ -82,7 +82,7 @@ export function VocabularyView() {
     router.push(`${ROUTE_PATH.admin.vocabularies}/${id}/${MODES.edit}`);
   };
 
-  const handleDeleteClick = (id: string) => {
+  const handleDelete = (id: string) => {
     setDeleteModalState({
       open: true,
       vocabularyId: id,
@@ -105,7 +105,7 @@ export function VocabularyView() {
     });
   };
 
-  const handleForceDeleteClick = (id: string) => {
+  const handleForceDelete = (id: string) => {
     setDeleteModalState({
       open: true,
       vocabularyId: id,
@@ -170,17 +170,17 @@ export function VocabularyView() {
         t,
         onView: handleView,
         onRestore: handleRestore,
-        onForceDelete: handleForceDeleteClick,
+        onForceDelete: handleForceDelete,
       })
     : createColumns({
         t,
         onView: handleView,
         onEdit: handleEdit,
-        onDelete: handleDeleteClick,
+        onDelete: handleDelete,
       });
 
   return (
-    <>
+    <React.Fragment>
       <DialogDelete
         open={deleteModalState.open}
         onOpenChange={(open) =>
@@ -277,6 +277,6 @@ export function VocabularyView() {
           onPageChange: (newPage) => setPage(newPage),
         }}
       />
-    </>
+    </React.Fragment>
   );
 }

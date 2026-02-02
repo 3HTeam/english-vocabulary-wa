@@ -31,3 +31,7 @@ export const USER_ENDPOINTS = {
 export const SETTING_ENDPOINTS = {
   base: "admin/settings",
 } as const;
+
+export const MODULE_ENDPOINTS = {
+  base: "admin/modules",
+} as const;

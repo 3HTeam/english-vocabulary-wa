@@ -1,5 +1,5 @@
 import { axiosClient, LEVEL_ENDPOINTS } from "@/apis/config";
-import { Params } from "@/types/api";
+import { TParams } from "@/types/api";
 import {
   TCreateLevelResponse,
   TDeleteLevelResponse,
@@ -11,7 +11,7 @@ import {
   TUpdateLevelResponse,
 } from "@/types/features/level";
 
-export async function getLevel(params?: Params): Promise<TLevelsResponse> {
+export async function getLevel(params?: TParams): Promise<TLevelsResponse> {
   try {
     const queryParams = new URLSearchParams();
     if (params?.page) {

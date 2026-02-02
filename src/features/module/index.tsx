@@ -7,10 +7,10 @@ import { ArrowLeft, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 
 import {
-  useDeleteTopicMutation,
-  useForceDeleteTopicMutation,
-  useGetTopicQuery,
-  useRestoreTopicMutation,
+  useDeleteModuleMutation,
+  useForceDeleteModuleMutation,
+  useGetModuleQuery,
+  useRestoreModuleMutation,
 } from "@/apis/queries";
 import { DataTable } from "@/components/shared/data-table";
 import { DialogDelete } from "@/components/shared/dialog";
@@ -19,22 +19,22 @@ import { EMPTY } from "@/constants/common";
 import { useTranslations } from "@/hooks";
 import { ApiResponse } from "@/types/api";
 import {
-  TDeleteTopicResponse,
-  TForceDeleteTopicResponse,
-  TRestoreTopicResponse,
-} from "@/types/features/topic";
+  TDeleteModuleResponse,
+  TForceDeleteModuleResponse,
+  TRestoreModuleResponse,
+} from "@/types/features";
 
 import { COLUMN_KEYS, createColumns, getStatuses } from "./common";
-import { AddTopicModal, EditTopicModal, ViewTopicModal } from "./components";
+import { AddModuleModal, EditModuleModal, ViewModuleModal } from "./components";
 
-export function TopicView() {
+export function ModuleView() {
   const t = useTranslations();
-  const { mutate: deleteTopic, isPending: isDeleting } =
-    useDeleteTopicMutation();
-  const { mutate: restoreTopic, isPending: isRestoring } =
-    useRestoreTopicMutation();
-  const { mutate: forceDeleteTopic, isPending: isForceDeleting } =
-    useForceDeleteTopicMutation();
+  const { mutate: deleteModule, isPending: isDeleting } =
+    useDeleteModuleMutation();
+  const { mutate: restoreModule, isPending: isRestoring } =
+    useRestoreModuleMutation();
+  const { mutate: forceDeleteModule, isPending: isForceDeleting } =
+    useForceDeleteModuleMutation();
 
   const statuses = useMemo(() => getStatuses(t), [t]);
 
@@ -46,29 +46,29 @@ export function TopicView() {
   const [isTrashMode, setIsTrashMode] = useState<boolean>(false);
   const [viewModalState, setViewModalState] = useState<{
     open: boolean;
-    topicId: string | null;
+    moduleId: string | null;
   }>({
     open: false,
-    topicId: null,
+    moduleId: null,
   });
   const [editModalState, setEditModalState] = useState<{
     open: boolean;
-    topicId: string | null;
+    moduleId: string | null;
   }>({
     open: false,
-    topicId: null,
+    moduleId: null,
   });
   const [deleteModalState, setDeleteModalState] = useState<{
     open: boolean;
-    topicId: string | null;
+    moduleId: string | null;
     isForceDelete: boolean;
   }>({
     open: false,
-    topicId: null,
+    moduleId: null,
     isForceDelete: false,
   });
 
-  const { data: topics } = useGetTopicQuery({
+  const { data: modules } = useGetModuleQuery({
     page,
     search,
     status: statusFilter,
@@ -78,28 +78,28 @@ export function TopicView() {
   const handleView = (id: string) => {
     setViewModalState({
       open: true,
-      topicId: id,
+      moduleId: id,
     });
   };
 
   const handleEdit = (id: string) => {
     setEditModalState({
       open: true,
-      topicId: id,
+      moduleId: id,
     });
   };
 
   const handleDelete = (id: string) => {
     setDeleteModalState({
       open: true,
-      topicId: id,
+      moduleId: id,
       isForceDelete: false,
     });
   };
 
   const handleRestore = (id: string) => {
-    restoreTopic(id, {
-      onSuccess: (data: TRestoreTopicResponse) => {
+    restoreModule(id, {
+      onSuccess: (data: TRestoreModuleResponse) => {
         toast.success(data?.message || t("common.toast.restore_success"));
       },
       onError: (error: Error) => {
@@ -115,20 +115,20 @@ export function TopicView() {
   const handleForceDelete = (id: string) => {
     setDeleteModalState({
       open: true,
-      topicId: id,
+      moduleId: id,
       isForceDelete: true,
     });
   };
 
   const handleDeleteConfirm = () => {
-    if (!deleteModalState.topicId) return;
+    if (!deleteModalState.moduleId) return;
 
     if (deleteModalState.isForceDelete) {
-      forceDeleteTopic(deleteModalState.topicId, {
-        onSuccess: (data: TForceDeleteTopicResponse) => {
+      forceDeleteModule(deleteModalState.moduleId, {
+        onSuccess: (data: TForceDeleteModuleResponse) => {
           setDeleteModalState({
             open: false,
-            topicId: null,
+            moduleId: null,
             isForceDelete: false,
           });
           toast.success(
@@ -144,18 +144,18 @@ export function TopicView() {
         },
       });
     } else {
-      deleteTopic(deleteModalState.topicId, {
-        onSuccess: (data: TDeleteTopicResponse) => {
+      deleteModule(deleteModalState.moduleId, {
+        onSuccess: (data: TDeleteModuleResponse) => {
           setDeleteModalState({
             open: false,
-            topicId: null,
+            moduleId: null,
             isForceDelete: false,
           });
           toast.success(data?.message || t("common.toast.delete_success"));
         },
         onError: (error: Error) => {
           const axiosError = error as AxiosError<
-            ApiResponse<TDeleteTopicResponse>
+            ApiResponse<TDeleteModuleResponse>
           >;
           const message = axiosError.response?.data?.message;
           const fallbackMessage =
@@ -189,15 +189,15 @@ export function TopicView() {
 
   return (
     <React.Fragment>
-      <ViewTopicModal
-        topicId={viewModalState.topicId}
+      <ViewModuleModal
+        moduleId={viewModalState.moduleId}
         open={viewModalState.open}
         onOpenChange={(open: boolean) =>
           setViewModalState((prev) => ({ ...prev, open }))
         }
       />
-      <EditTopicModal
-        topicId={editModalState.topicId}
+      <EditModuleModal
+        moduleId={editModalState.moduleId}
         open={editModalState.open}
         onOpenChange={(open: boolean) =>
           setEditModalState((prev) => ({ ...prev, open }))
@@ -222,7 +222,7 @@ export function TopicView() {
         isLoading={isDeleting || isForceDeleting}
       />
       <DataTable
-        data={topics?.data?.topics || []}
+        data={modules?.data?.modules || []}
         columns={columns}
         addButton={
           isTrashMode ? (
@@ -248,14 +248,14 @@ export function TopicView() {
                   {t("common.trash.trash")}
                 </span>
               </Button>
-              <AddTopicModal />
+              <AddModuleModal />
             </div>
           )
         }
         toolbarProps={{
           placeholder: isTrashMode
             ? t("common.trash.search_placeholder")
-            : t("topic.search_placeholder"),
+            : t("module.search_placeholder"),
           searchColumn: COLUMN_KEYS.name,
           search,
           filters: isTrashMode
@@ -279,13 +279,15 @@ export function TopicView() {
           },
         }}
         paginationProps={{
-          page: topics?.data?.meta.page,
-          pageCount: topics?.data?.meta.pageCount,
-          limit: topics?.data?.meta.limit,
-          total: topics?.data?.meta.total,
+          page: modules?.data?.meta.page,
+          pageCount: modules?.data?.meta.pageCount,
+          limit: modules?.data?.meta.limit,
+          total: modules?.data?.meta.total,
           onPageChange: (newPage) => setPage(newPage),
         }}
       />
     </React.Fragment>
   );
 }
+
+export default ModuleView;

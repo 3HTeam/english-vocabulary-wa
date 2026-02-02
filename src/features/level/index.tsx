@@ -89,7 +89,7 @@ export function LevelView() {
     });
   };
 
-  const handleDeleteClick = (id: string) => {
+  const handleDelete = (id: string) => {
     setDeleteModalState({
       open: true,
       levelId: id,
@@ -112,7 +112,7 @@ export function LevelView() {
     });
   };
 
-  const handleForceDeleteClick = (id: string) => {
+  const handleForceDelete = (id: string) => {
     setDeleteModalState({
       open: true,
       levelId: id,
@@ -178,13 +178,13 @@ export function LevelView() {
         t,
         onView: handleView,
         onRestore: handleRestore,
-        onForceDelete: handleForceDeleteClick,
+        onForceDelete: handleForceDelete,
       })
     : createColumns({
         t,
         onView: handleView,
         onEdit: handleEdit,
-        onDelete: handleDeleteClick,
+        onDelete: handleDelete,
       });
 
   return (
