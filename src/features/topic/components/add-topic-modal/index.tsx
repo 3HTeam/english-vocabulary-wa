@@ -23,7 +23,7 @@ import { EMPTY, MODES } from "@/constants/common";
 import { useTranslations } from "@/hooks";
 import { ApiResponse } from "@/types/api";
 import { TCreateTopicResponse } from "@/types/features/topic";
-import { generateSlug } from "@/utils";
+import { generateSlug } from "@/utils/string";
 
 import { topicDefaultValues } from "../../common";
 import { getTopicSchema, type TopicFormValues } from "../../schemas";

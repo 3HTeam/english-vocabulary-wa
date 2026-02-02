@@ -6,3 +6,4 @@ export * from "./level";
 export * from "./user";
 export * from "./setting";
 export * from "./grammar-category";
+export * from "./grammar-topic";

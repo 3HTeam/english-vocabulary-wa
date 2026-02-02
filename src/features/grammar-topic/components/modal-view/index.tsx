@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { get } from "radash";
 import { useForm } from "react-hook-form";
 
-import { useGetGrammarCategoryByIdQuery } from "@/apis/queries";
+import { useGetGrammarTopicByIdQuery } from "@/apis/queries";
 import { DialogError } from "@/components/shared/dialog";
 import { ModalCustom } from "@/components/shared/modal-custom";
 import { Button } from "@/components/ui/button";
@@ -45,7 +45,7 @@ export function ModalView({
     isError,
     error,
     refetch,
-  } = useGetGrammarCategoryByIdQuery(selectedId || EMPTY.str, false);
+  } = useGetGrammarTopicByIdQuery(selectedId || EMPTY.str, false);
 
   const { handleSubmit: onSubmit, isLoading: isSubmitting } = useModalActions({
     mode,
@@ -79,13 +79,18 @@ export function ModalView({
     if (isAddMode) {
       form.reset(defaultValues);
     } else if (isSuccess && data?.data) {
-      const category = data.data.grammarCategory;
+      const topic = data.data.grammarTopic;
       form.reset({
-        name: category.name ?? EMPTY.str,
-        slug: category.slug ?? EMPTY.str,
-        imageUrl: category.imageUrl ?? EMPTY.str,
-        description: category.description ?? EMPTY.str,
-        status: category.status ?? true,
+        title: topic?.title ?? EMPTY.str,
+        slug: topic?.slug ?? EMPTY.str,
+        imageUrl: topic?.imageUrl ?? EMPTY.str,
+        description: topic?.description ?? EMPTY.str,
+        content: topic?.content ?? EMPTY.str,
+        status: topic?.status ?? true,
+        order: topic?.order ?? 1,
+        difficulty: topic?.difficulty ?? "BEGINNER",
+        levelId: topic?.levelId ?? EMPTY.str,
+        grammarCategoryId: topic?.grammarCategoryId ?? EMPTY.str,
       });
     }
   }, [isOpen, isAddMode, isSuccess, data, form]);
@@ -95,9 +100,9 @@ export function ModalView({
     onClose();
   };
 
-  const handleNameChange = (name: string) => {
+  const handleTitleChange = (title: string) => {
     if (!isViewMode) {
-      form.setValue("slug", generateSlug(name), { shouldValidate: true });
+      form.setValue("slug", generateSlug(title), { shouldValidate: true });
     }
   };
 
@@ -132,7 +137,7 @@ export function ModalView({
       {!isViewMode && (
         <Button
           type="submit"
-          form="grammar-category-form"
+          form="grammar-topic-form"
           className="cursor-pointer"
           disabled={isLoading}
         >
@@ -157,14 +162,14 @@ export function ModalView({
     >
       <Form {...form}>
         <form
-          id="grammar-category-form"
+          id="grammar-topic-form"
           onSubmit={form.handleSubmit(onSubmit)}
           className="space-y-6"
         >
           <FormFields
             form={form}
             isViewMode={isViewMode}
-            onNameChange={handleNameChange}
+            onTitleChange={handleTitleChange}
           />
         </form>
       </Form>

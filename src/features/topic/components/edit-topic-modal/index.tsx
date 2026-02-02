@@ -24,7 +24,7 @@ import { EMPTY, MODES } from "@/constants/common";
 import { useTranslations } from "@/hooks";
 import { ApiResponse } from "@/types/api";
 import { TUpdateTopicResponse } from "@/types/features";
-import { generateSlug } from "@/utils";
+import { generateSlug } from "@/utils/string";
 
 import { topicDefaultValues } from "../../common";
 import { getTopicSchema, type TopicFormValues } from "../../schemas";

@@ -283,6 +283,24 @@ export const defaultMessages = {
     grammar_category_name: "Tên danh mục ngữ pháp",
     grammar_category_name_placeholder: "Nhập tên danh mục ngữ pháp...",
     grammar_category_name_required: "Tên danh mục ngữ pháp bắt buộc!",
+
+    grammar_category: "Danh mục ngữ pháp",
+    grammar_category_placeholder: "Chọn danh mục ngữ pháp",
+    grammar_category_required: "Danh mục ngữ pháp bắt buộc!",
+
+    title: "Tiêu đề",
+    title_placeholder: "Nhập tiêu đề ...",
+    title_required: "Tiêu đề bắt buộc!",
+
+    content: "Nội dung",
+    content_placeholder: "Nhập nội dung (hỗ trợ Markdown)...",
+    content_required: "Nội dung bắt buộc!",
+
+    difficulty: "Độ khó",
+    difficulty_placeholder: "Chọn độ khó",
+    difficulty_required: "Độ khó bắt buộc!",
+
+    level_required: "Cấp độ bắt buộc!",
   },
 
   common: {
@@ -296,6 +314,12 @@ export const defaultMessages = {
       inactive: "Tạm ẩn",
       verified: "Đã xác thực",
       unverified: "Chưa xác thực",
+    },
+
+    difficulty: {
+      beginner: "Cơ bản",
+      intermediate: "Trung cấp",
+      advanced: "Nâng cao",
     },
 
     toast: {
@@ -358,7 +382,7 @@ export const defaultMessages = {
 
     error: {
       some_thing_went_wrong: "Đã có lỗi xảy ra. Vui lòng thử lại!",
-    }
+    },
   },
 
   topic: {
@@ -424,19 +448,35 @@ export const defaultMessages = {
     grammar_categories: "Danh mục ngữ pháp",
 
     add_grammar_category: "Thêm danh mục ngữ pháp",
-    add_grammar_category_desc: "Tạo danh mục ngữ pháp mới. Điền thông tin bên dưới.",
+    add_grammar_category_desc:
+      "Tạo danh mục ngữ pháp mới. Điền thông tin bên dưới.",
 
     edit_grammar_category: "Sửa danh mục ngữ pháp",
-    edit_grammar_category_desc: "Chỉnh sửa thông tin danh mục ngữ pháp. Điền thông tin bên dưới.",
+    edit_grammar_category_desc:
+      "Chỉnh sửa thông tin danh mục ngữ pháp. Điền thông tin bên dưới.",
 
     grammar_category_details: "Chi tiết danh mục ngữ pháp",
-    grammar_category_details_desc: "Xem thông tin chi tiết của danh mục ngữ pháp.",
+    grammar_category_details_desc:
+      "Xem thông tin chi tiết của danh mục ngữ pháp.",
 
     search_placeholder: "Tìm kiếm danh mục ngữ pháp...",
   },
 
   grammar_topic: {
     grammar_topics: "Chủ đề ngữ pháp",
+
+    add_grammar_topic: "Thêm chủ đề ngữ pháp",
+    add_grammar_topic_desc: "Tạo chủ đề ngữ pháp mới. Điền thông tin bên dưới.",
+
+    edit_grammar_topic: "Sửa chủ đề ngữ pháp",
+    edit_grammar_topic_desc:
+      "Chỉnh sửa thông tin chủ đề ngữ pháp. Điền thông tin bên dưới.",
+
+    grammar_topic_details: "Chi tiết chủ đề ngữ pháp",
+    grammar_topic_details_desc: "Xem thông tin chi tiết của chủ đề ngữ pháp.",
+
+    search_placeholder: "Tìm kiếm chủ đề ngữ pháp...",
+    name: "Chủ đề ngữ pháp",
   },
 
   grammar_exercise: {
@@ -511,7 +551,6 @@ export const defaultMessages = {
     notification: "Thông báo",
     notifications: "Thông báo",
   },
-
 } as const;
 
 export type MessageKeys = typeof defaultMessages;
