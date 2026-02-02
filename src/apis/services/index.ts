@@ -5,6 +5,7 @@ import * as topicServices from "./topic.service";
 import * as uploadServices from "./upload.service";
 import * as userServices from "./user.service";
 import * as vocabularyServices from "./vocabulary.service";
+import * as grammarCategoryServices from "./grammar-category.service";
 
 export const apiServices = {
   auth: authServices,
@@ -14,4 +15,5 @@ export const apiServices = {
   level: levelServices,
   user: userServices,
   setting: settingServices,
+  grammarCategory: grammarCategoryServices,
 };

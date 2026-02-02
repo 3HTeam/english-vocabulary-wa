@@ -1,11 +1,8 @@
 "use client";
 
 import * as React from "react";
+
 import {
-  type ColumnDef,
-  type ColumnFiltersState,
-  type SortingState,
-  type VisibilityState,
   flexRender,
   getCoreRowModel,
   getFacetedRowModel,
@@ -14,6 +11,10 @@ import {
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
+  type ColumnDef,
+  type ColumnFiltersState,
+  type SortingState,
+  type VisibilityState,
 } from "@tanstack/react-table";
 
 import {
@@ -25,8 +26,10 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useTranslations } from "@/hooks";
-import { DataTableToolbar, type FacetFilterConfig } from "./data-table-toolbar";
+
 import { DataTablePagination } from "./data-table-pagination";
+import { DataTableToolbar, type FacetFilterConfig } from "./data-table-toolbar";
+import { LoadingSpinner } from "@/components/ui/loading-spinner";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -48,6 +51,7 @@ interface DataTableProps<TData, TValue> {
     total?: number;
     onPageChange?: (page: number) => void;
   };
+  loading: boolean;
 }
 
 export function DataTable<TData, TValue>({
@@ -56,6 +60,7 @@ export function DataTable<TData, TValue>({
   addButton,
   toolbarProps,
   paginationProps,
+  loading = false,
 }: DataTableProps<TData, TValue>) {
   const [rowSelection, setRowSelection] = React.useState({});
   const [columnVisibility, setColumnVisibility] =
@@ -64,7 +69,7 @@ export function DataTable<TData, TValue>({
     [],
   );
   const [sorting, setSorting] = React.useState<SortingState>([]);
-  const t = useTranslations()
+  const t = useTranslations();
   const table = useReactTable({
     data,
     columns,
@@ -127,6 +132,15 @@ export function DataTable<TData, TValue>({
                   ))}
                 </TableRow>
               ))
+            ) : loading ? (
+              <TableRow>
+                <TableCell
+                  colSpan={columns.length}
+                  className="h-24 text-center"
+                >
+                  <LoadingSpinner />
+                </TableCell>
+              </TableRow>
             ) : (
               <TableRow>
                 <TableCell

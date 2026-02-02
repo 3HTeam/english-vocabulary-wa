@@ -31,3 +31,7 @@ export const USER_ENDPOINTS = {
 export const SETTING_ENDPOINTS = {
   base: "admin/settings",
 } as const;
+
+export const GRAMMAR_CATEGORY_ENDPOINTS = {
+  base: "admin/grammar-categories",
+} as const;

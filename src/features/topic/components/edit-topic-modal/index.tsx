@@ -24,6 +24,7 @@ import { EMPTY, MODES } from "@/constants/common";
 import { useTranslations } from "@/hooks";
 import { ApiResponse } from "@/types/api";
 import { TUpdateTopicResponse } from "@/types/features";
+import { generateSlug } from "@/utils";
 
 import { topicDefaultValues } from "../../common";
 import { getTopicSchema, type TopicFormValues } from "../../schemas";
@@ -57,15 +58,6 @@ export function EditTopicModal({
 
   const { handleSubmit, reset, setValue } = form;
   const [isNameManuallyChanged, setIsNameManuallyChanged] = useState(false);
-
-  const generateSlug = (name: string) => {
-    return name
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, EMPTY.str)
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/(^-|-$)/g, EMPTY.str);
-  };
 
   useEffect(() => {
     if (topicData?.data?.topic && controlledOpen) {

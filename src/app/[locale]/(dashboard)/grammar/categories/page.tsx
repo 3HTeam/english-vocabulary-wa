@@ -1,7 +1,7 @@
 "use client";
 
 import { MobileViewPlaceholder } from "@/components/shared/mobile-view-placeholder";
-import { UserView } from "@/features/user";
+import { GrammarCategoryView } from "@/features/grammar-category";
 import { useTranslations } from "@/hooks";
 
 export default function CategoriesLayout() {
@@ -13,7 +13,7 @@ export default function CategoriesLayout() {
 
       {/* Desktop view */}
       <div className="hidden h-full flex-1 flex-col px-4 md:px-6 md:flex">
-        <UserView />
+        <GrammarCategoryView />
       </div>
     </>
   );

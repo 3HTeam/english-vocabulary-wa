@@ -306,6 +306,7 @@
   "data_table": {
     "asc": "Tăng dần",
     "desc": "Giảm dần",
+    "reset": "Đặt lại",
     "hide": "Ẩn",
     "view": "Xem",
     "edit": "Sửa",

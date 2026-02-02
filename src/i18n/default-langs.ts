@@ -123,6 +123,7 @@ export const defaultMessages = {
   data_table: {
     asc: "Tăng dần",
     desc: "Giảm dần",
+    reset: "Đặt lại",
     hide: "Ẩn",
     view: "Xem",
     edit: "Sửa",
@@ -130,6 +131,7 @@ export const defaultMessages = {
     customize: "Tùy chỉnh",
     custom_columns: "Tùy chỉnh cột",
     clear_filter: "Xóa bộ lọc",
+    loading: "Đang tải dữ liệu...",
     no_results: "Không có kết quả.",
     no_results_found: "Không tìm thấy kết quả.",
     rows_selected: "Đã chọn {selected} trong {total} hàng.",
@@ -277,6 +279,10 @@ export const defaultMessages = {
     streak_placeholder: "0",
 
     email_verified: "Xác thực email",
+
+    grammar_category_name: "Tên danh mục ngữ pháp",
+    grammar_category_name_placeholder: "Nhập tên danh mục ngữ pháp...",
+    grammar_category_name_required: "Tên danh mục ngữ pháp bắt buộc!",
   },
 
   common: {
@@ -349,6 +355,10 @@ export const defaultMessages = {
       empty: "Không tìm thấy kết quả.",
       command_search: "Tìm kiếm lệnh",
     },
+
+    error: {
+      some_thing_went_wrong: "Đã có lỗi xảy ra. Vui lòng thử lại!",
+    }
   },
 
   topic: {
@@ -412,6 +422,17 @@ export const defaultMessages = {
 
   grammar_category: {
     grammar_categories: "Danh mục ngữ pháp",
+
+    add_grammar_category: "Thêm danh mục ngữ pháp",
+    add_grammar_category_desc: "Tạo danh mục ngữ pháp mới. Điền thông tin bên dưới.",
+
+    edit_grammar_category: "Sửa danh mục ngữ pháp",
+    edit_grammar_category_desc: "Chỉnh sửa thông tin danh mục ngữ pháp. Điền thông tin bên dưới.",
+
+    grammar_category_details: "Chi tiết danh mục ngữ pháp",
+    grammar_category_details_desc: "Xem thông tin chi tiết của danh mục ngữ pháp.",
+
+    search_placeholder: "Tìm kiếm danh mục ngữ pháp...",
   },
 
   grammar_topic: {

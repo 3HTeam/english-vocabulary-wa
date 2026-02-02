@@ -3,3 +3,4 @@ export * from "./profile";
 export * from "./upload";
 export * from "./topic";
 export * from "./vocabulary"
+export * from "./grammar-category";

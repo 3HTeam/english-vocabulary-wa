@@ -279,6 +279,7 @@
   "data_table": {
     "asc": "Asc",
     "desc": "Desc",
+    "reset": "Reset",
     "hide": "Hide",
     "view": "View",
     "edit": "Edit",
