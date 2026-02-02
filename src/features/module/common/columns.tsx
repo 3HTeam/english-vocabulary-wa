@@ -1,6 +1,4 @@
-import Image from "next/image";
-
-import type { ColumnDef } from "@tanstack/react-table";
+import { ColumnDef } from "@tanstack/react-table";
 
 import {
   DataTableColumnHeader,
@@ -11,8 +9,8 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { DATE_FORMATS } from "@/constants/common";
 import { formatDate } from "@/utils/date";
 
-import { COLUMN_KEYS } from ".";
-import { type TopicFormValues } from "../schemas";
+import { ModuleFormValues } from "../schemas";
+import { COLUMN_KEYS } from "./constants";
 
 interface CreateColumnsOptions {
   t: (key: string, options?: any) => string;
@@ -21,12 +19,12 @@ interface CreateColumnsOptions {
   onDelete?: (id: string) => void;
   onRestore?: (id: string) => void;
   onForceDelete?: (id: string) => void;
-  getId?: (data: TopicFormValues) => string;
+  getId?: (data: ModuleFormValues) => string;
 }
 
 export const createColumns = (
   options: CreateColumnsOptions,
-): ColumnDef<TopicFormValues>[] => [
+): ColumnDef<ModuleFormValues>[] => [
   {
     id: COLUMN_KEYS.id,
     header: ({ table }) => (
@@ -55,17 +53,38 @@ export const createColumns = (
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
-        title={options.t("field.topic_name")}
+        title={options.t("field.module_name")}
       />
     ),
     meta: {
-      name: options.t("field.topic_name"),
+      name: options.t("field.module_name"),
     },
     cell: ({ row }) => {
       return (
         <div className="flex space-x-2">
           <span className="max-w-[500px] truncate font-medium">
             {row.getValue("name")}
+          </span>
+        </div>
+      );
+    },
+  },
+  {
+    accessorKey: COLUMN_KEYS.description,
+    header: ({ column }) => (
+      <DataTableColumnHeader
+        column={column}
+        title={options.t("field.description")}
+      />
+    ),
+    meta: {
+      name: options.t("field.description"),
+    },
+    cell: ({ row }) => {
+      return (
+        <div className="flex items-center">
+          <span className="max-w-[500px] truncate font-medium">
+            {row.getValue("description")}
           </span>
         </div>
       );
@@ -96,65 +115,6 @@ export const createColumns = (
     },
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id));
-    },
-  },
-
-  {
-    accessorKey: COLUMN_KEYS.imageUrl,
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={options.t("field.image")} />
-    ),
-    meta: {
-      name: options.t("field.image"),
-    },
-    cell: ({ row }) => {
-      const imageUrl = row.getValue(COLUMN_KEYS.imageUrl) as string;
-      return (
-        <Image
-          src={imageUrl || "/placeholder.png"}
-          alt="Image"
-          width={50}
-          height={50}
-          className="w-[50px] h-[50px] object-contain"
-        />
-      );
-    },
-  },
-  {
-    accessorKey: COLUMN_KEYS.slug,
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={options.t("field.slug")} />
-    ),
-    meta: {
-      name: options.t("field.slug"),
-    },
-    cell: ({ row }) => {
-      return (
-        <div className="flex items-center">
-          <Badge variant="outline">{row.getValue("slug")}</Badge>
-        </div>
-      );
-    },
-  },
-  {
-    accessorKey: COLUMN_KEYS.description,
-    header: ({ column }) => (
-      <DataTableColumnHeader
-        column={column}
-        title={options.t("field.description")}
-      />
-    ),
-    meta: {
-      name: options.t("field.description"),
-    },
-    cell: ({ row }) => {
-      return (
-        <div className="flex items-center">
-          <span className="max-w-[500px] truncate font-medium">
-            {row.getValue("description")}
-          </span>
-        </div>
-      );
     },
   },
   {

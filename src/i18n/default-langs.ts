@@ -36,6 +36,10 @@ export const defaultMessages = {
       title: "Cấp độ - {name}",
       desc: "Quản lý cấp độ.",
     },
+    module: {
+      title: "Chức năng - {name}",
+      desc: "Quản lý chức năng.",
+    },
   },
   auth: {
     signin: {
@@ -207,6 +211,9 @@ export const defaultMessages = {
     streak_placeholder: "0",
 
     email_verified: "Xác thực email",
+
+    module_name: "Tên chức năng",
+    module_name_required: "Tên chức năng bắt buộc!",
   },
   dashboard: {
     dashboard: "Bảng điều khiển",
@@ -336,7 +343,6 @@ export const defaultMessages = {
   },
   config: {
     app_config: "Cấu hình ứng dụng",
-    settings: "Cài đặt",
   },
   billing: {
     billing: "Thanh toán",
@@ -444,7 +450,17 @@ export const defaultMessages = {
       list: "Danh sách định nghĩa",
     },
   },
-
+  module: {
+    module: "Chức năng",
+    modules: "Chức năng",
+    search_placeholder: "Tìm kiếm chức năng",
+    add_new_module: "Thêm chức năng mới",
+    add_new_module_desc: "Tạo chức năng mới. Điền thông tin bên dưới",
+    edit_module: "Sửa chức năng",
+    edit_module_desc: "Chỉnh sửa thông tin chức năng. Điền thông tin bên dưới.",
+    module_details: "Chi tiết chức năng",
+    module_details_desc: "Xem thông tin chi tiết của chức năng.",
+  },
   social: {
     apple: "Apple",
     google: "Google",

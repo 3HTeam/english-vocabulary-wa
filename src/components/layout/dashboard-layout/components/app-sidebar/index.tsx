@@ -3,33 +3,25 @@
 import Image from "next/image";
 import Link from "next/link";
 
+
+
 import { Icon } from "@iconify/react";
-import {
-  BookA,
-  LayoutDashboard,
-  LayoutDashboardIcon,
-  LayoutPanelLeft,
-  Settings,
-  Users,
-} from "lucide-react";
+import { BookA, LayoutDashboard, LayoutDashboardIcon, LayoutPanelLeft, Settings, Users } from "lucide-react";
 import { get } from "radash";
+
+
 
 import { useProfileQuery } from "@/apis/queries";
 import { Logo } from "@/assets/images";
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarHeader,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-} from "@/components/ui/sidebar";
+import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar";
 import { EMPTY } from "@/constants/common";
 import { ROUTE_PATH } from "@/constants/routes";
 import { useTranslations } from "@/hooks";
 
+
+
 import { NavMain, NavUser } from "./components";
+
 
 const VocabularyIcon = () => (
   <Icon icon="tabler:vocabulary" className="size-4" />
@@ -37,6 +29,10 @@ const VocabularyIcon = () => (
 const UserIcon = () => <Icon icon="tdesign:usergroup" className="size-4" />;
 
 const SettingsIcon = () => <Icon icon="tdesign:setting-1" className="size-4" />;
+
+const ModuleIcon = () => (
+  <Icon icon="octicon:container-24" className="size-4" />
+);
 
 export const AppSidebar = ({
   ...props
@@ -107,9 +103,14 @@ export const AppSidebar = ({
       label: t("config.app_config"),
       items: [
         {
-          title: t("config.settings"),
+          title: t("setting.settings"),
           url: ROUTE_PATH.admin.settings,
           icon: SettingsIcon,
+        },
+        {
+          title: t("module.modules"),
+          url: ROUTE_PATH.admin.modules,
+          icon: ModuleIcon,
         },
       ],
     },
