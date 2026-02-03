@@ -65,9 +65,10 @@ export const useModalActions = ({
             );
             onSuccess?.();
           },
-          onError: (error: AxiosError<ApiResponse>) => {
+          onError: (error: Error) => {
+            const axiosError = error as AxiosError<ApiResponse>;
             toast.error(
-              error.response?.data?.message ||
+              axiosError.response?.data?.message ||
                 t("common.toast.create_error", {
                   item: t("grammar_exercise.name"),
                 }),
@@ -86,9 +87,10 @@ export const useModalActions = ({
               );
               onSuccess?.();
             },
-            onError: (error: AxiosError<ApiResponse>) => {
+            onError: (error: Error) => {
+              const axiosError = error as AxiosError<ApiResponse>;
               toast.error(
-                error.response?.data?.message ||
+                axiosError.response?.data?.message ||
                   t("common.toast.update_error", {
                     item: t("grammar_exercise.name"),
                   }),
@@ -112,9 +114,10 @@ export const useModalActions = ({
           );
           onSuccess?.();
         },
-        onError: (error: AxiosError<ApiResponse>) => {
+        onError: (error: Error) => {
+          const axiosError = error as AxiosError<ApiResponse>;
           toast.error(
-            error.response?.data?.message ||
+            axiosError.response?.data?.message ||
               t("common.toast.delete_error", {
                 item: t("grammar_exercise.name"),
               }),
@@ -136,9 +139,10 @@ export const useModalActions = ({
           );
           onSuccess?.();
         },
-        onError: (error: AxiosError<ApiResponse>) => {
+        onError: (error: Error) => {
+          const axiosError = error as AxiosError<ApiResponse>;
           toast.error(
-            error.response?.data?.message ||
+            axiosError.response?.data?.message ||
               t("common.toast.restore_error", {
                 item: t("grammar_exercise.name"),
               }),
@@ -160,9 +164,10 @@ export const useModalActions = ({
           );
           onSuccess?.();
         },
-        onError: (error: AxiosError<ApiResponse>) => {
+        onError: (error: Error) => {
+          const axiosError = error as AxiosError<ApiResponse>;
           toast.error(
-            error.response?.data?.message ||
+            axiosError.response?.data?.message ||
               t("common.toast.force_delete_error", {
                 item: t("grammar_exercise.name"),
               }),
