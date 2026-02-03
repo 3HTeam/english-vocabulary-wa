@@ -1,5 +1,5 @@
 import { axiosClient, GRAMMAR_TOPIC_ENDPOINTS } from "@/apis/config";
-import { Params } from "@/types/api";
+import { TParams } from "@/types/api";
 import {
   TCreateGrammarTopicResponse,
   TDeleteGrammarTopicResponse,
@@ -12,7 +12,7 @@ import {
 } from "@/types/features";
 
 export async function getGrammarTopics(
-  params?: Params,
+  params?: TParams,
 ): Promise<TGrammarTopicsResponse> {
   try {
     const queryParams = new URLSearchParams();

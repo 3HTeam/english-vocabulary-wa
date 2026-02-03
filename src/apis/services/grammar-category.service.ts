@@ -1,17 +1,19 @@
 import { axiosClient, GRAMMAR_CATEGORY_ENDPOINTS } from "@/apis/config";
-import { Params } from "@/types/api";
+import { TParams } from "@/types/api";
 import {
   TCreateGrammarCategoryResponse,
   TDeleteGrammarCategoryResponse,
   TForceDeleteGrammarCategoryResponse,
-  TRestoreGrammarCategoryResponse,
+  TGrammarCategoriesResponse,
   TGrammarCategoryByIdResponse,
   TGrammarCategoryPayload,
-  TGrammarCategoriesResponse,
+  TRestoreGrammarCategoryResponse,
   TUpdateGrammarCategoryResponse,
 } from "@/types/features";
 
-export async function getGrammarCategories(params?: Params): Promise<TGrammarCategoriesResponse> {
+export async function getGrammarCategories(
+  params?: TParams,
+): Promise<TGrammarCategoriesResponse> {
   try {
     const queryParams = new URLSearchParams();
     if (params?.page) {
@@ -35,7 +37,9 @@ export async function getGrammarCategories(params?: Params): Promise<TGrammarCat
   }
 }
 
-export async function getGrammarCategoryById(id: string): Promise<TGrammarCategoryByIdResponse> {
+export async function getGrammarCategoryById(
+  id: string,
+): Promise<TGrammarCategoryByIdResponse> {
   try {
     const res = await axiosClient.get<TGrammarCategoryByIdResponse>(
       `${GRAMMAR_CATEGORY_ENDPOINTS.base}/${id}`,
@@ -75,7 +79,9 @@ export async function updateGrammarCategory(
   }
 }
 
-export async function deleteGrammarCategory(id: string): Promise<TDeleteGrammarCategoryResponse> {
+export async function deleteGrammarCategory(
+  id: string,
+): Promise<TDeleteGrammarCategoryResponse> {
   try {
     const res = await axiosClient.delete<TDeleteGrammarCategoryResponse>(
       `${GRAMMAR_CATEGORY_ENDPOINTS.base}/${id}`,
@@ -86,7 +92,9 @@ export async function deleteGrammarCategory(id: string): Promise<TDeleteGrammarC
   }
 }
 
-export async function restoreGrammarCategory(id: string): Promise<TRestoreGrammarCategoryResponse> {
+export async function restoreGrammarCategory(
+  id: string,
+): Promise<TRestoreGrammarCategoryResponse> {
   try {
     const res = await axiosClient.patch<TRestoreGrammarCategoryResponse>(
       `${GRAMMAR_CATEGORY_ENDPOINTS.base}/${id}/restore`,

@@ -14,7 +14,7 @@ import {
   restoreGrammarExercise,
   updateGrammarExercise,
 } from "@/apis/services";
-import { Params } from "@/types/api";
+import { TParams } from "@/types/api";
 import {
   TCreateGrammarExerciseResponse,
   TDeleteGrammarExerciseResponse,
@@ -28,7 +28,7 @@ import {
 
 import { GRAMMAR_EXERCISE_QUERY_KEYS } from "./constants";
 
-export const useGetGrammarExercisesQuery = (params?: Params) => {
+export const useGetGrammarExercisesQuery = (params?: TParams) => {
   return useQuery<TGrammarExercisesResponse>({
     queryKey: GRAMMAR_EXERCISE_QUERY_KEYS.list(params),
     queryFn: () => getGrammarExercises(params),

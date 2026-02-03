@@ -1,12 +1,12 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import { apiServices } from "@/apis/services";
-import { type Params } from "@/types/api";
+import { type TParams } from "@/types/api";
 import { TGrammarTopicPayload } from "@/types/features";
 
 import { GRAMMAR_TOPIC_QUERY_KEYS } from "./constants";
 
-export const useGetGrammarTopicsQuery = (params?: Params) => {
+export const useGetGrammarTopicsQuery = (params?: TParams) => {
   return useQuery({
     queryKey: [GRAMMAR_TOPIC_QUERY_KEYS.getGrammarTopics, params],
     queryFn: () => apiServices.grammarTopic.getGrammarTopics(params),
