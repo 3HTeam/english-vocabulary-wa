@@ -49,7 +49,7 @@ export const useModalActions = ({
         slug: data.slug,
         imageUrl: data.imageUrl,
         status: data.status,
-        description: data.description || "", // Ensure description is never null/undefined
+        description: data.description || "",
       };
 
       if (mode === MODES.add) {
