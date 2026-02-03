@@ -32,6 +32,18 @@ export const SETTING_ENDPOINTS = {
   base: "admin/settings",
 } as const;
 
+export const GRAMMAR_CATEGORY_ENDPOINTS = {
+  base: "admin/grammar-categories",
+} as const;
+
+export const GRAMMAR_TOPIC_ENDPOINTS = {
+  base: "admin/grammar-topics",
+} as const;
+
+export const GRAMMAR_EXERCISE_ENDPOINTS = {
+  base: "admin/grammar-exercises",
+} as const;
+
 export const MODULE_ENDPOINTS = {
   base: "admin/modules",
 } as const;

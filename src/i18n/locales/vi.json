@@ -35,6 +35,18 @@
     "level": {
       "title": "Cấp độ - {name}",
       "desc": "Quản lý cấp độ."
+    },
+    "grammar_category": {
+      "title": "Danh mục ngữ pháp - {name}",
+      "desc": "Quản lý danh mục ngữ pháp."
+    },
+    "grammar_topic": {
+      "title": "Chủ đề ngữ pháp - {name}",
+      "desc": "Quản lý chủ đề ngữ pháp."
+    },
+    "grammar_exercise": {
+      "title": "Bài tập ngữ pháp - {name}",
+      "desc": "Quản lý bài tập ngữ pháp."
     }
   },
   "auth": {
@@ -87,6 +99,58 @@
     "or_continue_with": "Hoặc tiếp tục với",
     "back_to_sign_in": "Quay lại đăng nhập"
   },
+  "social": {
+    "apple": "Apple",
+    "google": "Google",
+    "meta": "Meta"
+  },
+  "file_upload": {
+    "drag_drop_here": "Kéo & thả file tại đây",
+    "or_click_to_select": "Hoặc click để chọn file",
+    "max_size": "tối đa {size}",
+    "select_file": "Chọn file",
+    "file_too_large": "File quá lớn. Kích thước tối đa: {size}KB",
+    "no_url_from_server": "Không nhận được URL từ server",
+    "upload_failed": "Upload thất bại",
+    "file_rejected": "\"{fileName}\" đã bị từ chối"
+  },
+  "data_table": {
+    "asc": "Tăng dần",
+    "desc": "Giảm dần",
+    "reset": "Đặt lại",
+    "hide": "Ẩn",
+    "view": "Xem",
+    "edit": "Sửa",
+    "delete": "Xóa",
+    "customize": "Tùy chỉnh",
+    "custom_columns": "Tùy chỉnh cột",
+    "clear_filter": "Xóa bộ lọc",
+    "loading": "Đang tải dữ liệu...",
+    "no_results": "Không có kết quả.",
+    "no_results_found": "Không tìm thấy kết quả.",
+    "rows_selected": "Đã chọn {selected} trong {total} hàng.",
+    "rows_per_page": "Số hàng mỗi trang",
+    "page_of": "Trang {current} / {total}",
+    "go_first_page": "Đến trang đầu",
+    "go_previous_page": "Đến trang trước",
+    "go_next_page": "Đến trang sau",
+    "go_last_page": "Đến trang cuối",
+    "open_menu": "Mở menu",
+    "all": "Tất cả",
+    "restore": "Khôi phục",
+    "force_delete": "Xóa vĩnh viễn",
+    "search_placeholder": "Tìm kiếm..."
+  },
+  "dashboard": {
+    "dashboard": "Bảng điều khiển",
+    "dashboard2": "Bảng điều khiển 2"
+  },
+  "management": {
+    "management": "Quản lý"
+  },
+  "config": {
+    "app_config": "Cấu hình ứng dụng"
+  },
   "field": {
     "email": "Email",
     "email_placeholder": "johndoe@gmail.com",
@@ -121,6 +185,12 @@
     "level_name": "Tên cấp độ",
     "level_name_placeholder": "Nhập tên cấp độ...",
     "level_name_required": "Tên cấp độ bắt buộc!",
+
+    "level": "Cấp độ",
+    "level_placeholder": "Chọn cấp độ",
+
+    "target_level": "Cấp độ mục tiêu",
+    "target_level_placeholder": "Chọn cấp độ mục tiêu",
 
     "topic_name": "Tên chủ đề",
     "topic_name_placeholder": "Nhập tên chủ đề...",
@@ -184,7 +254,75 @@
     "example": "Ví dụ",
     "example_placeholder": "Câu ví dụ...",
     "example_translation": "Dịch ví dụ",
-    "example_translation_placeholder": "Dịch ví dụ..."
+    "example_translation_placeholder": "Dịch ví dụ...",
+
+    "phone": "Số điện thoại",
+    "phone_placeholder": "0123456789",
+
+    "role": "Vai trò",
+    "role_placeholder": "Chọn vai trò",
+
+    "daily_goal": "Mục tiêu hàng ngày",
+    "daily_goal_placeholder": "10",
+
+    "streak": "Streak",
+    "streak_placeholder": "0",
+
+    "email_verified": "Xác thực email",
+
+    "grammar_category_name": "Tên danh mục",
+    "grammar_category_name_placeholder": "Nhập tên danh mục...",
+    "grammar_category_name_required": "Tên danh mục bắt buộc!",
+
+    "grammar_category": "Danh mục ngữ pháp",
+    "grammar_category_placeholder": "Chọn danh mục ngữ pháp",
+    "grammar_category_required": "Danh mục ngữ pháp bắt buộc!",
+
+    "title": "Tiêu đề",
+    "title_placeholder": "Nhập tiêu đề ...",
+    "title_required": "Tiêu đề bắt buộc!",
+
+    "content": "Nội dung",
+    "content_placeholder": "Nhập nội dung (hỗ trợ Markdown)...",
+    "content_required": "Nội dung bắt buộc!",
+
+    "difficulty": "Độ khó",
+    "difficulty_placeholder": "Chọn độ khó",
+    "difficulty_required": "Độ khó bắt buộc!",
+
+    "level_required": "Cấp độ bắt buộc!",
+
+    "grammar_topic": "Chủ đề ngữ pháp",
+    "grammar_topic_placeholder": "Chọn chủ đề ngữ pháp",
+    "grammar_topic_required": "Chủ đề ngữ pháp bắt buộc!",
+
+    "grammar_topic_title": "Tiêu đề chủ đề",
+    "grammar_topic_title_placeholder": "Nhập tiêu đề chủ đề...",
+    "grammar_topic_title_required": "Tiêu đề chủ đề bắt buộc!",
+
+    "exercise_type": "Loại bài tập",
+    "exercise_type_placeholder": "Chọn loại bài tập",
+    "exercise_type_required": "Loại bài tập bắt buộc!",
+
+    "question": "Câu hỏi",
+    "question_placeholder": "Nhập câu hỏi...",
+    "question_required": "Câu hỏi bắt buộc!",
+
+    "answer": "Đáp án",
+    "answer_placeholder": "Nhập đáp án...",
+    "answer_required": "Đáp án bắt buộc!",
+
+    "options": "Lựa chọn",
+    "options_required": "Cần ít nhất một lựa chọn!",
+    "option": "Lựa chọn",
+
+    "explanation": "Giải thích",
+    "explanation_placeholder": "Nhập giải thích...",
+    "explanation_required": "Giải thích bắt buộc!",
+
+    "score": "Điểm",
+    "score_placeholder": "Nhập điểm...",
+    "score_required": "Điểm bắt buộc!"
   },
   "dashboard": {
     "dashboard": "Bảng điều khiển",
@@ -201,6 +339,19 @@
     "status": {
       "active": "Hiển thị",
       "inactive": "Tạm ẩn"
+    },
+
+    "difficulty": {
+      "beginner": "Cơ bản",
+      "intermediate": "Trung cấp",
+      "advanced": "Nâng cao"
+    },
+
+    "exercise_type": {
+      "multiple_choice": "Trắc nghiệm",
+      "fill_in_the_blank": "Điền vào chỗ trống",
+      "true_false": "Đúng/Sai",
+      "matching": "Nối"
     },
 
     "toast": {
@@ -240,7 +391,8 @@
       "force_delete": "Xóa vĩnh viễn",
       "confirm": "Xác nhận",
       "close": "Đóng",
-      "search": "Tìm kiếm"
+      "search": "Tìm kiếm",
+      "add_option": "Thêm lựa chọn"
     },
 
     "trash": {
@@ -257,12 +409,55 @@
       "input_placeholder": "Bạn cần gì?",
       "empty": "Không tìm thấy kết quả.",
       "command_search": "Tìm kiếm lệnh"
+    },
+
+    "errors": {
+      "something_went_wrong": "Đã có lỗi xảy ra!"
     }
   },
   "grammar": {
     "grammar": "Ngữ pháp",
     "grammar_management": "Quản lý ngữ pháp",
     "grammars": "Ngữ pháp"
+  },
+  "grammar_category": {
+    "name": "Danh mục ngữ pháp",
+    "grammar_category": "Danh mục ngữ pháp",
+    "grammar_categories": "Danh mục ngữ pháp",
+    "grammar_category_management": "Quản lý danh mục ngữ pháp",
+    "search_placeholder": "Tìm kiếm danh mục ngữ pháp...",
+    "add_grammar_category": "Thêm danh mục ngữ pháp",
+    "add_grammar_category_desc": "Tạo danh mục ngữ pháp mới. Điền thông tin bên dưới.",
+    "edit_grammar_category": "Sửa danh mục ngữ pháp",
+    "edit_grammar_category_desc": "Chỉnh sửa thông tin danh mục ngữ pháp. Điền thông tin bên dưới.",
+    "grammar_category_details": "Chi tiết danh mục ngữ pháp",
+    "grammar_category_details_desc": "Xem thông tin chi tiết của danh mục ngữ pháp."
+  },
+  "grammar_topic": {
+    "name": "Chủ đề ngữ pháp",
+    "grammar_topic": "Chủ đề ngữ pháp",
+    "grammar_topics": "Chủ đề ngữ pháp",
+    "grammar_topic_management": "Quản lý chủ đề ngữ pháp",
+    "search_placeholder": "Tìm kiếm chủ đề ngữ pháp...",
+    "add_grammar_topic": "Thêm chủ đề ngữ pháp",
+    "add_grammar_topic_desc": "Tạo chủ đề ngữ pháp mới. Điền thông tin bên dưới.",
+    "edit_grammar_topic": "Sửa chủ đề ngữ pháp",
+    "edit_grammar_topic_desc": "Chỉnh sửa thông tin chủ đề ngữ pháp. Điền thông tin bên dưới.",
+    "grammar_topic_details": "Chi tiết chủ đề ngữ pháp",
+    "grammar_topic_details_desc": "Xem thông tin chi tiết của chủ đề ngữ pháp."
+  },
+  "grammar_exercise": {
+    "name": "Bài tập ngữ pháp",
+    "grammar_exercise": "Bài tập ngữ pháp",
+    "grammar_exercises": "Bài tập ngữ pháp",
+    "grammar_exercise_management": "Quản lý bài tập ngữ pháp",
+    "search_placeholder": "Tìm kiếm bài tập ngữ pháp...",
+    "add_grammar_exercise": "Thêm bài tập ngữ pháp",
+    "add_grammar_exercise_desc": "Tạo bài tập ngữ pháp mới. Điền thông tin bên dưới.",
+    "edit_grammar_exercise": "Sửa bài tập ngữ pháp",
+    "edit_grammar_exercise_desc": "Chỉnh sửa thông tin bài tập ngữ pháp. Điền thông tin bên dưới.",
+    "grammar_exercise_details": "Chi tiết bài tập ngữ pháp",
+    "grammar_exercise_details_desc": "Xem thông tin chi tiết của bài tập ngữ pháp."
   },
   "lesson": {
     "lesson": "Bài học",
@@ -273,7 +468,23 @@
     "user": "Người dùng",
     "user_management": "Quản lý người dùng",
     "users": "Người dùng",
-    "accounts": "Tài khoản"
+    "accounts": "Tài khoản",
+    "search_placeholder": "Tìm kiếm người dùng...",
+    "user_details": "Chi tiết người dùng",
+    "user_details_desc": "Xem thông tin chi tiết của người dùng.",
+    "edit_user": "Sửa người dùng",
+    "edit_user_desc": "Chỉnh sửa thông tin người dùng.",
+    "personal_info": "Thông tin cá nhân",
+    "account_settings": "Cài đặt tài khoản",
+    "role": {
+      "admin": "Quản trị viên",
+      "user": "Người dùng"
+    },
+    "general_info": "Thông tin chung",
+    "learning_progress": "Tiến độ học tập",
+    "account_status": "Trạng thái tài khoản",
+    "avatar": "Ảnh đại diện",
+    "email_verification_status": "Trạng thái xác thực email"
   },
   "setting": {
     "setting": "Cài đặt",
@@ -306,6 +517,7 @@
   "data_table": {
     "asc": "Tăng dần",
     "desc": "Giảm dần",
+    "reset": "Đặt lại",
     "hide": "Ẩn",
     "view": "Xem",
     "edit": "Sửa",
@@ -349,6 +561,22 @@
     "edit_level_desc": "Chỉnh sửa thông tin cấp độ. Điền thông tin bên dưới.",
     "level_details": "Chi tiết cấp độ",
     "level_details_desc": "Xem thông tin chi tiết của cấp độ."
+  },
+  "setting": {
+    "setting": "Cài đặt",
+    "settings": "Cài đặt",
+    "app_info": "Thông tin ứng dụng",
+    "app_name": "Tên ứng dụng",
+    "app_name_placeholder": "Nhập tên ứng dụng...",
+    "app_description": "Mô tả ứng dụng",
+    "app_description_placeholder": "Nhập mô tả ứng dụng...",
+    "primary_color": "Màu chủ đạo",
+    "logo": "Logo",
+    "favicon": "Favicon",
+    "contact_info": "Thông tin liên hệ",
+    "address": "Địa chỉ",
+    "address_placeholder": "Nhập địa chỉ...",
+    "social_media": "Mạng xã hội"
   },
   "topic": {
     "topic": "Chủ đề",

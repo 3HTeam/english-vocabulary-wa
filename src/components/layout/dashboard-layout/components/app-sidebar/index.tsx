@@ -3,42 +3,25 @@
 import Image from "next/image";
 import Link from "next/link";
 
-
-
 import { Icon } from "@iconify/react";
-import { BookA, LayoutDashboard, LayoutDashboardIcon, LayoutPanelLeft, Settings, Users } from "lucide-react";
 import { get } from "radash";
-
-
 
 import { useProfileQuery } from "@/apis/queries";
 import { Logo } from "@/assets/images";
-import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+} from "@/components/ui/sidebar";
 import { EMPTY } from "@/constants/common";
 import { ROUTE_PATH } from "@/constants/routes";
 import { useTranslations } from "@/hooks";
 
-
-
 import { NavMain, NavUser } from "./components";
-
-
-const VocabularyIcon = () => (
-  <Icon icon="tabler:vocabulary" className="size-4" />
-);
-const UserIcon = () => <Icon icon="tdesign:usergroup" className="size-4" />;
-
-const SettingsIcon = () => <Icon icon="tdesign:setting-1" className="size-4" />;
-
-const ModuleIcon = () => (
-  <Icon icon="octicon:container-24" className="size-4" />
-);
-
-const OnboardingIcon = () => (
-  <Icon icon="fluent-mdl2:onboarding" className="size-4" />
-);
-
-const PopupIcon = () => <Icon icon="vaadin:modal-list" className="size-4" />;
 
 export const AppSidebar = ({
   ...props
@@ -59,12 +42,14 @@ export const AppSidebar = ({
         {
           title: t("dashboard.dashboard"),
           url: ROUTE_PATH.admin.dashboard,
-          icon: LayoutDashboard,
+          icon: () => (
+            <Icon icon="tabler:layout-dashboard" className="size-4" />
+          ),
         },
         {
           title: t("dashboard.dashboard2"),
           url: ROUTE_PATH.admin.dashboard2,
-          icon: LayoutPanelLeft,
+          icon: () => <Icon icon="tabler:table-dashed" className="size-4" />,
         },
       ],
     },
@@ -73,13 +58,13 @@ export const AppSidebar = ({
       items: [
         {
           title: t("vocabulary.vocabulary_management"),
-          url: "#",
-          icon: VocabularyIcon,
+          url: ROUTE_PATH.admin.vocabularies,
+          icon: () => <Icon icon="tabler:vocabulary" className="size-4" />,
           isActive: true,
           items: [
             {
               title: t("topic.topics"),
-              url: ROUTE_PATH.admin.topics,
+              url: ROUTE_PATH.admin.vocabularyTopics,
             },
             {
               title: t("vocabulary.vocabularies"),
@@ -88,9 +73,29 @@ export const AppSidebar = ({
           ],
         },
         {
+          title: t("grammar.grammar_management"),
+          url: "#",
+          icon: () => <Icon icon="tabler:text-grammar" className="size-4" />,
+          isActive: true,
+          items: [
+            {
+              title: t("grammar_category.grammar_categories"),
+              url: ROUTE_PATH.admin.grammarCategories,
+            },
+            {
+              title: t("grammar_topic.grammar_topics"),
+              url: ROUTE_PATH.admin.grammarTopics,
+            },
+            {
+              title: t("grammar_exercise.grammar_exercises"),
+              url: ROUTE_PATH.admin.grammarExercises,
+            },
+          ],
+        },
+        {
           title: t("user.user_management"),
           url: "#",
-          icon: UserIcon,
+          icon: () => <Icon icon="tdesign:usergroup" className="size-4" />,
           isActive: true,
           items: [
             {
@@ -99,7 +104,7 @@ export const AppSidebar = ({
             },
             {
               title: t("level.levels"),
-              url: ROUTE_PATH.admin.levels,
+              url: ROUTE_PATH.admin.userLevels,
             },
           ],
         },
@@ -111,22 +116,22 @@ export const AppSidebar = ({
         {
           title: t("setting.settings"),
           url: ROUTE_PATH.admin.settings,
-          icon: SettingsIcon,
+          icon: () => <Icon icon="tdesign:setting-1" className="size-4" />,
         },
         {
           title: t("module.modules"),
           url: ROUTE_PATH.admin.modules,
-          icon: ModuleIcon,
+          icon: () => <Icon icon="octicon:container-24" className="size-4" />,
         },
         {
           title: t("onboarding.onboardings"),
           url: ROUTE_PATH.admin.onboardings,
-          icon: OnboardingIcon,
+          icon: () => <Icon icon="fluent-mdl2:onboarding" className="size-4" />,
         },
         {
           title: t("popup.popups"),
           url: ROUTE_PATH.admin.popups,
-          icon: PopupIcon,
+          icon: () => <Icon icon="vaadin:modal-list" className="size-4" />,
         },
       ],
     },

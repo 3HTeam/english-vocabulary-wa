@@ -36,6 +36,18 @@ export const defaultMessages = {
       title: "Cấp độ - {name}",
       desc: "Quản lý cấp độ.",
     },
+    grammar_category: {
+      title: "Danh mục ngữ pháp - {name}",
+      desc: "Quản lý danh mục ngữ pháp.",
+    },
+    grammar_topic: {
+      title: "Chủ đề ngữ pháp - {name}",
+      desc: "Quản lý chủ đề ngữ pháp.",
+    },
+    grammar_exercise: {
+      title: "Bài tập ngữ pháp - {name}",
+      desc: "Quản lý bài tập ngữ pháp.",
+    },
     module: {
       title: "Chức năng - {name}",
       desc: "Quản lý chức năng.",
@@ -49,6 +61,7 @@ export const defaultMessages = {
       desc: "Quản lý popup.",
     },
   },
+
   auth: {
     signin: {
       signin: "Đăng nhập",
@@ -101,6 +114,65 @@ export const defaultMessages = {
     or_continue_with: "Hoặc tiếp tục với",
     back_to_sign_in: "Quay lại đăng nhập",
   },
+
+  social: {
+    apple: "Apple",
+    google: "Google",
+    meta: "Meta",
+  },
+
+  file_upload: {
+    drag_drop_here: "Kéo & thả file tại đây",
+    or_click_to_select: "Hoặc click để chọn file",
+    max_size: "tối đa {size}",
+    select_file: "Chọn file",
+    file_too_large: "File quá lớn. Kích thước tối đa: {size}KB",
+    no_url_from_server: "Không nhận được URL từ server",
+    upload_failed: "Upload thất bại",
+    file_rejected: '"{fileName}" đã bị từ chối',
+  },
+
+  data_table: {
+    asc: "Tăng dần",
+    desc: "Giảm dần",
+    reset: "Đặt lại",
+    hide: "Ẩn",
+    view: "Xem",
+    edit: "Sửa",
+    delete: "Xóa",
+    customize: "Tùy chỉnh",
+    custom_columns: "Tùy chỉnh cột",
+    clear_filter: "Xóa bộ lọc",
+    loading: "Đang tải dữ liệu...",
+    no_results: "Không có kết quả.",
+    no_results_found: "Không tìm thấy kết quả.",
+    rows_selected: "Đã chọn {selected} trong {total} hàng.",
+    rows_per_page: "Số hàng mỗi trang",
+    page_of: "Trang {current} / {total}",
+    go_first_page: "Đến trang đầu",
+    go_previous_page: "Đến trang trước",
+    go_next_page: "Đến trang sau",
+    go_last_page: "Đến trang cuối",
+    open_menu: "Mở menu",
+    all: "Tất cả",
+    restore: "Khôi phục",
+    force_delete: "Xóa vĩnh viễn",
+    search_placeholder: "Tìm kiếm...",
+  },
+
+  dashboard: {
+    dashboard: "Bảng điều khiển",
+    dashboard2: "Bảng điều khiển 2",
+  },
+
+  management: {
+    management: "Quản lý",
+  },
+
+  config: {
+    app_config: "Cấu hình ứng dụng",
+  },
+
   field: {
     email: "Email",
     email_placeholder: "johndoe@gmail.com",
@@ -220,6 +292,59 @@ export const defaultMessages = {
 
     email_verified: "Xác thực email",
 
+    grammar_category_name: "Tên danh mục ngữ pháp",
+    grammar_category_name_placeholder: "Nhập tên danh mục ngữ pháp...",
+    grammar_category_name_required: "Tên danh mục ngữ pháp bắt buộc!",
+
+    grammar_category: "Danh mục ngữ pháp",
+    grammar_category_placeholder: "Chọn danh mục ngữ pháp",
+    grammar_category_required: "Danh mục ngữ pháp bắt buộc!",
+
+    title: "Tiêu đề",
+    title_placeholder: "Nhập tiêu đề ...",
+    title_required: "Tiêu đề bắt buộc!",
+
+    content: "Nội dung",
+    content_placeholder: "Nhập nội dung (hỗ trợ Markdown)...",
+    content_required: "Nội dung bắt buộc!",
+
+    difficulty: "Độ khó",
+    difficulty_placeholder: "Chọn độ khó",
+    difficulty_required: "Độ khó bắt buộc!",
+
+    level_required: "Cấp độ bắt buộc!",
+
+    grammar_topic: "Chủ đề ngữ pháp",
+    grammar_topic_placeholder: "Chọn chủ đề ngữ pháp",
+    grammar_topic_required: "Chủ đề ngữ pháp bắt buộc!",
+
+    grammar_topic_title: "Tiêu đề chủ đề ngữ pháp",
+    grammar_topic_title_placeholder: "Nhập tiêu đề chủ đề ngữ pháp...",
+    grammar_topic_title_required: "Tiêu đề chủ đề ngữ pháp bắt buộc!",
+
+    exercise_type: "Loại bài tập",
+    exercise_type_placeholder: "Chọn loại bài tập",
+    exercise_type_required: "Loại bài tập bắt buộc!",
+
+    question: "Câu hỏi",
+    question_placeholder: "Nhập câu hỏi...",
+    question_required: "Câu hỏi bắt buộc!",
+
+    answer: "Đáp án",
+    answer_placeholder: "Nhập đáp án...",
+    answer_required: "Đáp án bắt buộc!",
+
+    options: "Lựa chọn",
+    options_required: "Cần ít nhất một lựa chọn!",
+    option: "Lựa chọn",
+
+    explanation: "Giải thích",
+    explanation_placeholder: "Nhập giải thích...",
+    explanation_required: "Giải thích bắt buộc!",
+
+    score: "Điểm",
+    score_placeholder: "Nhập điểm...",
+    score_required: "Điểm bắt buộc!",
     module_name: "Tên chức năng",
     module_name_required: "Tên chức năng bắt buộc!",
 
@@ -235,13 +360,7 @@ export const defaultMessages = {
     module_placeholder: "Chọn chức năng",
     module_required: "Chức năng bắt buộc!",
   },
-  dashboard: {
-    dashboard: "Bảng điều khiển",
-    dashboard2: "Bảng điều khiển 2",
-  },
-  management: {
-    management: "Quản lý",
-  },
+
   common: {
     loading: "Đang tải...",
 
@@ -253,6 +372,19 @@ export const defaultMessages = {
       inactive: "Tạm ẩn",
       verified: "Đã xác thực",
       unverified: "Chưa xác thực",
+    },
+
+    difficulty: {
+      beginner: "Cơ bản",
+      intermediate: "Trung cấp",
+      advanced: "Nâng cao",
+    },
+
+    exercise_type: {
+      multiple_choice: "Trắc nghiệm",
+      fill_in_the_blank: "Điền vào chỗ trống",
+      true_false: "Đúng/Sai",
+      matching: "Nối",
     },
 
     toast: {
@@ -295,6 +427,7 @@ export const defaultMessages = {
       confirm: "Xác nhận",
       close: "Đóng",
       search: "Tìm kiếm",
+      add_option: "Thêm lựa chọn",
     },
 
     trash: {
@@ -312,32 +445,13 @@ export const defaultMessages = {
       empty: "Không tìm thấy kết quả.",
       command_search: "Tìm kiếm lệnh",
     },
-  },
-  grammar: {
-    grammar: "Ngữ pháp",
-    grammar_management: "Quản lý ngữ pháp",
-    grammars: "Ngữ pháp",
-  },
-  lesson: {
-    lesson: "Bài học",
-    lesson_management: "Quản lý bài học",
-    lessons: "Bài học",
-  },
-  user: {
-    user: "Người dùng",
-    user_management: "Quản lý người dùng",
-    users: "Người dùng",
-    accounts: "Tài khoản",
-    search_placeholder: "Tìm kiếm người dùng...",
-    user_details: "Chi tiết người dùng",
-    user_details_desc: "Xem thông tin chi tiết của người dùng.",
-    edit_user: "Sửa người dùng",
-    edit_user_desc: "Chỉnh sửa thông tin người dùng.",
-    personal_info: "Thông tin cá nhân",
-    account_settings: "Cài đặt tài khoản",
-    role: {
-      admin: "Quản trị viên",
-      user: "Người dùng",
+
+    error: {
+      some_thing_went_wrong: "Đã có lỗi xảy ra. Vui lòng thử lại!",
+    },
+
+    errors: {
+      something_went_wrong: "Đã có lỗi xảy ra!",
     },
     general_info: "Thông tin chung",
     learning_progress: "Tiến độ học tập",
@@ -361,9 +475,7 @@ export const defaultMessages = {
     address_placeholder: "Nhập địa chỉ...",
     social_media: "Mạng xã hội",
   },
-  config: {
-    app_config: "Cấu hình ứng dụng",
-  },
+
   billing: {
     billing: "Thanh toán",
     billings: "Thanh toán",
@@ -372,53 +484,7 @@ export const defaultMessages = {
     notification: "Thông báo",
     notifications: "Thông báo",
   },
-  data_table: {
-    asc: "Tăng dần",
-    desc: "Giảm dần",
-    hide: "Ẩn",
-    view: "Xem",
-    edit: "Sửa",
-    delete: "Xóa",
-    customize: "Tùy chỉnh",
-    custom_columns: "Tùy chỉnh cột",
-    clear_filter: "Xóa bộ lọc",
-    no_results: "Không có kết quả.",
-    no_results_found: "Không tìm thấy kết quả.",
-    rows_selected: "Đã chọn {selected} trong {total} hàng.",
-    rows_per_page: "Số hàng mỗi trang",
-    page_of: "Trang {current} / {total}",
-    go_first_page: "Đến trang đầu",
-    go_previous_page: "Đến trang trước",
-    go_next_page: "Đến trang sau",
-    go_last_page: "Đến trang cuối",
-    open_menu: "Mở menu",
-    all: "Tất cả",
-    restore: "Khôi phục",
-    force_delete: "Xóa vĩnh viễn",
-    search_placeholder: "Tìm kiếm...",
-  },
-  file_upload: {
-    drag_drop_here: "Kéo & thả file tại đây",
-    or_click_to_select: "Hoặc click để chọn file",
-    max_size: "tối đa {size}",
-    select_file: "Chọn file",
-    file_too_large: "File quá lớn. Kích thước tối đa: {size}KB",
-    no_url_from_server: "Không nhận được URL từ server",
-    upload_failed: "Upload thất bại",
-    file_rejected: '"{fileName}" đã bị từ chối',
-  },
-  level: {
-    level: "Cấp độ",
-    level_management: "Quản lý cấp độ",
-    levels: "Cấp độ",
-    search_placeholder: "Tìm kiếm cấp độ...",
-    add_new_level: "Thêm cấp độ mới",
-    add_new_level_desc: "Tạo cấp độ mới. Điền thông tin bên dưới.",
-    edit_level: "Sửa cấp độ",
-    edit_level_desc: "Chỉnh sửa thông tin cấp độ. Điền thông tin bên dưới.",
-    level_details: "Chi tiết cấp độ",
-    level_details_desc: "Xem thông tin chi tiết của cấp độ.",
-  },
+
   topic: {
     topic: "Chủ đề",
     topic_management: "Quản lý chủ đề",
@@ -431,6 +497,7 @@ export const defaultMessages = {
     topic_details: "Chi tiết chủ đề",
     topic_details_desc: "Xem thông tin chi tiết của chủ đề.",
   },
+
   vocabulary: {
     vocabulary: "Từ vựng",
     vocabulary_management: "Quản lý từ vựng",
@@ -470,6 +537,107 @@ export const defaultMessages = {
       list: "Danh sách định nghĩa",
     },
   },
+
+  grammar: {
+    grammar: "Ngữ pháp",
+    grammar_management: "Quản lý ngữ pháp",
+    grammars: "Ngữ pháp",
+  },
+
+  grammar_category: {
+    grammar_categories: "Danh mục ngữ pháp",
+
+    add_grammar_category: "Thêm danh mục ngữ pháp",
+    add_grammar_category_desc:
+      "Tạo danh mục ngữ pháp mới. Điền thông tin bên dưới.",
+
+    edit_grammar_category: "Sửa danh mục ngữ pháp",
+    edit_grammar_category_desc:
+      "Chỉnh sửa thông tin danh mục ngữ pháp. Điền thông tin bên dưới.",
+
+    grammar_category_details: "Chi tiết danh mục ngữ pháp",
+    grammar_category_details_desc:
+      "Xem thông tin chi tiết của danh mục ngữ pháp.",
+
+    search_placeholder: "Tìm kiếm danh mục ngữ pháp...",
+  },
+
+  grammar_topic: {
+    grammar_topics: "Chủ đề ngữ pháp",
+
+    add_grammar_topic: "Thêm chủ đề ngữ pháp",
+    add_grammar_topic_desc: "Tạo chủ đề ngữ pháp mới. Điền thông tin bên dưới.",
+
+    edit_grammar_topic: "Sửa chủ đề ngữ pháp",
+    edit_grammar_topic_desc:
+      "Chỉnh sửa thông tin chủ đề ngữ pháp. Điền thông tin bên dưới.",
+
+    grammar_topic_details: "Chi tiết chủ đề ngữ pháp",
+    grammar_topic_details_desc: "Xem thông tin chi tiết của chủ đề ngữ pháp.",
+
+    search_placeholder: "Tìm kiếm chủ đề ngữ pháp...",
+    name: "Chủ đề ngữ pháp",
+  },
+
+  grammar_exercise: {
+    name: "Bài tập ngữ pháp",
+    grammar_exercise: "Bài tập ngữ pháp",
+    grammar_exercises: "Bài tập ngữ pháp",
+    grammar_exercise_management: "Quản lý bài tập ngữ pháp",
+    search_placeholder: "Tìm kiếm bài tập ngữ pháp...",
+    add_grammar_exercise: "Thêm bài tập ngữ pháp",
+    add_grammar_exercise_desc:
+      "Tạo bài tập ngữ pháp mới. Điền thông tin bên dưới.",
+    edit_grammar_exercise: "Sửa bài tập ngữ pháp",
+    edit_grammar_exercise_desc:
+      "Chỉnh sửa thông tin bài tập ngữ pháp. Điền thông tin bên dưới.",
+    grammar_exercise_details: "Chi tiết bài tập ngữ pháp",
+    grammar_exercise_details_desc:
+      "Xem thông tin chi tiết của bài tập ngữ pháp.",
+  },
+
+  lesson: {
+    lesson: "Bài học",
+    lesson_management: "Quản lý bài học",
+    lessons: "Bài học",
+  },
+
+  user: {
+    user: "Người dùng",
+    user_management: "Quản lý người dùng",
+    users: "Người dùng",
+    accounts: "Tài khoản",
+    search_placeholder: "Tìm kiếm người dùng...",
+    user_details: "Chi tiết người dùng",
+    user_details_desc: "Xem thông tin chi tiết của người dùng.",
+    edit_user: "Sửa người dùng",
+    edit_user_desc: "Chỉnh sửa thông tin người dùng.",
+    personal_info: "Thông tin cá nhân",
+    account_settings: "Cài đặt tài khoản",
+    role: {
+      admin: "Quản trị viên",
+      user: "Người dùng",
+    },
+    general_info: "Thông tin chung",
+    learning_progress: "Tiến độ học tập",
+    account_status: "Trạng thái tài khoản",
+    avatar: "Ảnh đại diện",
+    email_verification_status: "Trạng thái xác thực email",
+  },
+
+  level: {
+    level: "Cấp độ",
+    level_management: "Quản lý cấp độ",
+    levels: "Cấp độ",
+    search_placeholder: "Tìm kiếm cấp độ...",
+    add_new_level: "Thêm cấp độ mới",
+    add_new_level_desc: "Tạo cấp độ mới. Điền thông tin bên dưới.",
+    edit_level: "Sửa cấp độ",
+    edit_level_desc: "Chỉnh sửa thông tin cấp độ. Điền thông tin bên dưới.",
+    level_details: "Chi tiết cấp độ",
+    level_details_desc: "Xem thông tin chi tiết của cấp độ.",
+  },
+
   module: {
     module: "Chức năng",
     modules: "Chức năng",
@@ -503,11 +671,6 @@ export const defaultMessages = {
     edit_popup_desc: "Chỉnh sửa thông tin popup. Điền thông tin bên dưới.",
     popup_details: "Chi tiết popup",
     popup_details_desc: "Xem thông tin chi tiết của popup.",
-  },
-  social: {
-    apple: "Apple",
-    google: "Google",
-    meta: "Meta",
   },
 } as const;
 

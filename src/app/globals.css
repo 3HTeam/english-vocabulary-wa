@@ -143,7 +143,8 @@
   }
 
   /* Right sidebar inset variant - collapsed state margin */
-  [data-side="right"][data-variant="inset"][data-state="collapsed"] ~ [data-slot="sidebar-inset"] {
+  [data-side="right"][data-variant="inset"][data-state="collapsed"]
+    ~ [data-slot="sidebar-inset"] {
     margin-right: 0.5rem !important;
   }
 }
@@ -151,6 +152,108 @@
 /* Smooth scrolling for the entire page */
 html {
   scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar Styles */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--muted-foreground) / 0.3) transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.3);
+  border-radius: 4px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+  transition: background-color 0.2s ease;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.5);
+  background-clip: content-box;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:active {
+  background: hsl(var(--muted-foreground) / 0.7);
+  background-clip: content-box;
+}
+
+.custom-scrollbar::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Modal Scrollbar - More subtle */
+.modal-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--border)) transparent;
+}
+
+.modal-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modal-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 3px;
+}
+
+.modal-scrollbar::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 3px;
+  transition: background-color 0.2s ease;
+}
+
+.modal-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.4);
+}
+
+.modal-scrollbar::-webkit-scrollbar-thumb:active {
+  background: hsl(var(--muted-foreground) / 0.6);
+}
+
+/* Thin Scrollbar - For compact areas */
+.thin-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--muted-foreground) / 0.2) transparent;
+}
+
+.thin-scrollbar::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.thin-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.thin-scrollbar::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.2);
+  border-radius: 2px;
+  transition: background-color 0.2s ease;
+}
+
+.thin-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.4);
+}
+
+/* Invisible Scrollbar - For special cases */
+.scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
 }
 
 /* Logo carousel animation */

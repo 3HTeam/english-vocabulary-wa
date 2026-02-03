@@ -23,6 +23,7 @@ import { EMPTY, MODES } from "@/constants/common";
 import { useTranslations } from "@/hooks";
 import { ApiResponse } from "@/types/api";
 import { TCreateTopicResponse } from "@/types/features/topic";
+import { generateSlug } from "@/utils/string";
 
 import { topicDefaultValues } from "../../common";
 import { getTopicSchema, type TopicFormValues } from "../../schemas";
@@ -45,15 +46,6 @@ export function AddTopicModal({ trigger }: AddTopicModalProps) {
   });
 
   const { handleSubmit, reset, setValue } = form;
-
-  const generateSlug = (name: string) => {
-    return name
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, EMPTY.str)
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/(^-|-$)/g, EMPTY.str);
-  };
 
   const handleNameChange = (name: string) => {
     setValue("slug", generateSlug(name), { shouldValidate: true });

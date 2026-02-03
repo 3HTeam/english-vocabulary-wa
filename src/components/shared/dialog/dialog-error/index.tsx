@@ -13,6 +13,7 @@ interface DialogErrorProps {
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
   title: string;
+  description?: string;
   onClose?: () => void;
 }
 
@@ -20,6 +21,7 @@ const DialogError = ({
   open,
   onOpenChange,
   title,
+  description,
   onClose,
 }: DialogErrorProps) => {
   const t = useTranslations();
@@ -36,7 +38,7 @@ const DialogError = ({
           <DialogTitle>{title}</DialogTitle>
         </DialogHeader>
         <div className="py-8 text-center text-destructive">
-          {t("common.error.loading")}
+          {description || t("common.error.some_thing_went_wrong")}
         </div>
         <div className="flex justify-end">
           <Button
