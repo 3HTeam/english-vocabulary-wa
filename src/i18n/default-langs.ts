@@ -60,6 +60,10 @@ export const defaultMessages = {
       title: "Popup - {name}",
       desc: "Quản lý popup.",
     },
+    banner: {
+      title: "Banner - {name}",
+      desc: "Quản lý banner.",
+    },
   },
 
   auth: {
@@ -359,6 +363,10 @@ export const defaultMessages = {
     module: "Chức năng",
     module_placeholder: "Chọn chức năng",
     module_required: "Chức năng bắt buộc!",
+
+    banner_title: "Tiêu đề",
+    banner_title_placeholder: "Nhập tiêu đề...",
+    banner_title_required: "Tiêu đề bắt buộc!",
   },
 
   common: {
@@ -671,6 +679,17 @@ export const defaultMessages = {
     edit_popup_desc: "Chỉnh sửa thông tin popup. Điền thông tin bên dưới.",
     popup_details: "Chi tiết popup",
     popup_details_desc: "Xem thông tin chi tiết của popup.",
+  },
+  banner: {
+    banner: "Banner",
+    banners: "Banner",
+    search_placeholder: "Tìm kiếm banner...",
+    add_new_banner: "Thêm banner mới",
+    add_new_banner_desc: "Tạo banner mới. Điền thông tin bên dưới.",
+    edit_banner: "Sửa banner",
+    edit_banner_desc: "Chỉnh sửa thông tin banner. Điền thông tin bên dưới.",
+    banner_details: "Chi tiết banner",
+    banner_details_desc: "Xem thông tin chi tiết của banner.",
   },
 } as const;
 

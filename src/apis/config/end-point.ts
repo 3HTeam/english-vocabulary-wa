@@ -55,3 +55,7 @@ export const ONBOARDING_ENDPOINTS = {
 export const POPUP_ENDPOINTS = {
   base: "admin/popups",
 } as const;
+
+export const BANNER_ENDPOINTS = {
+  base: "admin/banners",
+} as const;

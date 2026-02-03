@@ -4,6 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Icon } from "@iconify/react";
+import {
+  BookA,
+  LayoutDashboard,
+  LayoutDashboardIcon,
+  LayoutPanelLeft,
+  Settings,
+  Users,
+} from "lucide-react";
 import { get } from "radash";
 
 import { useProfileQuery } from "@/apis/queries";
@@ -132,6 +140,11 @@ export const AppSidebar = ({
           title: t("popup.popups"),
           url: ROUTE_PATH.admin.popups,
           icon: () => <Icon icon="vaadin:modal-list" className="size-4" />,
+        },
+        {
+          title: t("banner.banners"),
+          url: ROUTE_PATH.admin.banners,
+          icon: () => <Icon icon="ph:flag-banner-fold" className="size-4" />,
         },
       ],
     },
