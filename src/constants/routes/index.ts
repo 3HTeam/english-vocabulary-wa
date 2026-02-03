@@ -18,7 +18,8 @@ const ADMIN_PATH = {
   users: "/users",
   settings: "/settings",
   modules: "/modules",
-  onboardings: "/onboardings"
+  onboardings: "/onboardings",
+  popups: "/popups",
 };
 
 export const ROUTE_PATH = {
