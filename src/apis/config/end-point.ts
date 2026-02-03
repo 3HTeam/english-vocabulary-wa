@@ -35,3 +35,7 @@ export const SETTING_ENDPOINTS = {
 export const MODULE_ENDPOINTS = {
   base: "admin/modules",
 } as const;
+
+export const ONBOARDING_ENDPOINTS = {
+  base: "admin/onboardings",
+} as const;
