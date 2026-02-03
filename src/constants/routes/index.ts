@@ -40,6 +40,7 @@ const ADMIN_PATH = {
   modules: "/modules",
   onboardings: "/onboardings",
   popups: "/popups",
+  banners: "/banners",
 };
 
 export const ROUTE_PATH = {

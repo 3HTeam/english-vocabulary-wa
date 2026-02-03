@@ -1,4 +1,5 @@
 import * as authServices from "./auth.service";
+import * as bannerServices from "./banner.service";
 import * as grammarCategoryServices from "./grammar-category.service";
 import * as grammarExerciseServices from "./grammar-exercise.service";
 import * as grammarTopicServices from "./grammar-topic.service";
@@ -26,6 +27,7 @@ export const apiServices = {
   module: moduleServices,
   onboarding: onboardingServices,
   popup: popupServices,
+  banner: bannerServices,
 };
 
 export * from "./auth.service";

@@ -11,3 +11,4 @@ export * from "./grammar-exercise";
 export * from "./module";
 export * from "./onboarding";
 export * from "./popup";
+export * from "./banner";
