@@ -80,7 +80,9 @@ export type TVocabularyPayload = Pick<
   meanings: TVocabularyMeaningPayload[];
 };
 
-export type TCreateVocabularyResponse = ApiResponse<TVocabulary>;
+export type TCreateVocabularyResponse = ApiResponse<{
+  vocabulary: TVocabulary;
+}>;
 
 export type TVocabularyByIdResponse = ApiResponse<{
   vocabulary: TVocabulary;

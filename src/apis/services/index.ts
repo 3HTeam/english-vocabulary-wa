@@ -1,6 +1,7 @@
 import * as authServices from "./auth.service";
 import * as levelServices from "./level.service";
 import * as moduleServices from "./module.service";
+import * as onboardingServices from "./onboarding.service";
 import * as settingServices from "./setting.service";
 import * as topicServices from "./topic.service";
 import * as uploadServices from "./upload.service";
@@ -16,4 +17,5 @@ export const apiServices = {
   user: userServices,
   setting: settingServices,
   module: moduleServices,
+  onboarding: onboardingServices,
 };

@@ -26,4 +26,6 @@ export type TRestoreModuleResponse = ApiResponse<void>;
 
 export type TForceDeleteModuleResponse = ApiResponse<void>;
 
-export type TCreateModuleResponse = ApiResponse<TModule>;
+export type TCreateModuleResponse = ApiResponse<{
+  module: TModule;
+}>;

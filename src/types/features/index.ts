@@ -4,3 +4,4 @@ export * from "./upload";
 export * from "./topic";
 export * from "./vocabulary";
 export * from "./module";
+export * from "./onboarding";

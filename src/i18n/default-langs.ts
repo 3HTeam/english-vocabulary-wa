@@ -40,6 +40,10 @@ export const defaultMessages = {
       title: "Chức năng - {name}",
       desc: "Quản lý chức năng.",
     },
+    onboarding: {
+      title: "Onboarding - {name}",
+      desc: "Quản lý onboarding.",
+    },
   },
   auth: {
     signin: {
@@ -214,6 +218,10 @@ export const defaultMessages = {
 
     module_name: "Tên chức năng",
     module_name_required: "Tên chức năng bắt buộc!",
+
+    onboarding_title: "Tiêu đề",
+    onboarding_title_placeholder: "Nhập tiêu đề...",
+    onboarding_title_required: "Tiêu đề bắt buộc!",
   },
   dashboard: {
     dashboard: "Bảng điều khiển",
@@ -460,6 +468,18 @@ export const defaultMessages = {
     edit_module_desc: "Chỉnh sửa thông tin chức năng. Điền thông tin bên dưới.",
     module_details: "Chi tiết chức năng",
     module_details_desc: "Xem thông tin chi tiết của chức năng.",
+  },
+  onboarding: {
+    onboarding: "Onboarding",
+    onboardings: "Onboarding",
+    search_placeholder: "Tìm kiếm onboarding...",
+    add_new_onboarding: "Thêm onboarding mới",
+    add_new_onboarding_desc: "Tạo onboarding mới. Điền thông tin bên dưới.",
+    edit_onboarding: "Sửa onboarding",
+    edit_onboarding_desc:
+      "Chỉnh sửa thông tin onboarding. Điền thông tin bên dưới.",
+    onboarding_details: "Chi tiết onboarding",
+    onboarding_details_desc: "Xem thông tin chi tiết của onboarding.",
   },
   social: {
     apple: "Apple",
