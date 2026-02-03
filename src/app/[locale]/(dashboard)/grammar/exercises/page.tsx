@@ -1,6 +1,7 @@
 "use client";
 
 import { MobileViewPlaceholder } from "@/components/shared/mobile-view-placeholder";
+import { GrammarExerciseView } from "@/features/grammar-exercise";
 import { useTranslations } from "@/hooks";
 
 export default function ExercisesLayout() {
@@ -12,6 +13,7 @@ export default function ExercisesLayout() {
 
       {/* Desktop view */}
       <div className="hidden h-full flex-1 flex-col px-4 md:px-6 md:flex">
+        <GrammarExerciseView />
       </div>
     </>
   );

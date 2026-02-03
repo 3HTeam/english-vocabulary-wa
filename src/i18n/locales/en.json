@@ -27,6 +27,26 @@
     "user": {
       "title": "User - {name}",
       "desc": "Manage users."
+    },
+    "setting": {
+      "title": "Settings - {name}",
+      "desc": "Manage system settings."
+    },
+    "level": {
+      "title": "Level - {name}",
+      "desc": "Manage levels."
+    },
+    "grammar_category": {
+      "title": "Grammar Category - {name}",
+      "desc": "Manage grammar categories."
+    },
+    "grammar_topic": {
+      "title": "Grammar Topic - {name}",
+      "desc": "Manage grammar topics."
+    },
+    "grammar_exercise": {
+      "title": "Grammar Exercise - {name}",
+      "desc": "Manage grammar exercises."
     }
   },
   "auth": {
@@ -79,6 +99,58 @@
     "or_continue_with": "Or continue with",
     "back_to_sign_in": "Back to sign in"
   },
+  "social": {
+    "apple": "Apple",
+    "google": "Google",
+    "meta": "Meta"
+  },
+  "file_upload": {
+    "drag_drop_here": "Drag & drop files here",
+    "or_click_to_select": "Or click to select files",
+    "max_size": "max {size}",
+    "select_file": "Select file",
+    "file_too_large": "File is too large. Maximum size: {size}KB",
+    "no_url_from_server": "No URL received from server",
+    "upload_failed": "Upload failed",
+    "file_rejected": "\"{fileName}\" was rejected"
+  },
+  "data_table": {
+    "asc": "Asc",
+    "desc": "Desc",
+    "reset": "Reset",
+    "hide": "Hide",
+    "view": "View",
+    "edit": "Edit",
+    "delete": "Delete",
+    "customize": "Customize",
+    "custom_columns": "Custom columns",
+    "clear_filter": "Clear filter",
+    "loading": "Loading data...",
+    "no_results": "No results.",
+    "no_results_found": "No results found.",
+    "rows_selected": "{selected} of {total} row(s) selected.",
+    "rows_per_page": "Rows per page",
+    "page_of": "Page {current} of {total}",
+    "go_first_page": "Go to first page",
+    "go_previous_page": "Go to previous page",
+    "go_next_page": "Go to next page",
+    "go_last_page": "Go to last page",
+    "open_menu": "Open menu",
+    "all": "All",
+    "restore": "Restore",
+    "force_delete": "Delete permanently",
+    "search_placeholder": "Search..."
+  },
+  "dashboard": {
+    "dashboard": "Dashboard",
+    "dashboard2": "Dashboard 2"
+  },
+  "management": {
+    "management": "Management"
+  },
+  "config": {
+    "app_config": "App Configuration"
+  },
   "field": {
     "email": "Email",
     "email_placeholder": "johndoe@gmail.com",
@@ -113,6 +185,12 @@
     "level_name": "Level Name",
     "level_name_placeholder": "Enter level name...",
     "level_name_required": "Level name is required!",
+
+    "level": "Level",
+    "level_placeholder": "Select level",
+
+    "target_level": "Target Level",
+    "target_level_placeholder": "Select target level",
 
     "topic_name": "Topic Name",
     "topic_name_placeholder": "Enter topic name...",
@@ -176,7 +254,75 @@
     "example": "Example",
     "example_placeholder": "Example sentence...",
     "example_translation": "Example Translation",
-    "example_translation_placeholder": "Translate example..."
+    "example_translation_placeholder": "Translate example...",
+
+    "phone": "Phone Number",
+    "phone_placeholder": "0123456789",
+
+    "role": "Role",
+    "role_placeholder": "Select role",
+
+    "daily_goal": "Daily Goal",
+    "daily_goal_placeholder": "10",
+
+    "streak": "Streak",
+    "streak_placeholder": "0",
+
+    "email_verified": "Email Verified",
+
+    "grammar_category_name": "Category Name",
+    "grammar_category_name_placeholder": "Enter category name...",
+    "grammar_category_name_required": "Category name is required!",
+
+    "grammar_category": "Grammar Category",
+    "grammar_category_placeholder": "Select grammar category",
+    "grammar_category_required": "Grammar category is required!",
+
+    "title": "Title",
+    "title_placeholder": "Enter title...",
+    "title_required": "Title is required!",
+
+    "content": "Content",
+    "content_placeholder": "Enter content (Markdown supported)...",
+    "content_required": "Content is required!",
+
+    "difficulty": "Difficulty",
+    "difficulty_placeholder": "Select difficulty",
+    "difficulty_required": "Difficulty is required!",
+
+    "level_required": "Level is required!",
+
+    "grammar_topic": "Grammar Topic",
+    "grammar_topic_placeholder": "Select grammar topic",
+    "grammar_topic_required": "Grammar topic is required!",
+
+    "grammar_topic_title": "Topic Title",
+    "grammar_topic_title_placeholder": "Enter topic title...",
+    "grammar_topic_title_required": "Topic title is required!",
+
+    "exercise_type": "Exercise Type",
+    "exercise_type_placeholder": "Select exercise type",
+    "exercise_type_required": "Exercise type is required!",
+
+    "question": "Question",
+    "question_placeholder": "Enter question...",
+    "question_required": "Question is required!",
+
+    "answer": "Answer",
+    "answer_placeholder": "Enter answer...",
+    "answer_required": "Answer is required!",
+
+    "options": "Options",
+    "options_required": "At least one option is required!",
+    "option": "Option",
+
+    "explanation": "Explanation",
+    "explanation_placeholder": "Enter explanation...",
+    "explanation_required": "Explanation is required!",
+
+    "score": "Score",
+    "score_placeholder": "Enter score...",
+    "score_required": "Score is required!"
   },
   "dashboard": {
     "dashboard": "Dashboard",
@@ -190,6 +336,19 @@
     "status": {
       "active": "Active",
       "inactive": "Inactive"
+    },
+
+    "difficulty": {
+      "beginner": "Beginner",
+      "intermediate": "Intermediate",
+      "advanced": "Advanced"
+    },
+
+    "exercise_type": {
+      "multiple_choice": "Multiple Choice",
+      "fill_in_the_blank": "Fill in the Blank",
+      "true_false": "True/False",
+      "matching": "Matching"
     },
 
     "toast": {
@@ -229,7 +388,8 @@
       "force_delete": "Delete Permanently",
       "confirm": "Confirm",
       "close": "Close",
-      "search": "Search"
+      "search": "Search",
+      "add_option": "Add Option"
     },
 
     "trash": {
@@ -246,12 +406,55 @@
       "input_placeholder": "What do you need?",
       "empty": "No results found.",
       "command_search": "Command Search"
+    },
+
+    "errors": {
+      "something_went_wrong": "Something went wrong!"
     }
   },
   "grammar": {
     "grammar": "Grammar",
     "grammar_management": "Grammar Management",
     "grammars": "Grammars"
+  },
+  "grammar_category": {
+    "name": "Grammar Category",
+    "grammar_category": "Grammar Category",
+    "grammar_categories": "Grammar Categories",
+    "grammar_category_management": "Grammar Category Management",
+    "search_placeholder": "Search grammar categories...",
+    "add_grammar_category": "Add Grammar Category",
+    "add_grammar_category_desc": "Create a new grammar category. Fill in the information below.",
+    "edit_grammar_category": "Edit Grammar Category",
+    "edit_grammar_category_desc": "Edit grammar category information. Fill in the information below.",
+    "grammar_category_details": "Grammar Category Details",
+    "grammar_category_details_desc": "View detailed information of the grammar category."
+  },
+  "grammar_topic": {
+    "name": "Grammar Topic",
+    "grammar_topic": "Grammar Topic",
+    "grammar_topics": "Grammar Topics",
+    "grammar_topic_management": "Grammar Topic Management",
+    "search_placeholder": "Search grammar topics...",
+    "add_grammar_topic": "Add Grammar Topic",
+    "add_grammar_topic_desc": "Create a new grammar topic. Fill in the information below.",
+    "edit_grammar_topic": "Edit Grammar Topic",
+    "edit_grammar_topic_desc": "Edit grammar topic information. Fill in the information below.",
+    "grammar_topic_details": "Grammar Topic Details",
+    "grammar_topic_details_desc": "View detailed information of the grammar topic."
+  },
+  "grammar_exercise": {
+    "name": "Grammar Exercise",
+    "grammar_exercise": "Grammar Exercise",
+    "grammar_exercises": "Grammar Exercises",
+    "grammar_exercise_management": "Grammar Exercise Management",
+    "search_placeholder": "Search grammar exercises...",
+    "add_grammar_exercise": "Add Grammar Exercise",
+    "add_grammar_exercise_desc": "Create a new grammar exercise. Fill in the information below.",
+    "edit_grammar_exercise": "Edit Grammar Exercise",
+    "edit_grammar_exercise_desc": "Edit grammar exercise information. Fill in the information below.",
+    "grammar_exercise_details": "Grammar Exercise Details",
+    "grammar_exercise_details_desc": "View detailed information of the grammar exercise."
   },
   "lesson": {
     "lesson": "Lesson",
@@ -262,7 +465,23 @@
     "user": "User",
     "user_management": "User Management",
     "users": "Users",
-    "accounts": "Accounts"
+    "accounts": "Accounts",
+    "search_placeholder": "Search users...",
+    "user_details": "User Details",
+    "user_details_desc": "View detailed user information.",
+    "edit_user": "Edit User",
+    "edit_user_desc": "Edit user information.",
+    "personal_info": "Personal Information",
+    "account_settings": "Account Settings",
+    "role": {
+      "admin": "Administrator",
+      "user": "User"
+    },
+    "general_info": "General Information",
+    "learning_progress": "Learning Progress",
+    "account_status": "Account Status",
+    "avatar": "Avatar",
+    "email_verification_status": "Email Verification Status"
   },
   "config": {
     "app_config": "App Configuration",
@@ -323,6 +542,22 @@
     "edit_level_desc": "Edit level information. Fill in the information below.",
     "level_details": "Level Details",
     "level_details_desc": "View detailed information of the level."
+  },
+  "setting": {
+    "setting": "Settings",
+    "settings": "Settings",
+    "app_info": "App Information",
+    "app_name": "App Name",
+    "app_name_placeholder": "Enter app name...",
+    "app_description": "App Description",
+    "app_description_placeholder": "Enter app description...",
+    "primary_color": "Primary Color",
+    "logo": "Logo",
+    "favicon": "Favicon",
+    "contact_info": "Contact Information",
+    "address": "Address",
+    "address_placeholder": "Enter address...",
+    "social_media": "Social Media"
   },
   "topic": {
     "topic": "Topic",

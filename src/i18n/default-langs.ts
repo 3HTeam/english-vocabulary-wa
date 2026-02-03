@@ -301,6 +301,38 @@ export const defaultMessages = {
     difficulty_required: "Độ khó bắt buộc!",
 
     level_required: "Cấp độ bắt buộc!",
+
+    grammar_topic: "Chủ đề ngữ pháp",
+    grammar_topic_placeholder: "Chọn chủ đề ngữ pháp",
+    grammar_topic_required: "Chủ đề ngữ pháp bắt buộc!",
+
+    grammar_topic_title: "Tiêu đề chủ đề ngữ pháp",
+    grammar_topic_title_placeholder: "Nhập tiêu đề chủ đề ngữ pháp...",
+    grammar_topic_title_required: "Tiêu đề chủ đề ngữ pháp bắt buộc!",
+
+    exercise_type: "Loại bài tập",
+    exercise_type_placeholder: "Chọn loại bài tập",
+    exercise_type_required: "Loại bài tập bắt buộc!",
+
+    question: "Câu hỏi",
+    question_placeholder: "Nhập câu hỏi...",
+    question_required: "Câu hỏi bắt buộc!",
+
+    answer: "Đáp án",
+    answer_placeholder: "Nhập đáp án...",
+    answer_required: "Đáp án bắt buộc!",
+
+    options: "Lựa chọn",
+    options_required: "Cần ít nhất một lựa chọn!",
+    option: "Lựa chọn",
+
+    explanation: "Giải thích",
+    explanation_placeholder: "Nhập giải thích...",
+    explanation_required: "Giải thích bắt buộc!",
+
+    score: "Điểm",
+    score_placeholder: "Nhập điểm...",
+    score_required: "Điểm bắt buộc!",
   },
 
   common: {
@@ -320,6 +352,13 @@ export const defaultMessages = {
       beginner: "Cơ bản",
       intermediate: "Trung cấp",
       advanced: "Nâng cao",
+    },
+
+    exercise_type: {
+      multiple_choice: "Trắc nghiệm",
+      fill_in_the_blank: "Điền vào chỗ trống",
+      true_false: "Đúng/Sai",
+      matching: "Nối",
     },
 
     toast: {
@@ -362,6 +401,7 @@ export const defaultMessages = {
       confirm: "Xác nhận",
       close: "Đóng",
       search: "Tìm kiếm",
+      add_option: "Thêm lựa chọn",
     },
 
     trash: {
@@ -382,6 +422,10 @@ export const defaultMessages = {
 
     error: {
       some_thing_went_wrong: "Đã có lỗi xảy ra. Vui lòng thử lại!",
+    },
+
+    errors: {
+      something_went_wrong: "Đã có lỗi xảy ra!",
     },
   },
 
@@ -480,7 +524,20 @@ export const defaultMessages = {
   },
 
   grammar_exercise: {
+    name: "Bài tập ngữ pháp",
+    grammar_exercise: "Bài tập ngữ pháp",
     grammar_exercises: "Bài tập ngữ pháp",
+    grammar_exercise_management: "Quản lý bài tập ngữ pháp",
+    search_placeholder: "Tìm kiếm bài tập ngữ pháp...",
+    add_grammar_exercise: "Thêm bài tập ngữ pháp",
+    add_grammar_exercise_desc:
+      "Tạo bài tập ngữ pháp mới. Điền thông tin bên dưới.",
+    edit_grammar_exercise: "Sửa bài tập ngữ pháp",
+    edit_grammar_exercise_desc:
+      "Chỉnh sửa thông tin bài tập ngữ pháp. Điền thông tin bên dưới.",
+    grammar_exercise_details: "Chi tiết bài tập ngữ pháp",
+    grammar_exercise_details_desc:
+      "Xem thông tin chi tiết của bài tập ngữ pháp.",
   },
 
   lesson: {
