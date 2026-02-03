@@ -118,6 +118,21 @@ export const AppSidebar = ({
           url: ROUTE_PATH.admin.settings,
           icon: () => <Icon icon="tdesign:setting-1" className="size-4" />,
         },
+        {
+          title: t("module.modules"),
+          url: ROUTE_PATH.admin.modules,
+          icon: () => <Icon icon="octicon:container-24" className="size-4" />,
+        },
+        {
+          title: t("onboarding.onboardings"),
+          url: ROUTE_PATH.admin.onboardings,
+          icon: () => <Icon icon="fluent-mdl2:onboarding" className="size-4" />,
+        },
+        {
+          title: t("popup.popups"),
+          url: ROUTE_PATH.admin.popups,
+          icon: () => <Icon icon="vaadin:modal-list" className="size-4" />,
+        },
       ],
     },
   ];

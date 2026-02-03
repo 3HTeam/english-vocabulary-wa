@@ -43,3 +43,15 @@ export const GRAMMAR_TOPIC_ENDPOINTS = {
 export const GRAMMAR_EXERCISE_ENDPOINTS = {
   base: "admin/grammar-exercises",
 } as const;
+
+export const MODULE_ENDPOINTS = {
+  base: "admin/modules",
+} as const;
+
+export const ONBOARDING_ENDPOINTS = {
+  base: "admin/onboardings",
+} as const;
+
+export const POPUP_ENDPOINTS = {
+  base: "admin/popups",
+} as const;

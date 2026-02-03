@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 
 import { AxiosError } from "axios";
 import { ArrowLeft, Trash2 } from "lucide-react";
@@ -15,7 +15,7 @@ import {
 import { DataTable } from "@/components/shared/data-table";
 import { DialogDelete } from "@/components/shared/dialog";
 import { Button } from "@/components/ui/button";
-import { EMPTY, MODES } from "@/constants/common";
+import { EMPTY } from "@/constants/common";
 import { useTranslations } from "@/hooks";
 import { ApiResponse } from "@/types/api";
 import {
@@ -68,7 +68,7 @@ export function TopicView() {
     isForceDelete: false,
   });
 
-  const { data: topics, isLoading } = useGetTopicQuery({
+  const { data: topics } = useGetTopicQuery({
     page,
     search,
     status: statusFilter,
@@ -89,7 +89,7 @@ export function TopicView() {
     });
   };
 
-  const handleDeleteClick = (id: string) => {
+  const handleDelete = (id: string) => {
     setDeleteModalState({
       open: true,
       topicId: id,
@@ -112,7 +112,7 @@ export function TopicView() {
     });
   };
 
-  const handleForceDeleteClick = (id: string) => {
+  const handleForceDelete = (id: string) => {
     setDeleteModalState({
       open: true,
       topicId: id,
@@ -178,17 +178,17 @@ export function TopicView() {
         t,
         onView: handleView,
         onRestore: handleRestore,
-        onForceDelete: handleForceDeleteClick,
+        onForceDelete: handleForceDelete,
       })
     : createColumns({
         t,
         onView: handleView,
         onEdit: handleEdit,
-        onDelete: handleDeleteClick,
+        onDelete: handleDelete,
       });
 
   return (
-    <>
+    <React.Fragment>
       <ViewTopicModal
         topicId={viewModalState.topicId}
         open={viewModalState.open}
@@ -286,6 +286,6 @@ export function TopicView() {
           onPageChange: (newPage) => setPage(newPage),
         }}
       />
-    </>
+    </React.Fragment>
   );
 }

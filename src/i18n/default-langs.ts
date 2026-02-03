@@ -48,6 +48,18 @@ export const defaultMessages = {
       title: "Bài tập ngữ pháp - {name}",
       desc: "Quản lý bài tập ngữ pháp.",
     },
+    module: {
+      title: "Chức năng - {name}",
+      desc: "Quản lý chức năng.",
+    },
+    onboarding: {
+      title: "Onboarding - {name}",
+      desc: "Quản lý onboarding.",
+    },
+    popup: {
+      title: "Popup - {name}",
+      desc: "Quản lý popup.",
+    },
   },
 
   auth: {
@@ -333,6 +345,20 @@ export const defaultMessages = {
     score: "Điểm",
     score_placeholder: "Nhập điểm...",
     score_required: "Điểm bắt buộc!",
+    module_name: "Tên chức năng",
+    module_name_required: "Tên chức năng bắt buộc!",
+
+    onboarding_title: "Tiêu đề",
+    onboarding_title_placeholder: "Nhập tiêu đề...",
+    onboarding_title_required: "Tiêu đề bắt buộc!",
+
+    popup_title: "Tiêu đề",
+    popup_title_placeholder: "Nhập tiêu đề...",
+    popup_title_required: "Tiêu đề bắt buộc!",
+
+    module: "Chức năng",
+    module_placeholder: "Chọn chức năng",
+    module_required: "Chức năng bắt buộc!",
   },
 
   common: {
@@ -427,6 +453,36 @@ export const defaultMessages = {
     errors: {
       something_went_wrong: "Đã có lỗi xảy ra!",
     },
+    general_info: "Thông tin chung",
+    learning_progress: "Tiến độ học tập",
+    account_status: "Trạng thái tài khoản",
+    avatar: "Ảnh đại diện",
+    email_verification_status: "Trạng thái xác thực email",
+  },
+  setting: {
+    setting: "Cài đặt",
+    settings: "Cài đặt",
+    app_info: "Thông tin ứng dụng",
+    app_name: "Tên ứng dụng",
+    app_name_placeholder: "Nhập tên ứng dụng...",
+    app_description: "Mô tả ứng dụng",
+    app_description_placeholder: "Nhập mô tả ứng dụng...",
+    primary_color: "Màu chủ đạo",
+    logo: "Logo",
+    favicon: "Favicon",
+    contact_info: "Thông tin liên hệ",
+    address: "Địa chỉ",
+    address_placeholder: "Nhập địa chỉ...",
+    social_media: "Mạng xã hội",
+  },
+
+  billing: {
+    billing: "Thanh toán",
+    billings: "Thanh toán",
+  },
+  notification: {
+    notification: "Thông báo",
+    notifications: "Thông báo",
   },
 
   topic: {
@@ -582,31 +638,39 @@ export const defaultMessages = {
     level_details_desc: "Xem thông tin chi tiết của cấp độ.",
   },
 
-  setting: {
-    setting: "Cài đặt",
-    settings: "Cài đặt",
-    app_info: "Thông tin ứng dụng",
-    app_name: "Tên ứng dụng",
-    app_name_placeholder: "Nhập tên ứng dụng...",
-    app_description: "Mô tả ứng dụng",
-    app_description_placeholder: "Nhập mô tả ứng dụng...",
-    primary_color: "Màu chủ đạo",
-    logo: "Logo",
-    favicon: "Favicon",
-    contact_info: "Thông tin liên hệ",
-    address: "Địa chỉ",
-    address_placeholder: "Nhập địa chỉ...",
-    social_media: "Mạng xã hội",
+  module: {
+    module: "Chức năng",
+    modules: "Chức năng",
+    search_placeholder: "Tìm kiếm chức năng",
+    add_new_module: "Thêm chức năng mới",
+    add_new_module_desc: "Tạo chức năng mới. Điền thông tin bên dưới",
+    edit_module: "Sửa chức năng",
+    edit_module_desc: "Chỉnh sửa thông tin chức năng. Điền thông tin bên dưới.",
+    module_details: "Chi tiết chức năng",
+    module_details_desc: "Xem thông tin chi tiết của chức năng.",
   },
-
-  billing: {
-    billing: "Thanh toán",
-    billings: "Thanh toán",
+  onboarding: {
+    onboarding: "Onboarding",
+    onboardings: "Onboarding",
+    search_placeholder: "Tìm kiếm onboarding...",
+    add_new_onboarding: "Thêm onboarding mới",
+    add_new_onboarding_desc: "Tạo onboarding mới. Điền thông tin bên dưới.",
+    edit_onboarding: "Sửa onboarding",
+    edit_onboarding_desc:
+      "Chỉnh sửa thông tin onboarding. Điền thông tin bên dưới.",
+    onboarding_details: "Chi tiết onboarding",
+    onboarding_details_desc: "Xem thông tin chi tiết của onboarding.",
   },
-
-  notification: {
-    notification: "Thông báo",
-    notifications: "Thông báo",
+  popup: {
+    popup: "Popup",
+    popups: "Popup",
+    search_placeholder: "Tìm kiếm popup...",
+    add_new_popup: "Thêm popup mới",
+    add_new_popup_desc: "Tạo popup mới. Điền thông tin bên dưới.",
+    edit_popup: "Sửa popup",
+    edit_popup_desc: "Chỉnh sửa thông tin popup. Điền thông tin bên dưới.",
+    popup_details: "Chi tiết popup",
+    popup_details_desc: "Xem thông tin chi tiết của popup.",
   },
 } as const;
 

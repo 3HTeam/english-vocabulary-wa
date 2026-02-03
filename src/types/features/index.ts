@@ -6,3 +6,6 @@ export * from "./vocabulary";
 export * from "./grammar-category";
 export * from "./grammar-topic";
 export * from "./grammar-exercise";
+export * from "./module";
+export * from "./onboarding";
+export * from "./popup";

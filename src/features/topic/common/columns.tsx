@@ -119,9 +119,6 @@ export const createColumns = (
         />
       );
     },
-    filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id));
-    },
   },
   {
     accessorKey: COLUMN_KEYS.slug,
@@ -137,9 +134,6 @@ export const createColumns = (
           <Badge variant="outline">{row.getValue("slug")}</Badge>
         </div>
       );
-    },
-    filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id));
     },
   },
   {
@@ -161,9 +155,6 @@ export const createColumns = (
           </span>
         </div>
       );
-    },
-    filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id));
     },
   },
   {

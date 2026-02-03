@@ -28,7 +28,9 @@ export type TLevelByIdResponse = ApiResponse<{
   level: TLevel;
 }>;
 
-export type TCreateLevelResponse = ApiResponse<TLevel>;
+export type TCreateLevelResponse = ApiResponse<{
+  level: TLevel;
+}>;
 
 export type TUpdateLevelResponse = ApiResponse<TLevel>;
 

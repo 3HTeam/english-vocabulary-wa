@@ -79,17 +79,6 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-
-  // Redirects
-  async redirects() {
-    return [
-      {
-        source: "/home",
-        destination: "/dashboard",
-        permanent: true,
-      },
-    ];
-  },
 };
 
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");

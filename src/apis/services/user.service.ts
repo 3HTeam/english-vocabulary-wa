@@ -1,4 +1,4 @@
-import { Params } from "@/types/api";
+import { TParams } from "@/types/api";
 import {
   TUpdateUserResponse,
   TUserByIdResponse,
@@ -8,7 +8,7 @@ import {
 
 import { axiosClient, USER_ENDPOINTS } from "../config";
 
-export async function getUser(params?: Params): Promise<TUsersResponse> {
+export async function getUser(params?: TParams): Promise<TUsersResponse> {
   try {
     const queryParams = new URLSearchParams();
     if (params?.page) {
@@ -57,5 +57,3 @@ export async function updateUser(
     throw error;
   }
 }
-
-

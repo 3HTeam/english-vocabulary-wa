@@ -1,12 +1,12 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import { apiServices } from "@/apis/services";
-import { Params } from "@/types/api";
+import { TParams } from "@/types/api";
 import { TLevelPayload } from "@/types/features/level";
 
 import { LEVEL_QUERY_KEYS } from "./contants";
 
-export const useGetLevelQuery = (params?: Params) => {
+export const useGetLevelQuery = (params?: TParams) => {
   return useQuery({
     queryKey: [LEVEL_QUERY_KEYS.getLevel, params],
     queryFn: () => apiServices.level.getLevel(params),

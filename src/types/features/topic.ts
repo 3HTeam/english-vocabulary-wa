@@ -34,4 +34,6 @@ export type TRestoreTopicResponse = ApiResponse<void>;
 
 export type TForceDeleteTopicResponse = ApiResponse<void>;
 
-export type TCreateTopicResponse = ApiResponse<TTopic>;
+export type TCreateTopicResponse = ApiResponse<{
+  topic: TTopic;
+}>;
