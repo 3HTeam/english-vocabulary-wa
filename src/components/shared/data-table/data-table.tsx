@@ -51,7 +51,7 @@ interface DataTableProps<TData, TValue> {
     total?: number;
     onPageChange?: (page: number) => void;
   };
-  loading: boolean;
+  loading?: boolean;
 }
 
 export function DataTable<TData, TValue>({
