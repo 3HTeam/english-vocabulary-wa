@@ -1,5 +1,5 @@
 import { axiosClient, GRAMMAR_EXERCISE_ENDPOINTS } from "@/apis/config";
-import { Params } from "@/types/api";
+import { TParams } from "@/types/api";
 import {
   TCreateGrammarExerciseResponse,
   TDeleteGrammarExerciseResponse,
@@ -12,7 +12,7 @@ import {
 } from "@/types/features";
 
 export async function getGrammarExercises(
-  params?: Params,
+  params?: TParams,
 ): Promise<TGrammarExercisesResponse> {
   try {
     const queryParams = new URLSearchParams();
