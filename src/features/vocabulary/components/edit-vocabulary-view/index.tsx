@@ -7,7 +7,7 @@ import { toast } from "sonner";
 import {
   useGetVocabularyByIdQuery,
   useUpdateVocabularyMutation,
-} from "@/apis/queries";
+} from "@/apis/hooks";
 import { Skeleton } from "@/components/ui/skeleton";
 import { EMPTY, MODES } from "@/constants/common";
 import { ROUTE_PATH } from "@/constants/routes";

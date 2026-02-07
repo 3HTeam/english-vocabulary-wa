@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { get } from "radash";
 import { useForm } from "react-hook-form";
 
-import { useGetGrammarExerciseByIdQuery } from "@/apis/queries";
+import { useGetGrammarExerciseByIdQuery } from "@/apis/hooks";
 import { DialogError } from "@/components/shared/dialog";
 import { Button } from "@/components/ui/button";
 import {

@@ -11,7 +11,7 @@ import {
   useForceDeleteLevelMutation,
   useGetLevelQuery,
   useRestoreLevelMutation,
-} from "@/apis/queries";
+} from "@/apis/hooks";
 import { DataTable } from "@/components/shared/data-table";
 import { DialogDelete } from "@/components/shared/dialog";
 import { Button } from "@/components/ui/button";

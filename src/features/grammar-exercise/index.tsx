@@ -5,7 +5,7 @@ import { useMemo, useState } from "react";
 import { ArrowLeft, Plus, Trash2 } from "lucide-react";
 import { get } from "radash";
 
-import { useGetGrammarExercisesQuery } from "@/apis/queries";
+import { useGetGrammarExercisesQuery } from "@/apis/hooks";
 import { DataTable } from "@/components/shared/data-table";
 import { Button } from "@/components/ui/button";
 import { EMPTY, MODES } from "@/constants/common";

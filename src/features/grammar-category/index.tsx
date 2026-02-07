@@ -1,9 +1,10 @@
 "use client";
 
 import { useMemo, useState } from "react";
+
 import { get } from "radash";
 
-import { useGetGrammarCategoriesQuery } from "@/apis/queries";
+import { useGetGrammarCategoriesQuery } from "@/apis/hooks";
 import { DataTable } from "@/components/shared/data-table";
 import { EMPTY, MODES } from "@/constants/common";
 import { useTranslations } from "@/hooks";

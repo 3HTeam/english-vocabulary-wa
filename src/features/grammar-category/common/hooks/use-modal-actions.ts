@@ -9,7 +9,7 @@ import {
   useForceDeleteGrammarCategoryMutation,
   useRestoreGrammarCategoryMutation,
   useUpdateGrammarCategoryMutation,
-} from "@/apis/queries";
+} from "@/apis/hooks";
 import { MODES } from "@/constants/common";
 import { ModalMode } from "@/features/grammar-category/common/hooks/use-modal";
 import { useTranslations } from "@/hooks";

@@ -14,7 +14,7 @@ import {
 import { get } from "radash";
 import { toast } from "sonner";
 
-import { useSignOutMutation } from "@/apis/queries";
+import { useSignOutMutation } from "@/apis/hooks";
 import { Logo } from "@/assets/images";
 import {
   DropdownMenu,

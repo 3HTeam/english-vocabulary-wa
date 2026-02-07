@@ -9,7 +9,7 @@ import type { AxiosError } from "axios";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
-import { useSignInMutation } from "@/apis/queries";
+import { useSignInMutation } from "@/apis/hooks";
 import { Banner } from "@/assets/images";
 import { LanguageSwitcher } from "@/components/shared/language-switcher";
 import { Button } from "@/components/ui/button";

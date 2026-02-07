@@ -1,9 +1,12 @@
 "use client";
 
 import { useCallback, useState } from "react";
-import { Upload, X } from "lucide-react";
+
 import { AxiosError } from "axios";
+import { Upload, X } from "lucide-react";
 import { toast } from "sonner";
+
+import { useUploadMutation } from "@/apis/hooks";
 import { Button } from "@/components/ui/button";
 import {
   FileUpload as DiceUIFileUpload,
@@ -17,7 +20,6 @@ import {
   FileUploadTrigger,
   type FileUploadProps as DiceUIFileUploadProps,
 } from "@/components/ui/file-upload";
-import { useUploadMutation } from "@/apis/queries";
 import { useTranslations } from "@/hooks";
 
 export type FileUploadStatus = "uploading" | "success" | "error";

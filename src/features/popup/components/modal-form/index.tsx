@@ -1,6 +1,6 @@
 import { UseFormReturn } from "react-hook-form";
 
-import { useGetModuleQuery } from "@/apis/queries";
+import { useGetModuleQuery } from "@/apis/hooks";
 import {
   FormControl,
   FormField,

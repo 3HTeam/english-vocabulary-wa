@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 
 import { useRouter } from "next/navigation";
 
-import { useGetUserQuery } from "@/apis/queries";
+import { useGetUserQuery } from "@/apis/hooks";
 import { DataTable } from "@/components/shared/data-table";
 import { EMPTY } from "@/constants/common";
 import { ROUTE_PATH } from "@/constants/routes";

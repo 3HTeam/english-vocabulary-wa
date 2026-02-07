@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 
 import { toast } from "sonner";
 
-import { useCreateVocabularyMutation } from "@/apis/queries";
+import { useCreateVocabularyMutation } from "@/apis/hooks";
 import { EMPTY, MODES } from "@/constants/common";
 import { ROUTE_PATH } from "@/constants/routes";
 import { useTranslations } from "@/hooks";

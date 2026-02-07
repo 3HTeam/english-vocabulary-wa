@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { get } from "radash";
 import { useForm } from "react-hook-form";
 
-import { useGetGrammarTopicByIdQuery } from "@/apis/queries";
+import { useGetGrammarTopicByIdQuery } from "@/apis/hooks";
 import { DialogError } from "@/components/shared/dialog";
 import { ModalCustom } from "@/components/shared/modal-custom";
 import { Button } from "@/components/ui/button";

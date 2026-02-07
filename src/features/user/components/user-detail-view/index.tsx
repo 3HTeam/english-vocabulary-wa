@@ -9,7 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowLeft, Pencil } from "lucide-react";
 import { useForm, type Resolver } from "react-hook-form";
 
-import { useGetUserByIdQuery } from "@/apis/queries";
+import { useGetUserByIdQuery } from "@/apis/hooks";
 import {
   Breadcrumb,
   BreadcrumbItem,
