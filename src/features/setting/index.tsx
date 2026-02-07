@@ -11,7 +11,7 @@ import { ArrowLeft, Loader2, Pencil, Save, Settings } from "lucide-react";
 import { useForm, type Resolver, type SubmitHandler } from "react-hook-form";
 import { toast } from "sonner";
 
-import { useSettingQuery, useUpdateSettingMutation } from "@/apis/queries";
+import { useSettingQuery, useUpdateSettingMutation } from "@/apis/hooks";
 import {
   Breadcrumb,
   BreadcrumbItem,

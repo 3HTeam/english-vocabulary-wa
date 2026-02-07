@@ -19,8 +19,8 @@ export const EMPTY = {
 };
 
 export const MODES = {
-  add: 'add',
-  edit: 'edit',
-  view: 'view',
-  clone: 'clone',
-};
+  add: "add",
+  edit: "edit",
+  view: "view",
+  clone: "clone",
+} as const;

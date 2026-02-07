@@ -8,7 +8,7 @@ import { REGEXP_ONLY_DIGITS } from "input-otp";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 
-import { useVerifyEmailMutation } from "@/apis/queries";
+import { useVerifyEmailMutation } from "@/apis/hooks";
 import { LanguageSwitcher } from "@/components/shared/language-switcher";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";

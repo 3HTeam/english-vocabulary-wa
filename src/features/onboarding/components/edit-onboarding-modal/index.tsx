@@ -11,7 +11,7 @@ import { toast } from "sonner";
 import {
   useGetOnboardingByIdQuery,
   useUpdateOnboardingMutation,
-} from "@/apis/queries";
+} from "@/apis/hooks";
 import { DialogError } from "@/components/shared/dialog";
 import { Button } from "@/components/ui/button";
 import {

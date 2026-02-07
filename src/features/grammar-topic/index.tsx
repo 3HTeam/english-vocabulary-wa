@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 
 import { get } from "radash";
 
-import { useGetGrammarTopicsQuery } from "@/apis/queries";
+import { useGetGrammarTopicsQuery } from "@/apis/hooks";
 import { DataTable } from "@/components/shared/data-table";
 import { EMPTY, MODES } from "@/constants/common";
 import { useTranslations } from "@/hooks";

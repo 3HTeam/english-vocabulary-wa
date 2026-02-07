@@ -8,7 +8,7 @@ import { Loader2, Plus } from "lucide-react";
 import { useForm, type Resolver, type SubmitHandler } from "react-hook-form";
 import { toast } from "sonner";
 
-import { useCreateLevelMutation } from "@/apis/queries";
+import { useCreateLevelMutation } from "@/apis/hooks";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,

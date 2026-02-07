@@ -14,7 +14,7 @@ import {
   useGetTopicQuery,
   useGetVocabularyQuery,
   useRestoreVocabularyMutation,
-} from "@/apis/queries";
+} from "@/apis/hooks";
 import {
   DataTable,
   DataTableSelectFilter,

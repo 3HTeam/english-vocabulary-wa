@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 import { get } from "radash";
 
-import { useProfileQuery } from "@/apis/queries";
+import { useProfileQuery } from "@/apis/hooks";
 import { Logo } from "@/assets/images";
 import {
   Sidebar,

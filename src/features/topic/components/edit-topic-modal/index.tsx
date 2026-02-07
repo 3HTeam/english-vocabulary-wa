@@ -8,7 +8,7 @@ import { Loader2, Pencil } from "lucide-react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { toast } from "sonner";
 
-import { useGetTopicByIdQuery, useUpdateTopicMutation } from "@/apis/queries";
+import { useGetTopicByIdQuery, useUpdateTopicMutation } from "@/apis/hooks";
 import { DialogError } from "@/components/shared/dialog";
 import { Button } from "@/components/ui/button";
 import {

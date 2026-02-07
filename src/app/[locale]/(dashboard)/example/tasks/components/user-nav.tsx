@@ -1,5 +1,10 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+
+import { toast } from "sonner";
+
+import { useSignOutMutation } from "@/apis/hooks";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -12,10 +17,7 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useRouter } from "next/navigation";
 import { useAuthStore } from "@/stores/auth.store";
-import { useSignOutMutation } from "@/apis/queries";
-import { toast } from "sonner";
 
 export function UserNav() {
   const router = useRouter();

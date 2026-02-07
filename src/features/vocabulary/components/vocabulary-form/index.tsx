@@ -20,7 +20,7 @@ import {
 } from "lucide-react";
 import { useFieldArray, useForm, type SubmitHandler } from "react-hook-form";
 
-import { useGetTopicQuery } from "@/apis/queries";
+import { useGetTopicQuery } from "@/apis/hooks";
 import { FileUpload } from "@/components/shared/file-upload";
 import {
   Breadcrumb,

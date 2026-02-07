@@ -9,7 +9,7 @@ import {
   useForceDeleteGrammarTopicMutation,
   useRestoreGrammarTopicMutation,
   useUpdateGrammarTopicMutation,
-} from "@/apis/queries";
+} from "@/apis/hooks";
 import { MODES } from "@/constants/common";
 import { useTranslations } from "@/hooks";
 import { ApiResponse } from "@/types/api";

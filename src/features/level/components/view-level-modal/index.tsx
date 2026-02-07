@@ -5,7 +5,7 @@ import { useEffect, useMemo } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, type Resolver } from "react-hook-form";
 
-import { useGetLevelByIdQuery } from "@/apis/queries";
+import { useGetLevelByIdQuery } from "@/apis/hooks";
 import { DialogError } from "@/components/shared/dialog";
 import { Button } from "@/components/ui/button";
 import {

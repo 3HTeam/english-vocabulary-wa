@@ -1,6 +1,6 @@
 "use client";
 
-import { useGetVocabularyByIdQuery } from "@/apis/queries";
+import { useGetVocabularyByIdQuery } from "@/apis/hooks";
 import { Skeleton } from "@/components/ui/skeleton";
 import { MODES } from "@/constants/common";
 import { useTranslations } from "@/hooks";

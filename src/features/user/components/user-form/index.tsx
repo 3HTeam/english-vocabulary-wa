@@ -3,7 +3,7 @@
 import { Upload, User, X } from "lucide-react";
 import { UseFormReturn } from "react-hook-form";
 
-import { useGetLevelQuery } from "@/apis/queries";
+import { useGetLevelQuery } from "@/apis/hooks";
 import { FileUpload } from "@/components/shared/file-upload";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";

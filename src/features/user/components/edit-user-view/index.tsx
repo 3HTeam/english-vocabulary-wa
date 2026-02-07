@@ -11,7 +11,7 @@ import { ArrowLeft, Loader2, Save } from "lucide-react";
 import { useForm, type Resolver, type SubmitHandler } from "react-hook-form";
 import { toast } from "sonner";
 
-import { useGetUserByIdQuery, useUpdateUserMutation } from "@/apis/queries";
+import { useGetUserByIdQuery, useUpdateUserMutation } from "@/apis/hooks";
 import {
   Breadcrumb,
   BreadcrumbItem,

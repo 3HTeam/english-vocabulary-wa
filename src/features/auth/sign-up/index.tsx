@@ -7,7 +7,7 @@ import type { AxiosError } from "axios";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
-import { useSignUpMutation } from "@/apis/queries";
+import { useSignUpMutation } from "@/apis/hooks";
 import { LanguageSwitcher } from "@/components/shared/language-switcher";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
