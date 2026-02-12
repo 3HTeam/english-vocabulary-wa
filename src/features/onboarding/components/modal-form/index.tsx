@@ -1,5 +1,10 @@
+import Image from "next/image";
+
+import { X } from "lucide-react";
 import { UseFormReturn } from "react-hook-form";
 
+import { FileUpload } from "@/components/shared/file-upload";
+import { Button } from "@/components/ui/button";
 import {
   FormControl,
   FormField,
@@ -61,12 +66,42 @@ export function OnboardingForm({ form, mode }: OnboardingFormProps) {
           <FormItem>
             <FormLabel>{t("field.image")}</FormLabel>
             <FormControl>
-              <Input
-                placeholder="https://..."
-                value={field.value ?? EMPTY.str}
-                onChange={field.onChange}
-                disabled={isReadonly}
-              />
+              {field.value ? (
+                <div className="relative group w-fit">
+                  <div className="w-[200px] h-[200px] rounded-lg border overflow-hidden bg-muted">
+                    <Image
+                      src={field.value}
+                      alt="Preview"
+                      height={200}
+                      width={200}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  {!isReadonly && (
+                    <Button
+                      type="button"
+                      variant="default"
+                      size="icon"
+                      className="absolute top-2 right-2 h-7 w-7 cursor-pointer"
+                      onClick={() => field.onChange(EMPTY.str)}
+                    >
+                      <X className="h-4 w-4" />
+                    </Button>
+                  )}
+                </div>
+              ) : (
+                !isReadonly && (
+                  <FileUpload
+                    onUploadSuccess={(url) => {
+                      field.onChange(url);
+                    }}
+                    onUploadError={EMPTY.fn}
+                    accept="image/*"
+                    maxSize={1024 * 1024}
+                    multiple={false}
+                  />
+                )
+              )}
             </FormControl>
             <FormMessage />
           </FormItem>

@@ -33,7 +33,7 @@ import { EMPTY, MODES } from "@/constants/common";
 import { ROUTE_PATH } from "@/constants/routes";
 import { useTranslations } from "@/hooks";
 import { useVocabularyStore } from "@/stores";
-import { getDictionaryApiUrl, getUnsplashPhotoUrl } from "@/utils/api";
+import { getDictionaryApiUrl } from "@/utils/api";
 
 import { type VocabularyFormValues } from "../../schemas";
 
@@ -63,7 +63,7 @@ export const AddVocabularyModal = () => {
     try {
       const [dictionaryResponse, imageResponse] = await Promise.all([
         fetch(getDictionaryApiUrl(values.word)),
-        fetch(getUnsplashPhotoUrl(values.word)),
+        fetch(`/api/freepik?term=${encodeURIComponent(values.word)}`),
       ]);
 
       if (!dictionaryResponse.ok) {
@@ -80,7 +80,7 @@ export const AddVocabularyModal = () => {
       let imageUrl = EMPTY.str;
       if (imageResponse.ok) {
         const imageData = await imageResponse.json();
-        imageUrl = imageData.results?.[0]?.urls?.regular || EMPTY.str;
+        imageUrl = imageData.data?.[0]?.image?.source?.url || EMPTY.str;
       }
 
       const mappedData: Partial<VocabularyFormValues> = {

@@ -1,17 +1,17 @@
-import * as authServices from "./auth.service";
-import * as bannerServices from "./banner.service";
-import * as grammarCategoryServices from "./grammar-category.service";
-import * as grammarExerciseServices from "./grammar-exercise.service";
-import * as grammarTopicServices from "./grammar-topic.service";
-import * as levelServices from "./level.service";
-import * as moduleServices from "./module.service";
-import * as onboardingServices from "./onboarding.service";
-import * as popupServices from "./popup.service";
-import * as settingServices from "./setting.service";
-import * as topicServices from "./topic.service";
-import * as uploadServices from "./upload.service";
-import * as userServices from "./user.service";
-import * as vocabularyServices from "./vocabulary.service";
+import * as authServices from "./auth/auth.service";
+import * as bannerServices from "./banner/banner.service";
+import * as grammarCategoryServices from "./grammar-category/grammar-category.service";
+import * as grammarExerciseServices from "./grammar-exercise/grammar-exercise.service";
+import * as grammarTopicServices from "./grammar-topic/grammar-topic.service";
+import * as levelServices from "./level/level.service";
+import * as moduleServices from "./module/module.service";
+import * as onboardingServices from "./onboarding/onboarding.service";
+import * as popupServices from "./popup/popup.service";
+import * as settingServices from "./setting/setting.service";
+import * as topicServices from "./topic/topic.service";
+import * as uploadServices from "./upload/upload.service";
+import * as userServices from "./user/user.service";
+import * as vocabularyServices from "./vocabulary/vocabulary.service";
 
 export const apiServices = {
   auth: authServices,
@@ -29,14 +29,3 @@ export const apiServices = {
   popup: popupServices,
   banner: bannerServices,
 };
-
-export * from "./auth.service";
-export * from "./grammar-category.service";
-export * from "./grammar-topic.service";
-export * from "./grammar-exercise.service";
-export * from "./level.service";
-export * from "./setting.service";
-export * from "./topic.service";
-export * from "./upload.service";
-export * from "./user.service";
-export * from "./vocabulary.service";
