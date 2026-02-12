@@ -254,62 +254,6 @@ export const createColumns = (
     enableSorting: false,
   },
   {
-    id: COLUMN_KEYS.synonyms,
-    header: ({ column }) => (
-      <DataTableColumnHeader
-        column={column}
-        title={options.t("field.synonyms")}
-      />
-    ),
-    meta: {
-      name: options.t("field.synonyms"),
-    },
-    cell: ({ row }) => {
-      const meanings = (row.original as TVocabulary).meanings || [];
-      const allSynonyms = meanings.flatMap((m) => m.synonyms || []);
-      const uniqueSynonyms = [...new Set(allSynonyms)];
-
-      if (uniqueSynonyms.length === 0) {
-        return <span className="text-muted-foreground">-</span>;
-      }
-
-      return (
-        <span className="block max-w-[120px] truncate text-sm text-muted-foreground">
-          [{uniqueSynonyms.join(", ")}]
-        </span>
-      );
-    },
-    enableSorting: false,
-  },
-  {
-    id: COLUMN_KEYS.antonyms,
-    header: ({ column }) => (
-      <DataTableColumnHeader
-        column={column}
-        title={options.t("field.antonyms")}
-      />
-    ),
-    meta: {
-      name: options.t("field.antonyms"),
-    },
-    cell: ({ row }) => {
-      const meanings = (row.original as TVocabulary).meanings || [];
-      const allAntonyms = meanings.flatMap((m) => m.antonyms || []);
-      const uniqueAntonyms = [...new Set(allAntonyms)];
-
-      if (uniqueAntonyms.length === 0) {
-        return <span className="text-muted-foreground">-</span>;
-      }
-
-      return (
-        <span className="block max-w-[120px] truncate text-sm text-muted-foreground">
-          [{uniqueAntonyms.join(", ")}]
-        </span>
-      );
-    },
-    enableSorting: false,
-  },
-  {
     accessorKey: COLUMN_KEYS.imageUrl,
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title={options.t("field.image")} />
