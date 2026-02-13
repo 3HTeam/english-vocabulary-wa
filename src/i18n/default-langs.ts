@@ -691,6 +691,12 @@ export const defaultMessages = {
     banner_details: "Chi tiết banner",
     banner_details_desc: "Xem thông tin chi tiết của banner.",
   },
+
+  text_editor: {
+    placeholder: "Nhấn '/' để xem lệnh",
+    character_count: "{count} / {limit} ký tự",
+    words_count: "{count} từ",
+  },
 } as const;
 
 export type MessageKeys = typeof defaultMessages;
