@@ -614,5 +614,10 @@
     "apple": "Apple",
     "google": "Google",
     "meta": "Meta"
+  },
+  "text_editor": {
+    "placeholder": "Press '/' for commands",
+    "character_count": "{count} / {limit} characters",
+    "words_count": "{count} words"
   }
 }

@@ -633,5 +633,10 @@
     "apple": "Apple",
     "google": "Google",
     "meta": "Meta"
+  },
+  "text_editor": {
+    "placeholder": "Nhấn '/' để xem lệnh",
+    "character_count": "{count} / {limit} ký tự",
+    "words_count": "{count} từ"
   }
 }
